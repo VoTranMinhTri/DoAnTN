@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" type="text/css">
     <title>T&T Mobile</title>
 </head>
 
