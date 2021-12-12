@@ -50,15 +50,15 @@
                 <ul class="social-items">
                     <a href="{{ url('auth/facebook') }}">
                         <li class="social-item"><img
-                                src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png"
+                                src="{{ asset('assets/images/Logo-Facebook.png') }}"
                                 alt="facebook">
                         </li>
                     </a>
                     <li class="social-item"><img
-                            src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png"
+                            src="{{ asset('assets/images/Logo-Google.png') }}"
                             alt="google"></li>
                     <li class="social-item"><img
-                            src="https://salt.tikicdn.com/ts/upload/98/37/86/517cfc05f04466b3118357a1fb4182c8.png"
+                            src="{{ asset('assets/images/Logo-Zalo.png') }}"
                             alt="zalo"></li>
                 </ul>
             </div>
