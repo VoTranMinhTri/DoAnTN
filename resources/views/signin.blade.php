@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://t-t-mobile.herokuapp.com/assets/css/style.css" type="text/css">
-    <link rel="stylesheet" href="https://t-t-mobile.herokuapp.com/assets/css/all.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
     <title>Đăng nhập</title>
 </head>
 
 <body>
     <div class="nav-bar">
         <div>
-            <a href="#index" class="nav-bar-logo"><img src="{{ URL::to('assets/images/Logo-1.png') }}" /></a>
+            <a href="#index" class="nav-bar-logo"><img src="{{ asset('assets/images/Logo-1.png') }}" /></a>
             <div class="bordercol"></div>
             <form action="#search" class="nav-bar-search">
                 <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..."
