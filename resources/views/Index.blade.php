@@ -8,35 +8,35 @@
                     <div class="banner-item" style="width: 800px;">
                         <div class="item">
                             <a aria-label="slide" href="#">
-                                <img width="800" height="200" src="{{ asset('assets/images/Banner-1.png') }}"/>
+                                <img width="800" height="200" src="{{ asset('assets/images/banner-1.png') }}"/>
                             </a>
                         </div>
                     </div>
                     <div class="banner-item" style="width: 800px;">
                         <div class="item">
                             <a aria-label="slide" href="#">
-                                <img width="800" height="200" src="{{ asset('assets/images/Banner-2.png') }}"/>
+                                <img width="800" height="200" src="{{ asset('assets/images/banner-2.png') }}"/>
                             </a>
                         </div>
                     </div>
                     <div class="banner-item" style="width: 800px;">
                         <div class="item">
                             <a aria-label="slide" href="#">
-                                <img width="800" height="200" src="{{ asset('assets/images/Banner-3.png') }}"/>
+                                <img width="800" height="200" src="{{ asset('assets/images/banner-3.png') }}"/>
                             </a>
                         </div>
                     </div>
                     <div class="banner-item" style="width: 800px;">
                         <div class="item">
                             <a aria-label="slide" href="#">
-                                <img width="800" height="200" src="{{ asset('assets/images/Banner-4.png') }}"/>
+                                <img width="800" height="200" src="{{ asset('assets/images/banner-4.png') }}"/>
                             </a>
                         </div>
                     </div>
                     <div class="banner-item" style="width: 800px;">
                         <div class="item">
                             <a aria-label="slide" href="#">
-                                <img width="800" height="200" src="{{ asset('assets/images/Banner-5.png') }}"/>
+                                <img width="800" height="200" src="{{ asset('assets/images/banner-5.png') }}"/>
                             </a>
                         </div>
                     </div>
