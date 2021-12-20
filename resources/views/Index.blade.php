@@ -1,80 +1,88 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" type="text/css">
-    <title>T&T Mobile</title>
-</head>
-
-<body>
-    <div class="nav-bar">
-        <div>
-            <a href="#index" class="nav-bar-logo"><img src="{{ asset('assets/images/Logo-1.png') }}" /></a>
-            <div class="bordercol"></div>
-            <form action="#search" class="nav-bar-search">
-                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..."
-                    maxlength="100">
-                <button type="submit"><i class="fas fa-search"></i></button>
-                <div id="search-result" style="display: block;"></div>
-            </form>
-            <a href="#cart" class="nav-bar-cart">
-                <i class="fas fa-shopping-cart"> </i>
-                <span>Giỏ hàng</span>
-            </a>
-            <div class="nav-bar-space"></div>
-            <div class="bordercol"></div>
-            <a href="/signin" class="nav-bar-signin">
-                <span>Đăng nhập</span>
-            </a>
-            <div class="bordercol"></div>
-            <a href="#signup" class="nav-bar-signup">
-                <span>Đăng ký</span>
-            </a>
+@extends('layouts.app')
+@section('content')
+<div class='banner'>
+    <section>
+        <div class="slider-banner carousel theme">
+            <div class="stage-outer">
+                <div class="stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 5600px;">
+                    <div class="banner-item" style="width: 800px;">
+                        <div class="item">
+                            <a aria-label="slide" href="#">
+                                <img width="800" height="200" src="{{ asset('assets/images/Banner-1.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="banner-item" style="width: 800px;">
+                        <div class="item">
+                            <a aria-label="slide" href="#">
+                                <img width="800" height="200" src="{{ asset('assets/images/Banner-2.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="banner-item" style="width: 800px;">
+                        <div class="item">
+                            <a aria-label="slide" href="#">
+                                <img width="800" height="200" src="{{ asset('assets/images/Banner-3.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="banner-item" style="width: 800px;">
+                        <div class="item">
+                            <a aria-label="slide" href="#">
+                                <img width="800" height="200" src="{{ asset('assets/images/Banner-4.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="banner-item" style="width: 800px;">
+                        <div class="item">
+                            <a aria-label="slide" href="#">
+                                <img width="800" height="200" src="{{ asset('assets/images/Banner-5.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <button type="button" role="presentation" class="btn-prev" id="prev">
+                    <span aria-label="Previous">
+                        "<"
+                    </span>
+                </button>
+                <button type="button" role="presentation" class="btn-next" id="next">
+                    <span aria-label="Next">
+                        ">"
+                    </span>
+                </button>
+            </div>
+            <div class="dots">
+                <button role="button" class="dot active" data-index="0">
+                    <span></span>
+                </button>
+                <button role="button" class="dot" data-index="1">
+                    <span></span>
+                </button>
+                <button role="button" class="dot" data-index="2">
+                    <span></span>
+                </button>
+                <button role="button" class="dot" data-index="3">
+                    <span></span>
+                </button>
+                <button role="button" class="dot" data-index="4">
+                    <span></span>
+                </button>
+            </div>
         </div>
-    </div>
-</body>
-
-<footer class="footer">
-    <section class="clearfix footer__top">
-        <div class="footer-col">
-            <ul class="f-listmenu">
-                <li><a rel="nofollow" href="#">Lịch sử mua hàng</a></li>
-                <li><a rel="nofollow" href="#">Cộng tác viên</a></li>
-                <li><a rel="nofollow" href="#">Tìm hiểu về mua trả góp</a></li>
-                <li><a rel="nofollow" href="#">Chính sách bảo hành</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <ul class="f-listmenu">
-                <li><a rel="nofollow" href="#">Giới thiệu</a></li>
-                <li><a rel="nofollow" href="#">Tuyển dụng</a></li>
-                <li><a rel="nofollow" href="#">Gửi góp ý, khiếu nại</a></li>
-                <li><a rel="nofollow" href="#">Tìm siêu thị</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <ul class="f-listmenu">
-                <li><a href="#">Tin tức</a></li>
-                <li><a href="#">Sản phẩm</a></li>
-                <li><a href="#">Thương hiệu</a></li>
-                <li><a href="#">Nhân viên</a></li>
-            </ul>
+        <div class="right-banner">
+            <a href="#" class="right-banner-item"></a>
+            <a aria-label="slide" href="#">
+                <img src="{{ asset('assets/images/banner-right-1.png') }}">
+            </a>
+            <a href="#" class="right-banner-item"></a>
+            <a aria-label="slide" href="#">
+                <img src="{{ asset('assets/images/banner-right-2.png') }}">
+            </a>
         </div>
     </section>
-    <div class="copyright">
-        <section>
-            <p>
-                © 2021. T&T Mobile. GPDKKD: 0303217354 do sở KH &amp; ĐT TP.HCM cấp ngày 01/01/2021. GPMXH: 238/GP-BTTTT
-                do Bộ Thông Tin và Truyền Thông cấp ngày 01/01/2021.<br>
-                Địa chỉ: TP.Hồ Chí Minh. Điện thoại: 0123456789. Email: T&TMobile@gmail.com. Chịu trách nhiệm nội dung:
-                Võ Trần Minh Trí. <a rel="nofollow" href="#">Xem chính sách sử dụng</a>
-            </p>
-        </section>
-    </div>
-</footer>
-
-</html>
+    <script src="{{ asset('assets/js/banner.js') }}"></script>
+</div>
+@endsection

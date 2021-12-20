@@ -20,6 +20,15 @@ Route::get('/', function () {
 Route::get('/signin', function () {
     return view('signin');
 });
+Route::get('/signup', function () {
+    return view('signup');
+});
+Route::get('/cart', function () {
+    return view('cart');
+});
+Route::get('/forgotpassword', function () {
+    return view('forgotpassword');
+});
 Route::get('auth/facebook', [FbController::class, 'redirectToFacebook']);
 
 Route::get('auth/facebook/callback', [FbController::class, 'facebookSignin']);
