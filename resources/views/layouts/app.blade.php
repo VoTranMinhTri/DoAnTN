@@ -9,7 +9,7 @@
         <title>T&T Mobile</title>
    </head>
 
-   <body>
+   <body class="theme-noel">
     <div class="nav-bar">
         <div>
             <a href="/" class="nav-bar-logo"><img src="{{ asset('assets/images/Logo-1.png') }}" /></a>
@@ -36,6 +36,14 @@
         </div>
     </div>
     @yield('content')
+    <div class="sticky-sidebar">
+    <a data-cate="0" href="#"  class="banner-left">
+        <img style="cursor:pointer" src="{{ asset('assets/images/banner-2-side.png') }}" width="79" height="271">
+    </a>
+    <a data-cate="0" href="#" class="banner-right">
+        <img style="cursor:pointer" src="{{ asset('assets/images/banner-2-side.png') }}" width="79" height="271">
+    </a>
+    </div>
 </body>
 
 <footer class="footer">
@@ -64,6 +72,9 @@
                 <li><a href="#">Nhân viên</a></li>
             </ul>
         </div>
+        {{-- <div style="display: inline-block">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d125419.44231589595!2d106.6434555198453!3d10.783901588468984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zVGjhur8gZ2nhu5tpIGRpIMSR4buZbmc!5e0!3m2!1svi!2s!4v1641105276560!5m2!1svi!2s" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div> --}}
     </section>
     <div class="copyright">
         <section>
