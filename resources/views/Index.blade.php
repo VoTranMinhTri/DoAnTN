@@ -128,7 +128,7 @@
     </div>
     <section>
         <div class="box-sort">
-            <p class="sort-total">
+            <p class="sort-total" style="color: #fff;">
                 <b>10</b>
                 Điện thoại
                 <strong style="display: none;"></strong>
@@ -136,19 +136,19 @@
             <div class="box-checkbox extend">
                 <a href="javascript:filterDiscount();" class="c-checkitem">
                     <span class="tick-checkbox"></span>
-                    <p>Giảm giá</p>
+                    <p style="color: #fff;">Giảm giá</p>
                 </a>
                 <a href="javascript:filterZeroPercent();" class="c-checkitem">
                     <span class="tick-checkbox"></span>
-                    <p>Góp 0%</p>
+                    <p style="color: #fff;">Góp 0%</p>
                 </a>
                 <a href="javascript:filterMonopoly();" class="c-checkitem">
                     <span class="tick-checkbox"></span>
-                    <p>Độc quyền</p>
+                    <p style="color: #fff;">Độc quyền</p>
                 </a>
                 <a href="javascript:filterNew();" class="c-checkitem">
                     <span class="tick-checkbox"></span>
-                    <p>Mới</p>
+                    <p style="color: #fff;">Mới</p>
                 </a>
             </div>
         </div>
@@ -166,7 +166,7 @@
         <div class="container-product">
             <ul class="listproduct">
                 <li class="item">
-                    <a href="#">
+                    <a href="/productdetail">
                         <div class="item-label">
                             <span class="lb-tragop">Trả góp 0%</span>
                         </div>
@@ -184,9 +184,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -216,9 +216,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -248,9 +248,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -280,9 +280,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -312,9 +312,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -344,9 +344,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -376,9 +376,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -408,9 +408,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -440,9 +440,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -472,9 +472,9 @@
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                                <i class="icon-star-dark"></i>
+                                <i class="icon-star"></i>
                             </p>
-                            <p class="item-rating-total">402</p>
+                            <p class="item-rating-total">1</p>
                         </div>
                     </a>
                     <div class="item-bottom">

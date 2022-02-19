@@ -29,6 +29,9 @@ Route::get('/cart', function () {
 Route::get('/forgotpassword', function () {
     return view('forgotpassword');
 });
+Route::get('/productdetail', function () {
+    return view('product_detail');
+});
 Route::get('auth/facebook', [FbController::class, 'redirectToFacebook']);
 
 Route::get('auth/facebook/callback', [FbController::class, 'facebookSignin']);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-other')
 @section('content')
     <section class="wrapper login">
         <div>

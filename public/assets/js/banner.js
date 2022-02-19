@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-    const slider = document.querySelector(".slider-banner");
     const sliderStage = document.querySelector(".stage");
     const sliderItems = document.querySelectorAll(".banner-item");
     const nextBtn = document.querySelector(".btn-next");
@@ -70,6 +69,6 @@ window.addEventListener("load", function () {
         }
         [...dotBtn].forEach(itemlist => itemlist.classList.remove("active"));
         dotBtn[index].classList.add("active");
-        setTimeout(autoSlides, 3000);
+        setTimeout(autoSlides, 5000);
     }
 });

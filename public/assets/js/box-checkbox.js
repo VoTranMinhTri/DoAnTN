@@ -1,6 +1,6 @@
 function filterDiscount(){
     var a = document.getElementsByClassName("c-checkitem");
-    console.log(a);
+    // console.log(a);
     if(a[0].className == "c-checkitem")
     {
         a[0].className += " active";
@@ -12,7 +12,7 @@ function filterDiscount(){
 }
 function filterZeroPercent(){
     var a = document.getElementsByClassName("c-checkitem");
-    console.log(a);
+    // console.log(a);
     if(a[1].className == "c-checkitem")
     {
         a[1].className += " active";
@@ -24,7 +24,7 @@ function filterZeroPercent(){
 }
 function filterMonopoly(){
     var a = document.getElementsByClassName("c-checkitem");
-    console.log(a);
+    // console.log(a);
     if(a[2].className == "c-checkitem")
     {
         a[2].className += " active";
@@ -37,7 +37,7 @@ function filterMonopoly(){
 
 function filterNew(){
     var a = document.getElementsByClassName("c-checkitem");
-    console.log(a);
+    // console.log(a);
     if(a[3].className == "c-checkitem")
     {
         a[3].className += " active";
