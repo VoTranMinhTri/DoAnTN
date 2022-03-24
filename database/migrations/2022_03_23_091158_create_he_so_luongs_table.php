@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHinhAnhChungCuaDienThoaisTable extends Migration
+class CreateHeSoLuongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateHinhAnhChungCuaDienThoaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('hinh_anh_chung_cua_dien_thoais', function (Blueprint $table) {
+        Schema::create('he_so_luongs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('dien_thoai_id');
-            $table->string('hinh_anh');
-            $table->string('noi_dung');
-            $table->integer('loai_hinh');
+            $table->float('he_so_luong');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,8 +28,6 @@ class CreateHinhAnhChungCuaDienThoaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hinh_anh_chung_cua_dien_thoais');
+        Schema::dropIfExists('he_so_luongs');
     }
 }
-
-

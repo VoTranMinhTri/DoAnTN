@@ -17,6 +17,7 @@ class CreateChiTietKhosTable extends Migration
             $table->id();
             $table->unsignedInteger('kho_id');
             $table->unsignedInteger('chi_tiet_dien_thoai_id');
+            $table->float('tong_tien');
             $table->integer('so_luong');
             $table->date('ngay_nhap');
             $table->timestamps();

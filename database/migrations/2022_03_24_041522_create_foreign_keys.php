@@ -75,6 +75,21 @@ class CreateForeignKeys extends Migration
             $table->foreign('khuyen_mai_id')->references('id')->on('khuyen_mais');
             $table->foreign('chi_tiet_dien_thoai_id')->references('id')->on('chi_tiet_dien_thoais');
         });
+        Schema::table('nhan_viens', function (Blueprint $table) {
+            $table->foreign('chuc_vu_id')->references('id')->on('chuc_vus');
+            $table->foreign('quan_ly_id')->references('id')->on('nhan_viens');
+            $table->foreign('phong_ban_id')->references('id')->on('phong_bans');
+            $table->foreign('tai_khoan_quan_ly_id')->references('id')->on('tai_khoans');
+            $table->foreign('tai_khoan_id')->references('id')->on('tai_khoans');
+            $table->foreign('cua_hang_id')->references('id')->on('cua_hangs');
+        });
+        Schema::table('cham_congs', function (Blueprint $table) {
+            $table->foreign('nhan_vien_id')->references('id')->on('nhan_viens');
+            $table->foreign('nguoi_cham_cong_id')->references('id')->on('nhan_viens');
+            $table->foreign('he_so_luong_id')->references('id')->on('he_so_luongs');
+            $table->foreign('thuong_id')->references('id')->on('thuongs');
+            $table->foreign('phu_cap_id')->references('id')->on('phu_caps');
+        });
     }
 
     /**
@@ -129,5 +144,12 @@ class CreateForeignKeys extends Migration
         Schema::table('chi_tiet_khuyen_mais', function (Blueprint $table) {
             //
         });
+        Schema::table('nhan_viens', function (Blueprint $table) {
+            //
+        });
+        Schema::table('cham_congs', function (Blueprint $table) {
+            //
+        });
     }
 }
+

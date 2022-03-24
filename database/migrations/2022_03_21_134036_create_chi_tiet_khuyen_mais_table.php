@@ -33,3 +33,4 @@ class CreateChiTietKhuyenMaisTable extends Migration
         Schema::dropIfExists('chi_tiet_khuyen_mais');
     }
 }
+
