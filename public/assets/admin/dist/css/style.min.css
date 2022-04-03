@@ -11773,7 +11773,17 @@ label {
 
 .table td,
 .table th {
-    padding: 1rem
+    padding: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table td p{
+    width:300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .card-subtitle {
@@ -15084,4 +15094,45 @@ label {
     .do-block {
         display: block !important
     }
+}
+
+.profile-pic {
+    border: 1px dashed #b7b7b7;
+    width: 170px;
+    height: 160px;
+}
+
+.upload-herf {
+    /* padding-left: 35px; */
+    padding-top: 7px;
+    color: #0000cc;
+}
+
+.file-upload {
+    display: none !important;
+}
+
+.file-upload {
+    visibility: hidden;
+    display: none;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.sidebar-nav .title-header {
+    margin: 10px 0 10px 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-nav .menu-title {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: #414550;
+    width: 100%;
+    flex: unset;
 }

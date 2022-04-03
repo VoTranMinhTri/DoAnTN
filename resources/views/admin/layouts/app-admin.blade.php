@@ -13,6 +13,7 @@
     <!-- Custom CSS -->
     <link href="{{ asset('assets/admin/libs/flot/css/float-chart.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/extra-libs/multicheck/multicheck.css') }}">
     <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/dist/css/style.min.css') }}" rel="stylesheet">
@@ -245,6 +246,8 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
+
     <script src="{{ asset('assets/admin/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -256,7 +259,6 @@
     <script src="{{ asset('assets/admin/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('assets/admin/dist/js/custom.min.js') }}"></script>
-    <!--This page JavaScript -->
     <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
     <!-- Charts js Files -->
     <script src="{{ asset('assets/admin/libs/flot/excanvas.js') }}"></script>
@@ -267,6 +269,10 @@
     <script src="{{ asset('assets/admin/libs/flot/jquery.flot.crosshair.js') }}"></script>
     <script src="{{ asset('assets/admin/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('assets/admin/dist/js/pages/chart/chart-page-init.js') }}"></script>
+
+    <!-- Select2 js Files -->
+    {{-- <script src="{{ asset('assets/admin/libs/select2/dist/js/select2.full.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/admin/libs/select2/dist/js/select2.min.js') }}"></script>
 
     <!-- Charts js -->
     <script src="{{ asset('assets/admin/libs/chart/matrix.interface.js') }}"></script>
@@ -284,6 +290,12 @@
          *       Basic Table                   *
          ****************************************/
         $('#zero_config').DataTable();
+
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+
     </script>
 </body>
 

@@ -16,7 +16,8 @@ class CreateBacTaiKhoansTable extends Migration
         Schema::create('bac_tai_khoans', function (Blueprint $table) {
             $table->id();
             $table->string('ten_bac_tai_khoan');
-            $table->float('phan_tram_giam');
+            $table->double('han_muc');
+            $table->double('phan_tram_giam');
             $table->timestamps();
             $table->softDeletes();
         });

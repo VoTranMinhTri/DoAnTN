@@ -17,10 +17,10 @@ class CreateThongTinTaiKhoansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('tai_khoan_id');
             $table->string('ho_ten');
-            $table->string('dia_chi');
-            $table->string('so_dien_thoai');
+            $table->string('dia_chi')->nullable();
+            $table->string('so_dien_thoai')->nullable();
             $table->date('ngay_sinh');
-            $table->string('gioi_tinh');
+            $table->integer('gioi_tinh');
             $table->timestamps();
         });
     }

@@ -16,12 +16,12 @@ class CreateNhanViensTable extends Migration
         Schema::create('nhan_viens', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('chuc_vu_id');
-            $table->unsignedInteger('quan_ly_id');
+            $table->unsignedInteger('quan_ly_id')->nullable();
             $table->unsignedInteger('phong_ban_id');
-            $table->unsignedInteger('tai_khoan_quan_ly_id');
-            $table->unsignedInteger('tai_khoan_id');
-            $table->unsignedInteger('cua_hang_id');
-            $table->integer('truong_phong');
+            $table->unsignedInteger('tai_khoan_quan_ly_id')->nullable();
+            $table->unsignedInteger('tai_khoan_id')->nullable();
+            $table->unsignedInteger('cua_hang_id')->nullable();
+            $table->boolean('truong_phong');
             $table->string('ho_ten');
             $table->string('dia_chi');
             $table->date('ngay_sinh');

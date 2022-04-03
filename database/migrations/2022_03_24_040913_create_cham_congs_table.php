@@ -24,7 +24,7 @@ class CreateChamCongsTable extends Migration
             $table->integer('nam');
             $table->integer('so_ngay_lam_viec');
             $table->integer('so_gio_lam_viec');
-            $table->float('ung_truoc');
+            $table->double('ung_truoc');
             $table->timestamps();
             $table->softDeletes();
         });

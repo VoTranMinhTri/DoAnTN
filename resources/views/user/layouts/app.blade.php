@@ -13,6 +13,12 @@
 </head>
 
 <body class="theme">
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
     <div class="nav-bar">
         <div>
             <a href="/" class="nav-bar-logo"><img src="{{ asset('assets/user/images/Logo-1.png') }}" /></a>
@@ -50,6 +56,14 @@
                 height="271">
         </a>
     </div>
+
+    <!-- ============================================================== -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <!--Custom JavaScript -->
+    <script>$(function() {
+        $(".preloader").fadeOut();
+    });
+    </script>
 </body>
 
 <footer class="footer">

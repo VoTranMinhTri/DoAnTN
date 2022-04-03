@@ -18,11 +18,23 @@ Route::get('/admin', function () {
 });
 
 Route::get('/chart', function () {
-    return view('admin/chart');
+    return view('admin/management-page/chart');
 });
 
-Route::get('/table', function () {
-    return view('admin/table');
+Route::get('/staff', function () {
+    return view('admin/management-page/staff');
+});
+
+Route::get('/brand', function () {
+    return view('admin/management-page/brand');
+});
+
+Route::get('/product', function () {
+    return view('admin/management-page/product');
+});
+
+Route::get('/add-product', function () {
+    return view('admin/add-page/add-product');
 });
 
 Route::get('/', function () {

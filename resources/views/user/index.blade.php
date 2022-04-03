@@ -484,9 +484,169 @@
                         So sánh
                     </a>
                 </li>
+                <li class="item">
+                    <a href="#">
+                        <div class="item-label">
+                            <span class="lb-tragop">Trả góp 0%</span>
+                        </div>
+                        <div class="item-img item-img_42">
+                            <img class="thumb ls-is-cached lazyloaded" alt="OPPO Reno6 Z 5G"
+                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                        </div>
+                        <h3>
+                            OPPO Reno6 Z 5G
+                        </h3>
+                        <strong class="price">9.490.000₫</strong>
+                        <div class="item-rating">
+                            <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>
+                            <p class="item-rating-total">1</p>
+                        </div>
+                    </a>
+                    <div class="item-bottom">
+                        <a href="#" class="shiping"></a>
+                    </div>
+                    <a href="javascript:;" class="item-ss">
+                        <i></i>
+                        So sánh
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <div class="item-label">
+                            <span class="lb-tragop">Trả góp 0%</span>
+                        </div>
+                        <div class="item-img item-img_42">
+                            <img class="thumb ls-is-cached lazyloaded" alt="OPPO Reno6 Z 5G"
+                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                        </div>
+                        <h3>
+                            OPPO Reno6 Z 5G
+                        </h3>
+                        <strong class="price">9.490.000₫</strong>
+                        <div class="item-rating">
+                            <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>
+                            <p class="item-rating-total">1</p>
+                        </div>
+                    </a>
+                    <div class="item-bottom">
+                        <a href="#" class="shiping"></a>
+                    </div>
+                    <a href="javascript:;" class="item-ss">
+                        <i></i>
+                        So sánh
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <div class="item-label">
+                            <span class="lb-tragop">Trả góp 0%</span>
+                        </div>
+                        <div class="item-img item-img_42">
+                            <img class="thumb ls-is-cached lazyloaded" alt="OPPO Reno6 Z 5G"
+                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                        </div>
+                        <h3>
+                            OPPO Reno6 Z 5G
+                        </h3>
+                        <strong class="price">9.490.000₫</strong>
+                        <div class="item-rating">
+                            <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>
+                            <p class="item-rating-total">1</p>
+                        </div>
+                    </a>
+                    <div class="item-bottom">
+                        <a href="#" class="shiping"></a>
+                    </div>
+                    <a href="javascript:;" class="item-ss">
+                        <i></i>
+                        So sánh
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <div class="item-label">
+                            <span class="lb-tragop">Trả góp 0%</span>
+                        </div>
+                        <div class="item-img item-img_42">
+                            <img class="thumb ls-is-cached lazyloaded" alt="OPPO Reno6 Z 5G"
+                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                        </div>
+                        <h3>
+                            OPPO Reno6 Z 5G
+                        </h3>
+                        <strong class="price">9.490.000₫</strong>
+                        <div class="item-rating">
+                            <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>
+                            <p class="item-rating-total">1</p>
+                        </div>
+                    </a>
+                    <div class="item-bottom">
+                        <a href="#" class="shiping"></a>
+                    </div>
+                    <a href="javascript:;" class="item-ss">
+                        <i></i>
+                        So sánh
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <div class="item-label">
+                            <span class="lb-tragop">Trả góp 0%</span>
+                        </div>
+                        <div class="item-img item-img_42">
+                            <img class="thumb ls-is-cached lazyloaded" alt="OPPO Reno6 Z 5G"
+                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                        </div>
+                        <h3>
+                            OPPO Reno6 Z 5G
+                        </h3>
+                        <strong class="price">9.490.000₫</strong>
+                        <div class="item-rating">
+                            <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>
+                            <p class="item-rating-total">1</p>
+                        </div>
+                    </a>
+                    <div class="item-bottom">
+                        <a href="#" class="shiping"></a>
+                    </div>
+                    <a href="javascript:;" class="item-ss">
+                        <i></i>
+                        So sánh
+                    </a>
+                </li>
             </ul>
             <div class="view-more ">
-                <a href="javascript:;">Xem thêm <span class="remain">87</span> Điện thoại</a>
+                <a href="javascript:loadMore();" id="load-more">Xem thêm <span class="remain">5</span> Điện thoại</a>
             </div>
         </div>
     </section>

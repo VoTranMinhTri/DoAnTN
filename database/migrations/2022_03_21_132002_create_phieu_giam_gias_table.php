@@ -15,8 +15,8 @@ class CreatePhieuGiamGiasTable extends Migration
     {
         Schema::create('phieu_giam_gias', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->float('phan_tram_giam');
+            $table->string('code')->unique();
+            $table->double('phan_tram_giam');
             $table->date('ngay_bat_dau');
             $table->date('ngay_het_han');
             $table->timestamps();

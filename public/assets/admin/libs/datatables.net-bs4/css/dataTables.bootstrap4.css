@@ -98,6 +98,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   display: block;
   opacity: 0.3;
 }
+
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:before,
@@ -114,6 +115,19 @@ table.dataTable thead .sorting_desc_disabled:after {
   right: 0.5em;
   content: "\2193";
 }
+
+/*  Tùy chỉnh không xuất hiện sắp xếp ở thẻ th của bảng*/
+.thNormal{
+    pointer-events: none;
+}
+table.dataTable thead .thNormal::before{
+    content: none;
+}
+table.dataTable thead .thNormal::after{
+    content: none;
+}
+/*  */
+
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:after {
   opacity: 1;

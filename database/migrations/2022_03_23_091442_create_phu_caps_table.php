@@ -15,7 +15,7 @@ class CreatePhuCapsTable extends Migration
     {
         Schema::create('phu_caps', function (Blueprint $table) {
             $table->id();
-            $table->float('tien_phu_cap');
+            $table->double('tien_phu_cap');
             $table->timestamps();
             $table->softDeletes();
         });

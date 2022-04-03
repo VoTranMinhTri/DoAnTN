@@ -17,7 +17,7 @@ class CreateTaiKhoansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('loai_tai_khoan_id');
             $table->unsignedBigInteger('bac_tai_khoan_id');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->integer('diem_thuong');
             $table->string('password');
             $table->string('token');

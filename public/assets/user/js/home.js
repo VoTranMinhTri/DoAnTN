@@ -148,3 +148,25 @@ function filterNew(){
         a[3].className = a[3].className.replace(" active", "");
     }
 }
+
+
+//Nút xem thêm điện thoại
+let loadMoreBtn = document.querySelector('#load-more')
+let currentItem = 10;
+if(document.querySelectorAll(".listproduct .item").length <= 10){
+    loadMoreBtn.style.display = 'none';
+}
+function loadMore(){
+    let item = [...document.querySelectorAll(".listproduct .item")];
+    for(var i = currentItem;i < currentItem + 5; i++){
+        if(i == item.length){
+            break;
+        }
+        item[i].style.display = 'block';
+    }
+    currentItem +=5;
+
+    if(currentItem >= item.length){
+        loadMoreBtn.style.display = 'none';
+    }
+}

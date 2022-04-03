@@ -15,7 +15,7 @@ class CreateHeSoLuongsTable extends Migration
     {
         Schema::create('he_so_luongs', function (Blueprint $table) {
             $table->id();
-            $table->float('he_so_luong');
+            $table->double('he_so_luong');
             $table->timestamps();
             $table->softDeletes();
         });

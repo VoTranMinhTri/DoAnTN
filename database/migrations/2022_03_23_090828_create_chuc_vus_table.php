@@ -17,7 +17,7 @@ class CreateChucVusTable extends Migration
             $table->id();
             $table->string('kho_id');
             $table->unsignedInteger('ten_chuc_vu');
-            $table->float('luong_co_ban');
+            $table->double('luong_co_ban');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,8 +17,9 @@ class CreateHinhAnhChungCuaDienThoaisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('dien_thoai_id');
             $table->string('hinh_anh');
-            $table->string('noi_dung');
-            $table->integer('loai_hinh');
+            $table->string('noi_dung')->nullable();;
+            $table->integer('loai_hinh');//0 là hình đại diện, 1 là hình giới thiệu chung, 2 là hình mở hộp, ...
+            $table->integer('trang_thai');
             $table->timestamps();
             $table->softDeletes();
         });

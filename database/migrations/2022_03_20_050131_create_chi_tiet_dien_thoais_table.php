@@ -26,7 +26,7 @@ class CreateChiTietDienThoaisTable extends Migration
             $table->unsignedBigInteger('tien_ich_id');
             $table->unsignedBigInteger('thong_tin_chung_id');
             $table->unsignedBigInteger('mau_sac_id');
-            $table->float('gia');
+            $table->double('gia');
             $table->timestamps();
             $table->softDeletes();
         });

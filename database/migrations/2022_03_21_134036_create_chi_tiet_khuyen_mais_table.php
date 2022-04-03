@@ -17,7 +17,7 @@ class CreateChiTietKhuyenMaisTable extends Migration
             $table->id();
             $table->unsignedInteger('khuyen_mai_id');
             $table->unsignedInteger('chi_tiet_dien_thoai_id');
-            $table->float('phan_tram_giam');
+            $table->double('phan_tram_giam');
             $table->timestamps();
             $table->softDeletes();
         });

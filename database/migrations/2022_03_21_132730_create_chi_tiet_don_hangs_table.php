@@ -17,8 +17,8 @@ class CreateChiTietDonHangsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('don_hang_id');
             $table->unsignedBigInteger('chi_tiet_dien_thoai_id');
-            $table->float('gia');
-            $table->float('gia_giam');
+            $table->double('gia');
+            $table->double('gia_giam');
             $table->integer('so_luong');
             $table->timestamps();
         });
