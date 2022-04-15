@@ -21,6 +21,7 @@ class CreateTaiKhoansTable extends Migration
             $table->integer('diem_thuong');
             $table->string('password');
             $table->string('token');
+            $table->integer('trang_thai');
             $table->timestamps();
             $table->softDeletes();
         });

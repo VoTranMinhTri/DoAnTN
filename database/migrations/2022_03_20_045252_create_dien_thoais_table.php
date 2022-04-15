@@ -15,7 +15,6 @@ class CreateDienThoaisTable extends Migration
     {
         Schema::create('dien_thoais', function (Blueprint $table) {
             $table->id();
-            $table->string('SKU')->unique();
             $table->unsignedBigInteger('thuong_hieu_id');
             $table->string('ten_san_pham');
             $table->string('mo_ta');

@@ -13,6 +13,8 @@ use App\Http\Controllers\FbController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Admin
 Route::get('/admin', function () {
     return view('admin/index');
 });
@@ -29,14 +31,119 @@ Route::get('/brand', function () {
     return view('admin/management-page/brand');
 });
 
+Route::get('/storehouse', function () {
+    return view('admin/management-page/storehouse');
+});
+
+Route::get('/store', function () {
+    return view('admin/management-page/store');
+});
+
+Route::get('/customer', function () {
+    return view('admin/management-page/customer');
+});
+
 Route::get('/product', function () {
     return view('admin/management-page/product');
 });
 
+Route::get('/promotion', function () {
+    return view('admin/management-page/promotion');
+});
+
+Route::get('/membershiplevel', function () {
+    return view('admin/management-page/membershiplevel');
+});
+
+Route::get('/position', function () {
+    return view('admin/management-page/position');
+});
+
+Route::get('/department', function () {
+    return view('admin/management-page/department');
+});
+
+Route::get('/voucher', function () {
+    return view('admin/management-page/voucher');
+});
+
+Route::get('/coefficientssalary', function () {
+    return view('admin/management-page/coefficientssalary');
+});
+
+Route::get('/bonus', function () {
+    return view('admin/management-page/bonus');
+});
+
+Route::get('/allowance', function () {
+    return view('admin/management-page/allowance');
+});
+
+Route::get('/color', function () {
+    return view('admin/management-page/color');
+});
+
+Route::get('/screen', function () {
+    return view('admin/management-page/screen');
+});
+
+Route::get('/backcamera', function () {
+    return view('admin/management-page/backcamera');
+});
+
+Route::get('/frontcamera', function () {
+    return view('admin/management-page/frontcamera');
+});
+
+Route::get('/os', function () {
+    return view('admin/management-page/os');
+});
+
+Route::get('/memory', function () {
+    return view('admin/management-page/memory');
+});
+
+Route::get('/connect', function () {
+    return view('admin/management-page/connect');
+});
+
+Route::get('/pin', function () {
+    return view('admin/management-page/pin');
+});
+
+Route::get('/utilities', function () {
+    return view('admin/management-page/utilities');
+});
+
+Route::get('/generalinformation', function () {
+    return view('admin/management-page/generalinformation');
+});
+
+
+//Add-page
 Route::get('/add-product', function () {
     return view('admin/add-page/add-product');
 });
+Route::get('/add-product-detail', function () {
+    return view('admin/add-page/add-product-detail');
+});
+Route::get('/add-brand', function () {
+    return view('admin/add-page/add-brand');
+});
 
+//Edit-page
+Route::get('/edit-product', function () {
+    return view('admin/edit-page/edit-product');
+});
+Route::get('/edit-product-detail', function () {
+    return view('admin/edit-page/edit-product-detail');
+});
+Route::get('/edit-brand', function () {
+    return view('admin/edit-page/edit-brand');
+});
+
+
+//User
 Route::get('/', function () {
     return view('user/index');
 });
@@ -76,6 +183,7 @@ Route::get('/pay', function () {
 });
 
 
+//Social Login
 Route::get('auth/facebook', [FbController::class, 'redirectToFacebook']);
 
 Route::get('auth/facebook/callback', [FbController::class, 'facebookSignin']);

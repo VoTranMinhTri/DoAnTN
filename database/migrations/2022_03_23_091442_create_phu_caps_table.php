@@ -14,7 +14,7 @@ class CreatePhuCapsTable extends Migration
     public function up()
     {
         Schema::create('phu_caps', function (Blueprint $table) {
-            $table->id();
+            $table->string('ma_phu_cap')->primary();
             $table->double('tien_phu_cap');
             $table->timestamps();
             $table->softDeletes();

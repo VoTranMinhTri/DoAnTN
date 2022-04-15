@@ -15136,3 +15136,76 @@ label {
     width: 100%;
     flex: unset;
 }
+
+.popup.active{
+display: block;
+}
+
+.popup{
+display: none;
+}
+
+.bg-popup{
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background-color: #333;
+opacity: .8;
+z-index: 999
+}
+
+.row-popup{
+display: block;
+overflow: hidden;
+padding: 10px 0;
+}
+
+.form-popup{
+position: fixed;
+background: #fff;
+border-radius: 4px;
+padding: 10px 20px 20px;
+width: 50%;
+max-width: 500px;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+z-index: 9999;
+}
+
+.form-popup .row-popup a {
+float: right;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 10px 10px 10px 24px;
+color: #288ad6;
+position: relative;
+cursor: pointer;
+}
+
+.form-popup .row-popup strong{
+display: inline-block;
+vertical-align: middle;
+color: #333;
+padding: 10px 0;
+width: 70%;
+font-weight: bold;
+}
+
+.form-popup .row-popup a:after, .form-popup .row-popup a:before {
+    content: "";
+    width: 2px;
+    height: 12px;
+    background-color: #288ad6;
+    transform: rotate(45deg);
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 14px;
+}
+
+.form-popup .row-popup a:before {
+    transform: rotate(-45deg);
+}

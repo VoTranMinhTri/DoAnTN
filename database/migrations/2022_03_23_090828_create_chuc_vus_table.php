@@ -15,7 +15,6 @@ class CreateChucVusTable extends Migration
     {
         Schema::create('chuc_vus', function (Blueprint $table) {
             $table->id();
-            $table->string('kho_id');
             $table->unsignedInteger('ten_chuc_vu');
             $table->double('luong_co_ban');
             $table->timestamps();

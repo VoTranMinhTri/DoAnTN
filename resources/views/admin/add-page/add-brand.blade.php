@@ -12,7 +12,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Thêm sản phẩm</h4>
+                    <h4 class="page-title">Thêm thương hiệu</h4>
                 </div>
             </div>
         </div>
@@ -30,72 +30,37 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/product">
+                            <a href="/brand">
                                 <button type="button" class="btn btn-outline-primary">
-                                    <i class="fa fa-list-ul"></i> Quản lý sản phẩm
+                                    <i class="fa fa-list-ul"></i> Quản lý thương hiệu
                                 </button>
                             </a>
                             <hr>
                             <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                <div class="row">
+                                <div class="row" style="margin-left: 34.5%;">
                                     <div class="col-sm-12">
-                                        <h4 class="card-title">SẢN PHẨM MỚI</h4>
+                                        <h4 class="card-title">THƯƠNG HIỆU MỚI</h4>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group row">
-                                                    <label for="product_name" class="col-sm-12">Tên sản phẩm <span
+                                                    <label for="" class="col-sm-12">Tên thương hiệu <span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="product_name" type="text"
-                                                            style="height: 40px;" id="product_name"
+                                                        <input class="form-control" name="" type="text"
+                                                            style="height: 40px;" id=""
                                                             placeholder="Tên sản phẩm" value="">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group row">
-                                                    <label class="col-sm-12">Thương hiệu <span
-                                                            style="color:red">*</span>
-                                                    </label>
-                                                    <div class="col-sm-11">
-                                                        <select name="brand-id"
-                                                            class="select2 form-select shadow-none select2-hidden-accessible"
-                                                            style="width: 100%; height:36px;" tabindex="-1"
-                                                            aria-hidden="true">
-                                                            <option value="">Lựa chọn thương hiệu</option>
-                                                            <option value="1">OPPO</option>
-                                                            <option value="2">XIAOMI</option>
-                                                        </select>
-                                                    </div>
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        style="width: 40px;">
-                                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-sm-6">
-                                                <div class="form-group row">
-                                                    <label class="col-sm-12">Giá sản phẩm <span
-                                                            style="color:red">*</span></label>
-                                                    <div>
-                                                        <input class="form-control" name="product_price simple_money"
-                                                            type="text" style="height: 40px; width: 95%; float: left;"
-                                                            id="product_price" placeholder="0" value="">
-                                                        <div
-                                                            style="background-color: #ebebeb;padding: 8.5px;text-align: center;border-radius: 3px;border: 1px solid #ccc;">
-                                                            đ</div>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-left: 34.5%;">
                                     <div class="col-sm-12">
                                         <h4 class="card-title">MÔ TẢ</h4>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="row">
+                                                <div class="row" >
                                                     <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-sm-12">
@@ -117,23 +82,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label>Mô tả</label>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <textarea class="form-control" tabindex="1" id="description" name="description" rows="8" placeholder=" Mô tả"
-                                                            style="resize: vertical;"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Thêm sản phẩm</button>
+                                        <button type="button" class="btn btn-primary">Thêm thương hiệu</button>
                                     </div>
                                 </div>
                             </form>
@@ -197,30 +151,6 @@
                     return false;
                 }
             })
-
-
         });
-        // var readURL = function(input) {
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //             $(this).closest('.img_product').find('.pic-default').attr('src', e.target.result);
-        //         };
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // };
-
-        // $(document).on("change", ".file-upload", function() {
-        //     var _this = $(this);
-        //     var reader = new FileReader();
-        //     reader.onload = function(e) {
-        //         _this.closest('.img_product').find('.pic-default').attr('src', e.target.result);
-        //     };
-        //     reader.readAsDataURL(this.files[0]);
-        // });
-
-        // $(document).on("click", ".upload-herf", function() {
-        //     $(this).closest('.img_product').find(".file-upload").click();
-        // });
     </script>
 @endsection

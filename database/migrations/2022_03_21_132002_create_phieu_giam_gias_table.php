@@ -19,6 +19,7 @@ class CreatePhieuGiamGiasTable extends Migration
             $table->double('phan_tram_giam');
             $table->date('ngay_bat_dau');
             $table->date('ngay_het_han');
+            $table->integer('trang_thai');
             $table->timestamps();
         });
     }

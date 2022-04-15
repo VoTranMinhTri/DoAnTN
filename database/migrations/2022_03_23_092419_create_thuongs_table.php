@@ -15,8 +15,8 @@ class CreateThuongsTable extends Migration
     {
         //https://sites.google.com/site/quanlyluongnhanvien/quan-ly-luong-nhan-vien (cách tính lương)
         Schema::create('thuongs', function (Blueprint $table) {
-            $table->id();
-            $table->double('tien_phu_cap');
+            $table->string('ma_thuong')->primary();
+            $table->double('tien_thuong');
             $table->timestamps();
             $table->softDeletes();
         });

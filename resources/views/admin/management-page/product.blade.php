@@ -1,35 +1,5 @@
 @extends('admin.layouts.app-admin')
 @section('content')
-    <aside class="left-sidebar" data-sidebarbg="skin5">
-        <!-- Sidebar scroll-->
-        <div class="scroll-sidebar">
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav">
-                <ul id="sidebarnav" class="pt-4">
-                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin"
-                            aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Bảng điều
-                                khiển</span></a></li>
-                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/chart"
-                            aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Biểu
-                                đồ</span></a></li>
-                    <li class="sidebar-item selected"> <a class="sidebar-link has-arrow waves-effect waves-dark active"
-                            href="javascript:void(0)" aria-expanded="false"><i class="fas fa-mobile"></i><span
-                                class="hide-menu">Sản phẩm</span></a>
-                        <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item active"><a href="/product" class="sidebar-link"><i class="fas fa-dot-circle"></i><span class="hide-menu">Quản lý sản
-                                        phẩm
-                                    </span></a></li>
-                            <li class="sidebar-item"><a href="/brand" class="sidebar-link"><i class="fas fa-circle"></i><span class="hide-menu">Quản lý thương
-                                        hiệu
-                                    </span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
-        </div>
-        <!-- End Sidebar scroll-->
-    </aside>
     <!-- ============================================================== -->
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
     <!-- ============================================================== -->
@@ -97,13 +67,18 @@
                                                     <td>Ngưng bán</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-info"
-                                                            title="Xem chi tiết sản phẩm"><i
-                                                                class="fas fa-info"></i></button>
-                                                        <button type="button" class="btn btn-outline-secondary"
+                                                        <a href="/edit-product"><button type="button"
+                                                                class="btn btn-outline-info"
+                                                                title="Xem chi tiết sản phẩm"><i
+                                                                    class="fas fa-info"></i></button></a>
+                                                        {{-- <a href="/edit-product"><button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin sản phẩm"><i
-                                                                class="far fa-edit"></i></button>
-                                                        {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                                                class="far fa-edit"></i></button></a> --}}
+                                                        <button type="button" class="btn btn-outline-dark"
+                                                            title="Thay đổi trạng thái sản phẩm"><i
+                                                                class=" fas fa-eye"></i></button>
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                            title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -116,13 +91,18 @@
                                                     </td>
                                                     <td>Đang bán</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-outline-info"
-                                                            title="Xem chi tiết sản phẩm"><i
-                                                                class="fas fa-info"></i></button>
-                                                        <button type="button" class="btn btn-outline-secondary"
+                                                        <a href="/edit-product"><button type="button"
+                                                                class="btn btn-outline-info"
+                                                                title="Xem chi tiết sản phẩm"><i
+                                                                    class="fas fa-info"></i></button></a>
+                                                        {{-- <button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin sản phẩm"><i
-                                                                class="far fa-edit"></i></button>
-                                                        {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                                                class="far fa-edit"></i></button> --}}
+                                                        <button type="button" class="btn btn-outline-dark"
+                                                            title="Thay đổi trạng thái sản phẩm"><i
+                                                                class=" fas fa-eye"></i></button>
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                            title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -135,13 +115,18 @@
                                                     </td>
                                                     <td>Đang bán</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-outline-info"
-                                                            title="Xem chi tiết sản phẩm"><i
-                                                                class="fas fa-info"></i></button>
-                                                        <button type="button" class="btn btn-outline-secondary"
+                                                        <a href="/edit-product"><button type="button"
+                                                                class="btn btn-outline-info"
+                                                                title="Xem chi tiết sản phẩm"><i
+                                                                    class="fas fa-info"></i></button></a>
+                                                        {{-- <button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin sản phẩm"><i
-                                                                class="far fa-edit"></i></button>
-                                                        {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                                                class="far fa-edit"></i></button> --}}
+                                                        <button type="button" class="btn btn-outline-dark"
+                                                            title="Thay đổi trạng thái sản phẩm"><i
+                                                                class=" fas fa-eye"></i></button>
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                            title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>

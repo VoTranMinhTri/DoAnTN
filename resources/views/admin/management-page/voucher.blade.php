@@ -13,7 +13,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Quản lý thương hiệu</h4>
+                    <h4 class="page-title">Quản lý phiếu giảm giá</h4>
                     {{-- <div class="ms-auto text-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -39,8 +39,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/add-brand"><button type="button" class="btn btn-outline-primary">
-                                    <i class="fas fa-plus-circle"></i> THÊM THƯƠNG HIỆU
+                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                                    <i class="fas fa-plus-circle"></i> THÊM PHIẾU GIẢM GIÁ
                                 </button><a>
                                     <hr>
                                     <div class="table-responsive">
@@ -48,46 +48,55 @@
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>
-                                                    <th>Tên thương hiệu</th>
-                                                    <th class='thNormal'>Hình ảnh</th>
+                                                    <th>Code</th>
+                                                    <th>Phần trăm giảm</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
+                                                    <th>Trạng thái</th>
                                                     <th class='thNormal' style='width:100px'>Chức năng</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>OPPO</td>
-                                                    <td><img src="{{ asset('assets/user/images/logo-oppo.jpg') }}"
-                                                            class="no-text"></td>
+                                                    <td>******</td>
+                                                    <td>0.1</td>
+                                                    <td>1/1/2022</td>
+                                                    <td>1/12/2022</td>
+                                                    <td>Chưa sử dụng</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <a href="/edit-brand"><button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin thương hiệu"><i
-                                                                class="far fa-edit"></i></button></a>
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            title="Chỉnh sửa thông tin khuyến mãi"><i
+                                                                class="far fa-edit"></i></button>
                                                         <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
+                                                            title="Xóa khuyến mãi"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>SAMSUNG</td>
-                                                    <td><img src="{{ asset('assets/user/images/logo-samsung.png') }}"
-                                                            class="no-text"></td>
+                                                    <td>******</td>
+                                                    <td>0.1</td>
+                                                    <td>1/1/2022</td>
+                                                    <td>1/12/2022</td>
+                                                    <td>Sử dụng</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
                                                         <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin thương hiệu"><i
+                                                            title="Chỉnh sửa thông tin khuyến mãi"><i
                                                                 class="far fa-edit"></i></button>
                                                         <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
+                                                            title="Xóa khuyến mãi"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <th>Id</th>
-                                                    <th>Tên thương hiệu</th>
-                                                    <th>Hình ảnh</th>
+                                                    <th>Code</th>
+                                                    <th>Phần trăm giảm</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
                                                     <th>Chức năng</th>
                                                 </tr>
                                             </tfoot>

@@ -13,7 +13,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Quản lý nhân viên</h4>
+                    <h4 class="page-title">Quản lý phụ cấp</h4>
                     {{-- <div class="ms-auto text-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -40,85 +40,49 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="#"><button type="button" class="btn btn-outline-primary">
-                                <i class="fas fa-plus-circle"></i> THÊM NHÂN VIÊN
+                                <i class="fas fa-plus-circle"></i> THÊM PHỤ CẤP
                             </button><a>
                                 <hr>
                             <div class="table-responsive">
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Họ tên</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Ngày sinh</th>
-                                            <th>CCCD</th>
-                                            <th>BHXH</th>
-                                            <th>Chức vụ</th>
-                                            <th>Quản lý</th>
-                                            <th>Phòng ban</th>
-                                            <th>Tài khoản</th>
-                                            <th>Cửa hàng</th>
-                                            <th>Trưởng phòng</th>
+                                            <th>Mã phụ cấp</th>
+                                            <th>Tiền phụ cấp</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Nguyễn Văn A</td>
-                                            <td>59 Long An</td>
-                                            <td>1/1/1999</td>
-                                            <td>079201025700</td>
-                                            <td>792000111</td>
-                                            <td>Nhân viên bán hàng</td>
-                                            <td>Nguyễn Văn B</td>
-                                            <td>Marketing</td>
-                                            <td>NV1@gmail.com</td>
-                                            <td>Cửa hàng Hồ Chí Minh</td>
-                                            <td></td>
+                                            <td>PHUCAP1</td>
+                                            <td>1.000.000 vnđ</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
                                                 <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin nhân viên"><i
+                                                    title="Chỉnh sửa thông tin phụ cấp"><i
                                                         class="far fa-edit"></i></button>
                                                 <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa nhân viên"><i class="fas fa-trash"></i></button>
+                                                    title="Xóa phụ cấp"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Nguyễn Văn B</td>
-                                            <td>59 Long An</td>
-                                            <td>1/1/1999</td>
-                                            <td>079201025701</td>
-                                            <td>792000110</td>
-                                            <td>Nhân viên bán hàng</td>
-                                            <td></td>
-                                            <td>Marketing</td>
-                                            <td>NV2@gmail.com</td>
-                                            <td>Cửa hàng Hồ Chí Minh</td>
-                                            <td>X</td>
+                                            <td>PHUCAP2</td>
+                                            <td>1.500.000 vnđ</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
                                                 <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin nhân viên"><i
+                                                    title="Chỉnh sửa thông tin phụ cấp"><i
                                                         class="far fa-edit"></i></button>
                                                 <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa nhân viên"><i class="fas fa-trash"></i></button>
+                                                    title="Xóa phụ cấp"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Họ tên</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Ngày sinh</th>
-                                            <th>CCCD</th>
-                                            <th>BHXH</th>
-                                            <th>Chức vụ</th>
-                                            <th>Quản lý</th>
-                                            <th>Phòng ban</th>
-                                            <th>Tài khoản</th>
-                                            <th>Cửa hàng</th>
-                                            <th>Trưởng phòng</th>
-                                            <th>Chức năng</th>
+                                            <th>Mã phụ cấp</th>
+                                            <th>phụ cấp</th>
+                                            <th class='thNormal' style='width:100px'>Chức năng</th>
                                         </tr>
                                     </tfoot>
                                 </table>

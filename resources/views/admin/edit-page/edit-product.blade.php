@@ -12,7 +12,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Thêm sản phẩm</h4>
+                    <h4 class="page-title">Thông tin chi tiết sản phẩm</h4>
                 </div>
             </div>
         </div>
@@ -35,11 +35,16 @@
                                     <i class="fa fa-list-ul"></i> Quản lý sản phẩm
                                 </button>
                             </a>
+                            <a href="/add-product-detail">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="fas fa-plus-circle"></i> Thêm chi tiết sản phẩm
+                                </button>
+                            </a>
                             <hr>
                             <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h4 class="card-title">SẢN PHẨM MỚI</h4>
+                                        <h4 class="card-title">THÔNG TIN SẢN PHẨM</h4>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group row">
@@ -48,7 +53,7 @@
                                                     <div class="col-sm-12">
                                                         <input class="form-control" name="product_name" type="text"
                                                             style="height: 40px;" id="product_name"
-                                                            placeholder="Tên sản phẩm" value="">
+                                                            placeholder="Tên sản phẩm" value="Điện thoại OPPO Reno6 Z 5G">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +68,11 @@
                                                             style="width: 100%; height:36px;" tabindex="-1"
                                                             aria-hidden="true">
                                                             <option value="">Lựa chọn thương hiệu</option>
-                                                            <option value="1">OPPO</option>
+                                                            <option value="1" selected>OPPO</option>
                                                             <option value="2">XIAOMI</option>
                                                         </select>
                                                     </div>
-                                                    <button type="button" class="btn btn-outline-secondary"
+                                                    <button type="button" class="btn btn-outline-secondary add-brand"
                                                         style="width: 40px;">
                                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                                                     </button>
@@ -80,7 +85,7 @@
                                                     <div>
                                                         <input class="form-control" name="product_price simple_money"
                                                             type="text" style="height: 40px; width: 95%; float: left;"
-                                                            id="product_price" placeholder="0" value="">
+                                                            id="product_price" placeholder="0" value="8900000">
                                                         <div
                                                             style="background-color: #ebebeb;padding: 8.5px;text-align: center;border-radius: 3px;border: 1px solid #ccc;">
                                                             đ</div>
@@ -102,7 +107,7 @@
                                                                 <label>Hình ảnh đại diện</label>
                                                                 <div class="col-sm-11 image-profile" align="center">
                                                                     <img class="profile-pic"
-                                                                        src="{{ asset('assets/admin/images/icon-logo.png') }}"
+                                                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}"
                                                                         name="filed">
                                                                     <div class="upload-herf cursor">Upload Image</div>
                                                                     <input class="file-upload" name="store_logo"
@@ -124,7 +129,7 @@
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <textarea class="form-control" tabindex="1" id="description" name="description" rows="8" placeholder=" Mô tả"
-                                                            style="resize: vertical;"></textarea>
+                                                            style="resize: vertical;">Hộp, Cây lấy sim, Ốp lưng, Tai nghe dây, Cáp Type C, Củ sạc nhanh rời đầu Type A, Sách hướng dẫn</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,11 +137,132 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Thêm sản phẩm</button>
+                                    <div class="col-md-12" style="text-align: center;margin-top:20px">
+                                        <button type="button" class="btn btn-primary">Cập nhật sản phẩm</button>
                                     </div>
                                 </div>
                             </form>
+                            <div class="popup">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup">
+                                    <div class="row-popup">
+                                        <strong>Thêm thương hiệu</strong>
+                                        <a href="javascript:">Đóng</a>
+                                    </div>
+                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-sm-12">Tên thương hiệu <span
+                                                                    style="color:red">*</span></label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" name="" type="text"
+                                                                    style="height: 40px;" id=""
+                                                                    placeholder="Tên thương hiệu" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="card-title">MÔ TẢ</h4>
+                                                <div class="row">
+                                                    <div class="col-sm-6" style="margin-left: 26.5%;">
+                                                        <div class="row" >
+                                                            <div class="col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <label>Hình ảnh đại diện</label>
+                                                                        <div class="col-sm-11 image-profile" align="center">
+                                                                            <img class="profile-pic"
+                                                                                src="{{ asset('assets/admin/images/icon-logo.png') }}"
+                                                                                name="filed">
+                                                                            <div class="upload-herf cursor">Upload Image</div>
+                                                                            <input class="file-upload" name="store_logo"
+                                                                                type="file"
+                                                                                accept="image/x-png,image/gif,image/jpeg"
+                                                                                id="store_logo"
+                                                                                data-msg-accept="Chỉ nhận tập tin jpg|jpeg|png|gif">
+                                                                            <input hidden="hidden" name="old_logo" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: center; margin-top:20px">
+                                                <button type="button" class="btn btn-primary">Thêm thương hiệu</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4 class="card-title">QUẢN LÝ CHI TIẾT SẢN PHẨM</h4>
+                            <div class="table-responsive">
+                                <table id="zero_config" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên phiên bản</th>
+                                            <th>SKU</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th class='thNormal' style='width:100px'>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Điện thoại OPPO Reno6 Z 5G - 4GB - Xanh</td>
+                                            <td>OPPOR01</td>
+                                            <td>8900000</td>
+                                            <td>10</td>
+                                            <td>
+                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
+                                                {{-- <button type="button" class="btn btn-outline-info"
+                                                    title="Xem chi tiết sản phẩm"><i
+                                                        class="fas fa-info"></i></button> --}}
+                                                <a href="/edit-product-detail"><button type="button"
+                                                        class="btn btn-outline-secondary"
+                                                        title="Chỉnh sửa thông tin chi tiết sản phẩm"><i
+                                                            class="far fa-edit"></i></button></a>
+                                                {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Điện thoại OPPO Reno6 Z 5G - 4GB - Đen</td>
+                                            <td>OPPOR02</td>
+                                            <td>8900000</td>
+                                            <td>10</td>
+                                            <td>
+                                                {{-- <button type="button" class="btn btn-outline-info"
+                                                    title="Xem chi tiết sản phẩm"><i
+                                                        class="fas fa-info"></i></button> --}}
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    title="Chỉnh sửa thông tin chi tiết sản phẩm"><i
+                                                        class="far fa-edit"></i></button>
+                                                {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Tên phiên bản</th>
+                                            <th>SKU</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,27 +326,23 @@
 
 
         });
-        // var readURL = function(input) {
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //             $(this).closest('.img_product').find('.pic-default').attr('src', e.target.result);
-        //         };
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // };
+    </script>
+    <script>
+        const a = this.document.querySelector('.add-brand');
+        const popup = this.document.querySelector('.popup');
+        const html = this.document.querySelector('html');
+        const btnclose = this.document.querySelector('.form-popup .row-popup a');
 
-        // $(document).on("change", ".file-upload", function() {
-        //     var _this = $(this);
-        //     var reader = new FileReader();
-        //     reader.onload = function(e) {
-        //         _this.closest('.img_product').find('.pic-default').attr('src', e.target.result);
-        //     };
-        //     reader.readAsDataURL(this.files[0]);
-        // });
+        //Hiển thị form thêm thương hiệu
+        a.onclick = function() {
+            popup.className += " active";
+            html.style = "overflow: hidden;";
+        };
 
-        // $(document).on("click", ".upload-herf", function() {
-        //     $(this).closest('.img_product').find(".file-upload").click();
-        // });
+        //Đóng form
+        btnclose.onclick = function() {
+            popup.className = popup.className.replace(" active", "");
+            html.style = "overflow: auto;";
+        };
     </script>
 @endsection

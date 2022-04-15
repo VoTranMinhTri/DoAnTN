@@ -15,6 +15,7 @@ class CreateChiTietDienThoaisTable extends Migration
     {
         Schema::create('chi_tiet_dien_thoais', function (Blueprint $table) {
             $table->id();
+            $table->string('SKU')->primary();
             $table->unsignedBigInteger('dien_thoai_id');
             $table->unsignedBigInteger('man_hinh_id');
             $table->unsignedBigInteger('camera_sau_id');

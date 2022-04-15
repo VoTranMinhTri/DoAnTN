@@ -14,7 +14,7 @@ class CreateHeSoLuongsTable extends Migration
     public function up()
     {
         Schema::create('he_so_luongs', function (Blueprint $table) {
-            $table->id();
+            $table->string('ma_hsl')->primary();
             $table->double('he_so_luong');
             $table->timestamps();
             $table->softDeletes();
