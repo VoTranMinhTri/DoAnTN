@@ -30,9 +30,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/product">
+                            <a href="/edit-product">
                                 <button type="button" class="btn btn-outline-primary">
-                                    <i class="fa fa-list-ul"></i> Quản lý sản phẩm
+                                    <i class="fa fa-list-ul"></i> Quản lý chi tiết sản phẩm
                                 </button>
                             </a>
                             <hr>
@@ -275,6 +275,47 @@
                                     </div>
                                 </div>
                             </form>
+                            <!--<hr>
+                            <h4 class="card-title">QUẢN LÝ HÌNH ẢNH CHI TIẾT SẢN PHẨM</h4>
+                            <div class="table-responsive">
+                                <table id="zero_config" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th class='thNormal'>Hình ảnh</th>
+                                            <th>Hình ảnh đại diện</th>
+                                            <th class='thNormal' style='width:100px'>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><img src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora-1-200x200.jpg') }}"
+                                                class="no-text"></td>
+                                            <td>X</td>
+                                            <td>
+                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
+                                                {{-- <button type="button" class="btn btn-outline-info"
+                                                    title="Xem chi tiết sản phẩm"><i
+                                                        class="fas fa-info"></i></button> --}}
+                                                <a href="/edit-product-detail"><button type="button"
+                                                        class="btn btn-outline-secondary"
+                                                        title="Chỉnh sửa hình ảnh chi tiết sản phẩm"><i
+                                                            class="far fa-edit"></i></button></a>
+                                                {{-- <button type="button" class="btn btn-outline-danger" title="Xóa sản phẩm"><i class="fas fa-trash"></i></button> --}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Hình ảnh đại diện</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>-->
                         </div>
                     </div>
                 </div>

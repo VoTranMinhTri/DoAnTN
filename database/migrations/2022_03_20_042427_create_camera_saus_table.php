@@ -15,9 +15,10 @@ class CreateCameraSausTable extends Migration
     {
         Schema::create('camera_saus', function (Blueprint $table) {
             $table->id();
-            $table->string('do_phan_giai');
-            $table->string('quay_phim');
-            $table->integer('den_flash');
+            $table->string('do_phan_giai',500);
+            $table->string('quay_phim',500);
+            $table->intstringeger('den_flash',500);
+            $table->string('tinh_nang',500);
             $table->timestamps();
             $table->softDeletes();
         });

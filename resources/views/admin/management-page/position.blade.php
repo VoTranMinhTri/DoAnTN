@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-position"><button type="button" class="btn btn-outline-primary">
                                 <i class="fas fa-plus-circle"></i> THÊM CHỨC VỤ
                             </button><a>
                                 <hr>
@@ -47,7 +47,7 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>STT</th>
                                             <th>Tên chức vụ</th>
                                             <th>Lương cơ bản</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>
@@ -60,22 +60,9 @@
                                             <td>7.000.000 vnđ</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <a href="/edit-position"><button type="button" class="btn btn-outline-secondary"
                                                     title="Chỉnh sửa thông tin chức vụ"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa chức vụ"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Nhân viên</td>
-                                            <td>10.000.000 vnđ</td>
-                                            <td>
-                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin chức vụ"><i
-                                                        class="far fa-edit"></i></button>
+                                                        class="far fa-edit"></i></button></a>
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Xóa chức vụ"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -83,7 +70,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>STT</th>
                                             <th>Tên chức vụ</th>
                                             <th>Lương cơ bản</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>

@@ -15,13 +15,15 @@ class CreateChiTietKhosTable extends Migration
     {
         Schema::create('chi_tiet_khos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kho_id');
-            $table->unsignedInteger('chi_tiet_dien_thoai_id');
+            $table->foreignId('kho_id');
+            $table->foreignId('chi_tiet_dien_thoai_id');
             $table->double('gia');
             $table->integer('so_luong');
             $table->date('ngay_nhap');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('kho_id')->references('id')->on('kho_id');
+            $table->foreign('chi_tiet_dien_thoai_id')->references('id')->on('chi_tiet_dien_thoai_id');
         });
     }
 

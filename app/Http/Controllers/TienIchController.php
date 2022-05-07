@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\TienIch;
-use App\Http\Requests\StoreTienIchRequest;
-use App\Http\Requests\UpdateTienIchRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TienIchController extends Controller
 {
@@ -15,7 +15,8 @@ class TienIchController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachTienIch = TienIch::All();
+        return view('admin/management-page/utilities', ['danhSachTienIch' => $danhSachTienIch]);
     }
 
     /**
@@ -25,7 +26,7 @@ class TienIchController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-utilities');
     }
 
     /**
@@ -34,9 +35,47 @@ class TienIchController extends Controller
      * @param  \App\Http\Requests\StoreTienIchRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTienIchRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'baomatnangcao' => 'required|max:500',
+                'tinhnangdacbiet' => 'required|max:500',
+                // 'khangnuocbui' => 'required|in:0,1',
+                'khangnuocbui' => 'required|max:500',
+                'ghiam' => 'required|max:500',
+                'xemphim' => 'required|max:500',
+                'nghenhac' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+                // 'in' => ':attribute không đúng kiểu dữ liệu cho phép !'
+            ],
+            [
+                'baomatnangcao' => 'Bảo mật nâng cao',
+                'tinhnangdacbiet' => 'Tính năng đặc biệt',
+                'khangnuocbui' => 'Kháng nước bụi',
+                'ghiam' => 'Ghi âm',
+                'xemphim' => 'Xem phim',
+                'nghenhac' => 'Nghe nhạc',
+            ]
+        )->validate();
+
+        $tienIch = new TienIch();
+        $tienIch->fill([
+            'bao_mat_nang_cao' => $request->input('baomatnangcao'),
+            'tinh_nang_dac_biet' => $request->input('tinhnangdacbiet'),
+            'khang_nuoc_bui' => $request->input('khangnuocbui'),
+            'ghi_am' => $request->input('ghiam'),
+            'xem_phim' => $request->input('xemphim'),
+            'nghe_nhac' => $request->input('nghenhac'),
+        ]);
+        if ($tienIch->save() == true) {
+            return redirect()->back()->with('thongbao', 'Thêm tiện ích thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Thêm tiện ích không thành công !');
     }
 
     /**
@@ -58,7 +97,7 @@ class TienIchController extends Controller
      */
     public function edit(TienIch $tienIch)
     {
-        //
+        return view('admin/edit-page/edit-utilities', ['tienIch' => $tienIch]);
     }
 
     /**
@@ -68,9 +107,46 @@ class TienIchController extends Controller
      * @param  \App\Models\TienIch  $tienIch
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTienIchRequest $request, TienIch $tienIch)
+    public function update(Request $request, TienIch $tienIch)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'baomatnangcao' => 'required|max:500',
+                'tinhnangdacbiet' => 'required|max:500',
+                // 'khangnuocbui' => 'required|in:0,1',
+                'khangnuocbui' => 'required|max:500',
+                'ghiam' => 'required|max:500',
+                'xemphim' => 'required|max:500',
+                'nghenhac' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+                // 'in' => ':attribute không đúng kiểu dữ liệu cho phép !'
+            ],
+            [
+                'baomatnangcao' => 'Bảo mật nâng cao',
+                'tinhnangdacbiet' => 'Tính năng đặc biệt',
+                'khangnuocbui' => 'Kháng nước bụi',
+                'ghiam' => 'Ghi âm',
+                'xemphim' => 'Xem phim',
+                'nghenhac' => 'Nghe nhạc',
+            ]
+        )->validate();
+
+        $tienIch->fill([
+            'bao_mat_nang_cao' => $request->input('baomatnangcao'),
+            'tinh_nang_dac_biet' => $request->input('tinhnangdacbiet'),
+            'khang_nuoc_bui' => $request->input('khangnuocbui'),
+            'ghi_am' => $request->input('ghiam'),
+            'xem_phim' => $request->input('xemphim'),
+            'nghe_nhac' => $request->input('nghenhac'),
+        ]);
+        if ($tienIch->save() == true) {
+            return redirect()->back()->with('thongbao', 'Cập nhật tiện ích thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Cập nhật tiện ích không thành công !');
     }
 
     /**
@@ -81,6 +157,9 @@ class TienIchController extends Controller
      */
     public function destroy(TienIch $tienIch)
     {
-        //
+        if ($tienIch->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa tiện ích thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa tiện ích không thành công !');
     }
 }

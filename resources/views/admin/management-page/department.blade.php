@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-department"><button type="button" class="btn btn-outline-primary">
                                 <i class="fas fa-plus-circle"></i> THÊM PHÒNG BAN
                             </button><a>
                                 <hr>
@@ -47,7 +47,7 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>STT</th>
                                             <th>Tên phòng ban</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>
                                         </tr>
@@ -58,21 +58,9 @@
                                             <td>Marketing</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <a href="/edit-department"><button type="button" class="btn btn-outline-secondary"
                                                     title="Chỉnh sửa thông tin phòng ban"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa phòng ban"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Kế toán</td>
-                                            <td>
-                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin phòng ban"><i
-                                                        class="far fa-edit"></i></button>
+                                                        class="far fa-edit"></i></button></a>
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Xóa phòng ban"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -80,7 +68,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>STT</th>
                                             <th>Tên phòng ban</th>
                                             <th>Chức năng</th>
                                         </tr>

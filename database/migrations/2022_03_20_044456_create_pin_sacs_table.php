@@ -15,10 +15,11 @@ class CreatePinSacsTable extends Migration
     {
         Schema::create('pin_sacs', function (Blueprint $table) {
             $table->id();
-            $table->string('dung_luong_pin');
-            $table->string('loai_pin');
-            $table->string('ho_tro_sac_toi_da');
-            $table->string('cong_nghe_pin');
+            $table->string('dung_luong_pin',500);
+            $table->string('loai_pin',500);
+            $table->string('ho_tro_sac_toi_da',500);
+            $table->string('sac_kem_theo_may',500);
+            $table->string('cong_nghe_pin',500);
             $table->timestamps();
             $table->softDeletes();
         });

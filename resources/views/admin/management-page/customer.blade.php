@@ -47,7 +47,7 @@
                                         <table id="zero_config" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Email</th>
                                                     <th>Tên khách hàng</th>
                                                     <th>Địa chỉ</th>
@@ -74,30 +74,6 @@
                                                     <td>Hoạt động</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin thương hiệu"><i
-                                                                class="far fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>test2@gmail.com</td>
-                                                    <td>Nguyễn Thị Test</td>
-                                                    <td>
-                                                        <p>115 Lũy Bán Bích, phường Tân Thành, quận Tân Phú, Hồ Chí Minh</p>
-                                                    </td>
-                                                    <td>0918123123</td>
-                                                    <td>1/1/2000</td>
-                                                    <td>Nữ</td>
-                                                    <td>Thành viên thân thiết</td>
-                                                    <td>Hoạt động</td>
-                                                    <td>
-                                                        {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin thương hiệu"><i
-                                                                class="far fa-edit"></i></button>
                                                         <button type="button" class="btn btn-outline-danger"
                                                             title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
                                                     </td>
@@ -105,7 +81,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Email</th>
                                                     <th>Tên khách hàng</th>
                                                     <th>Địa chỉ</th>

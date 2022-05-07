@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\MauSac;
-use App\Http\Requests\StoreMauSacRequest;
-use App\Http\Requests\UpdateMauSacRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MauSacController extends Controller
 {
@@ -15,7 +15,8 @@ class MauSacController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachMau = MauSac::All();
+        return view('admin/management-page/color', ['danhSachMau' => $danhSachMau]);
     }
 
     /**
@@ -25,7 +26,7 @@ class MauSacController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-color');
     }
 
     /**
@@ -34,9 +35,37 @@ class MauSacController extends Controller
      * @param  \App\Http\Requests\StoreMauSacRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMauSacRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenmausac' => 'required|max:30',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+            ],
+            [
+                'tenmausac' => 'Tên màu sắc',
+            ]
+        )->validate();
+
+        //Định dạng lại tên màu
+        $mauFormat=trim( $request->input('tenmausac'));
+
+        $kttontai = MauSac::Where('ten_mau_sac', '=', $mauFormat)->first();
+        if (empty($kttontai)) {
+            $mauSac = new MauSac;
+            $mauSac->fill([
+                'ten_mau_sac' => $mauFormat,
+            ]);
+            if ($mauSac->save() == true) {
+                return redirect()->back()->with('thongbao', 'Thêm màu sắc thành công !');
+            }
+            return redirect()->back()->with('thongbao', 'Thêm màu sắc không thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Thêm màu sắc không thành công ! Màu sắc đã tồn tại !');
     }
 
     /**
@@ -58,7 +87,7 @@ class MauSacController extends Controller
      */
     public function edit(MauSac $mauSac)
     {
-        //
+        return view('admin/edit-page/edit-color', ['mauSac' => $mauSac]);
     }
 
     /**
@@ -68,9 +97,39 @@ class MauSacController extends Controller
      * @param  \App\Models\MauSac  $mauSac
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMauSacRequest $request, MauSac $mauSac)
+    public function update(Request $request, MauSac $mauSac)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenmausac' => 'required|max:30',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+            ],
+            [
+                'tenmausac' => 'Tên màu sắc',
+            ]
+        )->validate();
+
+        //Định dạng lại tên màu
+        $mauFormat=trim( $request->input('tenmausac'));
+
+        if ($mauSac->ten_mau_sac != $mauFormat) {
+            $kttontai = MauSac::Where('ten_mau_sac', '=', $mauFormat)->first();
+            if (empty($kttontai)) {
+                $mauSac->fill([
+                    'ten_mau_sac' =>$mauFormat,
+                ]);
+                if ($mauSac->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Cập nhật màu sắc thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công !');
+            }
+            return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công ! Màu sắc đã tồn tại !');
+        }
+        return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công ! Màu sắc giống với màu sắc cũ !');
     }
 
     /**
@@ -81,6 +140,9 @@ class MauSacController extends Controller
      */
     public function destroy(MauSac $mauSac)
     {
-        //
+        if ($mauSac->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa màu sắc thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa màu sắc không thành công !');
     }
 }

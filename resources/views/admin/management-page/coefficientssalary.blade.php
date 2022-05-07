@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-coefficientssalary"><button type="button" class="btn btn-outline-primary">
                                 <i class="fas fa-plus-circle"></i> THÊM HỆ SỐ LƯƠNG
                             </button><a>
                                 <hr>
@@ -47,6 +47,7 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Mã hệ số lương</th>
                                             <th>Hệ số lương</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>
@@ -54,25 +55,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>1</td>
                                             <td>HSL1</td>
                                             <td>1</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <a href="/edit-coefficientssalary"><button type="button" class="btn btn-outline-secondary"
                                                     title="Chỉnh sửa thông tin hệ số lương"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa hệ số lương"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>HSL2</td>
-                                            <td>1.5</td>
-                                            <td>
-                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin hệ số lương"><i
-                                                        class="far fa-edit"></i></button>
+                                                        class="far fa-edit"></i></button></a>
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Xóa hệ số lương"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -80,6 +70,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Mã hệ số lương</th>
                                             <th>Hệ số lương</th>
                                             <th>Chức năng</th>

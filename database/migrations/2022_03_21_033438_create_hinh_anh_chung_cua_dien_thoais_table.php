@@ -15,13 +15,12 @@ class CreateHinhAnhChungCuaDienThoaisTable extends Migration
     {
         Schema::create('hinh_anh_chung_cua_dien_thoais', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('dien_thoai_id');
+            $table->foreignId('dien_thoai_id');
             $table->string('hinh_anh');
-            $table->string('noi_dung')->nullable();;
             $table->integer('loai_hinh');//0 là hình đại diện, 1 là hình giới thiệu chung, 2 là hình mở hộp, ...
-            $table->integer('trang_thai');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('dien_thoai_id')->references('id')->on('dien_thoais');
         });
     }
 

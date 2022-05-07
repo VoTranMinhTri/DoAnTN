@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-bonus"><button type="button" class="btn btn-outline-primary">
                                 <i class="fas fa-plus-circle"></i> THÊM THƯỞNG
                             </button><a>
                                 <hr>
@@ -47,6 +47,7 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Mã thưởng</th>
                                             <th>Tiền thưởng</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>
@@ -54,25 +55,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>1</td>
                                             <td>THUONG1</td>
                                             <td>1.000.000 vnđ</td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <a href="/edit-bonus"><button type="button" class="btn btn-outline-secondary"
                                                     title="Chỉnh sửa thông tin thưởng"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa thưởng"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>THUONG2</td>
-                                            <td>1.500.000 vnđ</td>
-                                            <td>
-                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin thưởng"><i
-                                                        class="far fa-edit"></i></button>
+                                                        class="far fa-edit"></i></button></a>
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Xóa thưởng"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -80,6 +70,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Mã thưởng</th>
                                             <th>thưởng</th>
                                             <th class='thNormal' style='width:100px'>Chức năng</th>

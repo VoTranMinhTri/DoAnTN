@@ -15,10 +15,10 @@ class CreateHeDieuHanhCPUSTable extends Migration
     {
         Schema::create('he_dieu_hanh_cpus', function (Blueprint $table) {
             $table->id();
-            $table->string('he_dieu_hanh');
-            $table->string('chip_xu_ly');
-            $table->string('toc_do_cpu');
-            $table->string('chip_do_hoa');
+            $table->string('he_dieu_hanh',500);
+            $table->string('chip_xu_ly',500);
+            $table->string('toc_do_cpu',500);
+            $table->string('chip_do_hoa',500);
             $table->timestamps();
             $table->softDeletes();
         });

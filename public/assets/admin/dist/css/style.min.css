@@ -15166,7 +15166,7 @@ padding: 10px 0;
 position: fixed;
 background: #fff;
 border-radius: 4px;
-padding: 10px 20px 20px;
+padding: 10px;
 width: 50%;
 max-width: 500px;
 top: 50%;
@@ -15175,7 +15175,7 @@ transform: translate(-50%,-50%);
 z-index: 9999;
 }
 
-.form-popup .row-popup a {
+.form-popup .row-popup button {
 float: right;
 border: 1px solid #ccc;
 border-radius: 4px;
@@ -15194,7 +15194,7 @@ width: 70%;
 font-weight: bold;
 }
 
-.form-popup .row-popup a:after, .form-popup .row-popup a:before {
+.form-popup .row-popup button:after, .form-popup .row-popup button:before {
     content: "";
     width: 2px;
     height: 12px;
@@ -15206,6 +15206,8 @@ font-weight: bold;
     left: 14px;
 }
 
-.form-popup .row-popup a:before {
+.form-popup .row-popup button:before {
     transform: rotate(-45deg);
 }
+
+

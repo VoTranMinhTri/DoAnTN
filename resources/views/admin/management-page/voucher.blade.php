@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-voucher"><button type="button" class="btn btn-outline-primary">
                                     <i class="fas fa-plus-circle"></i> THÊM PHIẾU GIẢM GIÁ
                                 </button><a>
                                     <hr>
@@ -47,7 +47,7 @@
                                         <table id="zero_config" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Code</th>
                                                     <th>Phần trăm giảm</th>
                                                     <th>Ngày bắt đầu</th>
@@ -66,25 +66,9 @@
                                                     <td>Chưa sử dụng</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
+                                                        <a href="/edit-voucher"><button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin khuyến mãi"><i
-                                                                class="far fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa khuyến mãi"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>******</td>
-                                                    <td>0.1</td>
-                                                    <td>1/1/2022</td>
-                                                    <td>1/12/2022</td>
-                                                    <td>Sử dụng</td>
-                                                    <td>
-                                                        {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin khuyến mãi"><i
-                                                                class="far fa-edit"></i></button>
+                                                                class="far fa-edit"></i></button></a>
                                                         <button type="button" class="btn btn-outline-danger"
                                                             title="Xóa khuyến mãi"><i class="fas fa-trash"></i></button>
                                                     </td>
@@ -92,7 +76,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Code</th>
                                                     <th>Phần trăm giảm</th>
                                                     <th>Ngày bắt đầu</th>

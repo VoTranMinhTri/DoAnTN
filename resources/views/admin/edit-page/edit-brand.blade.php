@@ -30,13 +30,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/brand">
+                            <a href="{{ route('thuongHieu.index') }}">
                                 <button type="button" class="btn btn-outline-primary">
                                     <i class="fa fa-list-ul"></i> Quản lý thương hiệu
                                 </button>
                             </a>
                             <hr>
-                            <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <form action="{{ route('thuongHieu.update', ['thuongHieu' => $thuongHieu]) }}" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                @csrf
+                                @method('PATCH')
                                 <div class="row" style="margin-left: 34.5%;">
                                     <div class="col-sm-12">
                                         <h4 class="card-title">THÔNG TIN THƯƠNG HIỆU</h4>
@@ -46,9 +48,9 @@
                                                     <label for="" class="col-sm-12">Tên thương hiệu <span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Tên sản phẩm" value="OPPO">
+                                                        <input class="form-control" name="tenthuonghieu" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Tên sản phẩm" value="{{ $thuongHieu->ten_thuong_hieu }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,10 +69,10 @@
                                                                 <label>Hình ảnh đại diện</label>
                                                                 <div class="col-sm-11 image-profile" align="center">
                                                                     <img class="profile-pic"
-                                                                        src="{{ asset('assets/user/images/logo-oppo.jpg') }}"
+                                                                        src="{{ asset('storage/images/'.$thuongHieu->hinh_anh) }}"
                                                                         name="filed">
                                                                     <div class="upload-herf cursor">Upload Image</div>
-                                                                    <input class="file-upload" name="store_logo"
+                                                                    <input class="file-upload" name="hinhanh"
                                                                         type="file"
                                                                         accept="image/x-png,image/gif,image/jpeg"
                                                                         id="store_logo"
@@ -87,11 +89,44 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Thêm thương hiệu</button>
+                                        <button type="submit" class="btn btn-primary">Cập nhật thương hiệu</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        @if (Session::has('thongbao'))
+                        <div class="popup active ketqua">
+                            <div class="bg-popup"></div>
+                            <div class="form-popup" style="width: auto">
+                                <div class="row-popup" style="text-align: center;">
+                                    <h3 style="color:gray">Thông báo</h3>
+                                </div>
+                                <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                <p style="margin-top: 10px; text-align: center">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="closepopup()">Ok</button>
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+
+                    {{-- Thông báo validate --}}
+                    @if ($errors->any())
+                        <div class="popup active ketqua">
+                            <div class="bg-popup"></div>
+                            <div class="form-popup" style="width: auto">
+                                <div class="row-popup" style="text-align: center;">
+                                    <h3 style="color:gray">Thông báo</h3>
+                                </div>
+                                @foreach ($errors->all() as $error)
+                                    <h4 style="display:block;text-align: center;">{{ $error }}</h4>
+                                @endforeach
+                                <p style="margin-top: 10px; text-align: center">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        onclick="closepopup()">Ok</button>
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                     </div>
                 </div>
             </div>
@@ -152,5 +187,14 @@
                 }
             })
         });
+    </script>
+    <script>
+        const body = this.document.querySelector('body');
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
     </script>
 @endsection

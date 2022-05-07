@@ -47,6 +47,8 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>STT</th>
+                                            <th>Id</th>
                                             <th>Họ tên</th>
                                             <th>Địa chỉ</th>
                                             <th>Ngày sinh</th>
@@ -63,6 +65,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>1</td>
+                                            <td>1</td>
                                             <td>Nguyễn Văn A</td>
                                             <td>59 Long An</td>
                                             <td>1/1/1999</td>
@@ -76,30 +80,9 @@
                                             <td></td>
                                             <td>
                                                 {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <a href="/edit-staff"><button type="button" class="btn btn-outline-secondary"
                                                     title="Chỉnh sửa thông tin nhân viên"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Xóa nhân viên"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nguyễn Văn B</td>
-                                            <td>59 Long An</td>
-                                            <td>1/1/1999</td>
-                                            <td>079201025701</td>
-                                            <td>792000110</td>
-                                            <td>Nhân viên bán hàng</td>
-                                            <td></td>
-                                            <td>Marketing</td>
-                                            <td>NV2@gmail.com</td>
-                                            <td>Cửa hàng Hồ Chí Minh</td>
-                                            <td>X</td>
-                                            <td>
-                                                {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    title="Chỉnh sửa thông tin nhân viên"><i
-                                                        class="far fa-edit"></i></button>
+                                                        class="far fa-edit"></i></button><a href="/edit-coefficientssalary">
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Xóa nhân viên"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -107,6 +90,8 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th>STT</th>
+                                            <th>Id</th>
                                             <th>Họ tên</th>
                                             <th>Địa chỉ</th>
                                             <th>Ngày sinh</th>

@@ -26,7 +26,7 @@
 <![endif]-->
 </head>
 
-<body>
+<body style="{{ session('thongbao') ? "overflow: hidden;" : null }}">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -253,7 +253,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin"
                                 aria-expanded="false"><i class="me-2 mdi mdi-view-dashboard"></i><span class="hide-menu">Bảng
                                     điều khiển</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/order"
                                 aria-expanded="false"><i class="me-2 mdi mdi-cart-outline"></i><span class="hide-menu">Đơn
                                     hàng</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
@@ -279,7 +279,7 @@
                                             sản
                                             phẩm
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/brand" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('thuongHieu.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             thương
                                             hiệu
@@ -298,43 +298,43 @@
                                 aria-expanded="false"><i class="me-2 mdi mdi-border-inside"></i><span
                                     class="hide-menu">Linh kiện, khác</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="/color" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('mauSac.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             màu sắc
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/screen" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('manHinh.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             màn hình
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/backcamera" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('cameraSau.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             camera sau
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/frontcamera" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('cameraTruoc.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             camera trước
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/os" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('heDieuHanh_CPU.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             hệ điều hành - cpu
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/memory" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('boNho_LuuTru.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             bộ nhớ lưu trữ
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/connect" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('ketNoi.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             kết nối
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/pin" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('pin_Sac.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             pin sạc
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/utilities" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('tienIch.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             tiện ích
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="/generalinformation" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="{{ route('thongTinChung.index') }}" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             thông tin chung
                                         </span></a></li>
@@ -383,9 +383,9 @@
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
                                             cửa hàng
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                {{-- <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                             class="me-2 mdi mdi-record"></i><span class="hide-menu">Phân bố sản phẩm
-                                        </span></a></li>
+                                        </span></a></li> --}}
                             </ul>
                         </li>
                         <div class="title-header">

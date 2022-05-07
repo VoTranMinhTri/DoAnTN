@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class KetNoi extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

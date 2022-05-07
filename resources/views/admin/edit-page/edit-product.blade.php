@@ -35,8 +35,23 @@
                                     <i class="fa fa-list-ul"></i> Quản lý sản phẩm
                                 </button>
                             </a>
+                            <a href="/featuredpicture">
+                                <button type="button" class="btn btn-outline-info">
+                                    <i class="fas fa-list-ul"></i> Quản lý hình ảnh nổi bật của sản phẩm
+                                </button>
+                            </a>
+                            <a href="/colorpicture">
+                                <button type="button" class="btn btn-outline-success">
+                                    <i class="fas fa-list-ul"></i> Quản lý hình ảnh màu sắc của sản phẩm
+                                </button>
+                            </a>
+                            <a href="/360picture">
+                                <button type="button" class="btn btn-outline-warning">
+                                    <i class="fas fa-list-ul"></i> Quản lý hình ảnh 360 của sản phẩm
+                                </button>
+                            </a>
                             <a href="/add-product-detail">
-                                <button type="button" class="btn btn-outline-secondary">
+                                <button type="button" class="btn btn-outline-secondary" style="margin-top: 4px">
                                     <i class="fas fa-plus-circle"></i> Thêm chi tiết sản phẩm
                                 </button>
                             </a>
@@ -123,6 +138,54 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <label>Hình ảnh thông số kỹ thuật</label>
+                                                                <div class="col-sm-11 image-profile" align="center">
+                                                                    <img class="profile-pic"
+                                                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-note-2.jpg') }}"
+                                                                        name="filed">
+                                                                    <div class="upload-herf cursor">Upload Image</div>
+                                                                    <input class="file-upload" name="store_logo"
+                                                                        type="file"
+                                                                        accept="image/x-png,image/gif,image/jpeg"
+                                                                        id="store_logo"
+                                                                        data-msg-accept="Chỉ nhận tập tin jpg|jpeg|png|gif">
+                                                                    <input hidden="hidden" name="old_logo" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <label>Hình ảnh mở hộp</label>
+                                                                <div class="col-sm-11 image-profile" align="center">
+                                                                    <img class="profile-pic"
+                                                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-bbh-org.jpg') }}"
+                                                                        name="filed">
+                                                                    <div class="upload-herf cursor">Upload Image</div>
+                                                                    <input class="file-upload" name="store_logo"
+                                                                        type="file"
+                                                                        accept="image/x-png,image/gif,image/jpeg"
+                                                                        id="store_logo"
+                                                                        data-msg-accept="Chỉ nhận tập tin jpg|jpeg|png|gif">
+                                                                    <input hidden="hidden" name="old_logo" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
                                                         <label>Mô tả</label>
@@ -147,7 +210,7 @@
                                 <div class="form-popup">
                                     <div class="row-popup">
                                         <strong>Thêm thương hiệu</strong>
-                                        <a href="javascript:">Đóng</a>
+                                        <button>Đóng</button>
                                     </div>
                                     <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                         <div class="row">
@@ -331,7 +394,7 @@
         const a = this.document.querySelector('.add-brand');
         const popup = this.document.querySelector('.popup');
         const html = this.document.querySelector('html');
-        const btnclose = this.document.querySelector('.form-popup .row-popup a');
+        const btnclose = this.document.querySelector('.form-popup .row-popup button');
 
         //Hiển thị form thêm thương hiệu
         a.onclick = function() {

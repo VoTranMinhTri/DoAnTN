@@ -15,10 +15,12 @@ class CreateSanPhamPhanBosTable extends Migration
     {
         Schema::create('san_pham_phan_bos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('cua_hang_id');
-            $table->unsignedInteger('chi_tiet_dien_thoai_id');
+            $table->foreignId('cua_hang_id');
+            $table->foreignId('chi_tiet_dien_thoai_id');
             $table->string('so_luong');
             $table->timestamps();
+            $table->foreign('cua_hang_id')->references('id')->on('cua_hangs');
+            $table->foreign('chi_tiet_dien_thoai_id')->references('id')->on('chi_tiet_dien_thoais');
         });
     }
 

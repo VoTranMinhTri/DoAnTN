@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BoNho_LuuTru;
-use App\Http\Requests\StoreBoNho_LuuTruRequest;
-use App\Http\Requests\UpdateBoNho_LuuTruRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BoNhoLuuTruController extends Controller
 {
@@ -15,7 +15,8 @@ class BoNhoLuuTruController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachBoNho = BoNho_LuuTru::All();
+        return view('admin/management-page/memory', ['danhSachBoNho' => $danhSachBoNho]);
     }
 
     /**
@@ -25,7 +26,7 @@ class BoNhoLuuTruController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-memory');
     }
 
     /**
@@ -34,9 +35,42 @@ class BoNhoLuuTruController extends Controller
      * @param  \App\Http\Requests\StoreBoNho_LuuTruRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBoNho_LuuTruRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'ram' => 'required|max:500',
+                'bonhotrong' => 'required|max:500',
+                'bonhoconlai' => 'required|max:500',
+                'thenho' => 'required|max:500',
+                'danhba' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+            ],
+            [
+                'ram' => 'Ram',
+                'bonhotrong' => 'Bộ nhớ trong',
+                'bonhoconlai' => 'Bộ nhớ còn lại',
+                'thenho' => 'Thẻ nhớ',
+                'danhba' => 'Danh bạ',
+            ]
+        )->validate();
+
+        $boNho_LuuTru = new BoNho_LuuTru();
+        $boNho_LuuTru->fill([
+            'ram' => $request->input('ram'),
+            'bo_nho_trong' => $request->input('bonhotrong'),
+            'bo_nho_con_lai' => $request->input('bonhoconlai'),
+            'the_nho' => $request->input('thenho'),
+            'danh_ba' => $request->input('danhba'),
+        ]);
+        if ($boNho_LuuTru->save() == true) {
+            return redirect()->back()->with('thongbao', 'Thêm bộ nhớ lưu trữ thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Thêm bộ nhớ lưu trữ không thành công !');
     }
 
     /**
@@ -58,7 +92,7 @@ class BoNhoLuuTruController extends Controller
      */
     public function edit(BoNho_LuuTru $boNho_LuuTru)
     {
-        //
+        return view('admin/edit-page/edit-memory', ['boNho_LuuTru' => $boNho_LuuTru]);
     }
 
     /**
@@ -68,9 +102,41 @@ class BoNhoLuuTruController extends Controller
      * @param  \App\Models\BoNho_LuuTru  $boNho_LuuTru
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBoNho_LuuTruRequest $request, BoNho_LuuTru $boNho_LuuTru)
+    public function update(Request $request, BoNho_LuuTru $boNho_LuuTru)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'ram' => 'required|max:500',
+                'bonhotrong' => 'required|max:500',
+                'bonhoconlai' => 'required|max:500',
+                'thenho' => 'required|max:500',
+                'danhba' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+            ],
+            [
+                'ram' => 'Ram',
+                'bonhotrong' => 'Bộ nhớ trong',
+                'bonhoconlai' => 'Bộ nhớ còn lại',
+                'thenho' => 'Thẻ nhớ',
+                'danhba' => 'Danh bạ',
+            ]
+        )->validate();
+
+        $boNho_LuuTru->fill([
+            'ram' => $request->input('ram'),
+            'bo_nho_trong' => $request->input('bonhotrong'),
+            'bo_nho_con_lai' => $request->input('bonhoconlai'),
+            'the_nho' => $request->input('thenho'),
+            'danh_ba' => $request->input('danhba'),
+        ]);
+        if ($boNho_LuuTru->save() == true) {
+            return redirect()->back()->with('thongbao', 'Cập nhật bộ nhớ lưu trữ thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Cập nhật bộ nhớ lưu trữ không thành công !');
     }
 
     /**
@@ -81,6 +147,9 @@ class BoNhoLuuTruController extends Controller
      */
     public function destroy(BoNho_LuuTru $boNho_LuuTru)
     {
-        //
+        if ($boNho_LuuTru->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa bộ nhớ lưu trữ thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa bộ nhớ lưu trữ không thành công !');
     }
 }

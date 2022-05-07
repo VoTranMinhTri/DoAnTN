@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\HeDieuHanh_CPU;
-use App\Http\Requests\StoreHeDieuHanh_CPURequest;
-use App\Http\Requests\UpdateHeDieuHanh_CPURequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HeDieuHanhCPUController extends Controller
 {
@@ -15,7 +15,8 @@ class HeDieuHanhCPUController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachHeDieuHanh = HeDieuHanh_CPU::All();
+        return view('admin/management-page/os', ['danhSachHeDieuHanh' => $danhSachHeDieuHanh]);
     }
 
     /**
@@ -25,7 +26,7 @@ class HeDieuHanhCPUController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-os');
     }
 
     /**
@@ -34,9 +35,39 @@ class HeDieuHanhCPUController extends Controller
      * @param  \App\Http\Requests\StoreHeDieuHanh_CPURequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHeDieuHanh_CPURequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'hedieuhanh' => 'required|max:500',
+                'chipxuly' => 'required|max:500',
+                'tocdocpu' => 'required|max:500',
+                'chipdohoa' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+            ],
+            [
+                'hedieuhanh' => 'Hệ điều hành',
+                'chipxuly' => 'Chip xử lý',
+                'tocdocpu' => 'Tốc độ CPU',
+                'chipdohoa' => 'Chip đồ họa',
+            ]
+        )->validate();
+
+        $heDieuHanh_CPU = new HeDieuHanh_CPU();
+        $heDieuHanh_CPU->fill([
+            'he_dieu_hanh' => $request->input('hedieuhanh'),
+            'chip_xu_ly' => $request->input('chipxuly'),
+            'toc_do_cpu' => $request->input('tocdocpu'),
+            'chip_do_hoa' => $request->input('chipdohoa'),
+        ]);
+        if ($heDieuHanh_CPU->save() == true) {
+            return redirect()->back()->with('thongbao', 'Thêm hệ điều hành - CPU thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Thêm hệ điều hành - CPU không thành công !');
     }
 
     /**
@@ -58,7 +89,7 @@ class HeDieuHanhCPUController extends Controller
      */
     public function edit(HeDieuHanh_CPU $heDieuHanh_CPU)
     {
-        //
+        return view('admin/edit-page/edit-os', ['heDieuHanh_CPU' => $heDieuHanh_CPU]);
     }
 
     /**
@@ -68,9 +99,38 @@ class HeDieuHanhCPUController extends Controller
      * @param  \App\Models\HeDieuHanh_CPU  $heDieuHanh_CPU
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHeDieuHanh_CPURequest $request, HeDieuHanh_CPU $heDieuHanh_CPU)
+    public function update(Request $request, HeDieuHanh_CPU $heDieuHanh_CPU)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'hedieuhanh' => 'required|max:500',
+                'chipxuly' => 'required|max:500',
+                'tocdocpu' => 'required|max:500',
+                'chipdohoa' => 'required|max:500',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 500 ký tự !',
+            ],
+            [
+                'hedieuhanh' => 'Hệ điều hành',
+                'chipxuly' => 'Chip xử lý',
+                'tocdocpu' => 'Tốc độ CPU',
+                'chipdohoa' => 'Chip đồ họa',
+            ]
+        )->validate();
+
+        $heDieuHanh_CPU->fill([
+            'he_dieu_hanh' => $request->input('hedieuhanh'),
+            'chip_xu_ly' => $request->input('chipxuly'),
+            'toc_do_cpu' => $request->input('tocdocpu'),
+            'chip_do_hoa' => $request->input('chipdohoa'),
+        ]);
+        if ($heDieuHanh_CPU->save() == true) {
+            return redirect()->back()->with('thongbao', 'Cập nhật hệ điều hành - CPU thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Cập nhật hệ điều hành - CPU không thành công !');
     }
 
     /**
@@ -81,6 +141,9 @@ class HeDieuHanhCPUController extends Controller
      */
     public function destroy(HeDieuHanh_CPU $heDieuHanh_CPU)
     {
-        //
+        if ($heDieuHanh_CPU->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa hệ điều hành - CPU thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa hệ điều hành - CPU không thành công !');
     }
 }

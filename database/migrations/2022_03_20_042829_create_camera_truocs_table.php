@@ -15,8 +15,8 @@ class CreateCameraTruocsTable extends Migration
     {
         Schema::create('camera_truocs', function (Blueprint $table) {
             $table->id();
-            $table->string('do_phan_giai');
-            $table->string('tinh_nang');
+            $table->string('do_phan_giai',500);
+            $table->string('tinh_nang',500);
             $table->timestamps();
             $table->softDeletes();
         });

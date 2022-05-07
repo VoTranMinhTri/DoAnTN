@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ThuongHieu;
-use App\Http\Requests\StoreThuongHieuRequest;
-use App\Http\Requests\UpdateThuongHieuRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ThuongHieuController extends Controller
 {
@@ -15,7 +15,8 @@ class ThuongHieuController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachThuongHieu = ThuongHieu::all();
+        return view('admin/management-page/brand',['danhSachThuongHieu'=>$danhSachThuongHieu]);
     }
 
     /**
@@ -25,7 +26,7 @@ class ThuongHieuController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-brand');
     }
 
     /**
@@ -34,9 +35,41 @@ class ThuongHieuController extends Controller
      * @param  \App\Http\Requests\StoreThuongHieuRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreThuongHieuRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenthuonghieu' => 'required|max:30',
+                'hinhanh' => 'mimes:jpeg,jpg,png',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+                'mimes' => ':attribute phải có thuộc tính là jpeg, jpg, png !'
+            ],
+            [
+                'tenthuonghieu' => 'Tên thương hiệu',
+                'hinhanh' => 'Hình ảnh',
+            ]
+        )->validate();
+
+        $thuongHieu = new ThuongHieu();
+        $thuongHieu->fill([
+            'ten_thuong_hieu' => $request->input('tenthuonghieu'),
+            'hinh_anh' => '',
+        ]);
+        if ($request->hasFile('hinhanh')) {
+            $request->file('hinhanh')->storeAs('public/images/'.$thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
+            $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu.'/'.$request->file('hinhanh')->getClientOriginalName();
+        } else {
+            $thuongHieu->hinh_anh = 'default/default.png';
+        }
+
+        if ($thuongHieu->save() == true) {
+            return redirect()->back()->with('thongbao', 'Thêm thương hiệu thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Thêm thương hiệu không thành công !');
     }
 
     /**
@@ -58,7 +91,7 @@ class ThuongHieuController extends Controller
      */
     public function edit(ThuongHieu $thuongHieu)
     {
-        //
+        return view('admin/edit-page/edit-brand', ['thuongHieu' => $thuongHieu]);
     }
 
     /**
@@ -68,9 +101,37 @@ class ThuongHieuController extends Controller
      * @param  \App\Models\ThuongHieu  $thuongHieu
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateThuongHieuRequest $request, ThuongHieu $thuongHieu)
+    public function update(Request $request, ThuongHieu $thuongHieu)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenthuonghieu' => 'required|max:30',
+                'hinhanh' => 'mimes:jpeg,jpg,png',
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+                'mimes' => ':attribute phải có thuộc tính là jpeg, jpg, png !'
+            ],
+            [
+                'tenthuonghieu' => 'Tên thương hiệu',
+                'hinhanh' => 'Hình ảnh',
+            ]
+        )->validate();
+
+        $thuongHieu->fill([
+            'ten_thuong_hieu' => $request->input('tenthuonghieu'),
+        ]);
+        if ($request->hasFile('hinhanh')) {
+            $request->file('hinhanh')->storeAs('public/images/'.$thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
+            $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu.'/'.$request->file('hinhanh')->getClientOriginalName();
+        }
+
+        if ($thuongHieu->save() == true) {
+            return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu không thành công !');
     }
 
     /**
@@ -81,6 +142,9 @@ class ThuongHieuController extends Controller
      */
     public function destroy(ThuongHieu $thuongHieu)
     {
-        //
+        if ($thuongHieu->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa thương hiệu thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa thương hiệu không thành công !');
     }
 }

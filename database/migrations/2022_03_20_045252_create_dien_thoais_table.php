@@ -15,12 +15,13 @@ class CreateDienThoaisTable extends Migration
     {
         Schema::create('dien_thoais', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('thuong_hieu_id');
+            $table->foreignId('thuong_hieu_id');
             $table->string('ten_san_pham');
             $table->string('mo_ta');
             $table->string('trang_thai');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('thuong_hieu_id')->references('id')->on('thuong_hieus');
         });
     }
 

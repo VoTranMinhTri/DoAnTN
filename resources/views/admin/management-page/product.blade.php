@@ -47,6 +47,7 @@
                                         <table id="zero_config" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>Id</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Thương hiệu</th>
@@ -58,6 +59,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
+                                                    <td>1</td>
                                                     <td>Điện thoại OPPO Reno6 Z 5G</td>
                                                     <td>OPPO</td>
                                                     <td>
@@ -67,6 +69,10 @@
                                                     <td>Ngưng bán</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
+                                                        <a href="/review"><button type="button"
+                                                            class="btn btn-outline-secondary"
+                                                            title="Đánh giá của sản phẩm"><i
+                                                                class="fas fa-comment-alt"></i></button></a>
                                                         <a href="/edit-product"><button type="button"
                                                                 class="btn btn-outline-info"
                                                                 title="Xem chi tiết sản phẩm"><i
@@ -81,57 +87,10 @@
                                                             title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Điện thoại OPPO Reno6 Z 5G</td>
-                                                    <td>OPPO</td>
-                                                    <td>
-                                                        <p>Hộp, Cây lấy sim, Ốp lưng, Tai nghe dây, Cáp Type C, Củ sạc nhanh
-                                                            rời đầu Type A, Sách hướng dẫn</p>
-                                                    </td>
-                                                    <td>Đang bán</td>
-                                                    <td>
-                                                        <a href="/edit-product"><button type="button"
-                                                                class="btn btn-outline-info"
-                                                                title="Xem chi tiết sản phẩm"><i
-                                                                    class="fas fa-info"></i></button></a>
-                                                        {{-- <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin sản phẩm"><i
-                                                                class="far fa-edit"></i></button> --}}
-                                                        <button type="button" class="btn btn-outline-dark"
-                                                            title="Thay đổi trạng thái sản phẩm"><i
-                                                                class=" fas fa-eye"></i></button>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Điện thoại OPPO Reno6 Z 5G</td>
-                                                    <td>OPPO</td>
-                                                    <td>
-                                                        <p>Hộp, Cây lấy sim, Ốp lưng, Tai nghe dây, Cáp Type C, Củ sạc nhanh
-                                                            rời đầu Type A, Sách hướng dẫn</p>
-                                                    </td>
-                                                    <td>Đang bán</td>
-                                                    <td>
-                                                        <a href="/edit-product"><button type="button"
-                                                                class="btn btn-outline-info"
-                                                                title="Xem chi tiết sản phẩm"><i
-                                                                    class="fas fa-info"></i></button></a>
-                                                        {{-- <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin sản phẩm"><i
-                                                                class="far fa-edit"></i></button> --}}
-                                                        <button type="button" class="btn btn-outline-dark"
-                                                            title="Thay đổi trạng thái sản phẩm"><i
-                                                                class=" fas fa-eye"></i></button>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>Id</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Thương hiệu</th>

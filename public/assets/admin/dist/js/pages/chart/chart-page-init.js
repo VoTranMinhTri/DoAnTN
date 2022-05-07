@@ -78,8 +78,6 @@
         setTimeout(update, updateInterval);
     }
     update();
-
-        console.log("document ready");
         var offset = 0;
         plot1();
 

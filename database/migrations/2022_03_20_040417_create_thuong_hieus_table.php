@@ -15,8 +15,8 @@ class CreateThuongHieusTable extends Migration
     {
         Schema::create('thuong_hieus', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_thuong_hieu')->unique();
-            $table->string('hinh_anh')->unique();
+            $table->string('ten_thuong_hieu',30)->unique();
+            $table->string('hinh_anh');
             $table->timestamps();
             $table->softDeletes();
         });

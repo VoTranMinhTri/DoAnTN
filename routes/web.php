@@ -1,6 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MauSacController;
+use App\Http\Controllers\ManHinhController;
+use App\Http\Controllers\CameraSauController;
+use App\Http\Controllers\CameraTruocController;
+use App\Http\Controllers\HeDieuHanhCPUController;
+use App\Http\Controllers\BoNhoLuuTruController;
+use App\Http\Controllers\KetNoiController;
+use App\Http\Controllers\PinSacController;
+use App\Http\Controllers\TienIchController;
+use App\Http\Controllers\ThongTinChungController;
+use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\FbController;
 
 /*
@@ -15,6 +26,20 @@ use App\Http\Controllers\FbController;
 */
 
 //Admin
+//Resource
+Route::resource('mauSac', MauSacController::class);
+Route::resource('manHinh', ManHinhController::class);
+Route::resource('cameraSau', CameraSauController::class);
+Route::resource('cameraTruoc', CameraTruocController::class);
+Route::resource('heDieuHanh_CPU', HeDieuHanhCPUController::class);
+Route::resource('boNho_LuuTru', BoNhoLuuTruController::class);
+Route::resource('ketNoi', KetNoiController::class);
+Route::resource('pin_Sac', PinSacController::class);
+Route::resource('tienIch', TienIchController::class);
+Route::resource('thongTinChung', ThongTinChungController::class);
+Route::resource('thuongHieu', ThuongHieuController::class);
+
+//Get
 Route::get('/admin', function () {
     return view('admin/index');
 });
@@ -119,6 +144,27 @@ Route::get('/generalinformation', function () {
     return view('admin/management-page/generalinformation');
 });
 
+Route::get('/featuredpicture', function () {
+    return view('admin/management-page/featuredpicture');
+});
+
+Route::get('/colorpicture', function () {
+    return view('admin/management-page/colorpicture');
+});
+
+Route::get('/360picture', function () {
+    return view('admin/management-page/360picture');
+});
+
+Route::get('/review', function () {
+    return view('admin/management-page/review');
+});
+
+Route::get('/order', function () {
+    return view('admin/management-page/order');
+});
+
+
 
 //Add-page
 Route::get('/add-product', function () {
@@ -130,6 +176,69 @@ Route::get('/add-product-detail', function () {
 Route::get('/add-brand', function () {
     return view('admin/add-page/add-brand');
 });
+Route::get('/add-membershiplevel', function () {
+    return view('admin/add-page/add-membershiplevel');
+});
+Route::get('/add-promotion', function () {
+    return view('admin/add-page/add-promotion');
+});
+Route::get('/add-color', function () {
+    return view('admin/add-page/add-color');
+});
+Route::get('/add-screen', function () {
+    return view('admin/add-page/add-screen');
+});
+Route::get('/add-backcamera', function () {
+    return view('admin/add-page/add-backcamera');
+});
+Route::get('/add-frontcamera', function () {
+    return view('admin/add-page/add-frontcamera');
+});
+Route::get('/add-os', function () {
+    return view('admin/add-page/add-os');
+});
+Route::get('/add-memory', function () {
+    return view('admin/add-page/add-memory');
+});
+Route::get('/add-connect', function () {
+    return view('admin/add-page/add-connect');
+});
+Route::get('/add-pin', function () {
+    return view('admin/add-page/add-pin');
+});
+Route::get('/add-utilities', function () {
+    return view('admin/add-page/add-utilities');
+});
+Route::get('/add-generalinformation', function () {
+    return view('admin/add-page/add-generalinformation');
+});
+Route::get('/add-position', function () {
+    return view('admin/add-page/add-position');
+});
+Route::get('/add-department', function () {
+    return view('admin/add-page/add-department');
+});
+Route::get('/add-coefficientssalary', function () {
+    return view('admin/add-page/add-coefficientssalary');
+});
+Route::get('/add-bonus', function () {
+    return view('admin/add-page/add-bonus');
+});
+Route::get('/add-allowance', function () {
+    return view('admin/add-page/add-allowance');
+});
+Route::get('/add-storehouse', function () {
+    return view('admin/add-page/add-storehouse');
+});
+Route::get('/add-store', function () {
+    return view('admin/add-page/add-store');
+});
+Route::get('/add-voucher', function () {
+    return view('admin/add-page/add-voucher');
+});
+
+
+
 
 //Edit-page
 Route::get('/edit-product', function () {
@@ -140,6 +249,66 @@ Route::get('/edit-product-detail', function () {
 });
 Route::get('/edit-brand', function () {
     return view('admin/edit-page/edit-brand');
+});
+Route::get('/edit-membershiplevel', function () {
+    return view('admin/edit-page/edit-membershiplevel');
+});
+Route::get('/edit-promotion', function () {
+    return view('admin/edit-page/edit-promotion');
+});
+Route::get('/edit-color', function () {
+    return view('admin/edit-page/edit-color');
+});
+Route::get('/edit-screen', function () {
+    return view('admin/edit-page/edit-screen');
+});
+Route::get('/edit-backcamera', function () {
+    return view('admin/edit-page/edit-backcamera');
+});
+Route::get('/edit-frontcamera', function () {
+    return view('admin/edit-page/edit-frontcamera');
+});
+Route::get('/edit-os', function () {
+    return view('admin/edit-page/edit-os');
+});
+Route::get('/edit-memory', function () {
+    return view('admin/edit-page/edit-memory');
+});
+Route::get('/edit-connect', function () {
+    return view('admin/edit-page/edit-connect');
+});
+Route::get('/edit-pin', function () {
+    return view('admin/edit-page/edit-pin');
+});
+Route::get('/edit-utilities', function () {
+    return view('admin/edit-page/edit-utilities');
+});
+Route::get('/edit-generalinformation', function () {
+    return view('admin/edit-page/edit-generalinformation');
+});
+Route::get('/edit-position', function () {
+    return view('admin/edit-page/edit-position');
+});
+Route::get('/edit-department', function () {
+    return view('admin/edit-page/edit-department');
+});
+Route::get('/edit-coefficientssalary', function () {
+    return view('admin/edit-page/edit-coefficientssalary');
+});
+Route::get('/edit-bonus', function () {
+    return view('admin/edit-page/edit-bonus');
+});
+Route::get('/edit-allowance', function () {
+    return view('admin/edit-page/edit-allowance');
+});
+Route::get('/edit-storehouse', function () {
+    return view('admin/edit-page/edit-storehouse');
+});
+Route::get('/edit-store', function () {
+    return view('admin/edit-page/edit-store');
+});
+Route::get('/edit-voucher', function () {
+    return view('admin/edit-page/edit-voucher');
 });
 
 

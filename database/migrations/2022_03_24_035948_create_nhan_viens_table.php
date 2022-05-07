@@ -15,12 +15,12 @@ class CreateNhanViensTable extends Migration
     {
         Schema::create('nhan_viens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('chuc_vu_id');
-            $table->unsignedInteger('quan_ly_id')->nullable();
-            $table->unsignedInteger('phong_ban_id');
-            $table->unsignedInteger('tai_khoan_quan_ly_id')->nullable();
-            $table->unsignedInteger('tai_khoan_id')->nullable();
-            $table->unsignedInteger('cua_hang_id')->nullable();
+            $table->foreignId('chuc_vu_id');
+            $table->foreignId('quan_ly_id')->nullable();
+            $table->foreignId('phong_ban_id');
+            $table->foreignId('tai_khoan_quan_ly_id')->nullable();
+            $table->foreignId('tai_khoan_id')->nullable();
+            $table->foreignId('cua_hang_id')->nullable();
             $table->boolean('truong_phong');
             $table->string('ho_ten');
             $table->string('dia_chi');
@@ -29,6 +29,12 @@ class CreateNhanViensTable extends Migration
             $table->string('bhxh');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('chuc_vu_id')->references('id')->on('chuc_vus');
+            $table->foreign('quan_ly_id')->references('id')->on('nhan_viens');
+            $table->foreign('phong_ban_id')->references('id')->on('phong_bans');
+            $table->foreign('tai_khoan_quan_ly_id')->references('id')->on('tai_khoans');
+            $table->foreign('tai_khoan_id')->references('id')->on('tai_khoans');
+            $table->foreign('cua_hang_id')->references('id')->on('cua_hangs');
         });
     }
 

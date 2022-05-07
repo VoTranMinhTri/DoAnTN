@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pin_Sac extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $table = 'pin_sacs';
 }

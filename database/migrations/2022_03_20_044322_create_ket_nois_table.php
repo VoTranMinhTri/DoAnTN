@@ -15,14 +15,14 @@ class CreateKetNoisTable extends Migration
     {
         Schema::create('ket_nois', function (Blueprint $table) {
             $table->id();
-            $table->string('mang_di_dong');
-            $table->string('sim');
-            $table->string('wifi');
-            $table->string('gps');
-            $table->string('bluetooth');
-            $table->string('cong_ket_noi');
-            $table->string('jack_tai_nghe');
-            $table->string('ket_noi_khac');
+            $table->string('mang_di_dong',500);
+            $table->string('sim',500);
+            $table->string('wifi',500);
+            $table->string('gps',500);
+            $table->string('bluetooth',500);
+            $table->string('cong_ket_noi',500);
+            $table->string('jack_tai_nghe',500);
+            $table->string('ket_noi_khac',500);
             $table->timestamps();
             $table->softDeletes();
         });

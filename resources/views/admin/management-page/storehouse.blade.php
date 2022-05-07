@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="#"><button type="button" class="btn btn-outline-primary">
+                            <a href="/add-storehouse"><button type="button" class="btn btn-outline-primary">
                                     <i class="fas fa-plus-circle"></i> THÊM KHO
                                 </button><a>
                                     <hr>
@@ -47,12 +47,10 @@
                                         <table id="zero_config" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Tên nhà kho</th>
                                                     <th>Địa chỉ nhà kho</th>
-                                                    <th>Tỉnh/Thành phố</th>
-                                                    <th>Quận/Huyện</th>
-                                                    <th>Phường/Xã/Thị trấn</th>
+                                                    <th>Quản lý kho</th>
                                                     <th class='thNormal' style='width:100px'>Chức năng</th>
                                                 </tr>
                                             </thead>
@@ -60,31 +58,13 @@
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Kho Hồ Chí Minh</td>
-                                                    <td>136 Lũy Bán Bích</td>
-                                                    <td>Hồ Chí Minh</td>
-                                                    <td>Quận Tân Phú</td>
-                                                    <td>Phường Tân Thành</td>
+                                                    <td>136 Lũy Bán Bích, Phường Tân Thành, Quận Tân Phú, Hồ Chí Minh</td>
+                                                    <td>Nguyễn Văn A</td>
                                                     <td>
                                                         {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
+                                                        <a href="/edit-storehouse"><button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin thương hiệu"><i
-                                                                class="far fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Kho Hà Nội</td>
-                                                    <td>55 Hai Bà Trưng</td>
-                                                    <td>Hà Nội</td>
-                                                    <td>Quận Đống Đa</td>
-                                                    <td>Phường Kim Lan</td>
-                                                    <td>
-                                                        {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin thương hiệu"><i
-                                                                class="far fa-edit"></i></button>
+                                                                class="far fa-edit"></i></button></a>
                                                         <button type="button" class="btn btn-outline-danger"
                                                             title="Xóa thương hiệu"><i class="fas fa-trash"></i></button>
                                                     </td>
@@ -92,12 +72,10 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>STT</th>
                                                     <th>Tên nhà kho</th>
                                                     <th>Địa chỉ nhà kho</th>
-                                                    <th>Tỉnh/Thành phố</th>
-                                                    <th>Quận/Huyện</th>
-                                                    <th>Phường/Xã/Thị trấn</th>
+                                                    <th>Quản lý kho</th>
                                                     <th class='thNormal' style='width:100px'>Chức năng</th>
                                                 </tr>
                                             </tfoot>
