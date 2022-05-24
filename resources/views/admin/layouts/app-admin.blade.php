@@ -26,7 +26,7 @@
 <![endif]-->
 </head>
 
-<body style="{{ session('thongbao') ? "overflow: hidden;" : null }}">
+<body style="{{ session('thongbao') ? 'overflow: hidden;' : null }}">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -217,13 +217,10 @@
                                     Inbox</a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="ti-settings me-1 ms-1"></i> Cài đặt tài khoản</a>
+                                        class="ti-settings me-1 ms-1"></i> Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/signin"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
+                                <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
                                     xuất</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="ps-4 p-10"><a href="javascript:void(0)"
-                                        class="btn btn-sm btn-success btn-rounded text-white">Xem hồ sơ</a></div>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -250,154 +247,256 @@
                                 <span style="color:white;" class="hide-menu">QUẢN LÝ</span>
                             </div>
                         </div>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin"
-                                aria-expanded="false"><i class="me-2 mdi mdi-view-dashboard"></i><span class="hide-menu">Bảng
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/admin" aria-expanded="false"><i class="me-2 mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Bảng
                                     điều khiển</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/order"
-                                aria-expanded="false"><i class="me-2 mdi mdi-cart-outline"></i><span class="hide-menu">Đơn
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/order" aria-expanded="false"><i class="me-2 mdi mdi-cart-outline"></i><span
+                                    class="hide-menu">Đơn
                                     hàng</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
                                 aria-expanded="false"><i class="me-2 mdi mdi-account-multiple-outline"></i><span
                                     class="hide-menu">Khách hàng</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/customer" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            khách hàng
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/membershiplevel" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            bậc thành viên
-                                        </span></a></li>
+                                @if (Auth::user()->loai_tai_khoan_id == 1)
+                                    <li class="sidebar-item"><a href="{{ route('khachHang') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                khách hàng
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('bacTaiKhoan.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                bậc thành viên
+                                            </span></a></li>
+                                @else
+                                    <li class="sidebar-item"><a href="{{ route('khachHang') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                khách hàng
+                                            </span></a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
                                 aria-expanded="false"><i class="me-2 mdi mdi-cellphone-iphone"></i><span
                                     class="hide-menu">Sản phẩm</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/product" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            sản
-                                            phẩm
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('thuongHieu.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            thương
-                                            hiệu
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/promotion" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            khuyến mãi
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/voucher" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            phiếu giảm giá
-                                        </span></a></li>
+                                @if (Auth::user()->loai_tai_khoan_id == 1)
+                                    <li class="sidebar-item"><a href="{{ route('dienThoai.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                sản
+                                                phẩm
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('thuongHieu.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                thương
+                                                hiệu
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('khuyenMai.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                khuyến mãi
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('phieuGiamGia.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                phiếu giảm giá
+                                            </span></a></li>
+                                @else
+                                    <li class="sidebar-item"><a href="{{ route('dienThoai.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                sản
+                                                phẩm
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('thuongHieu.index') }}"
+                                            class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                class="hide-menu">Quản lý
+                                                thương
+                                                hiệu
+                                            </span></a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
                                 aria-expanded="false"><i class="me-2 mdi mdi-border-inside"></i><span
                                     class="hide-menu">Linh kiện, khác</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="{{ route('mauSac.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('mauSac.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             màu sắc
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('manHinh.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('manHinh.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             màn hình
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('cameraSau.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('cameraSau.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             camera sau
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('cameraTruoc.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('cameraTruoc.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             camera trước
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('heDieuHanh_CPU.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('heDieuHanh_CPU.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             hệ điều hành - cpu
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('boNho_LuuTru.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('boNho_LuuTru.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             bộ nhớ lưu trữ
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('ketNoi.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('ketNoi.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             kết nối
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('pin_Sac.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('pin_Sac.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             pin sạc
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('tienIch.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('tienIch.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             tiện ích
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('thongTinChung.index') }}" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
+                                <li class="sidebar-item"><a href="{{ route('thongTinChung.index') }}"
+                                        class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                            class="hide-menu">Quản lý
                                             thông tin chung
                                         </span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
-                                aria-expanded="false"><i class="me-2 mdi mdi-clipboard-account"></i><span
-                                    class="hide-menu">Nhân viên</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/staff" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            nhân viên
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/position" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            chức vụ
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/department" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            phòng ban
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/coefficientssalary" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            hệ số lương
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/bonus" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            thưởng
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/allowance" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            phụ cấp
-                                        </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"
-                                aria-expanded="false"><i class="me-2 mdi mdi-home-variant"></i><span
-                                    class="hide-menu">Kho,
-                                    cửa hàng</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/storehouse" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            kho
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/store" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Quản lý
-                                            cửa hàng
-                                        </span></a></li>
-                                {{-- <li class="sidebar-item"><a href="#" class="sidebar-link"><i
-                                            class="me-2 mdi mdi-record"></i><span class="hide-menu">Phân bố sản phẩm
-                                        </span></a></li> --}}
-                            </ul>
-                        </li>
+                        @if (Auth::user()->loai_tai_khoan_id < 4)
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                    href="#" aria-expanded="false"><i class="me-2 mdi mdi-clipboard-account"></i><span
+                                        class="hide-menu">Nhân viên</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    @if (Auth::user()->loai_tai_khoan_id == 1)
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexNhanVien', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    nhân viên
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a href="{{ route('chucVu.index') }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    chức vụ
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a href="{{ route('heSoLuong.index') }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    hệ số lương
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a href="{{ route('thuong.index') }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    thưởng
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a href="{{ route('phuCap.index') }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    phụ cấp
+                                                </span></a></li>
+                                    @else
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexNhanVien', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    nhân viên
+                                                </span></a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->loai_tai_khoan_id < 4)
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                    href="#" aria-expanded="false"><i class="me-2 mdi mdi-account-outline"></i><span
+                                        class="hide-menu">Tài khoản</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    @if (Auth::user()->loai_tai_khoan_id == 1)
+                                        <li class="sidebar-item"><a href="{{ route('loaiTaiKhoan.index') }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    loại tài khoản
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexTaiKhoanNhanVien', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    tài khoản nhân viên
+                                                </span></a></li>
+                                    @else
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexTaiKhoanNhanVien', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    tài khoản nhân viên
+                                                </span></a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->loai_tai_khoan_id < 4)
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                    href="#" aria-expanded="false"><i class="me-2 mdi mdi-home-variant"></i><span
+                                        class="hide-menu">Kho,
+                                        cửa hàng</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    @if (Auth::user()->loai_tai_khoan_id == 1)
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexKho', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    kho
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexCuaHang', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    cửa hàng
+                                                </span></a></li>
+                                    @elseif(Auth::user()->loai_tai_khoan_id == 2)
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexCuaHang', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    cửa hàng
+                                                </span></a></li>
+                                    @elseif(Auth::user()->loai_tai_khoan_id == 3)
+                                        <li class="sidebar-item"><a
+                                                href="{{ route('indexKho', ['token' => Auth::user()->token]) }}"
+                                                class="sidebar-link"><i class="me-2 mdi mdi-record"></i><span
+                                                    class="hide-menu">Quản lý
+                                                    kho
+                                                </span></a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
                         <div class="title-header">
                             <div class="menu-title">
                                 <span style="color:white;" class="hide-menu">BÁO CÁO - TÙY CHỈNH</span>
                             </div>
                         </div>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/chart"
-                                aria-expanded="false"><i class="me-2 mdi mdi-chart-bar"></i><span class="hide-menu">Biểu
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/chart" aria-expanded="false"><i class="me-2 mdi mdi-chart-bar"></i><span
+                                    class="hide-menu">Biểu
                                     đồ</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/#"
-                                aria-expanded="false"><i class="me-2 mdi mdi-image-filter"></i><span
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/#" aria-expanded="false"><i class="me-2 mdi mdi-image-filter"></i><span
                                     class="hide-menu">Hình ảnh Banner Website</span></a></li>
                     </ul>
                 </nav>
@@ -455,12 +554,12 @@
          *       Basic Table                   *
          ****************************************/
         $('#zero_config').DataTable();
+        $('#one_config').DataTable();
 
         //***********************************//
         // For select 2
         //***********************************//
         $(".select2").select2();
-
     </script>
 </body>
 

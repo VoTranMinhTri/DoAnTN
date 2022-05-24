@@ -19,6 +19,7 @@ class CreateThongTinTaiKhoansTable extends Migration
             $table->string('ho_ten');
             $table->string('dia_chi')->nullable();
             $table->string('so_dien_thoai')->nullable();
+            $table->string('email')->nullable();
             $table->date('ngay_sinh');
             $table->integer('gioi_tinh');
             $table->timestamps();

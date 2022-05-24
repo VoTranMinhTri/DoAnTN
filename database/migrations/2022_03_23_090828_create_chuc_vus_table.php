@@ -15,7 +15,7 @@ class CreateChucVusTable extends Migration
     {
         Schema::create('chuc_vus', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_chuc_vu');
+            $table->string('ten_chuc_vu',30);
             $table->double('luong_co_ban');
             $table->timestamps();
             $table->softDeletes();

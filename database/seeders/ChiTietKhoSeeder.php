@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ChiTietKho;
 use Illuminate\Database\Seeder;
 
 class ChiTietKhoSeeder extends Seeder
@@ -13,6 +14,13 @@ class ChiTietKhoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for($i =1;$i<19;$i++){
+            ChiTietKho::create([
+                'kho_id'=> 2,
+                'chi_tiet_dien_thoai_id'=> $i,
+                'so_luong'=> 100,
+                'ngay_nhap'=> '2022-01-01',
+            ]);
+        }
     }
 }

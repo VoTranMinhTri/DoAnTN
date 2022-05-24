@@ -30,13 +30,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/store">
+                            <a href="{{ route('indexCuaHang',['token'=> Auth::user()->token]) }}">
                                 <button type="button" class="btn btn-outline-primary">
                                     <i class="fa fa-list-ul"></i> Quản lý cửa hàng
                                 </button>
                             </a>
                             <hr>
-                            <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <form action="{{ route('cuaHang.update', ['cuaHang' => $cuaHang]) }}" method="post" accept-charset="utf-8">
+                                @csrf
+                                @method('PATCH')
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="card-title">THÔNG TIN CỬA HÀNG</h4>
@@ -46,9 +48,9 @@
                                                     <label for="" class="col-sm-12">Tên cửa hàng<span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Tên cửa hàng" value="">
+                                                        <input class="form-control" name="tencuahang" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Tên cửa hàng" value="{{ $cuaHang->ten_cua_hang }}" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,9 +59,9 @@
                                                     <label for="" class="col-sm-12">Địa chỉ cửa hàng<span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Địa chỉ cửa hàng" value="">
+                                                        <input class="form-control" name="diachi" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Địa chỉ cửa hàng" value="{{ $cuaHang->dia_chi }}" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,11 +70,45 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Cập nhật cửa hàng</button>
+                                        <button type="submit" class="btn btn-primary">Cập nhật cửa hàng</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        @if (Session::has('thongbao'))
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- Thông báo validate --}}
+                        @if ($errors->any())
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    @foreach ($errors->all() as $error)
+                                        <h4 style="display:block;text-align: center;">{{ $error }}</h4>
+                                    @endforeach
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -104,4 +140,13 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
+    <script>
+        const body = this.document.querySelector('body');
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
+    </script>
 @endsection

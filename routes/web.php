@@ -12,7 +12,28 @@ use App\Http\Controllers\PinSacController;
 use App\Http\Controllers\TienIchController;
 use App\Http\Controllers\ThongTinChungController;
 use App\Http\Controllers\ThuongHieuController;
+use App\Http\Controllers\DienThoaiController;
+use App\Http\Controllers\ChiTietDienThoaiController;
+use App\Http\Controllers\HinhAnhChungCuaDienThoaiController;
+use App\Http\Controllers\HinhAnhMauSacCuaDienThoaiController;
+use App\Http\Controllers\PhieuGiamGiaController;
+use App\Http\Controllers\KhuyenMaiController;
+use App\Http\Controllers\ChiTietKhuyenMaiController;
+use App\Http\Controllers\BacTaiKhoanController;
+use App\Http\Controllers\LoaiTaiKhoanController;
+use App\Http\Controllers\TaiKhoanController;
+use App\Http\Controllers\ChucVuController;
+use App\Http\Controllers\HeSoLuongController;
+use App\Http\Controllers\ThuongController;
+use App\Http\Controllers\PhuCapController;
+use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\CuaHangController;
+use App\Http\Controllers\KhoController;
+use App\Http\Controllers\ChiTietKhoController;
+use App\Http\Controllers\SanPhamPhanBoController;
+use App\Http\Controllers\ChamCongController;
 use App\Http\Controllers\FbController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,299 +46,123 @@ use App\Http\Controllers\FbController;
 |
 */
 
-//Admin
-//Resource
-Route::resource('mauSac', MauSacController::class);
-Route::resource('manHinh', ManHinhController::class);
-Route::resource('cameraSau', CameraSauController::class);
-Route::resource('cameraTruoc', CameraTruocController::class);
-Route::resource('heDieuHanh_CPU', HeDieuHanhCPUController::class);
-Route::resource('boNho_LuuTru', BoNhoLuuTruController::class);
-Route::resource('ketNoi', KetNoiController::class);
-Route::resource('pin_Sac', PinSacController::class);
-Route::resource('tienIch', TienIchController::class);
-Route::resource('thongTinChung', ThongTinChungController::class);
-Route::resource('thuongHieu', ThuongHieuController::class);
+Route::middleware('checklogout')->group(function () {
+    //Admin
+    Route::resource('mauSac', MauSacController::class);
+    Route::resource('manHinh', ManHinhController::class);
+    Route::resource('cameraSau', CameraSauController::class);
+    Route::resource('cameraTruoc', CameraTruocController::class);
+    Route::resource('heDieuHanh_CPU', HeDieuHanhCPUController::class);
+    Route::resource('boNho_LuuTru', BoNhoLuuTruController::class);
+    Route::resource('ketNoi', KetNoiController::class);
+    Route::resource('pin_Sac', PinSacController::class);
+    Route::resource('tienIch', TienIchController::class);
+    Route::resource('thongTinChung', ThongTinChungController::class);
+    Route::resource('thuongHieu', ThuongHieuController::class);
+    Route::resource('dienThoai', DienThoaiController::class);
+    Route::resource('chiTietDienThoai', ChiTietDienThoaiController::class);
+    Route::resource('hinhAnhChungCuaDienThoai', HinhAnhChungCuaDienThoaiController::class);
+    Route::resource('hinhAnhMauSacCuaDienThoai', HinhAnhMauSacCuaDienThoaiController::class);
 
-//Get
-Route::get('/admin', function () {
-    return view('admin/index');
+    //Trang chủ của admin
+    Route::get('/admin', function () {
+        return view('admin/index');
+    });
+    //Hình ảnh màu sắc của sản phẩm
+    Route::get('/hinhAnhMauSac/{sanPhamId}', [HinhAnhMauSacCuaDienThoaiController::class, 'indexHinhAnhMauSac'])->name('hinhAnhMauSac');
+    //Hình ảnh nổi bật của sản phẩm
+    Route::get('/hinhAnhNoiBat/{sanPhamId}', [HinhAnhChungCuaDienThoaiController::class, 'indexHinhAnhNoiBat'])->name('hinhAnhNoiBat');
+    //Thêm hình ảnh nổi bật
+    Route::post('/themHinhAnhNoiBat', [HinhAnhChungCuaDienThoaiController::class, 'storeHinhAnhNoiBat'])->name('themHinhAnhNoiBat');
+    //Hình ảnh 360 của sản phẩm
+    Route::get('/hinhAnh360/{sanPhamId}', [HinhAnhChungCuaDienThoaiController::class, 'indexHinhAnh360'])->name('hinhAnh360');
+    //Thêm hình ảnh 360
+    Route::post('/themHinhAnh360', [HinhAnhChungCuaDienThoaiController::class, 'storeHinhAnh360'])->name('themHinhAnh360');
+    //Thêm chi tiết sản phẩm
+    Route::get('/themChiTietSanPham', [ChiTietDienThoaiController::class, 'createChiTietSanPham'])->name('themChiTietSanPham');
+    //Thay đổi trạng thái điện thoại
+    Route::post('/thayDoiTrangThai/{sanPhamId}', [DienThoaiController::class, 'thayDoiTrangThai'])->name('thayDoiTrangThai');
+    //Khách hàng
+    Route::get('/khachHang', [TaiKhoanController::class, 'indexKhachHang'])->name('khachHang');
+    //Thay đổi trạng thái khách hàng
+    Route::post('/thayDoiTrangThaiTaiKhoan/{taiKhoanId}', [TaiKhoanController::class, 'thayDoiTrangThaiTaiKhoan'])->name('thayDoiTrangThaiTaiKhoan');
+
+
+    //Quyền truy cập kho
+    Route::middleware('checkpermissionstorehouse')->group(function () {
+        Route::resource('kho', KhoController::class);
+        //Kho
+        Route::get('/indexKho/{token}', [KhoController::class, 'indexKho'])->name('indexKho');
+        Route::resource('chiTietKho', ChiTietKhoController::class);
+        //Phân bố sản phẩm
+        Route::resource('sanPhamPhanBo', SanPhamPhanBoController::class);
+        Route::get('/phanBoSanPham/{chiTietDienThoaiId}', [KhoController::class, 'phanBoSanPham'])->name('phanBoSanPham');
+    });
+
+    //Quyền truy cập cửa hàng
+    Route::middleware('checkpermissionstore')->group(function () {
+        Route::resource('cuaHang', CuaHangController::class);
+        //Cửa hàng
+        Route::get('/indexCuaHang/{token}', [CuaHangController::class, 'indexCuaHang'])->name('indexCuaHang');
+    });
+
+    //Quyền truy cập dành riêng cho admin
+    Route::middleware('checkpermissionadmin')->group(function () {
+        Route::resource('taiKhoan', TaiKhoanController::class);
+        Route::resource('nhanVien', NhanVienController::class);
+        Route::resource('chucVu', ChucVuController::class);
+        Route::resource('heSoLuong', HeSoLuongController::class);
+        Route::resource('thuong', ThuongController::class);
+        Route::resource('phuCap', PhuCapController::class);
+        Route::resource('loaiTaiKhoan', LoaiTaiKhoanController::class);
+        Route::resource('phieuGiamGia', PhieuGiamGiaController::class);
+        Route::resource('khuyenMai', KhuyenMaiController::class);
+        Route::resource('chiTietKhuyenMai', ChiTietKhuyenMaiController::class);
+        Route::resource('bacTaiKhoan', BacTaiKhoanController::class);
+    });
+
+    //Quyền quản lý
+    Route::middleware('checkpermissionmanage')->group(function () {
+        //Tài khoản nhân viên
+        Route::get('/indexTaiKhoanNhanVien/{token}', [TaiKhoanController::class, 'indexTaiKhoanNhanVien'])->name('indexTaiKhoanNhanVien');
+        //Thêm nhân viên
+        Route::get('/createTaiKhoanNhanVien/{token}', [TaiKhoanController::class, 'createTaiKhoanNhanVien'])->name('createTaiKhoanNhanVien');
+        //Nhân viên
+        Route::get('/indexNhanVien/{token}', [NhanVienController::class, 'indexNhanVien'])->name('indexNhanVien');
+        //Thêm nhân viên
+        Route::get('/createNhanVien/{token}', [NhanVienController::class, 'createNhanVien'])->name('createNhanVien');
+        //Cập nhật nhân viên
+        Route::get('/editNhanVien/{token}/{nhanVienId}', [NhanVienController::class, 'editNhanVien'])->name('editNhanVien');
+        //Xóa Nhân viên
+        Route::get('/destroyNhanVien/{nhanVienId}', [NhanVienController::class, 'destroyNhanVien'])->name('destroyNhanVien');
+        //Chấm công
+        Route::get('/chamCongNhanVien/{nhanVienId}', [ChamCongController::class, 'chamCongNhanVien'])->name('chamCongNhanVien');
+        //Nhân viên
+        Route::get('/indexQuanLyLuong/{token}', [ChamCongController::class, 'indexQuanLyLuong'])->name('indexQuanLyLuong');
+    });
 });
 
+Route::middleware('checkuser')->group(function () {
+    Route::get('/signin', function () {
+        return view('user/signin');
+    });
+});
+
+
+//Đăng nhập
+Route::post('/login', [TaiKhoanController::class, 'authenticate']);
+
+//Đăng xuất
+Route::get('/logout', [TaiKhoanController::class, 'logout']);
+
+//Get
 Route::get('/chart', function () {
     return view('admin/management-page/chart');
 });
 
-Route::get('/staff', function () {
-    return view('admin/management-page/staff');
-});
-
-Route::get('/brand', function () {
-    return view('admin/management-page/brand');
-});
-
-Route::get('/storehouse', function () {
-    return view('admin/management-page/storehouse');
-});
-
-Route::get('/store', function () {
-    return view('admin/management-page/store');
-});
-
-Route::get('/customer', function () {
-    return view('admin/management-page/customer');
-});
-
-Route::get('/product', function () {
-    return view('admin/management-page/product');
-});
-
-Route::get('/promotion', function () {
-    return view('admin/management-page/promotion');
-});
-
-Route::get('/membershiplevel', function () {
-    return view('admin/management-page/membershiplevel');
-});
-
-Route::get('/position', function () {
-    return view('admin/management-page/position');
-});
-
-Route::get('/department', function () {
-    return view('admin/management-page/department');
-});
-
-Route::get('/voucher', function () {
-    return view('admin/management-page/voucher');
-});
-
-Route::get('/coefficientssalary', function () {
-    return view('admin/management-page/coefficientssalary');
-});
-
-Route::get('/bonus', function () {
-    return view('admin/management-page/bonus');
-});
-
-Route::get('/allowance', function () {
-    return view('admin/management-page/allowance');
-});
-
-Route::get('/color', function () {
-    return view('admin/management-page/color');
-});
-
-Route::get('/screen', function () {
-    return view('admin/management-page/screen');
-});
-
-Route::get('/backcamera', function () {
-    return view('admin/management-page/backcamera');
-});
-
-Route::get('/frontcamera', function () {
-    return view('admin/management-page/frontcamera');
-});
-
-Route::get('/os', function () {
-    return view('admin/management-page/os');
-});
-
-Route::get('/memory', function () {
-    return view('admin/management-page/memory');
-});
-
-Route::get('/connect', function () {
-    return view('admin/management-page/connect');
-});
-
-Route::get('/pin', function () {
-    return view('admin/management-page/pin');
-});
-
-Route::get('/utilities', function () {
-    return view('admin/management-page/utilities');
-});
-
-Route::get('/generalinformation', function () {
-    return view('admin/management-page/generalinformation');
-});
-
-Route::get('/featuredpicture', function () {
-    return view('admin/management-page/featuredpicture');
-});
-
-Route::get('/colorpicture', function () {
-    return view('admin/management-page/colorpicture');
-});
-
-Route::get('/360picture', function () {
-    return view('admin/management-page/360picture');
-});
-
-Route::get('/review', function () {
-    return view('admin/management-page/review');
-});
-
-Route::get('/order', function () {
-    return view('admin/management-page/order');
-});
-
-
-
-//Add-page
-Route::get('/add-product', function () {
-    return view('admin/add-page/add-product');
-});
-Route::get('/add-product-detail', function () {
-    return view('admin/add-page/add-product-detail');
-});
-Route::get('/add-brand', function () {
-    return view('admin/add-page/add-brand');
-});
-Route::get('/add-membershiplevel', function () {
-    return view('admin/add-page/add-membershiplevel');
-});
-Route::get('/add-promotion', function () {
-    return view('admin/add-page/add-promotion');
-});
-Route::get('/add-color', function () {
-    return view('admin/add-page/add-color');
-});
-Route::get('/add-screen', function () {
-    return view('admin/add-page/add-screen');
-});
-Route::get('/add-backcamera', function () {
-    return view('admin/add-page/add-backcamera');
-});
-Route::get('/add-frontcamera', function () {
-    return view('admin/add-page/add-frontcamera');
-});
-Route::get('/add-os', function () {
-    return view('admin/add-page/add-os');
-});
-Route::get('/add-memory', function () {
-    return view('admin/add-page/add-memory');
-});
-Route::get('/add-connect', function () {
-    return view('admin/add-page/add-connect');
-});
-Route::get('/add-pin', function () {
-    return view('admin/add-page/add-pin');
-});
-Route::get('/add-utilities', function () {
-    return view('admin/add-page/add-utilities');
-});
-Route::get('/add-generalinformation', function () {
-    return view('admin/add-page/add-generalinformation');
-});
-Route::get('/add-position', function () {
-    return view('admin/add-page/add-position');
-});
-Route::get('/add-department', function () {
-    return view('admin/add-page/add-department');
-});
-Route::get('/add-coefficientssalary', function () {
-    return view('admin/add-page/add-coefficientssalary');
-});
-Route::get('/add-bonus', function () {
-    return view('admin/add-page/add-bonus');
-});
-Route::get('/add-allowance', function () {
-    return view('admin/add-page/add-allowance');
-});
-Route::get('/add-storehouse', function () {
-    return view('admin/add-page/add-storehouse');
-});
-Route::get('/add-store', function () {
-    return view('admin/add-page/add-store');
-});
-Route::get('/add-voucher', function () {
-    return view('admin/add-page/add-voucher');
-});
-
-
-
-
-//Edit-page
-Route::get('/edit-product', function () {
-    return view('admin/edit-page/edit-product');
-});
-Route::get('/edit-product-detail', function () {
-    return view('admin/edit-page/edit-product-detail');
-});
-Route::get('/edit-brand', function () {
-    return view('admin/edit-page/edit-brand');
-});
-Route::get('/edit-membershiplevel', function () {
-    return view('admin/edit-page/edit-membershiplevel');
-});
-Route::get('/edit-promotion', function () {
-    return view('admin/edit-page/edit-promotion');
-});
-Route::get('/edit-color', function () {
-    return view('admin/edit-page/edit-color');
-});
-Route::get('/edit-screen', function () {
-    return view('admin/edit-page/edit-screen');
-});
-Route::get('/edit-backcamera', function () {
-    return view('admin/edit-page/edit-backcamera');
-});
-Route::get('/edit-frontcamera', function () {
-    return view('admin/edit-page/edit-frontcamera');
-});
-Route::get('/edit-os', function () {
-    return view('admin/edit-page/edit-os');
-});
-Route::get('/edit-memory', function () {
-    return view('admin/edit-page/edit-memory');
-});
-Route::get('/edit-connect', function () {
-    return view('admin/edit-page/edit-connect');
-});
-Route::get('/edit-pin', function () {
-    return view('admin/edit-page/edit-pin');
-});
-Route::get('/edit-utilities', function () {
-    return view('admin/edit-page/edit-utilities');
-});
-Route::get('/edit-generalinformation', function () {
-    return view('admin/edit-page/edit-generalinformation');
-});
-Route::get('/edit-position', function () {
-    return view('admin/edit-page/edit-position');
-});
-Route::get('/edit-department', function () {
-    return view('admin/edit-page/edit-department');
-});
-Route::get('/edit-coefficientssalary', function () {
-    return view('admin/edit-page/edit-coefficientssalary');
-});
-Route::get('/edit-bonus', function () {
-    return view('admin/edit-page/edit-bonus');
-});
-Route::get('/edit-allowance', function () {
-    return view('admin/edit-page/edit-allowance');
-});
-Route::get('/edit-storehouse', function () {
-    return view('admin/edit-page/edit-storehouse');
-});
-Route::get('/edit-store', function () {
-    return view('admin/edit-page/edit-store');
-});
-Route::get('/edit-voucher', function () {
-    return view('admin/edit-page/edit-voucher');
-});
-
-
 //User
 Route::get('/', function () {
     return view('user/index');
-});
-Route::get('/signin', function () {
-    return view('user/signin');
 });
 Route::get('/signup', function () {
     return view('user/signup');
@@ -351,8 +196,5 @@ Route::get('/pay', function () {
     return view('user/pay');
 });
 
-
-//Social Login
-Route::get('auth/facebook', [FbController::class, 'redirectToFacebook']);
-
-Route::get('auth/facebook/callback', [FbController::class, 'facebookSignin']);
+Route::get('getInfoFacebook/{social}', [SocialController::class, 'getInfo']);
+Route::get('checkInfoFacebook/{social}', [SocialController::class, 'checkInfo']);

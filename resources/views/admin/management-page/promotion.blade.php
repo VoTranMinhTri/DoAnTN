@@ -39,7 +39,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/add-promotion"><button type="button" class="btn btn-outline-primary">
+                            <a href="{{ route('khuyenMai.create') }}"><button type="button"
+                                    class="btn btn-outline-primary">
                                     <i class="fas fa-plus-circle"></i> THÊM KHUYẾN MÃI
                                 </button><a>
                                     <hr>
@@ -55,20 +56,29 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>khuyến mãi OPPO</td>
-                                                    <td>1/1/2022</td>
-                                                    <td>1/12/2022</td>
-                                                    <td>
-                                                        {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <a href="/edit-promotion"><button type="button" class="btn btn-outline-secondary"
-                                                            title="Chỉnh sửa thông tin khuyến mãi"><i
-                                                                class="far fa-edit"></i></button></a>
-                                                        <button type="button" class="btn btn-outline-danger"
-                                                            title="Xóa khuyến mãi"><i class="fas fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
+                                                <?php $i = 0; ?>
+                                                @foreach ($danhSachKhuyenMai as $tp)
+                                                    <tr>
+                                                        <td><?php echo ++$i; ?></td>
+                                                        <td>{{ $tp->ten_khuyen_mai }}</td>
+                                                        <td>{{ $tp->ngay_bat_dau }}</td>
+                                                        <td>{{ $tp->ngay_ket_thuc }}</td>
+                                                        <td>
+                                                            <a href="{{ route('khuyenMai.edit', ['khuyenMai' => $tp]) }}"><button
+                                                                    type="button" class="btn btn-outline-secondary"
+                                                                    title="Chỉnh sửa thông tin khuyến mãi"><i
+                                                                        class="far fa-edit"></i></button></a>
+                                                            <a href="{{ route('khuyenMai.show', ['khuyenMai' => $tp]) }}"><button
+                                                                    type="button" class="btn btn-outline-info"
+                                                                    title="Xem chi tiết khuyến mãi"><i
+                                                                        class="fas fa-info"></i></button></a>
+                                                            <button type="button" class="btn btn-outline-danger"
+                                                                onclick="confirm('{{ route('khuyenMai.destroy', ['khuyenMai' => $tp]) }}')"
+                                                                title="Xóa khuyến mãi"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -81,8 +91,41 @@
                                             </tfoot>
                                         </table>
                                     </div>
-
                         </div>
+                        <div class="popup">
+                            <div class="bg-popup"></div>
+                            <div class="form-popup" style="width: auto">
+                                <div class="row-popup">
+                                    <h3 style="color:red;text-align: center;">Xóa khuyến mãi</h3>
+                                </div>
+                                <form method="post" action="#" id="formdelete">
+                                    @csrf
+                                    @method('DELETE')
+                                    <h4 style="display:block">Bạn có muốn xóa khuyến mãi này không
+                                        ?</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="submit" class="btn btn-outline-danger">Có</button>
+                                        <button type="button" class="btn btn-outline-secondary formclose">Không</button>
+                                    </p>
+
+                                </form>
+                            </div>
+                        </div>
+                        @if (Session::has('thongbao'))
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -114,4 +157,26 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
+    <script>
+        const popup = this.document.querySelector('.popup');
+        const body = this.document.querySelector('body');
+        const btnclose = this.document.querySelector('.formclose');
+        //Hiển thị
+        function confirm($url) {
+            popup.className += " active";
+            body.style = "overflow: hidden;";
+            $('#formdelete').attr('action', $url);
+        };
+        //Đóng
+        btnclose.onclick = function() {
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        };
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
+    </script>
 @endsection

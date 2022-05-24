@@ -1039,79 +1039,79 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
         //Itel
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-1-200x200.jpg',
             'hinh_anh_dai_dien'=> 1, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-1-2.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-2-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-3-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-4-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-5-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-6-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-7-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-8-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-9-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-10-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-11-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'hinh_anh'=>'ITEL/Itel L6502/HinhAnhMauSac/itel-l6502-xanh-12-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
@@ -1203,55 +1203,55 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
         //Masstel
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-thumb-200x200.jpeg',
             'hinh_anh_dai_dien'=> 1, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-1-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-2-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-3-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-4-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-5-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-6-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/masstel-fami-60-vang-7-1.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 9,
-            'mau_sac_id'=> 10,
+            'mau_sac_id'=> 9,
             'hinh_anh'=>'MASSTEL/Masstel FAMI 60 4G/HinhAnhMauSac/fami-60-99.jpg',
             'hinh_anh_dai_dien'=> 0, // Hình đại diện
         ]);

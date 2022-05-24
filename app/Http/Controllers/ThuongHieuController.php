@@ -16,7 +16,7 @@ class ThuongHieuController extends Controller
     public function index()
     {
         $danhSachThuongHieu = ThuongHieu::all();
-        return view('admin/management-page/brand',['danhSachThuongHieu'=>$danhSachThuongHieu]);
+        return view('admin/management-page/brand', ['danhSachThuongHieu' => $danhSachThuongHieu]);
     }
 
     /**
@@ -54,22 +54,32 @@ class ThuongHieuController extends Controller
             ]
         )->validate();
 
-        $thuongHieu = new ThuongHieu();
-        $thuongHieu->fill([
-            'ten_thuong_hieu' => $request->input('tenthuonghieu'),
-            'hinh_anh' => '',
-        ]);
-        if ($request->hasFile('hinhanh')) {
-            $request->file('hinhanh')->storeAs('public/images/'.$thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
-            $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu.'/'.$request->file('hinhanh')->getClientOriginalName();
-        } else {
-            $thuongHieu->hinh_anh = 'default/default.png';
-        }
+        //Định dạng lại tên thương hiệu
+        $thuongHieuFormat = trim($request->input('tenthuonghieu'));
+        $tontai = ThuongHieu::where('ten_thuong_hieu', 'like', $thuongHieuFormat)->first();
+        if (empty($tontai)) {
+            $kTTenThuongHieu = str_replace(' ', '', $thuongHieuFormat);
+            $tontai = ThuongHieu::where('ten_thuong_hieu', 'like', $kTTenThuongHieu)->first();
+            if (empty($tontai)) {
+                $thuongHieu = new ThuongHieu();
+                $thuongHieu->fill([
+                    'ten_thuong_hieu' => $request->input('tenthuonghieu'),
+                    'hinh_anh' => '',
+                ]);
+                if ($request->hasFile('hinhanh')) {
+                    $request->file('hinhanh')->storeAs('public/images/' . $thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
+                    $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu . '/' . $request->file('hinhanh')->getClientOriginalName();
+                } else {
+                    $thuongHieu->hinh_anh = 'default/default.png';
+                }
 
-        if ($thuongHieu->save() == true) {
-            return redirect()->back()->with('thongbao', 'Thêm thương hiệu thành công !');
+                if ($thuongHieu->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Thêm thương hiệu thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Thêm thương hiệu không thành công !');
+            }
         }
-        return redirect()->back()->with('thongbao', 'Thêm thương hiệu không thành công !');
+        return redirect()->back()->with('thongbao', 'Thêm thương hiệu không thành công ! Tên thương hiệu đã tồn tại');
     }
 
     /**
@@ -120,18 +130,28 @@ class ThuongHieuController extends Controller
             ]
         )->validate();
 
-        $thuongHieu->fill([
-            'ten_thuong_hieu' => $request->input('tenthuonghieu'),
-        ]);
-        if ($request->hasFile('hinhanh')) {
-            $request->file('hinhanh')->storeAs('public/images/'.$thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
-            $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu.'/'.$request->file('hinhanh')->getClientOriginalName();
-        }
+        //Định dạng lại tên thương hiệu
+        $thuongHieuFormat = trim($request->input('tenthuonghieu'));
+        $tontai = ThuongHieu::where('ten_thuong_hieu', 'like', $thuongHieuFormat)->where('id','!=',$thuongHieu->id)->first();
+        if (empty($tontai)) {
+            $kTTenThuongHieu = str_replace(' ', '', $thuongHieuFormat);
+            $tontai = ThuongHieu::where('ten_thuong_hieu', 'like', $kTTenThuongHieu)->where('id','!=',$thuongHieu->id)->first();
+            if (empty($tontai)) {
+                $thuongHieu->fill([
+                    'ten_thuong_hieu' => $request->input('tenthuonghieu'),
+                ]);
+                if ($request->hasFile('hinhanh')) {
+                    $request->file('hinhanh')->storeAs('public/images/' . $thuongHieu->ten_thuong_hieu, $request->file('hinhanh')->getClientOriginalName());
+                    $thuongHieu->hinh_anh = $thuongHieu->ten_thuong_hieu . '/' . $request->file('hinhanh')->getClientOriginalName();
+                }
 
-        if ($thuongHieu->save() == true) {
-            return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu thành công !');
+                if ($thuongHieu->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu không thành công !');
+            }
         }
-        return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu không thành công !');
+        return redirect()->back()->with('thongbao', 'Cập nhật thương hiệu không thành công ! Tên thương hiệu đã tồn tại');
     }
 
     /**

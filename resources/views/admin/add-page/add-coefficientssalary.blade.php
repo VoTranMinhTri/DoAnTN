@@ -30,13 +30,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/coefficientssalary">
+                            <a href="{{ route('heSoLuong.index') }}">
                                 <button type="button" class="btn btn-outline-primary">
                                     <i class="fa fa-list-ul"></i> Quản lý hệ số lương
                                 </button>
                             </a>
                             <hr>
-                            <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <form action="{{ route('heSoLuong.store') }}" method="post" accept-charset="utf-8">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="card-title">HỆ SỐ LƯƠNG MỚI</h4>
@@ -46,9 +47,9 @@
                                                     <label for="" class="col-sm-12">Mã hệ số lương<span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Mã hệ số lương" value="">
+                                                        <input class="form-control" name="mahsl" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Mã hệ số lương" value="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,9 +58,9 @@
                                                     <label for="" class="col-sm-12">Hệ số lương<span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Hệ số lương" value="">
+                                                        <input class="form-control" name="hesoluong" type="number"
+                                                            style="height: 40px;"
+                                                            placeholder="Hệ số lương" value="" required min='0' step="0.5">
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,11 +69,44 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Thêm hệ số lương</button>
+                                        <button type="submit" class="btn btn-primary">Thêm hệ số lương</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        @if (Session::has('thongbao'))
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- Thông báo validate --}}
+                        @if ($errors->any())
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    @foreach ($errors->all() as $error)
+                                        <h4 style="display:block;text-align: center;">{{ $error }}</h4>
+                                    @endforeach
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -104,4 +138,13 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
+    <script>
+        const body = this.document.querySelector('body');
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
+    </script>
 @endsection

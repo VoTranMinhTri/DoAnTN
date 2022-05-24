@@ -36,13 +36,35 @@
             </a>
             <div class="nav-bar-space"></div>
             <div class="bordercol"></div>
-            <a href="/signin" class="nav-bar-signin">
-                <span>Đăng nhập</span>
-            </a>
-            <div class="bordercol"></div>
-            <a href="/signup" class="nav-bar-signup">
-                <span>Đăng ký</span>
-            </a>
+            @if (Auth::guest())
+                <a href="/signin" class="nav-bar-signin">
+                    <span>Đăng nhập</span>
+                </a>
+                <div class="bordercol"></div>
+                <a href="/signup" class="nav-bar-signup">
+                    <span>Đăng ký</span>
+                </a>
+            @else
+            <ul class="navbar-nav float-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
+                        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('assets/admin/images/users/1.jpg') }}" alt="user" class="rounded-circle"
+                            width="40">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                            Thông tin của tôi</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i> Đổi
+                            mật khẩu</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
+                            xuất</a>
+                    </ul>
+                </li>
+            </ul>
+            @endif
         </div>
     </div>
     @yield('content')
@@ -60,9 +82,10 @@
     <!-- ============================================================== -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <!--Custom JavaScript -->
-    <script>$(function() {
-        $(".preloader").fadeOut();
-    });
+    <script>
+        $(function() {
+            $(".preloader").fadeOut();
+        });
     </script>
 </body>
 
@@ -128,5 +151,5 @@
         </section>
     </div>
 </footer>
-
+<script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </html>

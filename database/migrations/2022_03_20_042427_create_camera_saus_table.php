@@ -17,7 +17,7 @@ class CreateCameraSausTable extends Migration
             $table->id();
             $table->string('do_phan_giai',500);
             $table->string('quay_phim',500);
-            $table->intstringeger('den_flash',500);
+            $table->string('den_flash',500);
             $table->string('tinh_nang',500);
             $table->timestamps();
             $table->softDeletes();

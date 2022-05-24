@@ -15,12 +15,9 @@ class CreateKhosTable extends Migration
     {
         Schema::create('khos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tai_khoan_quan_ly_kho_id');
-            $table->string('ten_kho');
-            $table->string('dia_chi');
+            $table->string('ten_kho',30);
+            $table->string('dia_chi',500);
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('tai_khoan_quan_ly_kho_id')->references('id')->on('tai_khoans');
         });
     }
 

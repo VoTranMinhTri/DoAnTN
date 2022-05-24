@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '8fe5be9f5051a9ff7e7294e4244590b83d6dff5b',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -404,12 +404,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '8fe5be9f5051a9ff7e7294e4244590b83d6dff5b',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(
@@ -422,12 +422,12 @@
             'dev_requirement' => false,
         ),
         'laravel/socialite' => array(
-            'pretty_version' => 'v5.2.6',
-            'version' => '5.2.6.0',
+            'pretty_version' => 'v5.5.2',
+            'version' => '5.5.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/socialite',
             'aliases' => array(),
-            'reference' => 'b5c67f187ddcf15529ff7217fa735b132620dfac',
+            'reference' => '68afb03259b82d898c68196cbcacd48596a9dd72',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(

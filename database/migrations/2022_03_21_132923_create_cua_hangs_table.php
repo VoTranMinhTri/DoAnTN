@@ -15,10 +15,9 @@ class CreateCuaHangsTable extends Migration
     {
         Schema::create('cua_hangs', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_cua_hang');
-            $table->string('dia_chi');
+            $table->string('ten_cua_hang',30);
+            $table->string('dia_chi',500);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -16,9 +16,9 @@ class CreateDienThoaisTable extends Migration
         Schema::create('dien_thoais', function (Blueprint $table) {
             $table->id();
             $table->foreignId('thuong_hieu_id');
-            $table->string('ten_san_pham');
-            $table->string('mo_ta');
-            $table->string('trang_thai');
+            $table->string('ten_san_pham',100);
+            $table->string('mo_ta',500)->nullable();
+            $table->integer('trang_thai');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('thuong_hieu_id')->references('id')->on('thuong_hieus');

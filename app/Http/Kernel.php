@@ -53,6 +53,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'checkpermissionmanage' => \App\Http\Middleware\CheckPermissionManage::class,
+        'checkpermissionadmin' => \App\Http\Middleware\CheckPermissionAdmin::class,
+        'checkpermissionstorehouse' => \App\Http\Middleware\CheckPermissionStoreHouse::class,
+        'checkpermissionstore' => \App\Http\Middleware\CheckPermissionStore::class,
+        'checklogout' => \App\Http\Middleware\CheckLogout::class,
+        'checkuser' => \App\Http\Middleware\CheckUser::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

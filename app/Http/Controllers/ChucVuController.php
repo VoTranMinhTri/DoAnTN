@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChucVu;
-use App\Http\Requests\StoreChucVuRequest;
-use App\Http\Requests\UpdateChucVuRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ChucVuController extends Controller
 {
@@ -15,7 +15,8 @@ class ChucVuController extends Controller
      */
     public function index()
     {
-        //
+        $danhSachChucVu = ChucVu::All();
+        return view('admin/management-page/position', ['danhSachChucVu' => $danhSachChucVu]);
     }
 
     /**
@@ -25,7 +26,7 @@ class ChucVuController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/add-page/add-position');
     }
 
     /**
@@ -34,9 +35,45 @@ class ChucVuController extends Controller
      * @param  \App\Http\Requests\StoreChucVuRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreChucVuRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenchucvu' => 'required|max:30',
+                'luongcoban' => 'required|numeric|min:0'
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+                'numeric' => ':attribute phải là kiểu số !',
+                'min' => ':attribute tối thiểu là 0 !'
+            ],
+            [
+                'tenchucvu' => 'Tên chức vụ',
+                'luongcoban' => 'Lương cơ bản'
+            ]
+        )->validate();
+
+        //Định dạng lại tên chức vụ
+        $tenChucVuFormat=trim( $request->input('tenchucvu'));
+        $tontai = ChucVu::where('ten_chuc_vu', 'like', $tenChucVuFormat)->first();
+        if (empty($tontai)) {
+            $kTTenChucVu = str_replace(' ', '', $tenChucVuFormat);
+            $tontai = ChucVu::where('ten_chuc_vu', 'like', $kTTenChucVu)->first();
+            if (empty($tontai)) {
+                $chucVu = new ChucVu;
+                $chucVu->fill([
+                    'ten_chuc_vu' => $tenChucVuFormat,
+                    'luong_co_ban' => $request->input('luongcoban'),
+                ]);
+                if ($chucVu->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Thêm chức vụ thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Thêm chức vụ không thành công !');
+            }
+        }
+        return redirect()->back()->with('thongbao', 'Thêm chức vụ không thành công ! Chức vụ đã tồn tại !');
     }
 
     /**
@@ -58,7 +95,7 @@ class ChucVuController extends Controller
      */
     public function edit(ChucVu $chucVu)
     {
-        //
+        return view('admin/edit-page/edit-position', ['chucVu' => $chucVu]);
     }
 
     /**
@@ -68,9 +105,44 @@ class ChucVuController extends Controller
      * @param  \App\Models\ChucVu  $chucVu
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateChucVuRequest $request, ChucVu $chucVu)
+    public function update(Request $request, ChucVu $chucVu)
     {
-        //
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'tenchucvu' => 'required|max:30',
+                'luongcoban' => 'required|numeric|min:0'
+            ],
+            $messages = [
+                'required' => ':attribute không được bỏ trống !',
+                'max' => 'Vượt quá số ký tự cho phép ! :attribute tối đa là 30 ký tự !',
+                'numeric' => ':attribute phải là kiểu số !',
+                'min' => ':attribute tối thiểu là 0 !'
+            ],
+            [
+                'tenchucvu' => 'Tên chức vụ',
+                'luongcoban' => 'Lương cơ bản'
+            ]
+        )->validate();
+
+        //Định dạng lại tên chức vụ
+        $tenChucVuFormat=trim( $request->input('tenchucvu'));
+        $tontai = ChucVu::where('ten_chuc_vu', 'like', $tenChucVuFormat)->where('id','!=',$chucVu->id)->first();
+        if (empty($tontai)) {
+            $kTTenChucVu = str_replace(' ', '', $tenChucVuFormat);
+            $tontai = ChucVu::where('ten_chuc_vu', 'like', $kTTenChucVu)->where('id','!=',$chucVu->id)->first();
+            if (empty($tontai)) {
+                $chucVu->fill([
+                    'ten_chuc_vu' => $tenChucVuFormat,
+                    'luong_co_ban' => $request->input('luongcoban'),
+                ]);
+                if ($chucVu->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Cập nhật chức vụ thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Cập nhật chức vụ không thành công !');
+            }
+        }
+        return redirect()->back()->with('thongbao', 'Thêm chức vụ không thành công ! Chức vụ đã tồn tại !');
     }
 
     /**
@@ -81,6 +153,9 @@ class ChucVuController extends Controller
      */
     public function destroy(ChucVu $chucVu)
     {
-        //
+        if ($chucVu->delete()) {
+            return redirect()->back()->with('thongbao', 'Xóa chức vụ thành công !');
+        }
+        return redirect()->back()->with('thongbao', 'Xóa chức vụ không thành công !');
     }
 }

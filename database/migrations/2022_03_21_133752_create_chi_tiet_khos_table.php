@@ -17,7 +17,6 @@ class CreateChiTietKhosTable extends Migration
             $table->id();
             $table->foreignId('kho_id');
             $table->foreignId('chi_tiet_dien_thoai_id');
-            $table->double('gia');
             $table->integer('so_luong');
             $table->date('ngay_nhap');
             $table->timestamps();

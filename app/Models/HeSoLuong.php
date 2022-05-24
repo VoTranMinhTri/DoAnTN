@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class HeSoLuong extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $primaryKey = 'ma_hsl';
+    protected $keyType = 'string';
+
 }

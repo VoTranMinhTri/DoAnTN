@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ThongTinTaiKhoan extends Model
 {
     use HasFactory;
-    protected $casts = [
-        'ngay_sinh' => 'datetime:d/m/Y', // Định dạng lại ngày
-    ];
+    protected $guarded = [];
+    // protected $casts = [
+    //     'ngay_sinh' => 'datetime:d/m/Y', // Định dạng lại ngày
+    // ];
 }

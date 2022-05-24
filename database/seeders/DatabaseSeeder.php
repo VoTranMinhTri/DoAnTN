@@ -2,11 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\LoaiTaiKhoan;
-use App\Models\MauSac;
-use App\Models\SanPhamPhanBo;
-use App\Models\ThongTinTaiKhoan;
-use App\Models\TienIch;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

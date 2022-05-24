@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/add-membershiplevel"><button type="button" class="btn btn-outline-primary">
+                            <a href="{{ route('bacTaiKhoan.create') }}"><button type="button" class="btn btn-outline-primary">
                                     <i class="fas fa-plus-circle"></i> THÊM BẬC THÀNH VIÊN
                                 </button><a>
                                     <hr>
@@ -55,20 +55,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php $i = 0; ?>
+                                                @foreach ($danhSachBac as $tp)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Thành viên thân thiết</td>
-                                                    <td>100.000</td>
-                                                    <td>0.05</td>
+                                                    <td><?php echo ++$i; ?></td>
+                                                    <td>{{ $tp->ten_bac_tai_khoan }}</td>
+                                                    <td>{{ $tp->han_muc }}</td>
+                                                    <td>{{ $tp->phan_tram_giam }}</td>
                                                     <td>
-                                                        {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                        <a href="/edit-membershiplevel"><button type="button" class="btn btn-outline-secondary"
+                                                        <a href="{{ route('bacTaiKhoan.edit', ['bacTaiKhoan' => $tp]) }}"><button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin bậc thành viên"><i
                                                                 class="far fa-edit"></i></button></a>
                                                         <button type="button" class="btn btn-outline-danger"
+                                                        onclick="confirm('{{ route('bacTaiKhoan.destroy', ['bacTaiKhoan' => $tp]) }}')"
                                                             title="Xóa bậc thành viên"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -81,8 +84,40 @@
                                             </tfoot>
                                         </table>
                                     </div>
-
                         </div>
+                        <div class="popup">
+                            <div class="bg-popup"></div>
+                            <div class="form-popup" style="width: auto">
+                                <div class="row-popup">
+                                    <h3 style="color:red;text-align: center;">Xóa bậc thành viên</h3>
+                                </div>
+                                <form method="post" action="#" id="formdelete">
+                                    @csrf
+                                    @method('DELETE')
+                                    <h4 style="display:block">Bạn có muốn xóa bậc thành viên này không
+                                        ?</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="submit" class="btn btn-outline-danger">Có</button>
+                                        <button type="button" class="btn btn-outline-secondary formclose">Không</button>
+                                    </p>
+
+                                </form>
+                            </div>
+                        </div>
+                        @if (Session::has('thongbao'))
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -114,4 +149,26 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
+    <script>
+        const popup = this.document.querySelector('.popup');
+        const body = this.document.querySelector('body');
+        const btnclose = this.document.querySelector('.formclose');
+        //Hiển thị
+        function confirm($url) {
+            popup.className += " active";
+            body.style = "overflow: hidden;";
+            $('#formdelete').attr('action', $url);
+        };
+        //Đóng
+        btnclose.onclick = function() {
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        };
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
+    </script>
 @endsection

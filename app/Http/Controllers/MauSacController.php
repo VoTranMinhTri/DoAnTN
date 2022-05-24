@@ -53,17 +53,20 @@ class MauSacController extends Controller
 
         //Định dạng lại tên màu
         $mauFormat=trim( $request->input('tenmausac'));
-
-        $kttontai = MauSac::Where('ten_mau_sac', '=', $mauFormat)->first();
-        if (empty($kttontai)) {
-            $mauSac = new MauSac;
-            $mauSac->fill([
-                'ten_mau_sac' => $mauFormat,
-            ]);
-            if ($mauSac->save() == true) {
-                return redirect()->back()->with('thongbao', 'Thêm màu sắc thành công !');
+        $tontai = MauSac::where('ten_mau_sac', 'like', $mauFormat)->first();
+        if (empty($tontai)) {
+            $kTTenMau = str_replace(' ', '', $mauFormat);
+            $tontai = MauSac::where('ten_mau_sac', 'like', $kTTenMau)->first();
+            if (empty($tontai)) {
+                $mauSac = new MauSac;
+                $mauSac->fill([
+                    'ten_mau_sac' => $mauFormat,
+                ]);
+                if ($mauSac->save() == true) {
+                    return redirect()->back()->with('thongbao', 'Thêm màu sắc thành công !');
+                }
+                return redirect()->back()->with('thongbao', 'Thêm màu sắc không thành công !');
             }
-            return redirect()->back()->with('thongbao', 'Thêm màu sắc không thành công !');
         }
         return redirect()->back()->with('thongbao', 'Thêm màu sắc không thành công ! Màu sắc đã tồn tại !');
     }
@@ -115,21 +118,21 @@ class MauSacController extends Controller
 
         //Định dạng lại tên màu
         $mauFormat=trim( $request->input('tenmausac'));
-
-        if ($mauSac->ten_mau_sac != $mauFormat) {
-            $kttontai = MauSac::Where('ten_mau_sac', '=', $mauFormat)->first();
-            if (empty($kttontai)) {
+        $tontai = MauSac::where('ten_mau_sac', 'like', $mauFormat)->where('id','!=',$mauSac->id)->first();
+        if (empty($tontai)) {
+            $kTTenMau = str_replace(' ', '', $mauFormat);
+            $tontai = MauSac::where('ten_mau_sac', 'like', $kTTenMau)->where('id','!=',$mauSac->id)->first();
+            if (empty($tontai)) {
                 $mauSac->fill([
-                    'ten_mau_sac' =>$mauFormat,
+                    'ten_mau_sac' => $mauFormat,
                 ]);
                 if ($mauSac->save() == true) {
                     return redirect()->back()->with('thongbao', 'Cập nhật màu sắc thành công !');
                 }
                 return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công !');
             }
-            return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công ! Màu sắc đã tồn tại !');
         }
-        return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công ! Màu sắc giống với màu sắc cũ !');
+        return redirect()->back()->with('thongbao', 'Cập nhật màu sắc không thành công ! Màu sắc đã tồn tại !');
     }
 
     /**

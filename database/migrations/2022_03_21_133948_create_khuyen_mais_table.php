@@ -15,7 +15,7 @@ class CreateKhuyenMaisTable extends Migration
     {
         Schema::create('khuyen_mais', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_khuyen_mai');
+            $table->string('ten_khuyen_mai',100);
             $table->date('ngay_bat_dau');
             $table->date('ngay_ket_thuc');
             $table->timestamps();

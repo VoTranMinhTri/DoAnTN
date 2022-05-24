@@ -18,6 +18,15 @@ class LoaiTaiKhoanSeeder extends Seeder
             'ten_loai_tai_khoan'=> 'Admin',
         ]);
         LoaiTaiKhoan::create([
+            'ten_loai_tai_khoan'=> 'Quản lý cửa hàng',
+        ]);
+        LoaiTaiKhoan::create([
+            'ten_loai_tai_khoan'=> 'Quản lý kho',
+        ]);
+        LoaiTaiKhoan::create([
+            'ten_loai_tai_khoan'=> 'Nhân viên',
+        ]);
+        LoaiTaiKhoan::create([
             'ten_loai_tai_khoan'=> 'Người dùng T&TMobile',
         ]);
         LoaiTaiKhoan::create([

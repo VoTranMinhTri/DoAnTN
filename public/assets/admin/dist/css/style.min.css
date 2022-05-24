@@ -12118,7 +12118,7 @@ select.form-select.form-control-line {
 
 .table th,
 .table thead th {
-    font-weight: 500
+    font-weight: bold
 }
 
 .nowrap {

@@ -33,7 +33,7 @@
                         <div class="card-body">
                             <a href="{{ route('mauSac.create') }}"><button type="button" class="btn btn-outline-primary">
                                     <i class="fas fa-plus-circle"></i> THÊM MÀU
-                                </button><a>
+                                </button></a>
                                     <hr>
                                     <div class="table-responsive">
                                         <table id="zero_config" class="table table-striped table-bordered">
@@ -61,7 +61,6 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
                                             </tbody>
                                             <tfoot>
                                                 <tr>

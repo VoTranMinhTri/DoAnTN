@@ -3,19 +3,19 @@
     <section class="wrapper login">
         <div>
             <span style="margin-bottom:25px">Đăng nhập</span>
-            <form id="#">
-                <input type="text" name="Username" placeholder="Nhập tên đăng nhập">
-                <input type="password" name="Password" placeholder="Nhập mật khẩu">
+            <form action="/login" method="POST">
+                @csrf
+                <input type="text" name="username" placeholder="Nhập tên đăng nhập">
+                <input type="password" name="password" placeholder="Nhập mật khẩu" id="pass">
+                @if ($errors->has('error'))
+                    <div style="margin-bottom: 2%; color:red">
+                        <span>{{ $errors->first('error') }}</span>
+                    </div>
+                @endif
                 <label class="show-pass">
-                    <input type="checkbox" checked="checked" name="show-pass"> Hiển thị password
+                    <input type="checkbox" name="show-pass" onclick="togglepass()"> Hiển thị password
                 </label>
                 <button type="submit" class="btn">Đăng nhập</button>
-                <a href="/ordermanagement">
-                    <p class="forgot-pass">Tiếp tục</p>
-                </a>
-                <a href="/admin">
-                    <p class="forgot-pass">Admin</p>
-                </a>
             </form>
             <a href="/forgotpassword">
                 <p class="forgot-pass">Quên mật khẩu?</p>
@@ -24,7 +24,7 @@
             <div class="social">
                 <p class="social-heading"><span>Hoặc tiếp tục bằng</span></p>
                 <ul class="social-items">
-                    <a href="{{ url('auth/facebook') }}">
+                    <a href="{{ url('getInfoFacebook/facebook') }}">
                         <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Facebook.png') }}"
                                 alt="facebook">
                         </li>
@@ -35,4 +35,20 @@
             </div>
         </div>
     </section>
+    <script>
+        function togglepass() {
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function closepopup() {
+            var popup = document.querySelector('.popup-thongbao');
+            popup.className = popup.className.replace(' active', '');
+            var bo = document.querySelector('body');
+            bo.className = bo.className.replace('hidden-y', '');
+        }
+    </script>
 @endsection

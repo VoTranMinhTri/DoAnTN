@@ -18,7 +18,6 @@ class CreateThuongsTable extends Migration
             $table->string('ma_thuong')->primary();
             $table->double('tien_thuong');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

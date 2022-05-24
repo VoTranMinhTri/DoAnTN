@@ -30,13 +30,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/membershiplevel">
+                            <a href="{{ route('bacTaiKhoan.index') }}">
                                 <button type="button" class="btn btn-outline-primary">
                                     <i class="fa fa-list-ul"></i> Quản lý bậc thành viên
                                 </button>
                             </a>
                             <hr>
-                            <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <form action="{{ route('bacTaiKhoan.update', ['bacTaiKhoan' => $bacTaiKhoan]) }}" method="post" accept-charset="utf-8">
+                                @csrf
+                                @method('PATCH')
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="card-title">THÔNG TIN BẬC THÀNH VIÊN</h4>
@@ -46,9 +48,9 @@
                                                     <label for="" class="col-sm-12">Tên bậc thành viên <span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="text"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Tên bậc thành viên" value="">
+                                                        <input class="form-control" name="tenbac" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Tên bậc thành viên" value="{{ $bacTaiKhoan->ten_bac_tai_khoan }}" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,20 +59,20 @@
                                                     <label for="" class="col-sm-12">Hạn mức<span
                                                             style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="number"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Hạn mức" value="">
+                                                        <input class="form-control" name="hanmuc" type="number" min="0"
+                                                            style="height: 40px;"
+                                                            placeholder="Hạn mức" value="{{ $bacTaiKhoan->han_muc }}" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group row">
-                                                    <label for="" class="col-sm-12">Phần trăm giảm<span
-                                                            style="color:red">*</span></label>
+                                                    <label for="" class="col-sm-12">Phần trăm giảm (Theo số thập phân VD: 0.1 =
+                                                        10%)<span style="color:red">*</span></label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" name="" type="number"
-                                                            style="height: 40px;" id=""
-                                                            placeholder="Phần trăm giảm" value="">
+                                                        <input class="form-control" name="phantramgiam" type="number" id="phantramgiam"
+                                                            style="height: 40px;" placeholder="Phần trăm giảm" value="{{ $bacTaiKhoan->phan_tram_giam }}" min='0'
+                                                            step="any" max='1' required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,11 +81,45 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                        <button type="button" class="btn btn-primary">Cập nhật bậc thành viên</button>
+                                        <button type="submit" class="btn btn-primary">Cập nhật bậc thành viên</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        @if (Session::has('thongbao'))
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    <h4 style="display:block;text-align: center;">{{ Session::get('thongbao') }}</h4>
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- Thông báo validate --}}
+                        @if ($errors->any())
+                            <div class="popup active ketqua">
+                                <div class="bg-popup"></div>
+                                <div class="form-popup" style="width: auto">
+                                    <div class="row-popup" style="text-align: center;">
+                                        <h3 style="color:gray">Thông báo</h3>
+                                    </div>
+                                    @foreach ($errors->all() as $error)
+                                        <h4 style="display:block;text-align: center;">{{ $error }}</h4>
+                                    @endforeach
+                                    <p style="margin-top: 10px; text-align: center">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="closepopup()">Ok</button>
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -115,4 +151,13 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
+    <script>
+        const body = this.document.querySelector('body');
+        //Đóng thông báo kết quả
+        function closepopup() {
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
+        }
+    </script>
 @endsection

@@ -39,9 +39,6 @@ class MauSacSeeder extends Seeder
             'ten_mau_sac'=> 'Xanh hồng',
         ]);
         MauSac::create([
-            'ten_mau_sac'=> 'Xanh',
-        ]);
-        MauSac::create([
             'ten_mau_sac'=> 'Vàng',
         ]);
     }

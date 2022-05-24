@@ -70,7 +70,7 @@
                                                                     <img class="profile-pic"
                                                                         src="{{ asset('assets/admin/images/icon-logo.png') }}"
                                                                         name="filed">
-                                                                    <div class="upload-herf cursor">Upload Image</div>
+                                                                    <div class="upload-herf cursor">Tải ảnh lên</div>
                                                                     <input class="file-upload" name="hinhanh"
                                                                         type="file"
                                                                         accept="image/x-png,image/gif,image/jpeg"
