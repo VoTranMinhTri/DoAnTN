@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
     var positionX = 0;
     var index = 0;
     var counter = 0;
+    showTabActive.querySelector(".counter").innerHTML = '(1/' + slidersLength + ')';
 
     [...nextBtn].forEach((item) => item.addEventListener("click", function (i) {
         changeSlide(1);

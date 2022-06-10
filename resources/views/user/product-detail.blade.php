@@ -8,11 +8,12 @@
             </li>
             <li>
                 <span>›</span>
-                <a href="/productdetail">OPPO Reno6 Z 5G</a>
+                <a
+                    href="{{ route('productDetail', ['sanPhamId' => $dienThoai->id]) }}">{{ $dienThoai->ten_san_pham }}</a>
                 <meta property="position" content="2">
             </li>
         </ul>
-        <h1>Điện thoại OPPO Reno6 Z 5G</h1>
+        <h1>Điện thoại {{ $dienThoai->ten_san_pham }}</h1>
         <div class='box'>
             <div class='box-left'>
                 <div class='detail-rate'>
@@ -40,103 +41,14 @@
                                 <div class='owl-stage-outer owl-height' style="height: 396.763px;">
                                     <div class='owl-stage'
                                         style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9940px;">
-                                        <div class='owl-item' style="width: 710px;">
-                                            <a href="#" class="slider-item ">
-                                                <img src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-1.jpg') }}"
-                                                    alt="OPPO Reno6 Z 5G" width="710" height="394">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-2.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-3.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-4.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-5.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-6.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-7.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-8.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-9.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-10.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-11.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-12.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-13.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="394" alt="OPPO Reno6 Z 5G"
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-detail-14.jpg') }}">
-                                            </a>
-                                        </div>
+                                        @foreach ($danhSachHinhAnhNoiBat as $tp)
+                                            <div class='owl-item' style="width: 710px;">
+                                                <a href="#" class="slider-item ">
+                                                    <img src="{{ asset('storage/images/' . $tp->hinh_anh) }}" width="710"
+                                                        height="394">
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="owl-nav">
@@ -148,251 +60,40 @@
 
                             </div>
                             <div class="total-imgslider">
-                                <div class="counter">(1/14)</div>
+                                <div class="counter">(1/?)</div>
                             </div>
                         </div>
-                        <div class='show-tab' data-gallery-id="color-images-gallery-5">
-                            <div class='detail-slider owl-carousel owl-loaded owl-drag'>
-                                <div class='owl-stage-outer owl-height' style="height: 473.325px;">
-                                    <div class='owl-stage'
-                                        style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9230px;">
-                                        <div class='owl-item' style="width: 710px;">
-                                            <a href="#" class="slider-item ">
-                                                <img src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-1-org.jpg') }}"
-                                                    class='owl-lazy' style='opacity: 1;' alt="OPPO Reno6 Z 5G" width="710"
-                                                    height="473.33px">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-2-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-3-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-4-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-5-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-6-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-7-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-8-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-9-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-10-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-11-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-12-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-bac-13-org.jpg') }}">
-                                            </a>
+                        @foreach ($hinhAnhMauSacSanPhamDaiDien as $tp)
+                            <div class='show-tab' data-gallery-id="color-images-gallery-{{ $tp->mau_sac_id }}">
+                                <div class='detail-slider owl-carousel owl-loaded owl-drag'>
+                                    <div class='owl-stage-outer owl-height' style="height: 473.325px;">
+                                        <div class='owl-stage'
+                                            style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9230px;">
+                                            @foreach ($danhSachHinhAnhMauSac as $ha)
+                                                @if ($ha->mau_sac_id == $tp->mau_sac_id)
+                                                    <div class='owl-item' style="width: 710px;">
+                                                        <a href="#" class="slider-item ">
+                                                            <img src="{{ asset('storage/images/' . $ha->hinh_anh) }}"
+                                                                class='owl-lazy' style='opacity: 1;' alt="" width="710"
+                                                                height="473.33px">
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
-                                </div>
-                                <div class="owl-nav">
-                                    <button type="button" role="presentation" class="owl-prev disabled"
-                                        data-prev-id="showtab"></button>
-                                    <button type="button" role="presentation" class="owl-next"
-                                        data-next-id="showtab"></button>
-                                </div>
-                            </div>
-                            <div class="total-imgslider">
-                                <div class="counter">(1/13)</div>
-                            </div>
-                        </div>
-                        <div class='show-tab' data-gallery-id="color-images-gallery-11">
-                            <div class='detail-slider owl-carousel owl-loaded owl-drag'>
-                                <div class='owl-stage-outer owl-height' style="height: 473.325px;">
-                                    <div class='owl-stage'
-                                        style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9230px;">
-                                        <div class='owl-item' style="width: 710px;">
-                                            <a href="#" class="slider-item ">
-                                                <img src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-1-org.jpg') }}"
-                                                    class='owl-lazy' style='opacity: 1;' alt="OPPO Reno6 Z 5G" width="710"
-                                                    height="473.33px">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#" class="slider-item "
-                                                data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-2-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-3-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-4-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-5-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-6-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-7-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-8-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-9-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-10-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-11-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-12-org.jpg') }}">
-                                            </a>
-                                        </div>
-                                        <div class="owl-item" style="width: 710px;"><a href="#"
-                                                class="slider-item " data-gallery-id="featured-images-gallery">
-                                                <img class="owl-lazy" width="710" height="473.33px"
-                                                    alt="OPPO Reno6 Z 5G" class='owl-lazy' style='opacity: 1;'
-                                                    style="opacity: 1;"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-den-13-org.jpg') }}">
-                                            </a>
-                                        </div>
+                                    <div class="owl-nav">
+                                        <button type="button" role="presentation" class="owl-prev disabled"
+                                            data-prev-id="showtab"></button>
+                                        <button type="button" role="presentation" class="owl-next"
+                                            data-next-id="showtab"></button>
                                     </div>
                                 </div>
-                                <div class="owl-nav">
-                                    <button type="button" role="presentation" class="owl-prev disabled"
-                                        data-prev-id="showtab"></button>
-                                    <button type="button" role="presentation" class="owl-next"
-                                        data-next-id="showtab"></button>
+                                <div class="total-imgslider">
+                                    <div class="counter">#</div>
                                 </div>
                             </div>
-                            <div class="total-imgslider">
-                                <div class="counter">(1/13)</div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="scrolling-inner">
                         <div class="box-main-left-01-tab scrolling">
@@ -403,22 +104,16 @@
                                 </div>
                                 <p>Điểm nổi bật</p>
                             </div>
-                            <div id="thumb-color-images-gallery-5" class="item itemTab"
-                                data-gallery-id="color-images-gallery-5">
-                                <div class="item-border">
-                                    <img alt="Bạc" width="41" height="41" loading="lazy" class=" lazyloaded"
-                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora-1-200x200.jpg') }}">
+                            @foreach ($hinhAnhMauSacSanPhamDaiDien as $tp)
+                                <div id="thumb-color-images-gallery-{{ $tp->mau_sac_id }}" class="item itemTab"
+                                    data-gallery-id="color-images-gallery-{{ $tp->mau_sac_id }}">
+                                    <div class="item-border">
+                                        <img alt="Bạc" width="41" height="41" loading="lazy" class=" lazyloaded"
+                                            src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
+                                    </div>
+                                    <p>{{ $tp->ten_mau_sac }}</p>
                                 </div>
-                                <p>Bạc</p>
-                            </div>
-                            <div id="thumb-color-images-gallery-11" class="item itemTab"
-                                data-gallery-id="color-images-gallery-11">
-                                <div class="item-border">
-                                    <img alt="Đen" width="41" height="41" loading="lazy" class=" lazyloaded"
-                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-black-1-200x200.jpg') }}">
-                                </div>
-                                <p>Đen</p>
-                            </div>
+                            @endforeach
                             <div id="thumb-unbox-gallery-0" class="item itemTab is-show-popup"
                                 data-gallery-id="unbox-gallery">
                                 <div class="item-border">
@@ -440,13 +135,13 @@
                                 </div>
                                 <p>Thông số kỹ thuật</p>
                             </div>
-                            <div id="thumb-article-gallery-0" class="item itemTab is-show-popup"
+                            {{-- <div id="thumb-article-gallery-0" class="item itemTab is-show-popup"
                                 data-gallery-id="article-gallery">
                                 <div class="item-border">
                                     <i class="icondetail-danhgia"></i>
                                 </div>
                                 <p>Thông tin sản phẩm</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -465,10 +160,10 @@
                             data-gallery-id="specification-gallery" data-color-id="0" data-thump-name="Thông số kỹ thuật">
                             Thông số kỹ thuật
                         </li>
-                        <li data-tab-id="tab-article-gallery-0" class="tab-item" data-is-360-gallery="False"
+                        {{-- <li data-tab-id="tab-article-gallery-0" class="tab-item" data-is-360-gallery="False"
                             data-gallery-id="article-gallery" data-color-id="0" data-thump-name="Thông tin sản phẩm">
                             Thông tin sản phẩm
-                        </li>
+                        </li> --}}
                     </ul>
                     <div class="btn-closemenu close-tab">Đóng</div>
                     <div class="block-tab-content">
@@ -482,11 +177,9 @@
                                             <a href="#" class="" data-video-url="" data-video-id=""
                                                 data-time="0">
                                                 <img class="single-item"
-                                                    src="//cdn.tgdd.vn/Products/Images/42/239747/Kit/oppo-reno6-z-5g-bbh-org.jpg"
+                                                    src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}"
                                                     alt="OPPO Reno6 Z 5G">
-                                                <span class="content-t-list-item-desc">Bộ sản phẩm gồm: Hộp, Cây lấy
-                                                    sim, Ốp lưng, Tai nghe dây, Cáp Type C, Củ sạc nhanh rời đầu Type A,
-                                                    Sách hướng dẫn</span>
+                                                <span class="content-t-list-item-desc">{{ $dienThoai->mo_ta }}</span>
 
                                             </a>
                                         </div>
@@ -500,78 +193,9 @@
                             <a class="top-flag" name="top-360-degree-gallery-0"></a>
                             <div class="content-t-list">
                                 <div id="three-d-degree-image" style="width: 100%; cursor: move;">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-1.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-2.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-3.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-4.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-5.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-6.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-7.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-8.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-9.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-10.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-11.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-12.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-13.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-14.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-15.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-16.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-17.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-18.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-19.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-20.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-21.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-22.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-23.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-24.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-25.jpg">
-                                    <img
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-26.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-27.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-28.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-29.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-30.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-31.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-32.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-33.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-34.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-35.jpg">
-                                    <img style="cursor: move;"
-                                        src="https://cdn.tgdd.vn/Products/Images/42/239747/Image360/oppo-reno6-z-5g-360-org-36.jpg">
+                                    @foreach ($danhSachHinhAnh360 as $tp)
+                                        <img style="cursor: move;" src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -580,7 +204,8 @@
                             data-gallery-id="specification-gallery">
                             <a class="top-flag" name="top-tskt"></a>
                             <div class="img">
-                                <img src="{{ asset('assets/user/images/oppo-reno6-z-5g-note-2.jpg') }}" alt="OPPO Reno6 Z 5G">
+                                <img src="{{ asset('storage/images/' . $hinhAnhThongSoKyThuat->hinh_anh) }}"
+                                    alt="OPPO Reno6 Z 5G">
                             </div>
                             <div class="content-t-wrap">
                                 <div class="parameter-all">
@@ -592,9 +217,8 @@
                                                     <p>Công nghệ màn hình:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/man-hinh-amoled-la-gi-905766"
-                                                        target="_blank">AMOLED</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->cong_nghe_man_hinh }}</a>
                                                 </div>
                                             </li>
                                             <li>
@@ -602,9 +226,8 @@
                                                     <p>Độ phân giải:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/tin-tuc/do-phan-giai-man-hinh-qhd-hd-fullhd-2k-4k-la-gi--592178#fullhd"
-                                                        target="_blank">Full HD+ (1080 x 2400 Pixels)</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->do_phan_giai }}</a>
                                                 </div>
                                             </li>
                                             <li>
@@ -612,7 +235,8 @@
                                                     <p>Màn hình rộng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">6.43" - Tần số quét 60 Hz</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->man_hinh_rong }}</span>
                                                 </div>
                                             </li>
                                             <li>
@@ -620,7 +244,8 @@
                                                     <p>Độ sáng tối đa:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">1 nits</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->do_sang_toi_da }}</span>
                                                 </div>
                                             </li>
                                             <li>
@@ -628,9 +253,8 @@
                                                     <p>Mặt kính cảm ứng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/tim-hieu-ve-cac-mat-kinh-cuong-luc-gorilla-glass-1172198#glass5"
-                                                        target="_blank">Kính cường lực Corning Gorilla Glass 5</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->mat_kinh_cam_ung }}</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -640,12 +264,12 @@
                                         <ul class="ulist">
                                             <li data-id="27" data-group-id="1841" data-index="1">
                                                 <div class="ctLeft">
-                                                    <a
-                                                        href="https://www.thegioididong.com/hoi-dap/do-phan-giai-camera-tren-smartphone-la-gi-1339722">Độ
+                                                    <a href="#">Độ
                                                         phân giải:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Chính 64 MP &amp; Phụ 8 MP, 2 MP</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->sau_phan_giai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="31" data-group-id="1841" data-index="2">
@@ -654,16 +278,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#4k"
-                                                            target="_blank">4K 2160p@30fps</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#fullhd"
-                                                            target="_blank">FullHD 1080p@30fps</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#hd"
-                                                            target="_blank">HD 720p@30fps</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->quay_phim }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -672,9 +287,8 @@
                                                     <p>Đèn Flash:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/tim-hieu-cac-loai-den-flash-tren-camera-dien-thoai-1143808"
-                                                        target="_blank">Có</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->den_flash }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="28" data-group-id="1841" data-index="4">
@@ -683,56 +297,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/ai-camera-la-gi-co-tac-dung-gi-trong-may-anh-1169103"
-                                                            target="_blank">AI Camera</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-chup-dem-night-mode-la-gi-907873"
-                                                            target="_blank">Ban đêm (Night Mode)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-chup-anh-manual-mode-pro-tren-smartphone-906405"
-                                                            target="_blank">Chuyên nghiệp (Pro)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-touch-focus-khi-chup-anh-tren-smartphone-906412"
-                                                            target="_blank">Chạm lấy nét</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/camera-goc-rong-goc-sieu-rong-tren-smartphone-l-1172240"
-                                                            target="_blank">Góc rộng (Wide)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-chup-anh-hdr-tren-smartphone-la-gi-906400"
-                                                            target="_blank">HDR</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-lam-dep-beautify-tren-smartphone-tablet-1172231"
-                                                            target="_blank">Làm đẹp</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/tim-hieu-cong-nghe-lay-net-theo-pha-tren-smartph-1007275"
-                                                            target="_blank">Lấy nét theo pha (PDAF)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chuc-nang-nhan-dien-khuon-mat-la-gi-907903"
-                                                            target="_blank">Nhận diện khuôn mặt</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-chup-macro-la-gi-907851"
-                                                            target="_blank">Siêu cận (Macro)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chup-anh-panorama-toan-canh-tren-camera-cua-smar-906425"
-                                                            target="_blank">Toàn cảnh (Panorama)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-autofocus-trong-chup-anh-tren-smartphone-906408"
-                                                            target="_blank">Tự động lấy nét (AF)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chup-anh-xoa-phong-la-gi-no-co-tac-dung-nhu-the-na-1138006"
-                                                            target="_blank">Xóa phông</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->sau_tinh_nang }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -743,12 +309,12 @@
                                         <ul class="ulist">
                                             <li data-id="29" data-group-id="2701" data-index="1">
                                                 <div class="ctLeft">
-                                                    <a
-                                                        href="https://www.thegioididong.com/hoi-dap/do-phan-giai-camera-tren-smartphone-la-gi-1339722">Độ
+                                                    <a href="#">Độ
                                                         phân giải:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">32 MP</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->truoc_phan_giai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="7801" data-group-id="2701" data-index="4">
@@ -757,36 +323,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-chup-anh-hdr-tren-smartphone-la-gi-906400"
-                                                            target="_blank">HDR</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-lam-dep-beautify-tren-smartphone-tablet-1172231"
-                                                            target="_blank">Làm đẹp</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/ar-stickers-la-gi-vi-sao-hang-nao-cung-ap-dung-ar-1096228"
-                                                            target="_blank">Nhãn dán (AR Stickers)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chuc-nang-nhan-dien-khuon-mat-la-gi-907903"
-                                                            target="_blank">Nhận diện khuôn mặt</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-1174134#fullhd"
-                                                            target="_blank">Quay video Full HD</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chup-anh-panorama-toan-canh-tren-camera-cua-smar-906425"
-                                                            target="_blank">Toàn cảnh (Panorama)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/che-do-autofocus-trong-chup-anh-tren-smartphone-906408"
-                                                            target="_blank">Tự động lấy nét (AF)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/chup-anh-xoa-phong-la-gi-no-co-tac-dung-nhu-the-na-1138006"
-                                                            target="_blank">Xóa phông</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->truoc_tinh_nang }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -801,9 +339,8 @@
                                                     <p>Hệ điều hành:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/android-11-la-gi-co-gi-moi-thiet-bi-nao-duoc-cap-nhat-1306447"
-                                                        target="_blank">Android 11</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->he_dieu_hanh }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="6059" data-group-id="2121" data-index="2">
@@ -811,19 +348,18 @@
                                                     <p>Chip xử lý (CPU):</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/tim-hieu-ve-dong-chip-xu-ly-cpu-mediatek-dimensity-1376387#800u"
-                                                        target="_blank">MediaTek Dimensity 800U 5G 8 nhân</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->chip_xu_ly }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="51" data-group-id="2121" data-index="4">
                                                 <div class="ctLeft">
-                                                    <a
-                                                        href="https://www.thegioididong.com/hoi-dap/toc-do-cpu-la-gi-co-y-nghia-gi-trong-cac-thiet-bi-dien-tu-1299483">Tốc
+                                                    <a href="#">Tốc
                                                         độ CPU:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">2 nhân 2.4 GHz &amp; 6 nhân 2 GHz</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->toc_do_cpu }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="6079" data-group-id="2121" data-index="5">
@@ -831,9 +367,8 @@
                                                     <p>Chip đồ họa (GPU):</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/tim-hieu-ve-cac-bien-the-cua-dong-gpu-mali-g-series-1380275#mali-g57mc3"
-                                                        target="_blank">Mali-G57 MC3</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->chip_do_hoa }}</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -844,11 +379,10 @@
                                         <ul class="ulist">
                                             <li data-id="50" data-group-id="22" data-index="1">
                                                 <div class="ctLeft">
-                                                    <a
-                                                        href="https://www.thegioididong.com/hoi-dap/ram-la-gi-co-y-nghia-gi-trong-cac-thiet-bi-dien-t-1216259">RAM:</a>
+                                                    <a href="#">RAM:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">8 GB</span>
+                                                    <span class="">{{ $thongSoKyThuat->ram }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="49" data-group-id="22" data-index="2">
@@ -856,7 +390,8 @@
                                                     <p>Bộ nhớ trong:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">128 GB</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->bo_nho_trong }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="7803" data-group-id="22" data-index="3">
@@ -864,7 +399,8 @@
                                                     <p>Bộ nhớ còn lại (khả dụng) khoảng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">110 GB</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->bo_nho_con_lai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="52" data-group-id="22" data-index="4">
@@ -872,9 +408,8 @@
                                                     <p>Thẻ nhớ:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/the-nho-dien-thoai"
-                                                        target="_blank">MicroSD, hỗ trợ tối đa 256 GB</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->the_nho }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="54" data-group-id="22" data-index="11">
@@ -882,7 +417,7 @@
                                                     <p>Danh bạ:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Không giới hạn</span>
+                                                    <span class="">{{ $thongSoKyThuat->danh_ba }}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -895,9 +430,8 @@
                                                     <p>Mạng di động:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/mang-5g-la-gi-co-nhung-uu-diem-gi-so-voi-4g-1312277"
-                                                        target="_blank">Hỗ trợ 5G</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->mang_di_dong }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="6339" data-group-id="24" data-index="6">
@@ -905,9 +439,8 @@
                                                     <p>SIM:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/sim-thuong-micro-sim-nano-sim-esim-la-gi-co-gi-khac-nhau-1310659#nano-sim"
-                                                        target="_blank">2 Nano SIM</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->sim }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="66" data-group-id="24" data-index="7">
@@ -916,20 +449,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/wifi-dual-band-la-gi-736489"
-                                                            target="_blank">Dual-band (2.4 GHz/5 GHz)</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/tin-tuc/wifi-la-gi-cai-dat-wifi-hotspot-nhu-the-nao--590309#80211ac"
-                                                            target="_blank">Wi-Fi 802.11 a/b/g/n/ac</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/tin-tuc/wi-fi-direct-la-gi--590298"
-                                                            target="_blank">Wi-Fi Direct</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/tin-tuc/wifi-la-gi-cai-dat-wifi-hotspot-nhu-the-nao--590309#wifihotspot"
-                                                            target="_blank">Wi-Fi hotspot</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->wifi }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -939,20 +459,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/gps-la-gi-806129#a-gps"
-                                                            target="_blank">GPS</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/gps-la-gi-806129#bds"
-                                                            target="_blank">BDS</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/gps-la-gi-806129#galileo"
-                                                            target="_blank">GALILEO</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/gps-la-gi-806129#glonass"
-                                                            target="_blank">GLONASS</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->gps }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -962,16 +469,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cong-nghe-bluetooth-a2dp-la-gi-723725"
-                                                            target="_blank">A2DP</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cong-nghe-bluetooth-743602#le"
-                                                            target="_blank">LE</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cong-nghe-bluetooth-51-tren-laptop-la-gi-1273789"
-                                                            target="_blank">v5.1</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->bluetooth }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -980,9 +478,8 @@
                                                     <p>Cổng kết nối/sạc:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/usb-typec-chuan-muc-cong-ket-noi-moi-723760"
-                                                        target="_blank">Type-C</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->cong_ket_noi }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="48" data-group-id="24" data-index="12">
@@ -990,7 +487,8 @@
                                                     <p>Jack tai nghe:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">3.5 mm</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->jack_tai_nghe }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="5199" data-group-id="24" data-index="13">
@@ -998,9 +496,8 @@
                                                     <p>Kết nối khác:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/ket-noi-otg-la-gi-otg-duoc-su-dung-cho-muc-dich-gi-1172882"
-                                                        target="_blank">OTG</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->ket_noi_khac }}</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -1013,7 +510,8 @@
                                                     <p>Dung lượng pin:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">4310 mAh</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->dung_luong_pin }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="83" data-group-id="2122" data-index="2">
@@ -1021,9 +519,8 @@
                                                     <p>Loại pin:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/so-sanh-pin-li-ion-va-pin-li-po-651833#lipo"
-                                                        target="_blank">Li-Po</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->loai_pin }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="26846" data-group-id="2122" data-index="3">
@@ -1031,7 +528,8 @@
                                                     <p>Hỗ trợ sạc tối đa:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">30 W</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->ho_tro_sac_toi_da }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="26847" data-group-id="2122" data-index="4">
@@ -1039,7 +537,8 @@
                                                     <p>Sạc kèm theo máy:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">30 W</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->sac_kem_theo_may }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="10859" data-group-id="2122" data-index="5">
@@ -1047,9 +546,8 @@
                                                     <p>Công nghệ pin:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="http://www.thegioididong.com/hoi-dap/tim-hieu-ve-cong-nghe-sac-nhanh-vooc-cua-oppo-918283"
-                                                        target="_blank">Sạc nhanh VOOC</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->cong_nghe_pin }}</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -1062,12 +560,8 @@
                                                     <p>Bảo mật nâng cao:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class="comma"
-                                                        href="https://www.thegioididong.com/hoi-dap/tinh-nang-mo-khoa-bang-khuon-mat-la-gi-1167784"
-                                                        target="_blank">Mở khoá khuôn mặt</a>
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/tim-hieu-ve-cam-bien-van-tay-duoi-man-hinh-1171916"
-                                                        target="_blank">Mở khoá vân tay dưới màn hình</a>
+                                                    <a class="comma" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->bao_mat_nang_cao }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="43" data-group-id="19" data-index="2">
@@ -1075,12 +569,8 @@
                                                     <p>Tính năng đặc biệt:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class="comma"
-                                                        href="https://www.thegioididong.com/hoi-dap/cham-2-lan-sang-man-hinh-tren-smartphone-la-gi-1170632"
-                                                        target="_blank">Chạm 2 lần sáng màn hình</a>
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/hoi-dap/nhan-doi-ung-dung-la-gi-1115719"
-                                                        target="_blank">Ứng dụng kép (Nhân bản ứng dụng)</a>
+                                                    <a class="comma" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->tinh_nang_dac_biet }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="27511" data-group-id="19" data-index="3">
@@ -1088,7 +578,8 @@
                                                     <p>Kháng nước, bụi:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Không có</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->khang_nuoc_bui }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="36" data-group-id="19" data-index="4">
@@ -1096,7 +587,7 @@
                                                     <p>Ghi âm:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Ghi âm mặc định</span>
+                                                    <span class="">{{ $thongSoKyThuat->ghi_am }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="32" data-group-id="19" data-index="6">
@@ -1105,20 +596,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#3gp"
-                                                            target="_blank">3GP</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#avi"
-                                                            target="_blank">AVI</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#mp4"
-                                                            target="_blank">MP4</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#wmv"
-                                                            target="_blank">WMV</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->xem_phim }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -1128,24 +606,7 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#aac"
-                                                            target="_blank">AAC</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#amr"
-                                                            target="_blank">AMR</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#mp3"
-                                                            target="_blank">MP3</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#wav"
-                                                            target="_blank">WAV</a>
-                                                    </p>
-                                                    <p class="circle">
-                                                        <a href="https://www.thegioididong.com/hoi-dap/cac-dinh-dang-video-va-am-thanh-740243#wma"
-                                                            target="_blank">WMA</a>
+                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->nghe_nhac }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -1159,9 +620,8 @@
                                                     <p>Thiết kế:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <a class=""
-                                                        href="https://www.thegioididong.com/tin-tuc/tim-hieu-cac-kieu-thiet-ke-tren-di-dong-va-may-tin-597153#nguyenkhoi"
-                                                        target="_blank">Nguyên khối</a>
+                                                    <a class="" href="#"
+                                                        target="_blank">{{ $thongSoKyThuat->thiet_ke }}</a>
                                                 </div>
                                             </li>
                                             <li data-id="7805" data-group-id="28" data-index="2">
@@ -1169,8 +629,7 @@
                                                     <p>Chất liệu:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Khung hợp kim &amp; Mặt lưng thuỷ tinh hữu
-                                                        cơ</span>
+                                                    <span class="">{{ $thongSoKyThuat->chat_lieu }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="88" data-group-id="28" data-index="3">
@@ -1178,8 +637,8 @@
                                                     <p>Kích thước, khối lượng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">Dài 160.2 mm - Ngang 73.38 mm - Dày 7.97
-                                                        mm - Nặng 173 g</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->kich_thuoc_khoi_luong }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="13045" data-group-id="28" data-index="100">
@@ -1187,7 +646,8 @@
                                                     <p>Thời điểm ra mắt:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span class="">07/2021</span>
+                                                    <span
+                                                        class="">{{ $thongSoKyThuat->thoi_diem_ra_mat }}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -1195,7 +655,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="content-t" data-tab-id="tab-article-gallery-0" data-gallery-id="article-gallery">
+                        {{-- <div class="content-t" data-tab-id="tab-article-gallery-0" data-gallery-id="article-gallery">
                             <a class="top-flag" name="top-article"></a>
                             <div class="article content-t-wrap">
                                 <div class="article-content showall review-post">
@@ -1453,7 +913,7 @@
                                         trong những khoảnh khắc đáng nhớ.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="policy_intuitive cate42 scenarioNomal">
@@ -1480,9 +940,8 @@
 
                             <li>
                                 <div class="iconl"><i class="icondetail-sachhd"></i></div>
-                                <p>Bộ sản phẩm gồm: Hộp, Cây lấy sim, Ốp lưng, Tai nghe dây, Cáp Type C, Củ sạc nhanh rời
-                                    đầu Type A, Sách hướng dẫn <a href="javascript:showBlockTabUnBox()"
-                                        class="hinh-mo-hop-link">Xem hình</a>
+                                <p>{{ $dienThoai->mo_ta }}<a href="javascript:showBlockTabUnBox()"
+                                        class="hinh-mo-hop-link"> Xem hình</a>
                                 </p>
                             </li>
                         </ul>
@@ -1490,9 +949,9 @@
                 </div>
                 <div class="img-main">
                     <img class=" lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-note-2.jpg') }}">
+                        src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}">
                 </div>
-                <div class="article content-t-wrap">
+                {{-- <div class="article content-t-wrap">
                     <div class="article-content short">
                         <h3 class="article-content-title">Thông tin sản phẩm</h3>
                         <h3><a href="https://www.thegioididong.com/dtdd/oppo-reno6-z-5g" target="_blank"
@@ -1700,7 +1159,7 @@
                     <a href="javascript:showBlockTabArticle()" class="btn-detail jsArticle">
                         <span>Xem thêm</span>
                     </a>
-                </div>
+                </div> --}}
                 <div class="box-border">
                     <div class="rating">
                         <p class="rating__title">Đánh giá Điện thoại OPPO Reno6 Z 5G</p>
@@ -1822,91 +1281,106 @@
                 </div>
             </div>
             <div class='box-main-right'>
-                <div class="scrolling-inner">
-                    <div class="box03 group desk">
-                        <a href="#" data-index="0" class="box03-item item ">Reno6</a>
-                        <a href="#" data-index="1" class="box03-item item act">Reno6 Z</a>
-                        <a href="#" data-index="2" class="box03-item item ">Reno6 Pro</a>
-                    </div>
-                </div>
-                <div class="scrolling_inner">
-                    <div class="box03 color group desk">
-                        <a href="#" data-color="5" data-code="0131491002585" class="box03-item item act">Bạc</a>
-                        <a href="#" data-color="11" data-code="0131491002584" class="box03-item item ">Đen</a>
-                    </div>
+                {{-- <form action="{{ route('addCart') }}" method='get'> --}}
+                <div class="scrolling_inner" style="margin-bottom: 10px">
+                    <h4 style="margin-bottom: 10px">Lựa chọn phiên bản:</h4>
+                    <select name="idChiTiet" class="select-phien-ban" onchange="layGia(value);" id="phienBan">
+                        @foreach ($danhSachChiTiet as $tp)
+                            <option value="{{ $tp->id }}">{{ $tp->ram }}/{{ $tp->bo_nho_trong }} -
+                                {{ $tp->ten_mau_sac }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="box04 box-normal">
                     <div class="price-one">
                         <div class="box-price">
-                            <p class="box-price-present black">9.490.000₫</p>
+                            <div class="listproduct" style="display: block;margin-bottom: 10px;">
+                                @if ($danhSachChiTiet[0]->phan_tram_giam == 0)
+                                    <strong class="price" style="font-size: 20px">Giá:
+                                        {{ number_format($danhSachChiTiet[0]->gia, 0) }}₫</strong>
+                                @else
+                                    <div class="box-p">
+                                        <p class="price-old black" style="text-decoration: none;">Giá chưa giảm:
+                                            {{ number_format($danhSachChiTiet[0]->gia, 0) }}₫</p>
+                                        <span
+                                            class="percent">-{{ $danhSachChiTiet[0]->phan_tram_giam * 100 }}%</span>
+                                    </div>
+                                    <strong class="price" style="font-size: 20px; color:red">Giá giảm:
+                                        {{ number_format($danhSachChiTiet[0]->gia - $danhSachChiTiet[0]->gia * $danhSachChiTiet[0]->phan_tram_giam, 0) }}₫
+                                    </strong>
+                                @endif
+                            </div>
                             <span class="label label--black">Trả góp 0%</span>
                         </div>
                     </div>
                 </div>
                 <div class="block block-price1">
                     <div class="block-button normal">
-                        <a href="javascript:" class="btn-buynow jsBuy">MUA NGAY</a>
+                        <button type="button" onclick="addCart()" class="btn-buynow jsBuy"
+                            style="border: none;width: 350px;cursor: pointer;">THÊM SẢN PHẨM VÀO GIỎ
+                        </button>
                     </div>
                 </div>
-                <p class="parameter-title">Cấu hình Điện thoại OPPO Reno6 Z 5G</p>
+                {{-- </form> --}}
+                <p class="parameter-title">Cấu hình Điện thoại {{ $dienThoai->ten_san_pham }}</p>
                 <div class="parameter">
                     <ul class="parameter-list 239747 active">
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Màn hình:</p>
                             <div class="liright">
-                                <span class="comma">AMOLED</span>
-                                <span class="comma">6.43"</span>
-                                <span class="">Full HD+</span>
+                                <span class="comma">{{ $thongSoKyThuat->cong_nghe_man_hinh }}</span>
+                                <span class="comma">{{ $thongSoKyThuat->man_hinh_rong }}</span>
+                                <span class="">{{ $thongSoKyThuat->do_phan_giai }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Hệ điều hành:</p>
                             <div class="liright">
-                                <span class="">Android 11</span>
+                                <span class="">{{ $thongSoKyThuat->he_dieu_hanh }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Camera sau:</p>
                             <div class="liright">
-                                <span class="">Chính 64 MP &amp; Phụ 8 MP, 2 MP</span>
+                                <span class="">{{ $thongSoKyThuat->sau_phan_giai }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Camera trước:</p>
                             <div class="liright">
-                                <span class="">32 MP</span>
+                                <span class="">{{ $thongSoKyThuat->truoc_phan_giai }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Chip:</p>
                             <div class="liright">
-                                <span class="">MediaTek Dimensity 800U 5G</span>
+                                <span class="">{{ $thongSoKyThuat->chip_xu_ly }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">RAM:</p>
                             <div class="liright">
-                                <span class="">8 GB</span>
+                                <span class="">{{ $thongSoKyThuat->ram }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Bộ nhớ trong:</p>
                             <div class="liright">
-                                <span class="">128 GB</span>
+                                <span class="">{{ $thongSoKyThuat->bo_nho_trong }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">SIM:</p>
                             <div class="liright">
-                                <span class="comma">2 Nano SIM</span>
-                                <span class="">Hỗ trợ 5G</span>
+                                <span class="comma">{{ $thongSoKyThuat->sim }}</span>
+                                <span class="">{{ $thongSoKyThuat->mang_di_dong }}</span>
                             </div>
                         </li>
                         <li data-index="0" data-prop="0">
                             <p class="lileft">Pin, Sạc:</p>
                             <div class="liright">
-                                <span class="comma">4310 mAh</span>
-                                <span class="">30 W</span>
+                                <span class="comma">{{ $thongSoKyThuat->dung_luong_pin }}</span>
+                                <span class="">{{ $thongSoKyThuat->ho_tro_sac_toi_da }}</span>
                             </div>
                         </li>
                     </ul>
@@ -1922,356 +1396,43 @@
                         <div class="owl-stage-outer" data-box-id='boxscroll'>
                             <div class="owl-stage"
                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2640px;">
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
+                                @for ($i = 0; $i < 10; $i++)
+                                    <div class="owl-item active" style="width: 240px;">
+                                        <div class="item" data-id="239747">
+                                            <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
+                                                data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
+                                                <div class="item-label">
+                                                    <span class="lb-tragop">Trả góp 0%</span>
+                                                </div>
+                                                <div class="item-img 12321312312">
+                                                    <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
+                                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                                                </div>
+                                                <h3 title="Điện thoại OPPO Reno6 Z 5G">
+                                                    OPPO Reno6 Z 5G
+                                                </h3>
+                                                <strong class="price">9.490.000₫</strong>
+                                                <div class="item-rating">
+                                                    <p>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                    </p>
+                                                    <p class="item-rating-total">1</p>
+                                                </div>
+                                            </a>
+                                            <div class="item-bottom">
+                                                <a href="#" class="shiping"></a>
                                             </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
+                                            <a href="javascript:void(0)" class="item-ss">
+                                                <i></i>
+                                                So sánh
+                                            </a>
                                         </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
                                     </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 240px;">
-                                    <div class="item" data-id="239747">
-                                        <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
-                                            data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
-                                            <div class="item-label">
-                                                <span class="lb-tragop">Trả góp 0%</span>
-                                            </div>
-                                            <div class="item-img 12321312312">
-                                                <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                    src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
-                                            </div>
-                                            <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                OPPO Reno6 Z 5G
-                                            </h3>
-                                            <strong class="price">9.490.000₫</strong>
-                                            <div class="item-rating">
-                                                <p>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                    <i class="icon-star"></i>
-                                                </p>
-                                                <p class="item-rating-total">1</p>
-                                            </div>
-                                        </a>
-                                        <div class="item-bottom">
-                                            <a href="#" class="shiping"></a>
-                                        </div>
-                                        <a href="javascript:void(0)" class="item-ss">
-                                            <i></i>
-                                            So sánh
-                                        </a>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                         <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"
@@ -2284,5 +1445,72 @@
             </div>
         </div>
     </section>
+    <div class="loadingcover" style="display: none;" id="loading">
+        <p class="csslder">
+            <span class="csswrap">
+                <span class="cssdot"></span>
+                <span class="cssdot"></span>
+                <span class="cssdot"></span>
+            </span>
+        </p>
+    </div>
     <script src="{{ asset('assets/user/js/product-detail.js') }}"></script>
+    <script>
+        const loading = document.getElementsByClassName("loadingcover");
+
+        function fadeOutEffect() {
+            var fadeTarget = document.getElementById("loading");
+            var fadeEffect = setInterval(function() {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    loading[0].style = "display:none";
+                }
+            }, 50);
+        }
+
+        function layGia($idChiTiet) {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('layGia') }}',
+                data: {
+                    'idChiTiet': $idChiTiet,
+                },
+                success: function(data) {
+                    $('.listproduct').html(data);
+                }
+            });
+            loading[0].style = "display:block";
+            setTimeout(fadeOutEffect, 500);
+        }
+
+        function addCart() {
+            var select = document.getElementById("phienBan");
+            var idChiTiet = select.value;
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('addCart') }}',
+                data: {
+                    'idChiTiet': idChiTiet,
+                },
+                success: function(data) {
+                    $('.nav-bar-cart').html(data);
+                    if (!$('.nav-bar-cart').hasClass('active')) {
+                        $('.nav-bar-cart').removeClass("active");
+                        $('.nav-bar-cart').addClass("active");
+                    }
+                    alertify.success('Thêm sản phẩm vào giỏ thành công');
+                },
+                error: function(request, status, error) {
+                    alertify.error('Thêm sản phẩm vào giỏ không thành công');
+                }
+            });
+            loading[0].style = "display:block";
+            setTimeout(fadeOutEffect, 500);
+        }
+    </script>
 @endsection

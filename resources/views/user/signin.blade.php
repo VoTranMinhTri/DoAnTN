@@ -12,6 +12,11 @@
                         <span>{{ $errors->first('error') }}</span>
                     </div>
                 @endif
+                @if (Session::has('thongbao'))
+                    <div style="margin-bottom: 2%; color:red">
+                        <span>{{ Session::get('thongbao') }}</span>
+                    </div>
+                @endif
                 <label class="show-pass">
                     <input type="checkbox" name="show-pass" onclick="togglepass()"> Hiển thị password
                 </label>
@@ -24,13 +29,19 @@
             <div class="social">
                 <p class="social-heading"><span>Hoặc tiếp tục bằng</span></p>
                 <ul class="social-items">
-                    <a href="{{ url('getInfoFacebook/facebook') }}">
+                    <a href="{{ route('login.facebook') }}">
                         <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Facebook.png') }}"
                                 alt="facebook">
                         </li>
                     </a>
-                    <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Google.png') }}" alt="google"></li>
-                    <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Zalo.png') }}" alt="zalo"></li>
+                    <a href="{{ route('login.google') }}">
+                        <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Google.png') }}"
+                                alt="google"></li>
+                    </a>
+                    <a href="{{ route('login.zalo') }}">
+                        <li class="social-item"><img src="{{ asset('assets/user/images/Logo-Zalo.png') }}" alt="zalo">
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>
@@ -44,6 +55,7 @@
                 x.type = "password";
             }
         }
+
         function closepopup() {
             var popup = document.querySelector('.popup-thongbao');
             popup.className = popup.className.replace(' active', '');

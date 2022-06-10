@@ -1,25 +1,67 @@
 window.addEventListener("load", function () {
     //Xếp theo nổi bật,...
-    var sortSelect = document.getElementById("select");
-    var sortSelectList = document.getElementById("list");
-    const a = document.querySelectorAll(".sort a")
-    sortSelect.onclick = function () {
-        if (sortSelectList.style.display == "none") {
-            sortSelectList.style = "display:block";
-        }
-        else {
-            sortSelectList.style = "display:none";
-        }
-    };
+    // var sortSelect = document.getElementById("select");
+    // var sortSelectList = document.getElementById("list");
+    // const a = document.querySelectorAll(".sort a")
+    // sortSelect.onclick = function () {
+    //     if (sortSelectList.style.display == "none") {
+    //         sortSelectList.style = "display:block";
+    //     }
+    //     else {
+    //         sortSelectList.style = "display:none";
+    //     }
+    // };
 
-    [...a].forEach((item) => item.addEventListener("click", function (i) {
-        [...a].forEach(itemlist => itemlist.classList.remove("check"));
-        if (item.className != "check") {
-            item.className += "check";
+    // [...a].forEach((item) => item.addEventListener("click", function (i) {
+    //     [...a].forEach(itemlist => itemlist.classList.remove("check"));
+    //     if (item.className != "check") {
+    //         item.className += "check";
+    //     }
+    //     document.querySelector(".sort-select .sort-show").innerHTML = item.text;
+    // })
+    // );
+    //Top deal
+    const sliderStageTopDeal = document.querySelector(".owl-wrapper");
+    const sliderItemsTopDeal = document.querySelectorAll(".owl-item");
+    const nextBtnTopDeal = document.querySelector(".owl-next");
+    const prevBtnTopDeal = document.querySelector(".owl-prev");
+    const sliderItemTopDealWidth = sliderItemsTopDeal[0].offsetWidth;
+    const slidersTopDealLength = sliderItemsTopDeal.length / 5;
+    let positionTopDealX = 0;
+    let i = 0;
+    if(sliderItemsTopDeal.length > 5){
+        nextBtnTopDeal.addEventListener("click", function () {
+            changeSlideTopDeal(1);
+        });
+        prevBtnTopDeal.addEventListener("click", function () {
+            changeSlideTopDeal(-1);
+        });
+    }
+    function changeSlideTopDeal(direction) {
+        if (direction === 1) {
+            if (i >= slidersTopDealLength - 1) {
+                i = 0;
+                positionTopDealX = 0;
+                sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 1000ms  ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
+            }
+            else {
+                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth+10) * 5;
+                sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
+                i++;
+            }
+        } else if (direction === -1) {
+            if (i <= 0) {
+                i = slidersTopDealLength - 1;
+                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth+10)*5;
+                sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
+            }
+            else {
+                positionTopDealX = positionTopDealX + (sliderItemTopDealWidth+10) * 5;
+                sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
+                i--;
+            }
         }
-        document.querySelector(".sort-select .sort-show").innerHTML = item.text;
-    })
-    );
+    }
 
 
 
@@ -67,7 +109,7 @@ window.addEventListener("load", function () {
         } else if (direction === -1) {
             if (index <= 0) {
                 index = slidersLength - 1;
-                positionX = positionX - 4 * sliderItemWidth;
+                positionX = positionX - (slidersLength - 1) * sliderItemWidth;
                 sliderStage.style = 'transform: translate3d( ' + positionX + 'px, 0px, 0px); transition: all 1.5s ease 0s; width: 5600px;'
             }
             else {
@@ -153,7 +195,7 @@ function filterNew(){
 //Nút xem thêm điện thoại
 let loadMoreBtn = document.querySelector('#load-more')
 let currentItem = 10;
-if(document.querySelectorAll(".listproduct .item").length <= 10){
+if(document.querySelectorAll(".listproduct.all .item").length <= 10){
     loadMoreBtn.style.display = 'none';
 }
 function loadMore(){

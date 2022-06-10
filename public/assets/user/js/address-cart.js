@@ -4,10 +4,11 @@ const buttonselect = this.document.querySelectorAll('.cntry-district .btn-click 
 const buttonselectwards = this.document.querySelectorAll('.deli-address .wards button');
 const select = this.document.querySelectorAll('.select');
 const lilist = this.document.querySelectorAll('.choose-address ul li');
-var button = document.getElementById("myDIV");
+
 
 //Mã khuyến mãi
-button.onclick = function () {
+function maKhuyenMai() {
+    var button = document.getElementById("myDIV");
     if (button.className == "usecode coupon-code singlebox") {
         var current1 = document.getElementsByClassName("coupon-code");
         var current2 = document.getElementsByClassName("applycode");
@@ -34,9 +35,7 @@ button.onclick = function () {
     }
     [...content].forEach(itemlist => itemlist.classList.remove("current"));
     var dataID = item.getAttribute('data-tab');
-    console.log(dataID)
     var elements = document.getElementById(dataID);
-    console.log(elements)
     elements.className += " current";
 })
 );

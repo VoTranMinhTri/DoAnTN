@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChiTietDienThoai;
 use App\Models\DienThoai;
+use App\Models\ChiTietDienThoai;
+use App\Models\KhuyenMai;
+use App\Models\ChiTietKhuyenMai;
 use App\Models\ManHinh;
 use App\Models\MauSac;
 use App\Models\CameraSau;
@@ -15,8 +17,10 @@ use App\Models\Pin_Sac;
 use App\Models\KetNoi;
 use App\Models\HeDieuHanh_CPU;
 use App\Models\HinhAnhMauSacCuaDienThoai;
+use App\Models\HinhAnhChungCuaDienThoai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ChiTietDienThoaiController extends Controller
 {
@@ -238,7 +242,7 @@ class ChiTietDienThoaiController extends Controller
         if ($chiTietDienThoai->save() == true) {
             $kTMauSac = ChiTietDienThoai::where('dien_thoai_id', '=', $chiTietDienThoai->dien_thoai_id)
                 ->where('mau_sac_id', '=', $chiTietDienThoai->mau_sac_id)
-                ->where('id','!=',$chiTietDienThoai->id)
+                ->where('id', '!=', $chiTietDienThoai->id)
                 ->first();
             if (empty($kTMauSac)) {
                 $hinhAnhMauSac = new HinhAnhMauSacCuaDienThoai();
@@ -491,7 +495,7 @@ class ChiTietDienThoaiController extends Controller
         if ($chiTietDienThoai->save() == true) {
             $kTMauSac = ChiTietDienThoai::where('dien_thoai_id', '=', $chiTietDienThoai->dien_thoai_id)
                 ->where('mau_sac_id', '=', $chiTietDienThoai->mau_sac_id)
-                ->where('id','!=',$chiTietDienThoai->id)
+                ->where('id', '!=', $chiTietDienThoai->id)
                 ->first();
             if (empty($kTMauSac)) {
                 $hinhAnhMauSac = new HinhAnhMauSacCuaDienThoai();
@@ -548,5 +552,147 @@ class ChiTietDienThoaiController extends Controller
                 'dienThoai' => $dienThoai, 'chiTietDienThoai' => $chiTietDienThoai, 'danhSachManHinh' => $danhSachManHinh, 'danhSachMauSac' => $danhSachMauSac, 'danhSachCameraSau' => $danhSachCameraSau, 'danhSachCameraTruoc' => $danhSachCameraTruoc, 'danhSachHeDieuHanh' => $danhSachHeDieuHanh, 'danhSachBoNho' => $danhSachBoNho, 'danhSachKetNoi' => $danhSachKetNoi, 'danhSachTienIch' => $danhSachTienIch, 'danhSachThongTinChung' => $danhSachThongTinChung, 'danhSachPin' => $danhSachPin
             ]);
         }
+    }
+
+    public function productDetail($sanPhamId)
+    {
+        $dienThoai = DienThoai::where('id', '=', $sanPhamId)->first();
+        $hinhAnhMoHop = HinhAnhChungCuaDienThoai::where('dien_thoai_id', '=', $sanPhamId)
+            ->where('loai_hinh', '=', 1)
+            ->first();
+        $hinhAnhThongSoKyThuat = HinhAnhChungCuaDienThoai::where('dien_thoai_id', '=', $sanPhamId)
+            ->where('loai_hinh', '=', 2)
+            ->first();
+        $danhSachHinhAnhNoiBat = HinhAnhChungCuaDienThoai::where('dien_thoai_id', '=', $sanPhamId)
+            ->where('loai_hinh', '=', 3)
+            ->get();
+        $danhSachHinhAnh360 = HinhAnhChungCuaDienThoai::where('dien_thoai_id', '=', $sanPhamId)
+            ->where('loai_hinh', '=', 4)
+            ->get();
+        $hinhAnhMauSacSanPhamDaiDien = HinhAnhMauSacCuaDienThoai::join('mau_sacs', 'mau_sacs.id', '=', 'hinh_anh_mau_sac_cua_dien_thoais.mau_sac_id')
+            ->where('dien_thoai_id', '=', $sanPhamId)
+            ->where('hinh_anh_dai_dien', '=', 1)
+            ->select('hinh_anh_mau_sac_cua_dien_thoais.*', 'mau_sacs.ten_mau_sac')
+            ->get();
+        $danhSachHinhAnhMauSac = HinhAnhMauSacCuaDienThoai::where('dien_thoai_id', '=', $sanPhamId)
+            ->where('hinh_anh_dai_dien', '=', 0)
+            ->get();
+        $danhSachChiTiet = ChiTietDienThoai::join('mau_sacs', 'mau_sacs.id', '=', 'chi_tiet_dien_thoais.mau_sac_id')
+            ->join('bo_nho_luu_trus', 'bo_nho_luu_trus.id', '=', 'chi_tiet_dien_thoais.bo_nho_luu_tru_id')
+            ->join('dien_thoais', 'dien_thoais.id', '=', 'chi_tiet_dien_thoais.dien_thoai_id')
+            ->where('dien_thoai_id', '=', $dienThoai->id)
+            ->select('chi_tiet_dien_thoais.*', 'bo_nho_luu_trus.ram', 'bo_nho_luu_trus.bo_nho_trong', 'mau_sacs.ten_mau_sac', 'dien_thoais.ten_san_pham')
+            ->get();
+        foreach ($danhSachChiTiet as $tp) {
+            $khuyenMai = ChiTietKhuyenMai::where('dien_thoai_id', '=', $sanPhamId)->first();
+            if (!empty($khuyenMai)) {
+                $thoiGianKhuyenMai = KhuyenMai::where('id', '=', $khuyenMai->khuyen_mai_id)->first();
+                if (strtotime($thoiGianKhuyenMai->ngay_ket_thuc) >= strtotime(date("Y-m-d"))) {
+                    $tp->phan_tram_giam = $khuyenMai->phan_tram_giam;
+                } else {
+                    $tp->phan_tram_giam = 0;
+                }
+            } else {
+                $tp->phan_tram_giam = 0;
+            }
+        }
+        $thongSoKyThuat = ChiTietDienThoai::join('man_hinhs', 'man_hinhs.id', '=', 'chi_tiet_dien_thoais.man_hinh_id')
+            ->join('camera_saus', 'camera_saus.id', '=', 'chi_tiet_dien_thoais.camera_sau_id')
+            ->join('camera_truocs', 'camera_truocs.id', '=', 'chi_tiet_dien_thoais.camera_truoc_id')
+            ->join('he_dieu_hanh_cpus', 'he_dieu_hanh_cpus.id', '=', 'chi_tiet_dien_thoais.he_dieu_hanh_cpu_id')
+            ->join('bo_nho_luu_trus', 'bo_nho_luu_trus.id', '=', 'chi_tiet_dien_thoais.bo_nho_luu_tru_id')
+            ->join('ket_nois', 'ket_nois.id', '=', 'chi_tiet_dien_thoais.ket_noi_id')
+            ->join('pin_sacs', 'pin_sacs.id', '=', 'chi_tiet_dien_thoais.pin_sac_id')
+            ->join('tien_iches', 'tien_iches.id', '=', 'chi_tiet_dien_thoais.tien_ich_id')
+            ->join('thong_tin_chungs', 'thong_tin_chungs.id', '=', 'chi_tiet_dien_thoais.thong_tin_chung_id')
+            ->where('chi_tiet_dien_thoais.dien_thoai_id', '=', $dienThoai->id)
+            ->select(
+                'man_hinhs.cong_nghe_man_hinh',
+                'man_hinhs.do_phan_giai',
+                'man_hinhs.man_hinh_rong',
+                'man_hinhs.do_sang_toi_da',
+                'man_hinhs.mat_kinh_cam_ung',
+                'camera_saus.do_phan_giai as sau_phan_giai',
+                'camera_saus.quay_phim',
+                'camera_saus.den_flash',
+                'camera_saus.tinh_nang as sau_tinh_nang',
+                'camera_truocs.do_phan_giai as truoc_phan_giai',
+                'camera_truocs.tinh_nang as truoc_tinh_nang',
+                'he_dieu_hanh_cpus.he_dieu_hanh',
+                'he_dieu_hanh_cpus.chip_xu_ly',
+                'he_dieu_hanh_cpus.toc_do_cpu',
+                'he_dieu_hanh_cpus.chip_do_hoa',
+                'bo_nho_luu_trus.ram',
+                'bo_nho_luu_trus.bo_nho_trong',
+                'bo_nho_luu_trus.bo_nho_con_lai',
+                'bo_nho_luu_trus.the_nho',
+                'bo_nho_luu_trus.danh_ba',
+                'ket_nois.mang_di_dong',
+                'ket_nois.sim',
+                'ket_nois.wifi',
+                'ket_nois.gps',
+                'ket_nois.bluetooth',
+                'ket_nois.cong_ket_noi',
+                'ket_nois.jack_tai_nghe',
+                'ket_nois.ket_noi_khac',
+                'pin_sacs.dung_luong_pin',
+                'pin_sacs.loai_pin',
+                'pin_sacs.ho_tro_sac_toi_da',
+                'pin_sacs.sac_kem_theo_may',
+                'pin_sacs.cong_nghe_pin',
+                'tien_iches.bao_mat_nang_cao',
+                'tien_iches.tinh_nang_dac_biet',
+                'tien_iches.khang_nuoc_bui',
+                'tien_iches.ghi_am',
+                'tien_iches.xem_phim',
+                'tien_iches.nghe_nhac',
+                'thong_tin_chungs.thiet_ke',
+                'thong_tin_chungs.chat_lieu',
+                'thong_tin_chungs.kich_thuoc_khoi_luong',
+                'thong_tin_chungs.thoi_diem_ra_mat'
+            )
+            ->first();
+        $thongSoKyThuat->thoi_diem_ra_mat = Carbon::createFromFormat('Y-m-d', $thongSoKyThuat->thoi_diem_ra_mat)->format('d/m/Y');
+
+        return view('user/product-detail', [
+            'danhSachHinhAnhNoiBat' => $danhSachHinhAnhNoiBat, 'danhSachHinhAnh360' => $danhSachHinhAnh360,
+            'hinhAnhMauSacSanPhamDaiDien' => $hinhAnhMauSacSanPhamDaiDien, 'hinhAnhMoHop' => $hinhAnhMoHop,
+            'danhSachHinhAnhMauSac' => $danhSachHinhAnhMauSac, 'dienThoai' => $dienThoai,
+            'thongSoKyThuat' => $thongSoKyThuat, 'danhSachChiTiet' => $danhSachChiTiet,
+            'hinhAnhThongSoKyThuat' => $hinhAnhThongSoKyThuat
+        ]);
+    }
+
+    public function layGia(Request $request)
+    {
+        $output = '';
+        $chiTietDienThoai = ChiTietDienThoai::where('id', '=', $request->idChiTiet)->first();
+        $khuyenMai = ChiTietKhuyenMai::where('dien_thoai_id', '=', $chiTietDienThoai->dien_thoai_id)->first();
+        if (!empty($khuyenMai)) {
+            $thoiGianKhuyenMai = KhuyenMai::where('id', '=', $khuyenMai->khuyen_mai_id)->first();
+            if (strtotime($thoiGianKhuyenMai->ngay_ket_thuc) >= strtotime(date("Y-m-d"))) {
+                $chiTietDienThoai->phan_tram_giam = $khuyenMai->phan_tram_giam;
+            } else {
+                $chiTietDienThoai->phan_tram_giam = 0;
+            }
+        } else {
+            $chiTietDienThoai->phan_tram_giam = 0;
+        }
+        if($chiTietDienThoai->phan_tram_giam == 0){
+            $output .='<strong class="price" style="font-size: 20px">Giá:
+            '.number_format($chiTietDienThoai->gia, 0) .'₫</strong>';
+        }
+        else{
+            $output .='<div class="box-p">
+            <p class="price-old black" style="text-decoration: none;">Giá chưa giảm:
+            '.number_format($chiTietDienThoai->gia, 0) .'₫</p>
+            <span
+                class="percent">-'. $chiTietDienThoai->phan_tram_giam * 100 .'%</span>
+        </div>
+        <strong class="price" style="font-size: 20px; color:red">Giá giảm:
+        '.number_format($chiTietDienThoai->gia - $chiTietDienThoai->gia * $chiTietDienThoai->phan_tram_giam, 0) .'₫
+        </strong>';
+        }
+        return response()->json($output);
     }
 }

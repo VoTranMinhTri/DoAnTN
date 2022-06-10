@@ -37,11 +37,24 @@
                 <button type="submit"><i class="fas fa-search"></i></button>
                 <div id="search-result" style="display: block;"></div>
             </form>
-            <a href="/cart" class="nav-bar-cart active">
-                {{-- <i class="fas fa-shopping-cart"> </i> --}}
-                <i class="icon-cart">2</i>
+            @if(Session('Cart') == null)
+            <a href="/cart" class="nav-bar-cart">
+                <i class="icon-cart"></i>
                 <span>Giỏ hàng</span>
             </a>
+            @else
+            <?php
+            $soLuong =0;
+            foreach(Session('Cart')->products as $tp){
+                $soLuong +=$tp['quantity'];
+            }
+            ?>
+            <a href="/cart" class="nav-bar-cart active">
+                <i class="icon-cart">{{ $soLuong }}</i>
+                <span>Giỏ hàng</span>
+            </a>
+            @endif
+
             <div class="nav-bar-space"></div>
             <div class="bordercol"></div>
             @if (Auth::guest())
@@ -53,25 +66,26 @@
                     <span>Đăng ký</span>
                 </a>
             @else
-            <ul class="navbar-nav float-end">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
-                        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/admin/images/users/1.jpg') }}" alt="user" class="rounded-circle"
-                            width="40">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                            Thông tin của tôi</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i> Đổi
-                            mật khẩu</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
-                            xuất</a>
-                    </ul>
-                </li>
-            </ul>
+                <ul class="navbar-nav float-end">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ asset('assets/admin/images/users/1.jpg') }}" alt="user"
+                                class="rounded-circle" width="40">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                                Thông tin của tôi</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i>
+                                Đổi
+                                mật khẩu</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
+                                xuất</a>
+                        </ul>
+                    </li>
+                </ul>
             @endif
         </div>
     </div>
@@ -79,10 +93,18 @@
 
     <!-- ============================================================== -->
     <!--Custom JavaScript -->
-    <script>$(function() {
-        $(".preloader").fadeOut();
-    });
+    {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script> --}}
+    <script>
+        $(function() {
+            $(".preloader").fadeOut();
+        });
     </script>
+    <div style="position: absolute; bottom: 90px">
+    <div class="zalo-chat-widget" data-oaid="2920828326549610293" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+        data-autopopup="0" data-width="" data-height=""></div>
+    </div>
+
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>
 
 <footer class="footer">
@@ -149,4 +171,15 @@
     </div>
 </footer>
 <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </html>

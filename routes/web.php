@@ -32,8 +32,9 @@ use App\Http\Controllers\KhoController;
 use App\Http\Controllers\ChiTietKhoController;
 use App\Http\Controllers\SanPhamPhanBoController;
 use App\Http\Controllers\ChamCongController;
-use App\Http\Controllers\FbController;
-
+use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\TrangChuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -161,9 +162,7 @@ Route::get('/chart', function () {
 });
 
 //User
-Route::get('/', function () {
-    return view('user/index');
-});
+Route::get('/', [TrangChuController::class, 'index'])->name('homeuser');
 Route::get('/signup', function () {
     return view('user/signup');
 });
@@ -172,9 +171,6 @@ Route::get('/cart', function () {
 });
 Route::get('/forgotpassword', function () {
     return view('user/forgotpassword');
-});
-Route::get('/productdetail', function () {
-    return view('user/product-detail');
 });
 Route::get('/reviewlist', function () {
     return view('user/review-list');
@@ -196,5 +192,45 @@ Route::get('/pay', function () {
     return view('user/pay');
 });
 
-Route::get('getInfoFacebook/{social}', [SocialController::class, 'getInfo']);
-Route::get('checkInfoFacebook/{social}', [SocialController::class, 'checkInfo']);
+//Lọc sản phẩm theo thương hiệu
+Route::get('/filterProduct', [TrangChuController::class, 'filterProduct']);
+//Lọc sản phẩm theo giá
+Route::get('/filterProductByPrice', [TrangChuController::class, 'filterProductByPrice']);
+
+//Chi tiết điện thoại
+Route::get('/productDetail/{sanPhamId}', [ChiTietDienThoaiController::class, 'productDetail'])->name('productDetail');
+
+//Lấy giá
+Route::get('/layGia', [ChiTietDienThoaiController::class, 'layGia']);
+//Thêm sản phẩm vào giỏ
+Route::get('addCart', [GioHangController::class, 'addCart'])->name('addCart');
+//Xóa sản phẩm khỏi giỏ
+Route::get('deleteItemCart', [GioHangController::class, 'deleteItemCart'])->name('deleteItemCart');
+//Tăng số lượng 1 sản phẩm
+Route::get('plusItemCart', [GioHangController::class, 'plusItemCart'])->name('plusItemCart');
+//Giảm số lượng 1 sản phẩm
+Route::get('minusItemCart', [GioHangController::class, 'minusItemCart'])->name('minusItemCart');
+//Kiểm tra phiếu giảm giá
+Route::get('checkVoucher', [GioHangController::class, 'checkVoucher'])->name('checkVoucher');
+//Xác nhận địa chỉ nhận hàng
+Route::get('/confirm', [GioHangController::class, 'confirmOrderAddress']);
+Route::get('/xacNhanThongTin', [GioHangController::class, 'xacNhanThongTin']);
+//Thanh toán
+Route::get('/thanhToan', [GioHangController::class, 'thanhToan']);
+//Kiểm tra số lượng
+Route::get('/kiemTraSoLuong', [GioHangController::class, 'kiemTraSoLuong']);
+//Thanh toán VNPay
+Route::post('/vnpay_payment', [GioHangController::class, 'vnpay_payment'])->name('vnpay_payment');
+// Route::get('/checkVNPay', [GioHangController::class, 'checkVNPay'])->name('checkVNPay');
+
+// Google login
+Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [SocialController::class, 'handleGoogleCallback']);
+
+// Facebook login
+Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback']);
+
+// Zalo login
+Route::get('login/zalo', [SocialController::class, 'redirectToZalo'])->name('login.zalo');
+Route::get('login/zalo/callback', [SocialController::class, 'handleZaloCallback']);
