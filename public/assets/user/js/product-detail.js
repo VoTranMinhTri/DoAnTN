@@ -204,6 +204,9 @@ function showBlockTabArticle() {
 function showRatingCmtChild(id) {
     var reply1 = document.getElementsByClassName(id + ' reply hide');
     reply1[0].className = reply1[0].className.replace(" hide", "");
-    var reply2 = document.getElementsByClassName(id + ' childC-item hide');
-    reply2[0].className = reply2[0].className.replace(" hide", "");
+    var reply2 = document.querySelectorAll('.' + id + '.childC-item.hide');
+    console.log(reply2);
+    if(reply2.length > 0){
+        [...reply2].forEach(itemlist => itemlist.classList.remove("hide"));
+    }
 }

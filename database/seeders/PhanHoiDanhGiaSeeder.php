@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PhanHoiDanhGia;
 use Illuminate\Database\Seeder;
 
 class PhanHoiDanhGiaSeeder extends Seeder
@@ -13,6 +14,11 @@ class PhanHoiDanhGiaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PhanHoiDanhGia::create([
+            'danh_gia_id'=> 1,
+            'tai_khoan_id'=> 1,
+            'noi_dung'=> 'Cảm ơn quý khách đã đánh giá !',
+            'trang_thai'=> 1,
+        ]);
     }
 }

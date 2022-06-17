@@ -67,7 +67,7 @@
                                                         </td>
                                                         <td>
                                                             {{-- https://jsfiddle.net/prasun_sultania/KSk42/ hướng dẫn chỉnh lại title --}}
-                                                            <a href="/review"><button type="button"
+                                                            <a href="{{ route('indexDanhGiaAdmin', ['dienThoaiId' => $tp->id]) }}"><button type="button"
                                                                     class="btn btn-outline-secondary"
                                                                     title="Đánh giá của sản phẩm"><i
                                                                         class="fas fa-comment-alt"></i></button></a>

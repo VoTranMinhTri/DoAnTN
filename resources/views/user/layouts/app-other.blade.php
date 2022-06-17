@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/user/css/all.css') }}" type="text/css">
+    <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/admin/images/icon-logo.png') }}">
     <title>T&T Mobile</title>
@@ -59,10 +60,13 @@
                                 class="rounded-circle" width="40">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                            <a class="dropdown-item" href="/accountinformation"><i class="ti-user me-1 ms-1"></i>
                                 Thông tin của tôi</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i>
+                            <a class="dropdown-item" href="/ordermanagement"><i class="ti-user me-1 ms-1"></i>
+                                Đơn hàng của tôi</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
                                 Đổi
                                 mật khẩu</a>
                             <div class="dropdown-divider"></div>
@@ -96,5 +100,17 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+
+<!-- Table js -->
+<script src="{{ asset('assets/admin/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
+<script src="{{ asset('assets/admin/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
+<script src="{{ asset('assets/admin/extra-libs/DataTables/datatables.min.js') }}"></script>
+<script>
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable();
+    $('#one_config').DataTable();
+</script>
 
 </html>

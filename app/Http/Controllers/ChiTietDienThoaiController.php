@@ -16,8 +16,10 @@ use App\Models\TienIch;
 use App\Models\Pin_Sac;
 use App\Models\KetNoi;
 use App\Models\HeDieuHanh_CPU;
+use App\Models\DanhGia;
 use App\Models\HinhAnhMauSacCuaDienThoai;
 use App\Models\HinhAnhChungCuaDienThoai;
+use App\Models\PhanHoiDanhGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -654,12 +656,55 @@ class ChiTietDienThoaiController extends Controller
             ->first();
         $thongSoKyThuat->thoi_diem_ra_mat = Carbon::createFromFormat('Y-m-d', $thongSoKyThuat->thoi_diem_ra_mat)->format('d/m/Y');
 
+        $danhSachDanhGia = DanhGia::join('dien_thoais','dien_thoais.id','=','danh_gias.dien_thoai_id')
+        ->join('tai_khoans','tai_khoans.id','=','danh_gias.tai_khoan_id')
+        ->where('danh_gias.dien_thoai_id','=',$dienThoai->id)
+        ->select('danh_gias.*','tai_khoans.username')
+        ->get();
+        $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans','tai_khoans.id','=','phan_hoi_danh_gias.tai_khoan_id')
+        ->select('phan_hoi_danh_gias.*','tai_khoans.username','tai_khoans.loai_tai_khoan_id')
+        ->get();
+
+
+        $motsao = 0;
+        $haisao = 0;
+        $basao = 0;
+        $bonsao = 0;
+        $namsao = 0;
+        $soSaoTrungBinh = 0;
+
+        if(count($danhSachDanhGia) > 0){
+            $temp = 0;
+            foreach($danhSachDanhGia as $tp){
+                if($tp->so_sao == 5){
+                    $namsao++;
+                }else if($tp->so_sao == 4){
+                    $bonsao++;
+                }else if($tp->so_sao == 3){
+                    $basao++;
+                }else if($tp->so_sao == 2){
+                    $haisao++;
+                }else if($tp->so_sao == 1){
+                    $motsao++;
+                }
+                $temp += $tp->so_sao;
+            }
+            $motsao = $motsao / count($danhSachDanhGia) * 100;
+            $haisao = $haisao / count($danhSachDanhGia) * 100;
+            $basao = $basao / count($danhSachDanhGia) * 100;
+            $bonsao = $bonsao / count($danhSachDanhGia) * 100;
+            $namsao = $namsao / count($danhSachDanhGia) * 100;
+            $soSaoTrungBinh = $temp / count($danhSachDanhGia);
+        }
+
         return view('user/product-detail', [
             'danhSachHinhAnhNoiBat' => $danhSachHinhAnhNoiBat, 'danhSachHinhAnh360' => $danhSachHinhAnh360,
             'hinhAnhMauSacSanPhamDaiDien' => $hinhAnhMauSacSanPhamDaiDien, 'hinhAnhMoHop' => $hinhAnhMoHop,
             'danhSachHinhAnhMauSac' => $danhSachHinhAnhMauSac, 'dienThoai' => $dienThoai,
             'thongSoKyThuat' => $thongSoKyThuat, 'danhSachChiTiet' => $danhSachChiTiet,
-            'hinhAnhThongSoKyThuat' => $hinhAnhThongSoKyThuat
+            'hinhAnhThongSoKyThuat' => $hinhAnhThongSoKyThuat, 'danhSachDanhGia' => $danhSachDanhGia,
+            'soSaoTrungBinh' => $soSaoTrungBinh,'motsao'=>$motsao,'haisao'=>$haisao,'basao'=>$basao,
+            'bonsao'=>$bonsao,'namsao'=>$namsao, 'danhSachPhanHoi' => $danhSachPhanHoi
         ]);
     }
 

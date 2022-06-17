@@ -32,9 +32,14 @@ use App\Http\Controllers\KhoController;
 use App\Http\Controllers\ChiTietKhoController;
 use App\Http\Controllers\SanPhamPhanBoController;
 use App\Http\Controllers\ChamCongController;
+use App\Http\Controllers\DanhGiaController;
+use App\Http\Controllers\PhanHoiDanhGiaController;
 use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TrangChuController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,11 +69,17 @@ Route::middleware('checklogout')->group(function () {
     Route::resource('chiTietDienThoai', ChiTietDienThoaiController::class);
     Route::resource('hinhAnhChungCuaDienThoai', HinhAnhChungCuaDienThoaiController::class);
     Route::resource('hinhAnhMauSacCuaDienThoai', HinhAnhMauSacCuaDienThoaiController::class);
+    Route::resource('donHang', DonHangController::class);
 
     //Trang chủ của admin
     Route::get('/admin', function () {
         return view('admin/index');
     });
+    //Đổi mật khẩu
+    Route::get('/change-pass', function () {
+        return view('admin/management-page/change-pass');
+    });
+    Route::post('/change-pass', [TaiKhoanController::class, 'changepassword']);
     //Hình ảnh màu sắc của sản phẩm
     Route::get('/hinhAnhMauSac/{sanPhamId}', [HinhAnhMauSacCuaDienThoaiController::class, 'indexHinhAnhMauSac'])->name('hinhAnhMauSac');
     //Hình ảnh nổi bật của sản phẩm
@@ -87,7 +98,20 @@ Route::middleware('checklogout')->group(function () {
     Route::get('/khachHang', [TaiKhoanController::class, 'indexKhachHang'])->name('khachHang');
     //Thay đổi trạng thái khách hàng
     Route::post('/thayDoiTrangThaiTaiKhoan/{taiKhoanId}', [TaiKhoanController::class, 'thayDoiTrangThaiTaiKhoan'])->name('thayDoiTrangThaiTaiKhoan');
-
+    //Đơn hàng
+    Route::get('/indexDonHang/{token}', [DonHangController::class, 'indexDonHang'])->name('indexDonHang');
+    Route::get('/showDonHang/{maDonHang}', [DonHangController::class, 'showDonHang'])->name('showDonHang');
+    Route::post('/capNhatTrangThaiDH/{maDonHang}', [DonHangController::class, 'capNhatTrangThaiDH'])->name('capNhatTrangThaiDH');
+    //Đánh giá
+    Route::get('/indexDanhGiaAdmin/{dienThoaiId}', [DanhGiaController::class, 'indexDanhGiaAdmin'])->name('indexDanhGiaAdmin');
+    //Thay đổi trạng thái đánh giá
+    Route::post('/thayDoiTrangThaiDanhGia/{danhGiaId}', [DanhGiaController::class, 'thayDoiTrangThaiDanhGia'])->name('thayDoiTrangThaiDanhGia');
+    //Phản hồi đánh giá
+    Route::get('/indexPHDanhGia/{danhGiaId}', [PhanHoiDanhGiaController::class, 'indexPHDanhGia'])->name('indexPHDanhGia');
+    //Thay đổi trạng thái phản hồi đánh giá
+    Route::post('/thayDoiTrangThaiPHDanhGia/{pHDanhGiaId}', [PhanHoiDanhGiaController::class, 'thayDoiTrangThaiPHDanhGia'])->name('thayDoiTrangThaiPHDanhGia');
+    //Thêm phản hồi đánh giá
+    Route::post('/storePHDanhGia', [PhanHoiDanhGiaController::class, 'storePHDanhGia'])->name('storePHDanhGia');
 
     //Quyền truy cập kho
     Route::middleware('checkpermissionstorehouse')->group(function () {
@@ -146,7 +170,7 @@ Route::middleware('checklogout')->group(function () {
 Route::middleware('checkuser')->group(function () {
     Route::get('/signin', function () {
         return view('user/signin');
-    });
+    })->name('signin');
 });
 
 
@@ -163,34 +187,47 @@ Route::get('/chart', function () {
 
 //User
 Route::get('/', [TrangChuController::class, 'index'])->name('homeuser');
+//Đăng ký
 Route::get('/signup', function () {
     return view('user/signup');
 });
+Route::post('/signup', [TaiKhoanController::class, 'storeTaiKhoanKhachHang']);
+
 Route::get('/cart', function () {
     return view('user/cart');
 });
+//Lấy lại mật khẩu
 Route::get('/forgotpassword', function () {
     return view('user/forgotpassword');
 });
-Route::get('/reviewlist', function () {
-    return view('user/review-list');
-});
+Route::post('/forgotpassword', [TaiKhoanController::class, 'getPassword']);
 
-Route::get('/ordermanagement', function () {
-    return view('user/order-management');
+//Trang cập nhật mật khẩu
+Route::get('/recoverpassword', function () {
+    return view('user/recoverpassword');
 });
+Route::post('/recoverpassword', [TaiKhoanController::class, 'recoverPassword']);
 
-Route::get('/accountinformation', function () {
-    return view('user/account-information');
-});
+//Đơn hàng
+Route::get('/ordermanagement', [DonHangController::class, 'indexDonHangKH']);
+Route::get('/showDonHangKH/{maDonHang}', [DonHangController::class, 'showDonHangKH'])->name('showDonHangKH');
+Route::post('/huyDonHang/{maDonHang}', [DonHangController::class, 'huyDonHang'])->name('huyDonHang');
 
-Route::get('/orderdetail', function () {
-    return view('user/order-detail');
-});
+//Thông tin khách hàng
+Route::get('/accountinformation', [TaiKhoanController::class, 'thongTinTaiKhoanKH']);
+Route::get('/capNhatThongTin', [TaiKhoanController::class, 'capNhatThongTin']);
+Route::get('/thayDoiMatKhau', [TaiKhoanController::class, 'thayDoiMatKhau']);
+Route::get('/doiMatKhau', [TaiKhoanController::class, 'doiMatKhau']);
 
-Route::get('/pay', function () {
-    return view('user/pay');
-});
+//Đánh giá
+Route::get('/review', [DanhGiaController::class, 'indexDanhGiaKH']);
+Route::post('/storeDanhGia', [DanhGiaController::class, 'storeDanhGia'])->name('storeDanhGia');
+//Thêm phản hồi đánh giá
+Route::get('/storePHDanhGiaKH', [PhanHoiDanhGiaController::class, 'storePHDanhGiaKH']);
+//Tất cả đánh giá
+Route::get('/reviewlist/{dienThoaiId}',[DanhGiaController::class, 'listDanhGiaKH'])->name('reviewlist');
+//Lọc đánh giá
+Route::get('/filterReview', [DanhGiaController::class, 'filterReview']);
 
 //Lọc sản phẩm theo thương hiệu
 Route::get('/filterProduct', [TrangChuController::class, 'filterProduct']);
@@ -200,6 +237,7 @@ Route::get('/filterProductByPrice', [TrangChuController::class, 'filterProductBy
 //Chi tiết điện thoại
 Route::get('/productDetail/{sanPhamId}', [ChiTietDienThoaiController::class, 'productDetail'])->name('productDetail');
 
+//================================================//
 //Lấy giá
 Route::get('/layGia', [ChiTietDienThoaiController::class, 'layGia']);
 //Thêm sản phẩm vào giỏ
@@ -221,8 +259,10 @@ Route::get('/thanhToan', [GioHangController::class, 'thanhToan']);
 Route::get('/kiemTraSoLuong', [GioHangController::class, 'kiemTraSoLuong']);
 //Thanh toán VNPay
 Route::post('/vnpay_payment', [GioHangController::class, 'vnpay_payment'])->name('vnpay_payment');
-// Route::get('/checkVNPay', [GioHangController::class, 'checkVNPay'])->name('checkVNPay');
+//Thanh toán Momo
+Route::post('/momo_payment', [GioHangController::class, 'momo_payment'])->name('momo_payment');
 
+//================================================//
 // Google login
 Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [SocialController::class, 'handleGoogleCallback']);

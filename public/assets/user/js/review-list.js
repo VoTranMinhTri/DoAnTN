@@ -8,27 +8,6 @@ window.addEventListener("load", function () {
         }
     })
     );
-
-    const boxsort = this.document.querySelector('.boxsort-click-show');
-    const boxsortlist = this.document.querySelector('.boxsort-list');
-    const boxsortlistitem = this.document.querySelectorAll('.boxsort-list li');
-    boxsort.addEventListener("click", function (i) {
-        if (boxsort.className != "boxsort-click-show active") {
-            boxsort.className += " active";
-            boxsortlist.style = "display:block";
-        }
-        else {
-            boxsort.className = boxsort.className.replace(" active", "");
-            boxsortlist.style = "display:none";
-        }
-    });
-
-    [...boxsortlistitem].forEach((item) => item.addEventListener("click", function (i) {
-        document.querySelector(".boxsort-click-show.active").innerHTML = item.innerHTML;
-        boxsortlist.style = "display:none";
-        boxsort.className = boxsort.className.replace(" active", "");
-    })
-    );
 });
 
 //Hiển thị phản hồi

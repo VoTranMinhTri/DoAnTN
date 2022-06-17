@@ -8,10 +8,63 @@
                 </div>
             </section>
         </div>
+    @elseif(request()->vnp_TransactionStatus == '00')
+        <div class="giohang">
+            <div id="app">
+                <section>
+                    <div class='middleCart'>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <button style="display: none" id='vnpay-btn' onclick="thanhToanVNPay()"></button>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script>
+            document.getElementById('vnpay-btn').click();
+
+            function thanhToanVNPay() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ URL::to('thanhToan') }}',
+                    data: {
+                        'phuongThuc': 3,
+                    },
+                    success: function(data) {
+                        $('.middleCart').html(data);
+                    },
+                });
+            }
+        </script>
+    @elseif(request()->resultCode == '0')
+        <div class="giohang">
+            <div id="app">
+                <section>
+                    <div class='middleCart'>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <button style="display: none" id='momo-btn' onclick="thanhToanMomo()"></button>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script>
+            document.getElementById('momo-btn').click();
+
+            function thanhToanMomo() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ URL::to('thanhToan') }}',
+                    data: {
+                        'phuongThuc': 4,
+                    },
+                    success: function(data) {
+                        $('.middleCart').html(data);
+                    },
+                });
+            }
+        </script>
     @else
-        <?php
-        Session('Cart')->voucher = null;
-        ?>
         <div class="giohang">
             <section class="wrapper cart" style="padding: 20px 0;">
                 <div style="margin: auto;">
@@ -33,12 +86,19 @@
                                                 {{ $tp['productInfo']->ram }}/{{ $tp['productInfo']->bo_nho_trong }} -
                                                 {{ $tp['productInfo']->ten_mau_sac }}</a>
                                         </div>
+                                        <?php
+                                        $phanTramGiamVoucher = 0;
+                                        if (Session('Cart')->voucher != null) {
+                                            $phanTramGiamVoucher = Session('Cart')->voucher['phan_tram_giam'];
+                                        }
+                                        ?>
+
                                         @if ($tp['productInfo']->phan_tram_giam == 0)
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0) }}₫</span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0) }}₫</span>
                                         @else
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam, 0) }}<del>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0) }}<del>
                                                     {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0) }}₫
                                                 </del></span>
                                         @endif
@@ -53,6 +113,15 @@
                             </li>
                         @endforeach
                     </ul>
+                    @if ($phanTramGiamVoucher > 0)
+                        <div class="total-provisional">
+                            <span class="total-product-quantity">
+                                <span class="total-label">Áp dụng mã giảm giá:</span>
+                            </span>
+                            <span class="temp-total-money" style="font-weight: bold">Giảm
+                                {{ $phanTramGiamVoucher * 100 }}%</span>
+                        </div>
+                    @endif
                     <div class="total-provisional">
                         <span class="total-product-quantity">
                             <?php
@@ -60,7 +129,7 @@
                             $tamTinh = 0;
                             foreach (Session('Cart')->products as $tp) {
                                 $soLuong += $tp['quantity'];
-                                $tamTinh += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * $tp['productInfo']->phan_tram_giam);
+                                $tamTinh += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher));
                             }
                             ?>
                             <span class="total-label">Tạm tính </span>({{ $soLuong }} sản phẩm):
@@ -95,7 +164,7 @@
                                 </div>
                                 <div class="name phone">
                                     <input placeholder="Số điện thoại" type="tel" maxlength="10"
-                                        value="{{ $infoUser->sdt }}" name='sdt'>
+                                        value="{{ $infoUser->so_dien_thoai }}" name='sdt'>
                                 </div>
                                 {{-- <div class="name address">
                                     <input placeholder="Địa chỉ" maxlength="100">
@@ -149,7 +218,8 @@
                         <textarea placeholder="Ghi chú..." id='ghichu'></textarea>
                     </div>
                     <div class="finaltotal">
-                        <button type="button" class="submitorder" onclick="xacNhanThongTin()"><b style="text-transform:uppercase">Xác nhận thông tin</b></button>
+                        <button type="button" class="submitorder" onclick="xacNhanThongTin()"><b
+                                style="text-transform:uppercase">Xác nhận thông tin</b></button>
                     </div>
                 </div>
             </section>
@@ -197,7 +267,7 @@
                     success: function(data) {
                         $('.giohang').html(data);
                     },
-                    error: function(data){
+                    error: function(data) {
                         alertify.error(data.responseText);
                     }
                 });
@@ -217,7 +287,7 @@
                     success: function(data) {
                         $('.giohang').html(data);
                     },
-                    error: function(data){
+                    error: function(data) {
                         alertify.error(data.responseText);
                     }
                 });

@@ -19,6 +19,7 @@ class CreateDanhGiasTable extends Migration
             $table->foreignId('dien_thoai_id');
             $table->string('noi_dung');
             $table->integer('so_sao');
+            $table->integer('trang_thai');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('tai_khoan_id')->references('id')->on('tai_khoans');

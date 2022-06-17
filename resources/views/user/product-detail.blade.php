@@ -8,8 +8,7 @@
             </li>
             <li>
                 <span>›</span>
-                <a
-                    href="{{ route('productDetail', ['sanPhamId' => $dienThoai->id]) }}">{{ $dienThoai->ten_san_pham }}</a>
+                <a href="{{ route('productDetail', ['sanPhamId' => $dienThoai->id]) }}">{{ $dienThoai->ten_san_pham }}</a>
                 <meta property="position" content="2">
             </li>
         </ul>
@@ -18,11 +17,43 @@
             <div class='box-left'>
                 <div class='detail-rate'>
                     <p style="font: 14px/18px Arial,Helvetica,sans-serif;">
-                        <i class="icondetail-star"></i>
-                        <i class="icondetail-star"></i>
-                        <i class="icondetail-star"></i>
-                        <i class="icondetail-star"></i>
-                        <i class="icondetail-star"></i>
+                        @if ($soSaoTrungBinh > 4.5)
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                        @elseif($soSaoTrungBinh > 3.5)
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star-dark"></i>
+                        @elseif($soSaoTrungBinh > 2.5)
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                        @elseif($soSaoTrungBinh > 1.5)
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                        @elseif($soSaoTrungBinh > 0.5)
+                            <i class="icondetail-star"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                        @else
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                            <i class="icondetail-star-dark"></i>
+                        @endif
                     </p>
                     <p class="detail-rate-total">1 <span>đánh giá</span></p>
                 </div>
@@ -44,8 +75,8 @@
                                         @foreach ($danhSachHinhAnhNoiBat as $tp)
                                             <div class='owl-item' style="width: 710px;">
                                                 <a href="#" class="slider-item ">
-                                                    <img src="{{ asset('storage/images/' . $tp->hinh_anh) }}" width="710"
-                                                        height="394">
+                                                    <img src="{{ asset('storage/images/' . $tp->hinh_anh) }}"
+                                                        width="710" height="394">
                                                 </a>
                                             </div>
                                         @endforeach
@@ -74,8 +105,8 @@
                                                     <div class='owl-item' style="width: 710px;">
                                                         <a href="#" class="slider-item ">
                                                             <img src="{{ asset('storage/images/' . $ha->hinh_anh) }}"
-                                                                class='owl-lazy' style='opacity: 1;' alt="" width="710"
-                                                                height="473.33px">
+                                                                class='owl-lazy' style='opacity: 1;' alt=""
+                                                                width="710" height="473.33px">
                                                         </a>
                                                     </div>
                                                 @endif
@@ -108,8 +139,8 @@
                                 <div id="thumb-color-images-gallery-{{ $tp->mau_sac_id }}" class="item itemTab"
                                     data-gallery-id="color-images-gallery-{{ $tp->mau_sac_id }}">
                                     <div class="item-border">
-                                        <img alt="Bạc" width="41" height="41" loading="lazy" class=" lazyloaded"
-                                            src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
+                                        <img alt="Bạc" width="41" height="41" loading="lazy"
+                                            class=" lazyloaded" src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
                                     </div>
                                     <p>{{ $tp->ten_mau_sac }}</p>
                                 </div>
@@ -157,7 +188,8 @@
                             Hình 360 độ
                         </li>
                         <li data-tab-id="tab-specification-gallery-0" class="tab-item" data-is-360-gallery="False"
-                            data-gallery-id="specification-gallery" data-color-id="0" data-thump-name="Thông số kỹ thuật">
+                            data-gallery-id="specification-gallery" data-color-id="0"
+                            data-thump-name="Thông số kỹ thuật">
                             Thông số kỹ thuật
                         </li>
                         {{-- <li data-tab-id="tab-article-gallery-0" class="tab-item" data-is-360-gallery="False"
@@ -194,7 +226,8 @@
                             <div class="content-t-list">
                                 <div id="three-d-degree-image" style="width: 100%; cursor: move;">
                                     @foreach ($danhSachHinhAnh360 as $tp)
-                                        <img style="cursor: move;" src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
+                                        <img style="cursor: move;"
+                                            src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
                                     @endforeach
                                 </div>
                             </div>
@@ -235,8 +268,7 @@
                                                     <p>Màn hình rộng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->man_hinh_rong }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->man_hinh_rong }}</span>
                                                 </div>
                                             </li>
                                             <li>
@@ -244,8 +276,7 @@
                                                     <p>Độ sáng tối đa:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->do_sang_toi_da }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->do_sang_toi_da }}</span>
                                                 </div>
                                             </li>
                                             <li>
@@ -268,8 +299,7 @@
                                                         phân giải:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->sau_phan_giai }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->sau_phan_giai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="31" data-group-id="1841" data-index="2">
@@ -278,7 +308,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->quay_phim }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->quay_phim }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -313,8 +344,7 @@
                                                         phân giải:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->truoc_phan_giai }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->truoc_phan_giai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="7801" data-group-id="2701" data-index="4">
@@ -358,8 +388,7 @@
                                                         độ CPU:</a>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->toc_do_cpu }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->toc_do_cpu }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="6079" data-group-id="2121" data-index="5">
@@ -390,8 +419,7 @@
                                                     <p>Bộ nhớ trong:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->bo_nho_trong }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->bo_nho_trong }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="7803" data-group-id="22" data-index="3">
@@ -399,8 +427,7 @@
                                                     <p>Bộ nhớ còn lại (khả dụng) khoảng:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->bo_nho_con_lai }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->bo_nho_con_lai }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="52" data-group-id="22" data-index="4">
@@ -449,7 +476,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->wifi }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->wifi }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -459,7 +487,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->gps }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->gps }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -469,7 +498,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->bluetooth }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->bluetooth }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -487,8 +517,7 @@
                                                     <p>Jack tai nghe:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->jack_tai_nghe }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->jack_tai_nghe }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="5199" data-group-id="24" data-index="13">
@@ -510,8 +539,7 @@
                                                     <p>Dung lượng pin:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->dung_luong_pin }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->dung_luong_pin }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="83" data-group-id="2122" data-index="2">
@@ -528,8 +556,7 @@
                                                     <p>Hỗ trợ sạc tối đa:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->ho_tro_sac_toi_da }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->ho_tro_sac_toi_da }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="26847" data-group-id="2122" data-index="4">
@@ -537,8 +564,7 @@
                                                     <p>Sạc kèm theo máy:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->sac_kem_theo_may }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->sac_kem_theo_may }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="10859" data-group-id="2122" data-index="5">
@@ -578,8 +604,7 @@
                                                     <p>Kháng nước, bụi:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->khang_nuoc_bui }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->khang_nuoc_bui }}</span>
                                                 </div>
                                             </li>
                                             <li data-id="36" data-group-id="19" data-index="4">
@@ -596,7 +621,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->xem_phim }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->xem_phim }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -606,7 +632,8 @@
                                                 </div>
                                                 <div class="ctRight">
                                                     <p class="circle">
-                                                        <a href="#" target="_blank">{{ $thongSoKyThuat->nghe_nhac }}</a>
+                                                        <a href="#"
+                                                            target="_blank">{{ $thongSoKyThuat->nghe_nhac }}</a>
                                                     </p>
                                                 </div>
                                             </li>
@@ -646,8 +673,7 @@
                                                     <p>Thời điểm ra mắt:</p>
                                                 </div>
                                                 <div class="ctRight">
-                                                    <span
-                                                        class="">{{ $thongSoKyThuat->thoi_diem_ra_mat }}</span>
+                                                    <span class="">{{ $thongSoKyThuat->thoi_diem_ra_mat }}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -655,265 +681,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="content-t" data-tab-id="tab-article-gallery-0" data-gallery-id="article-gallery">
-                            <a class="top-flag" name="top-article"></a>
-                            <div class="article content-t-wrap">
-                                <div class="article-content showall review-post">
-                                    <h3><a href="https://www.thegioididong.com/dtdd/oppo-reno6-z-5g" target="_blank"
-                                            title="Tham khảo điện thoại OPPO Reno6 Z 5G kinh doanh chính hãng tại Thegioididong.com">Reno6
-                                            Z 5G</a> đến từ nhà <a href="https://www.thegioididong.com/dtdd-oppo"
-                                            target="_blank"
-                                            title="Tham khảo điện thoại OPPO đang bán tại thegioididong.com">OPPO</a> với
-                                        hàng loạt sự nâng cấp và cải tiến không chỉ ngoại hình bên ngoài mà còn sức mạnh bên
-                                        trong. Đặc biệt, chiếc <a href="https://www.thegioididong.com/dtdd" target="_blank"
-                                            title="Tham khảo điện thoại đang bán tại thegioididong.com">điện thoại</a> được
-                                        hãng đánh giá “chuyên gia chân dung bắt trọn mọi cảm xúc chân thật nhất”, đây chắc
-                                        chắn sẽ là một “siêu phẩm" mà bạn không thể bỏ qua.</h3>
-                                    <h3>Bộ 3 camera chuyên nghiệp - Mỗi cảm xúc, một chân dung</h3>
-                                    <p>Hệ thống camera sau được trang bị tối tân, trong đó có camera chính 64 MP, <a
-                                            href="https://www.thegioididong.com/dtdd-camera-goc-rong" target="_blank"
-                                            title="Tham khảo điện thoại có camera góc siêu rộng tại Thegioididong.com">camera
-                                            góc siêu rộng</a> 8 MP và <a
-                                            href="https://www.thegioididong.com/dtdd-camera-macro" target="_blank"
-                                            title="Tham khảo điện thoại có camera macro kinh doanh tại Thegioididong.com">camera
-                                            macro</a> 2 MP cùng camera trước 32 MP luôn sẵn sàng bắt trọn mọi cảm xúc trong
-                                        khung hình, giúp người dùng thoải mái ghi lại những khoảnh khắc trong cuộc sống một
-                                        cách ấn tượng nhất.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-01.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Cụm camera sau"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Cụm camera sau"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-01.jpg') }}"></a>
-                                    </p>
-                                    <p>Camera chính có độ phân giải cao và nhờ thuật toán có thể tăng độ phân giải bức ảnh
-                                        lên đến 108 MP. Với tính năng này, chúng ta sẽ rất dễ dàng chụp được những bức ảnh
-                                        đông người hay các cảnh vật ở xa và khi zoom lên các chi tiết vẫn rất rõ nét.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-02.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-02.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-02.jpg') }}"></a>
-                                    </p>
-                                    <p>Đón đầu xu hướng cùng nhà OPPO với tính năng đột phá “Chân dung Bokeh Flare” không
-                                        chỉ đơn thuần là xóa phông, mà nó sẽ xử lý chủ thể và hậu cảnh một cách độc lập, từ
-                                        đó kết hợp cùng công nghệ AI chỉnh ánh sáng phía sau thành phông nền ảo diệu làm cho
-                                        tổng thể bức ảnh lung linh hơn và nghệ thuật hơn.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-34.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-34.jpg"
-                                                class=" ls-is-cached lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-34.jpg') }}"></a>
-                                    </p>
-                                    <p>Tính năng chụp ảnh nhanh SnapShot cho độ phơi sáng lên đến 1/1000 ms ở ngoài trời với
-                                        ánh sáng tốt. Qua đó, bạn có thể bắt trọn từng chuyển động của đối tượng như trẻ em
-                                        đang chạy nhảy, các bộ môn thể thao với độ rõ nét tốt hơn.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-23.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-23.jpg"
-                                                class=" ls-is-cached lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-23.jpg') }}"></a>
-                                    </p>
-                                    <p>Giờ đây mỗi chuyển động đều được Reno6 Z 5G ghi lại rõ ràng và sắc nét với quay phim
-                                        4K, tốc độ 30 FPS cho chất lượng hình ảnh trong video mượt mà. Cùng tính năng Live
-                                        HDR giúp cân bằng ánh sáng để làm cho chủ thể nổi bật, sáng hơn trong điều kiện
-                                        thiếu sáng dù ban ngày hay lẫn ban đêm.
-                                    </p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-42.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Live HDR"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-42.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Live HDR"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-42.jpg') }}"></a>
-                                    </p>
-                                    <p>Nhân đôi cảm xúc cùng tính năng video hiển thị kép cho phép bạn quay video cả camera
-                                        trước và camera sau, cả hai video được hiển thị đồng thời trên màn hình, thật là ý
-                                        nghĩa để bạn có thể ghi lại những khoảnh khắc đáng nhớ khi đi khám phá, du lịch.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-41.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6Z 5G - Camera"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-41.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6Z 5G - Camera"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-41.jpg') }}"></a>
-                                    </p>
-                                    <h3>Thiết kế thời thượng, vẻ ngoài đầy ấn tượng</h3>
-                                    <p>Reno6 Z 5G với thiết kế nguyên khối siêu <a
-                                            href="https://www.thegioididong.com/dtdd-mong-nhe" target="_blank"
-                                            title="Tham khảo điện thoại với thiết kế mỏng nhẹ đang bán tại thegioididong.com">mỏng
-                                            nhẹ</a> 173 gam cùng các góc cạnh bo cong mềm mại, uyển chuyển mang đến sự mượt
-                                        mà và tinh tế, cho bạn dễ dàng cầm nắm trong quá trình sử dụng.&nbsp;</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-04.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Thiết kế mỏng nhẹ 173 g"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-04.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Thiết kế mỏng nhẹ 173 g"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-04.jpg') }}"></a>
-                                    </p>
-                                    <p>Mặt lưng của máy được trang bị hiệu ứng quang phổ kim cương tích hợp bởi rất nhiều
-                                        lớp vật liệu khác nhau tạo ra hiệu ứng màu độc đáo trong từng điều kiện môi trường
-                                        và ánh sáng khác nhau.</p>
-                                    <p>Reno6 Z có 2 màu sắc độc đáo: Đen huyền bí và Bạc đa sắc được phủ một lớp Reno Glow
-                                        cho mặt lưng nhám, hạn chế bám bẩn, dấu vân tay.&nbsp;</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-03.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Thiết kế mặt lưng đẹp mắt với 2 màu sắc đi kèm"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-03.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Thiết kế mặt lưng đẹp mắt với 2 màu sắc đi kèm"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-03.jpg') }}"></a>
-                                    </p>
-                                    <p>Mặt trước của điện thoại cũng không kém phần ấn tượng với màn hình thiết kế kiểu cạnh
-                                        viền mỏng tích hợp <a href="https://www.thegioididong.com/dtdd-bao-mat-van-tay"
-                                            target="_blank"
-                                            title="Tham khảo điện thoại có bảo mật vân tay đang bán tại Thegioididong.com">bảo
-                                            mật vân tay</a> dưới màn hình 3.0, cho tốc độ mở máy nhanh hơn, nhạy hơn và bảo
-                                        mật tốt hơn.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-29.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Cảm biến vân tay dưới màn hình"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-29.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Cảm biến vân tay dưới màn hình"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-29.jpg') }}"></a>
-                                    </p>
-                                    <h3>Không gian hiển thị lớn với <a
-                                            href="https://www.thegioididong.com/dtdd-tu-6-inch-tro-len" target="_blank"
-                                            title="Tham khảo điện thoại màn hình 6 inch trở lên đang bán tại thegioididong.com">màn
-                                            hình 6.43 inch</a></h3>
-                                    <p>Reno6 Z 5G sẽ sở hữu <a
-                                            href="https://www.thegioididong.com/hoi-dap/man-hinh-amoled-la-gi-905766"
-                                            target="_blank" title="Màn hình AMOLED là gì?">màn hình AMOLED</a>&nbsp;6.43
-                                        inch cùng độ phân giải Full HD+, giúp tái tạo màu sắc cho độ chân thực cao hơn, đem
-                                        đến hình ảnh sắc nét và góc nhìn rộng hơn đáng kể.&nbsp;</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-24.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Trang bị màn hình AMOLED"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-24.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Trang bị màn hình AMOLED"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-24.jpg') }}"></a>
-                                    </p>
-                                    <p>Không những thế màn hình của thiết bị được bảo vệ bởi kính cường lực Gorilla Glass 5
-                                        tăng độ bền cho máy, giúp máy càng trở nên cứng cáp hơn hẳn, hạn chế được các va
-                                        đập, trầy xước.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-20.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Thiết kế"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-20.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Thiết kế"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-20.jpg') }}"></a>
-                                    </p>
-                                    <p>Để mắt người dùng luôn thoải mái khi sử dụng điện thoại, đặc biệt trong thời gian
-                                        dài, màn hình Reno6 Z 5G đã&nbsp;đạt&nbsp;được chứng nhận màn hình bảo vệ mắt toàn
-                                        diện bởi SGS.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-25.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Màn hình đạt được chứng nhận bảo vệ mắt toàn diện bởi SGS"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-25.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Màn hình đạt được chứng nhận bảo vệ mắt toàn diện bởi SGS"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-25.jpg') }}"></a>
-                                    </p>
-                                    <p>Ngoài ra, máy còn đạt các chứng nhận của Netflix HD và Amazon Prime video HD cho bạn
-                                        trải nghiệm các bộ phim điện ảnh hay truyền hình yêu thích trên nền tảng xem phim
-                                        tốt nhất.&nbsp;</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-26.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Đạt các chứng nhận của Netflix HD và Amazon Prime video HD"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-26.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Đạt các chứng nhận của Netflix HD và Amazon Prime video HD"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-26.jpg') }}"></a>
-                                    </p>
-                                    <h3>Hiệu năng mạnh mẽ, cân được nhiều tác vụ</h3>
-                                    <p>Reno6 Z 5G được trang bị con chip MediaTek Dimensity 800U 5G 8 nhân, với con chip này
-                                        người dùng có thể thoải mái trải nghiệm các game đồ họa hot nhất hiện nay như: Liên
-                                        Quân, PUBG,... và các thao tác cơ bản hằng ngày như lướt web, xem youtube đều diễn
-                                        ra một cách mượt mà, trơn tru.&nbsp;</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-2.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Trang bị chip Dimensity 800U 5G"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-2.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Trang bị chip Dimensity 800U 5G"
-                                                src="{{ asset('assets/user/images/oppo-reno6-z-5g-2.jpg') }}"></a>
-                                    </p>
-                                    <p>Máy sở hữu <a href="https://www.thegioididong.com/dtdd-oppo-ram-8gb" target="_blank"
-                                            title="Tham khảo điện thoại OPPO RAM 8 GB đang bán tại thegioididong.com">RAM 8
-                                            GB</a> cùng công nghệ cải tiến bạn có thể mở rộng RAM thêm đến 5 GB giúp bạn xử
-                                        lý tác vụ đa nhiệm được mượt hơn, hạn chế tình trạng giật hay đơ máy. Bạn cũng có
-                                        thể lưu trữ nhiều tài liệu cũng như tải các ứng dụng cần thiết, các game giải trí
-                                        yêu thích với <a href="https://www.thegioididong.com/dtdd-oppo-rom-128gb"
-                                            target="_blank"
-                                            title="Tham khảo Điện thoại OPPO ROM 128 GB đang bán tại thegioididong,com">bộ
-                                            nhớ trong 128 GB</a>.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-30.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6Z 5G - RAM"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-30.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6Z 5G - RAM"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-30.jpg') }}"></a>
-                                    </p>
-                                    <p>Reno6 Z được hỗ trợ kết nối mạng <a href="https://www.thegioididong.com/dtdd-5g"
-                                            target="_blank"
-                                            title="Tham khảo điện thoại hỗ trợ 5G đang bán tại thegioididong.com">5G</a>,
-                                        mang đến tốc độ truyền tải nhanh hơn gấp nhiều lần khi so sánh với mạng 4G, từ đó mà
-                                        việc tải dữ liệu được diễn ra nhanh chóng, độ trễ được hạ xuống mức thấp nhất sẽ
-                                        giúp ích rất nhiều cho các nhu cầu giải trí đặc biệt là game online.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-14.jpg"
-                                            onclick="return false;"><img
-                                                alt="OPPO Reno6 Z 5G - Với kết nối 5G tăng cảm giác trải nghiệm tốt hơn"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-14.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Với kết nối 5G tăng cảm giác trải nghiệm tốt hơn"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-14.jpg') }}"></a>
-                                    </p>
-                                    <p>Hệ thống làm mát đa năng được tích hợp tấm tản nhiệt ngay trên phần mềm và phần cứng
-                                        giúp điện thoại luôn được làm mát. Ngoài ra, máy còn hỗ trợ chế độ Game Focus có thể
-                                        tắt được hết các cuộc gọi, tin nhắn,... để bạn có thể tập trung vào các trận đấu mà
-                                        không bị làm phiền.</p>
-                                    <h3>Viên pin lớn, hỗ trợ <a href="https://www.thegioididong.com/dtdd-sac-pin-nhanh"
-                                            target="_blank"
-                                            title="Tham khảo điện thoại sạc pin nhanh đang bán tại thegioididong.com">sạc
-                                            nhanh</a> 30 W</h3>
-                                    <p>Reno6 Z 5G được tích hợp viên pin dung lượng lớn 4.310 mAh đáp ứng tốt cho nhu cầu sử
-                                        dụng của người dùng như xem phim hay chơi game cả ngày dài mà không bị hết pin quá
-                                        nhanh.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-12.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Dung lượng pin lớn 4310 mAh"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-12.jpg"
-                                                class=" lazyloaded"
-                                                title="OPPO Reno6 Z 5G - Dung lượng pin lớn 4310 mAh"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-12.jpg') }}"></a>
-                                    </p>
-                                    <p>Ngoài ra, Reno6 Z 5G còn hỗ trợ sạc siêu nhanh VOOC 30 W sạc qua cổng Type-C, máy có
-                                        thể sạc đầy 100% pin chỉ khoảng 52 phút, rất là nhanh và tiện lợi, bạn có thể làm
-                                        được nhiều công việc hơn, tiết kiệm tối đa thời gian sạc pin, tự do giải trí mà
-                                        không lo sạc hoài.</p>
-                                    <p><a class="preventdefault"
-                                            href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-31.jpg"
-                                            onclick="return false;"><img alt="OPPO Reno6 Z 5G - Hỗ trợ sạc nhanh 30 W"
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-31.jpg"
-                                                class=" lazyloaded" title="OPPO Reno6 Z 5G - Hỗ trợ sạc nhanh 30 W"
-                                                src="{{ asset('assets/user/images/reno6-z-5g-31.jpg') }}"></a>
-                                    </p>
-                                    <p>Reno6 Z 5G với thiết kế tinh tế, cụm camera với nhiều tính năng chuyên nghiệp, hiệu
-                                        năng ổn định, phần mềm được tối ưu hoá thông minh. Đây không chỉ là một sản phẩm mà
-                                        nó còn là người bạn đồng hành lâu dài, hỗ trợ bạn tạo ra những cảm xúc thăng hoa
-                                        trong những khoảnh khắc đáng nhớ.</p>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="policy_intuitive cate42 scenarioNomal">
@@ -951,231 +718,55 @@
                     <img class=" lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
                         src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}">
                 </div>
-                {{-- <div class="article content-t-wrap">
-                    <div class="article-content short">
-                        <h3 class="article-content-title">Thông tin sản phẩm</h3>
-                        <h3><a href="https://www.thegioididong.com/dtdd/oppo-reno6-z-5g" target="_blank"
-                                title="Tham khảo điện thoại OPPO Reno6 Z 5G kinh doanh chính hãng tại Thegioididong.com">Reno6
-                                Z 5G</a> đến từ nhà <a href="https://www.thegioididong.com/dtdd-oppo" target="_blank"
-                                title="Tham khảo điện thoại OPPO đang bán tại thegioididong.com">OPPO</a> với hàng loạt sự
-                            nâng cấp và cải tiến không chỉ ngoại hình bên ngoài mà còn sức mạnh bên trong. Đặc biệt, chiếc
-                            <a href="https://www.thegioididong.com/dtdd" target="_blank"
-                                title="Tham khảo điện thoại đang bán tại thegioididong.com">điện thoại</a> được hãng đánh
-                            giá “chuyên gia chân dung bắt trọn mọi cảm xúc chân thật nhất”, đây chắc chắn sẽ là một “siêu
-                            phẩm" mà bạn không thể bỏ qua.
-                        </h3>
-                        <h3>Bộ 3 camera chuyên nghiệp - Mỗi cảm xúc, một chân dung</h3>
-                        <p>Hệ thống camera sau được trang bị tối tân, trong đó có camera chính 64 MP, <a
-                                href="https://www.thegioididong.com/dtdd-camera-goc-rong" target="_blank"
-                                title="Tham khảo điện thoại có camera góc siêu rộng tại Thegioididong.com">camera góc siêu
-                                rộng</a> 8 MP và <a href="https://www.thegioididong.com/dtdd-camera-macro" target="_blank"
-                                title="Tham khảo điện thoại có camera macro kinh doanh tại Thegioididong.com">camera
-                                macro</a> 2 MP cùng camera trước 32 MP luôn sẵn sàng bắt trọn mọi cảm xúc trong khung hình,
-                            giúp người dùng thoải mái ghi lại những khoảnh khắc trong cuộc sống một cách ấn tượng nhất.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-01.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Cụm camera sau"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-01.jpg"
-                                    class=" lazyloaded" title="OPPO Reno6 Z 5G - Cụm camera sau"
-                                    src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-01.jpg"></a></p>
-                        <p>Camera chính có độ phân giải cao và nhờ thuật toán có thể tăng độ phân giải bức ảnh lên đến 108
-                            MP. Với tính năng này, chúng ta sẽ rất dễ dàng chụp được những bức ảnh đông người hay các cảnh
-                            vật ở xa và khi zoom lên các chi tiết vẫn rất rõ nét.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-02.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-02.jpg"
-                                    class=" lazyloaded" title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                    src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-02.jpg"></a></p>
-                        <p>Đón đầu xu hướng cùng nhà OPPO với tính năng đột phá “Chân dung Bokeh Flare” không chỉ đơn thuần
-                            là xóa phông, mà nó sẽ xử lý chủ thể và hậu cảnh một cách độc lập, từ đó kết hợp cùng công nghệ
-                            AI chỉnh ánh sáng phía sau thành phông nền ảo diệu làm cho tổng thể bức ảnh lung linh hơn và
-                            nghệ thuật hơn.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-34.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-34.jpg"
-                                    class=" lazyloaded" title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                    src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-34.jpg"></a></p>
-                        <p>Tính năng chụp ảnh nhanh SnapShot cho độ phơi sáng lên đến 1/1000 ms ở ngoài trời với ánh sáng
-                            tốt. Qua đó, bạn có thể bắt trọn từng chuyển động của đối tượng như trẻ em đang chạy nhảy, các
-                            bộ môn thể thao với độ rõ nét tốt hơn.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-23.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Ảnh chụp trên camera"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-23.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Ảnh chụp trên camera"></a></p>
-                        <p>Giờ đây mỗi chuyển động đều được Reno6 Z 5G ghi lại rõ ràng và sắc nét với quay phim 4K, tốc độ
-                            30 FPS cho chất lượng hình ảnh trong video mượt mà. Cùng tính năng Live HDR giúp cân bằng ánh
-                            sáng để làm cho chủ thể nổi bật, sáng hơn trong điều kiện thiếu sáng dù ban ngày hay lẫn ban
-                            đêm.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-42.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Live HDR"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-42.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Live HDR"></a></p>
-                        <p>Nhân đôi cảm xúc cùng tính năng video hiển thị kép cho phép bạn quay video cả camera trước và
-                            camera sau, cả hai video được hiển thị đồng thời trên màn hình, thật là ý nghĩa để bạn có thể
-                            ghi lại những khoảnh khắc đáng nhớ khi đi khám phá, du lịch.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-41.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6Z 5G - Camera"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-41.jpg"
-                                    class="lazyload" title="OPPO Reno6Z 5G - Camera"></a></p>
-                        <h3>Thiết kế thời thượng, vẻ ngoài đầy ấn tượng</h3>
-                        <p>Reno6 Z 5G với thiết kế nguyên khối siêu <a href="https://www.thegioididong.com/dtdd-mong-nhe"
-                                target="_blank"
-                                title="Tham khảo điện thoại với thiết kế mỏng nhẹ đang bán tại thegioididong.com">mỏng
-                                nhẹ</a> 173 gam cùng các góc cạnh bo cong mềm mại, uyển chuyển mang đến sự mượt mà và tinh
-                            tế, cho bạn dễ dàng cầm nắm trong quá trình sử dụng.&nbsp;</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-04.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Thiết kế mỏng nhẹ 173 g"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-04.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Thiết kế mỏng nhẹ 173 g"></a></p>
-                        <p>Mặt lưng của máy được trang bị hiệu ứng quang phổ kim cương tích hợp bởi rất nhiều lớp vật liệu
-                            khác nhau tạo ra hiệu ứng màu độc đáo trong từng điều kiện môi trường và ánh sáng khác nhau.</p>
-                        <p>Reno6 Z có 2 màu sắc độc đáo: Đen huyền bí và Bạc đa sắc được phủ một lớp Reno Glow cho mặt lưng
-                            nhám, hạn chế bám bẩn, dấu vân tay.&nbsp;</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-03.jpg"
-                                onclick="return false;"><img
-                                    alt="OPPO Reno6 Z 5G - Thiết kế mặt lưng đẹp mắt với 2 màu sắc đi kèm"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-03.jpg"
-                                    class="lazyload"
-                                    title="OPPO Reno6 Z 5G - Thiết kế mặt lưng đẹp mắt với 2 màu sắc đi kèm"></a></p>
-                        <p>Mặt trước của điện thoại cũng không kém phần ấn tượng với màn hình thiết kế kiểu cạnh viền mỏng
-                            tích hợp <a href="https://www.thegioididong.com/dtdd-bao-mat-van-tay" target="_blank"
-                                title="Tham khảo điện thoại có bảo mật vân tay đang bán tại Thegioididong.com">bảo mật vân
-                                tay</a> dưới màn hình 3.0, cho tốc độ mở máy nhanh hơn, nhạy hơn và bảo mật tốt hơn.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-29.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Cảm biến vân tay dưới màn hình"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-29.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Cảm biến vân tay dưới màn hình"></a>
-                        </p>
-                        <h3>Không gian hiển thị lớn với <a href="https://www.thegioididong.com/dtdd-tu-6-inch-tro-len"
-                                target="_blank"
-                                title="Tham khảo điện thoại màn hình 6 inch trở lên đang bán tại thegioididong.com">màn hình
-                                6.43 inch</a></h3>
-                        <p>Reno6 Z 5G sẽ sở hữu <a href="https://www.thegioididong.com/hoi-dap/man-hinh-amoled-la-gi-905766"
-                                target="_blank" title="Màn hình AMOLED là gì?">màn hình AMOLED</a>&nbsp;6.43 inch cùng độ
-                            phân giải Full HD+, giúp tái tạo màu sắc cho độ chân thực cao hơn, đem đến hình ảnh sắc nét và
-                            góc nhìn rộng hơn đáng kể.&nbsp;</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-24.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Trang bị màn hình AMOLED"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-24.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Trang bị màn hình AMOLED"></a></p>
-                        <p>Không những thế màn hình của thiết bị được bảo vệ bởi kính cường lực Gorilla Glass 5 tăng độ bền
-                            cho máy, giúp máy càng trở nên cứng cáp hơn hẳn, hạn chế được các va đập, trầy xước.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-20.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Thiết kế"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-20.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Thiết kế"></a></p>
-                        <p>Để mắt người dùng luôn thoải mái khi sử dụng điện thoại, đặc biệt trong thời gian dài, màn hình
-                            Reno6 Z 5G đã&nbsp;đạt&nbsp;được chứng nhận màn hình bảo vệ mắt toàn diện bởi SGS.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-25.jpg"
-                                onclick="return false;"><img
-                                    alt="OPPO Reno6 Z 5G - Màn hình đạt được chứng nhận bảo vệ mắt toàn diện bởi SGS"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-25.jpg"
-                                    class="lazyload"
-                                    title="OPPO Reno6 Z 5G - Màn hình đạt được chứng nhận bảo vệ mắt toàn diện bởi SGS"></a>
-                        </p>
-                        <p>Ngoài ra, máy còn đạt các chứng nhận của Netflix HD và Amazon Prime video HD cho bạn trải nghiệm
-                            các bộ phim điện ảnh hay truyền hình yêu thích trên nền tảng xem phim tốt nhất.&nbsp;</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-26.jpg"
-                                onclick="return false;"><img
-                                    alt="OPPO Reno6 Z 5G - Đạt các chứng nhận của Netflix HD và Amazon Prime video HD"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-26.jpg"
-                                    class="lazyload"
-                                    title="OPPO Reno6 Z 5G - Đạt các chứng nhận của Netflix HD và Amazon Prime video HD"></a>
-                        </p>
-                        <h3>Hiệu năng mạnh mẽ, cân được nhiều tác vụ</h3>
-                        <p>Reno6 Z 5G được trang bị con chip MediaTek Dimensity 800U 5G 8 nhân, với con chip này người dùng
-                            có thể thoải mái trải nghiệm các game đồ họa hot nhất hiện nay như: Liên Quân, PUBG,... và các
-                            thao tác cơ bản hằng ngày như lướt web, xem youtube đều diễn ra một cách mượt mà, trơn
-                            tru.&nbsp;</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/oppo-reno6-z-5g-2.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Trang bị chip Dimensity 800U 5G"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/oppo-reno6-z-5g-2.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Trang bị chip Dimensity 800U 5G"></a>
-                        </p>
-                        <p>Máy sở hữu <a href="https://www.thegioididong.com/dtdd-oppo-ram-8gb" target="_blank"
-                                title="Tham khảo điện thoại OPPO RAM 8 GB đang bán tại thegioididong.com">RAM 8 GB</a> cùng
-                            công nghệ cải tiến bạn có thể mở rộng RAM thêm đến 5 GB giúp bạn xử lý tác vụ đa nhiệm được mượt
-                            hơn, hạn chế tình trạng giật hay đơ máy. Bạn cũng có thể lưu trữ nhiều tài liệu cũng như tải các
-                            ứng dụng cần thiết, các game giải trí yêu thích với <a
-                                href="https://www.thegioididong.com/dtdd-oppo-rom-128gb" target="_blank"
-                                title="Tham khảo Điện thoại OPPO ROM 128 GB đang bán tại thegioididong,com">bộ nhớ trong 128
-                                GB</a>.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-30.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6Z 5G - RAM"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-30.jpg"
-                                    class="lazyload" title="OPPO Reno6Z 5G - RAM"></a></p>
-                        <p>Reno6 Z được hỗ trợ kết nối mạng <a href="https://www.thegioididong.com/dtdd-5g" target="_blank"
-                                title="Tham khảo điện thoại hỗ trợ 5G đang bán tại thegioididong.com">5G</a>, mang đến tốc
-                            độ truyền tải nhanh hơn gấp nhiều lần khi so sánh với mạng 4G, từ đó mà việc tải dữ liệu được
-                            diễn ra nhanh chóng, độ trễ được hạ xuống mức thấp nhất sẽ giúp ích rất nhiều cho các nhu cầu
-                            giải trí đặc biệt là game online.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-14.jpg"
-                                onclick="return false;"><img
-                                    alt="OPPO Reno6 Z 5G - Với kết nối 5G tăng cảm giác trải nghiệm tốt hơn"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-14.jpg"
-                                    class="lazyload"
-                                    title="OPPO Reno6 Z 5G - Với kết nối 5G tăng cảm giác trải nghiệm tốt hơn"></a></p>
-                        <p>Hệ thống làm mát đa năng được tích hợp tấm tản nhiệt ngay trên phần mềm và phần cứng giúp điện
-                            thoại luôn được làm mát. Ngoài ra, máy còn hỗ trợ chế độ Game Focus có thể tắt được hết các cuộc
-                            gọi, tin nhắn,... để bạn có thể tập trung vào các trận đấu mà không bị làm phiền.</p>
-                        <h3>Viên pin lớn, hỗ trợ <a href="https://www.thegioididong.com/dtdd-sac-pin-nhanh" target="_blank"
-                                title="Tham khảo điện thoại sạc pin nhanh đang bán tại thegioididong.com">sạc nhanh</a> 30 W
-                        </h3>
-                        <p>Reno6 Z 5G được tích hợp viên pin dung lượng lớn 4.310 mAh đáp ứng tốt cho nhu cầu sử dụng của
-                            người dùng như xem phim hay chơi game cả ngày dài mà không bị hết pin quá nhanh.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-12.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Dung lượng pin lớn 4310 mAh"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-12.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Dung lượng pin lớn 4310 mAh"></a></p>
-                        <p>Ngoài ra, Reno6 Z 5G còn hỗ trợ sạc siêu nhanh VOOC 30 W sạc qua cổng Type-C, máy có thể sạc đầy
-                            100% pin chỉ khoảng 52 phút, rất là nhanh và tiện lợi, bạn có thể làm được nhiều công việc hơn,
-                            tiết kiệm tối đa thời gian sạc pin, tự do giải trí mà không lo sạc hoài.</p>
-                        <p><a class="preventdefault"
-                                href="https://www.thegioididong.com/images/42/239747/reno6-z-5g-31.jpg"
-                                onclick="return false;"><img alt="OPPO Reno6 Z 5G - Hỗ trợ sạc nhanh 30 W"
-                                    data-src="https://cdn.tgdd.vn/Products/Images/42/239747/reno6-z-5g-31.jpg"
-                                    class="lazyload" title="OPPO Reno6 Z 5G - Hỗ trợ sạc nhanh 30 W"></a></p>
-                        <p>Reno6 Z 5G với thiết kế tinh tế, cụm camera với nhiều tính năng chuyên nghiệp, hiệu năng ổn định,
-                            phần mềm được tối ưu hoá thông minh. Đây không chỉ là một sản phẩm mà nó còn là người bạn đồng
-                            hành lâu dài, hỗ trợ bạn tạo ra những cảm xúc thăng hoa trong những khoảnh khắc đáng nhớ.</p>
-                    </div>
-                    <div class="bg-article"></div>
-                    <a href="javascript:showBlockTabArticle()" class="btn-detail jsArticle">
-                        <span>Xem thêm</span>
-                    </a>
-                </div> --}}
                 <div class="box-border">
                     <div class="rating">
-                        <p class="rating__title">Đánh giá Điện thoại OPPO Reno6 Z 5G</p>
-                        <div class="rating-star left">
-                            <div class="rating-left">
+                        <p class="rating__title">Đánh giá Điện thoại {{ $dienThoai->ten_san_pham }}</p>
+                        <div class="rating-star left" style="width: 60%;">
+                            <div class="rating-left" style="width: 80%;">
                                 <div class="rating-top">
-                                    <p class="point">5.0</p>
+                                    <p class="point">{{ $soSaoTrungBinh }}</p>
                                     <div class="list-star">
-                                        <i class="icondetail-ratestar"></i>
-                                        <i class="icondetail-ratestar"></i>
-                                        <i class="icondetail-ratestar"></i>
-                                        <i class="icondetail-ratestar"></i>
-                                        <i class="icondetail-ratestar"></i>
-                                    </div>
-                                    <a href="/dtdd/oppo-reno6-z-5g/danh-gia" class="rating-total">1 đánh giá</a>
+                                        @if ($soSaoTrungBinh > 4.5)
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                        @elseif($soSaoTrungBinh > 3.5)
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                        @elseif($soSaoTrungBinh > 2.5)
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                        @elseif($soSaoTrungBinh > 1.5)
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                        @elseif($soSaoTrungBinh > 0.5)
+                                            <i class="icondetail-ratestar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                        @else
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                            <i class="icondetail-darkstar"></i>
+                                        @endif
 
+                                    </div>
+                                    <a href="/dtdd/oppo-reno6-z-5g/danh-gia"
+                                        class="rating-total">{{ count($danhSachDanhGia) }} đánh giá</a>
                                 </div>
                                 <ul class="rating-list">
                                     <li>
@@ -1184,10 +775,10 @@
                                             <i class="icondetail-blackstar"></i>
                                         </div>
                                         <div class="timeline-star">
-                                            <p class="timing" style="width: 100%"></p>
+                                            <p class="timing" style="width: {{ $namsao }}%"></p>
                                         </div>
                                         <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=5&amp;p=1"
-                                            class="number-percent">100%</a>
+                                            class="number-percent">{{ $namsao }}%</a>
                                     </li>
                                     <li>
                                         <div class="number-star">
@@ -1195,9 +786,10 @@
                                             <i class="icondetail-blackstar"></i>
                                         </div>
                                         <div class="timeline-star">
-                                            <p class="timing" style="width: 0%"></p>
+                                            <p class="timing" style="width: {{ $bonsao }}%"></p>
                                         </div>
-                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=4&amp;p=1" class="number-percent">0%</a>
+                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=4&amp;p=1"
+                                            class="number-percent">{{ $bonsao }}%</a>
                                     </li>
                                     <li>
                                         <div class="number-star">
@@ -1205,9 +797,10 @@
                                             <i class="icondetail-blackstar"></i>
                                         </div>
                                         <div class="timeline-star">
-                                            <p class="timing" style="width: 0%"></p>
+                                            <p class="timing" style="width: {{ $basao }}%"></p>
                                         </div>
-                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=3&amp;p=1" class="number-percent">0%</a>
+                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=3&amp;p=1"
+                                            class="number-percent">{{ $basao }}%</a>
                                     </li>
                                     <li>
                                         <div class="number-star">
@@ -1215,9 +808,10 @@
                                             <i class="icondetail-blackstar"></i>
                                         </div>
                                         <div class="timeline-star">
-                                            <p class="timing" style="width: 0%"></p>
+                                            <p class="timing" style="width: {{ $haisao }}%"></p>
                                         </div>
-                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=2&amp;p=1" class="number-percent">0%</a>
+                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=2&amp;p=1"
+                                            class="number-percent">{{ $haisao }}%</a>
                                     </li>
                                     <li>
                                         <div class="number-star">
@@ -1225,59 +819,112 @@
                                             <i class="icondetail-blackstar"></i>
                                         </div>
                                         <div class="timeline-star">
-                                            <p class="timing" style="width: 0%"></p>
+                                            <p class="timing" style="width: {{ $motsao }}%"></p>
                                         </div>
-                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=1&amp;p=1" class="number-percent">0%</a>
+                                        <a href="/dtdd/oppo-reno6-z-5g/danh-gia?s=1&amp;p=1"
+                                            class="number-percent">{{ $motsao }}%</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="comment comment--all ratingLst">
-                        <div class="comment-item par" id="khach1">
-                            <div class="item-top">
-                                <p class="txtname">Khách 1</p>
-                            </div>
-                            <div class="item-rate">
-                                <div class="comment-star">
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
+                    @if (count($danhSachDanhGia) > 0)
+                        <div class="comment comment--all ratingLst">
+                            <div class="comment-item par" id="khach1">
+                                <div class="item-top">
+                                    <p class="txtname">{{ $danhSachDanhGia[0]->username }}</p>
+                                </div>
+                                <div class="item-rate">
+                                    <div class="comment-star">
+                                        @if ($danhSachDanhGia[0]->so_sao > 4.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                        @elseif($danhSachDanhGia[0]->so_sao > 3.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                        @elseif($danhSachDanhGia[0]->so_sao > 2.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                        @elseif($danhSachDanhGia[0]->so_sao > 1.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                        @elseif($danhSachDanhGia[0]->so_sao > 0.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                        @else
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="comment-content">
+                                    <p class="cmt-txt">{{ $danhSachDanhGia[0]->noi_dung }}</p>
+                                </div>
+                                <div class="item-click">
+                                    <a href="javascript:showRatingCmtChild('{{ $danhSachDanhGia[0]->username }}')"
+                                        class="click-cmt">
+                                        <i class="icondetail-comment"></i>
+                                        <span class="cmtr">Thảo luận</span>
+                                    </a>
+                                    <div class="{{ $danhSachDanhGia[0]->username }} reply hide">
+                                        <input placeholder="Nhập thảo luận của bạn" style="color: #3e5569;"
+                                            name="noidung" id='noidung'>
+                                        <input type='hidden' value='{{ $danhSachDanhGia[0]->id }}' name="danhgiaid">
+                                        <a href="javascript:themPhanHoi();" class="rrSend">GỬI</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="comment-content">
-                                <p class="cmt-txt">Sản phẩm này sử dụng rất tốt</p>
-                            </div>
-                            <div class="item-click">
-                                <a href="javascript:showRatingCmtChild('khach1')" class="click-cmt">
-                                    <i class="icondetail-comment"></i>
-                                    <span class="cmtr">1 Thảo luận</span>
-                                </a>
-                                <div class="khach1 reply hide">
-                                    <input placeholder="Nhập thảo luận của bạn">
-                                    <a href="javascript:ratingRelply();" class="rrSend">GỬI</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-item khach1 childC-item hide">
-                            <div class="item-top">
-                                <p class="txtname">Võ Trần Minh Trí</p>
-                                <span class="qtv">QTV</span>
-                            </div>
-                            <div class="item-rate">
-                            </div>
-                            <div class="comment-content">
-                                <p class="cmt-txt">Dạ em chào anh.<br>Cảm ơn anh đã mua hàng tại T&T
-                                    Mobile.&nbsp;<br></p>
+                            <div class='phanhoi'>
+                                @if (count($danhSachPhanHoi) > 0)
+                                    @foreach ($danhSachPhanHoi as $tp)
+                                        @if ($tp->danh_gia_id == $danhSachDanhGia[0]->id)
+                                            <div
+                                                class="comment-item {{ $danhSachDanhGia[0]->username }} childC-item hide">
+                                                <div class="item-top">
+                                                    <p class="txtname" style="text-transform:none">{{ $tp->username }}</p>
+                                                    @if ($tp->loai_tai_khoan_id < 5)
+                                                        <span class="qtv">QTV</span>
+                                                    @endif
+                                                </div>
+                                                <div class="item-rate">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <p class="cmt-txt">{{ $tp->noi_dung }}</p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="comment-btn">
-                        <a href="/reviewlist" class="comment-btn-item right-arrow"><span>Xem tất cả đánh
-                                giá</span></a>
-                    </div>
+                        <div class="comment-btn">
+                            <a href="{{ route('reviewlist',['dienThoaiId'=>$dienThoai->id]) }}" class="comment-btn-item right-arrow"><span>Xem tất cả đánh
+                                    giá</span></a>
+                        </div>
+                    @else
+                        <div class="comment-btn" style="display: block">
+                            <p style="font-size: 17px;text-align: center;">Chưa có đánh giá dành cho sản phẩm</p>
+                        </div>
+                    @endif
+
                 </div>
             </div>
             <div class='box-main-right'>
@@ -1302,8 +949,7 @@
                                     <div class="box-p">
                                         <p class="price-old black" style="text-decoration: none;">Giá chưa giảm:
                                             {{ number_format($danhSachChiTiet[0]->gia, 0) }}₫</p>
-                                        <span
-                                            class="percent">-{{ $danhSachChiTiet[0]->phan_tram_giam * 100 }}%</span>
+                                        <span class="percent">-{{ $danhSachChiTiet[0]->phan_tram_giam * 100 }}%</span>
                                     </div>
                                     <strong class="price" style="font-size: 20px; color:red">Giá giảm:
                                         {{ number_format($danhSachChiTiet[0]->gia - $danhSachChiTiet[0]->gia * $danhSachChiTiet[0]->phan_tram_giam, 0) }}₫
@@ -1507,6 +1153,33 @@
                 },
                 error: function(request, status, error) {
                     alertify.error('Thêm sản phẩm vào giỏ không thành công');
+                }
+            });
+            loading[0].style = "display:block";
+            setTimeout(fadeOutEffect, 500);
+        }
+
+        function themPhanHoi() {
+            var noiDung = $('input[name="noidung"]').val();
+            var danhGiaId = $('input[name="danhgiaid"]').val();
+            const inputNoiDung = document.getElementById('noidung');
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('storePHDanhGiaKH') }}',
+                data: {
+                    'noiDung': noiDung,
+                    'danhGiaId': danhGiaId,
+                },
+                success: function(data) {
+                    $('.phanhoi').html(data);
+                    inputNoiDung.value = '';
+                },
+                error: function(data) {
+                    if(data.responseText == 0){
+                        window.location = "http://localhost:8000/signin";
+                    }else{
+                        alertify.error(data.responseText);
+                    }
                 }
             });
             loading[0].style = "display:block";

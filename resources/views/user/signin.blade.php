@@ -5,16 +5,11 @@
             <span style="margin-bottom:25px">Đăng nhập</span>
             <form action="/login" method="POST">
                 @csrf
-                <input type="text" name="username" placeholder="Nhập tên đăng nhập">
-                <input type="password" name="password" placeholder="Nhập mật khẩu" id="pass">
+                <input type="text" name="username" placeholder="Nhập tên đăng nhập" required>
+                <input type="password" name="password" placeholder="Nhập mật khẩu" id="pass" required>
                 @if ($errors->has('error'))
                     <div style="margin-bottom: 2%; color:red">
                         <span>{{ $errors->first('error') }}</span>
-                    </div>
-                @endif
-                @if (Session::has('thongbao'))
-                    <div style="margin-bottom: 2%; color:red">
-                        <span>{{ Session::get('thongbao') }}</span>
                     </div>
                 @endif
                 <label class="show-pass">
@@ -46,7 +41,25 @@
             </div>
         </div>
     </section>
+
+    @if (Session::has('thongbao'))
+        <div class="popup active ketqua">
+            <div class="bg-popup"></div>
+            <div class="form-popup" style="width: auto">
+                <div class="row-popup" style="text-align: center;">
+                    <h3 style="color:green; font-size:25px">Thông báo</h3>
+                </div>
+                <h4 style="display:block;text-align: center; font-size:18px">{{ Session::get('thongbao') }}</h4>
+                <p style="margin-top: 10px; text-align: center">
+                    <button type="button" style="height:35px; width: 150px" class="btn btn-outline-secondary" onclick="closepopup()">Ok</button>
+                </p>
+            </div>
+        </div>
+    @endif
+
     <script>
+        const body = this.document.querySelector('body');
+
         function togglepass() {
             var x = document.getElementById("pass");
             if (x.type === "password") {
@@ -57,10 +70,9 @@
         }
 
         function closepopup() {
-            var popup = document.querySelector('.popup-thongbao');
-            popup.className = popup.className.replace(' active', '');
-            var bo = document.querySelector('body');
-            bo.className = bo.className.replace('hidden-y', '');
+            const popup = this.document.querySelector('.popup.active.ketqua');
+            popup.className = popup.className.replace(" active", "");
+            body.style = "overflow: auto;";
         }
     </script>
 @endsection

@@ -209,14 +209,14 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated"
                                 aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                                    Thông tin của tôi</a>
+                                {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                                    Thông tin của tôi</a> --}}
                                 {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet me-1 ms-1"></i>
                                     My Balance</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
                                     Inbox</a> --}}
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                {{-- <div class="dropdown-divider"></div> --}}
+                                <a class="dropdown-item" href="/change-pass"><i
                                         class="ti-settings me-1 ms-1"></i> Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
@@ -252,7 +252,7 @@
                                     class="hide-menu">Bảng
                                     điều khiển</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/order" aria-expanded="false"><i class="me-2 mdi mdi-cart-outline"></i><span
+                                href="{{ route('indexDonHang', ['token' => Auth::user()->token]) }}" aria-expanded="false"><i class="me-2 mdi mdi-cart-outline"></i><span
                                     class="hide-menu">Đơn
                                     hàng</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="#"

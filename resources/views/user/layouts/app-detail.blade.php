@@ -74,10 +74,13 @@
                                 class="rounded-circle" width="40">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                            <a class="dropdown-item" href="/accountinformation"><i class="ti-user me-1 ms-1"></i>
                                 Thông tin của tôi</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i>
+                            <a class="dropdown-item" href="/ordermanagement"><i class="ti-user me-1 ms-1"></i>
+                                Đơn hàng của tôi</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
                                 Đổi
                                 mật khẩu</a>
                             <div class="dropdown-divider"></div>

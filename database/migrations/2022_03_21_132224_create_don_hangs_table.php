@@ -26,6 +26,7 @@ class CreateDonHangsTable extends Migration
             $table->integer('phuong_thuc_nhan_hang');
             $table->integer('phuong_thuc_thanh_toan');
             $table->date('ngay_giao')->nullable();
+            $table->date('ngay_tao');
             $table->integer('trang_thai_thanh_toan');
             $table->integer('trang_thai_don_hang');
             $table->timestamps();

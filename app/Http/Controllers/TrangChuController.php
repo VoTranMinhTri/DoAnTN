@@ -9,7 +9,7 @@ use App\Models\ChiTietKhuyenMai;
 use App\Models\HinhAnhChungCuaDienThoai;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\If_;
+use App\Models\DanhGia;
 
 class TrangChuController extends Controller
 {
@@ -35,6 +35,17 @@ class TrangChuController extends Controller
             } else {
                 $tp->phan_tram_giam = 0;
             }
+            $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->get();
+            if (count($danhSachDanhGia) > 0) {
+                $temp = 0;
+                foreach ($danhSachDanhGia as $dg) {
+                    $temp += $dg->so_sao;
+                }
+                $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+            } else {
+                $tp->so_sao_trung_binh = 0;
+            }
+            $tp->so_luot_danh_gia = count($danhSachDanhGia);
         }
         return view('user/index', ['danhSachDienThoai' => $danhSachDienThoai]);
     }
@@ -63,11 +74,22 @@ class TrangChuController extends Controller
                 } else {
                     $tp->phan_tram_giam = 0;
                 }
+                $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->get();
+                if (count($danhSachDanhGia) > 0) {
+                    $temp = 0;
+                    foreach ($danhSachDanhGia as $dg) {
+                        $temp += $dg->so_sao;
+                    }
+                    $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+                } else {
+                    $tp->so_sao_trung_binh = 0;
+                }
+                $tp->so_luot_danh_gia = count($danhSachDanhGia);
             }
 
             foreach ($danhSachDienThoai as $tp) {
                 $output .= '<li class="item">
-                    <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                    <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                         <div class="item-label">
                             <span class="lb-tragop">Trả góp 0%</span>
                         </div>
@@ -90,15 +112,57 @@ class TrangChuController extends Controller
                             class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                         </strong>';
                 }
-                $output .= '<div class="item-rating">
-                        <p>
+                $output .= '<div class="item-rating">';
+                if ($tp->so_sao_trung_binh > 4.5) {
+                    $output .= ' <p>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
-                        </p>
-                        <p class="item-rating-total">1</p>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 3.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 2.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 1.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 0.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } else {
+                    $output .= ' <p>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                }
+                $output .= ' <p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                     </div>
                 </a>
                 <div class="item-bottom">
@@ -133,11 +197,22 @@ class TrangChuController extends Controller
                 } else {
                     $tp->phan_tram_giam = 0;
                 }
+                $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->get();
+                if (count($danhSachDanhGia) > 0) {
+                    $temp = 0;
+                    foreach ($danhSachDanhGia as $dg) {
+                        $temp += $dg->so_sao;
+                    }
+                    $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+                } else {
+                    $tp->so_sao_trung_binh = 0;
+                }
+                $tp->so_luot_danh_gia = count($danhSachDanhGia);
             }
 
             foreach ($danhSachDienThoai as $tp) {
                 $output .= '<li class="item">
-                    <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                    <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                         <div class="item-label">
                             <span class="lb-tragop">Trả góp 0%</span>
                         </div>
@@ -160,15 +235,57 @@ class TrangChuController extends Controller
                             class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                         </strong>';
                 }
-                $output .= '<div class="item-rating">
-                        <p>
+                $output .= '<div class="item-rating">';
+                if ($tp->so_sao_trung_binh > 4.5) {
+                    $output .= ' <p>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
                             <i class="icon-star"></i>
-                        </p>
-                        <p class="item-rating-total">1</p>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 3.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 2.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 1.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 0.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } else {
+                    $output .= ' <p>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                }
+                $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                     </div>
                 </a>
                 <div class="item-bottom">
@@ -208,12 +325,23 @@ class TrangChuController extends Controller
                 } else {
                     $tp->phan_tram_giam = 0;
                 }
+                $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->get();
+                if (count($danhSachDanhGia) > 0) {
+                    $temp = 0;
+                    foreach ($danhSachDanhGia as $dg) {
+                        $temp += $dg->so_sao;
+                    }
+                    $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+                } else {
+                    $tp->so_sao_trung_binh = 0;
+                }
+                $tp->so_luot_danh_gia = count($danhSachDanhGia);
             }
 
             if ($request->type == 1) {
                 foreach ($danhSachDienThoai as $tp) {
                     $output .= '<li class="item">
-                        <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                        <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
@@ -236,15 +364,57 @@ class TrangChuController extends Controller
                                 class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                             </strong>';
                     }
-                    $output .= '<div class="item-rating">
-                            <p>
+                    $output .= '<div class="item-rating">';
+                    if ($tp->so_sao_trung_binh > 4.5) {
+                        $output .= ' <p>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                            </p>
-                            <p class="item-rating-total">1</p>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 3.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 2.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 1.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 0.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } else {
+                        $output .= ' <p>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    }
+                    $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -298,7 +468,7 @@ class TrangChuController extends Controller
             }
             foreach ($danhSachDienThoai as $tp) {
                 $output .= '<li class="item">
-                        <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                        <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
@@ -321,15 +491,57 @@ class TrangChuController extends Controller
                                 class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                             </strong>';
                 }
-                $output .= '<div class="item-rating">
-                            <p>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                            </p>
-                            <p class="item-rating-total">1</p>
+                $output .= '<div class="item-rating">';
+                if ($tp->so_sao_trung_binh > 4.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 3.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 2.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 1.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } elseif ($tp->so_sao_trung_binh > 0.5) {
+                    $output .= ' <p>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                } else {
+                    $output .= ' <p>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                            <i class="icon-star-dark"></i>
+                        </p>';
+                }
+                $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -363,11 +575,22 @@ class TrangChuController extends Controller
                 } else {
                     $tp->phan_tram_giam = 0;
                 }
+                $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->get();
+                if (count($danhSachDanhGia) > 0) {
+                    $temp = 0;
+                    foreach ($danhSachDanhGia as $dg) {
+                        $temp += $dg->so_sao;
+                    }
+                    $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+                } else {
+                    $tp->so_sao_trung_binh = 0;
+                }
+                $tp->so_luot_danh_gia = count($danhSachDanhGia);
             }
             if ($request->type == 1) {
                 foreach ($danhSachDienThoai as $tp) {
                     $output .= '<li class="item">
-                    <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                    <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                         <div class="item-label">
                             <span class="lb-tragop">Trả góp 0%</span>
                         </div>
@@ -390,15 +613,57 @@ class TrangChuController extends Controller
                             class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                         </strong>';
                     }
-                    $output .= '<div class="item-rating">
-                        <p>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                        </p>
-                        <p class="item-rating-total">1</p>
+                    $output .= '<div class="item-rating">';
+                    if ($tp->so_sao_trung_binh > 4.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 3.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 2.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 1.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 0.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } else {
+                        $output .= ' <p>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    }
+                    $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                     </div>
                 </a>
                 <div class="item-bottom">
@@ -431,7 +696,7 @@ class TrangChuController extends Controller
                 }
                 foreach ($danhSachDienThoai as $tp) {
                     $output .= '<li class="item">
-                        <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                        <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
@@ -454,15 +719,57 @@ class TrangChuController extends Controller
                                 class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                             </strong>';
                     }
-                    $output .= '<div class="item-rating">
-                            <p>
+                    $output .= '<div class="item-rating">';
+                    if ($tp->so_sao_trung_binh > 4.5) {
+                        $output .= ' <p>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                            </p>
-                            <p class="item-rating-total">1</p>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 3.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 2.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 1.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 0.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } else {
+                        $output .= ' <p>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    }
+                    $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                         </div>
                     </a>
                     <div class="item-bottom">
@@ -497,7 +804,7 @@ class TrangChuController extends Controller
                 }
                 foreach ($danhSachDienThoai as $tp) {
                     $output .= '<li class="item">
-                        <a href="'.route('productDetail', ['sanPhamId' => $tp->id]).'">
+                        <a href="' . route('productDetail', ['sanPhamId' => $tp->id]) . '">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
@@ -520,15 +827,57 @@ class TrangChuController extends Controller
                                 class="price">' . number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) . '₫
                             </strong>';
                     }
-                    $output .= '<div class="item-rating">
-                            <p>
+                    $output .= '<div class="item-rating">';
+                    if ($tp->so_sao_trung_binh > 4.5) {
+                        $output .= ' <p>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
-                            </p>
-                            <p class="item-rating-total">1</p>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 3.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 2.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 1.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } elseif ($tp->so_sao_trung_binh > 0.5) {
+                        $output .= ' <p>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    } else {
+                        $output .= ' <p>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                                <i class="icon-star-dark"></i>
+                            </p>';
+                    }
+                    $output .= '<p class="item-rating-total">' . $tp->so_luot_danh_gia . '</p>
                         </div>
                     </a>
                     <div class="item-bottom">

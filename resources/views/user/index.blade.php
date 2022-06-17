@@ -130,13 +130,44 @@
                                         @endif
                                         <div class="item-rating">
                                             <p>
+                                                @if($tp->so_sao_trung_binh > 4.5)
                                                 <i class="icon-star"></i>
                                                 <i class="icon-star"></i>
                                                 <i class="icon-star"></i>
                                                 <i class="icon-star"></i>
                                                 <i class="icon-star"></i>
-                                            </p>
-                                            <p class="item-rating-total">1</p>
+                                                @elseif($tp->so_sao_trung_binh > 3.5)
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star-dark"></i>
+                                                @elseif($tp->so_sao_trung_binh > 2.5)
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                @elseif($tp->so_sao_trung_binh > 1.5)
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                @elseif($tp->so_sao_trung_binh > 0.5)
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                @else
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                <i class="icon-star-dark"></i>
+                                                @endif
+                                                <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
                                         </div>
                                     </a>
                                     <div class="item-bottom">
@@ -358,13 +389,46 @@
                                 @endif
                                 <div class="item-rating">
                                     <p>
+                                        @if($tp->so_sao_trung_binh > 4.5)
                                         <i class="icon-star"></i>
                                         <i class="icon-star"></i>
                                         <i class="icon-star"></i>
                                         <i class="icon-star"></i>
                                         <i class="icon-star"></i>
+                                        @elseif($tp->so_sao_trung_binh > 3.5)
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star-dark"></i>
+                                        @elseif($tp->so_sao_trung_binh > 2.5)
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        @elseif($tp->so_sao_trung_binh > 1.5)
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        @elseif($tp->so_sao_trung_binh > 0.5)
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        @else
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        <i class="icon-star-dark"></i>
+                                        @endif
+                                        <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
                                     </p>
-                                    <p class="item-rating-total">1</p>
+
                                 </div>
                             </a>
                             <div class="item-bottom">
@@ -446,6 +510,9 @@
                     $('.listproduct.all').html(data);
                 }
             });
+
+            [...filterTheoGia].forEach(itemlist => itemlist.classList.remove("choose"));
+            filterTheoGia[0].className += " choose";
         }
 
         function filterProductByPrice($value, $idBrand) {

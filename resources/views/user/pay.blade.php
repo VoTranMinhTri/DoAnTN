@@ -24,25 +24,19 @@
                                 </a>
                                 <!---->
                             </li>
-                            {{-- <li class="" data-method="3" onclick="buttonVNPay()"><a><i class="cartnew-choose-dot"></i>
-                                    <div class="text-payment"><span><i class="choose-payment-atm"></i><span>Qua thẻ
-                                                ATM (có Internet Banking)</span></span></div>
-                                </a>
-                                <!---->
-                            </li> --}}
-                            <li class="qrcode" data-method="3" onclick="buttonVNPay()"><a><i class="cartnew-choose-dot"></i>
-                                    <div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua QR
-                                                Code</span></span></div>
+                            <li class="qrcode" data-method="3" onclick="buttonVNPay()"><a><i
+                                        class="cartnew-choose-dot"></i>
+                                    <div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua VNPay</span></span></div>
                                 </a>
                                 <!---->
                             </li>
-                            <li class="momo"><a><i class="cartnew-choose-dot"></i>
+                            <li class="momo" data-method="4" onclick="buttonMomo()"><a><i class="cartnew-choose-dot"></i>
                                     <div class="text-payment"><span><i class="choose-payment-MOMO"></i><span>Qua Ví
                                                 điện tử MoMo</span></span></div>
                                 </a>
                                 <!---->
                             </li>
-                            <li class=""><a><i class="cartnew-choose-dot"></i>
+                            {{-- <li class=""><a><i class="cartnew-choose-dot"></i>
                                     <div class="text-payment"><span><i class="choose-payment-VMJ"></i><span>Qua thẻ
                                                 quốc tế Visa, Master, JCB</span>
                                             <div class="listcard"><i class="cartnew-visa"></i><i
@@ -63,31 +57,41 @@
                                                 máy cà thẻ khi nhận hàng</span></span></div>
                                 </a>
                                 <!---->
-                            </li>
+                            </li> --}}
                         </ul>
-                        <button class="confirm-payment-button" onclick="thanhToan()" id="thanhtoan"><b>Xác nhận</b>
+                        <button class="confirm-payment-button" onclick="thanhToan()" id="thanhtoan"><b>Thanh toán khi nhận hàng</b>
                         </button>
+                        {{-- Thanh toán VNPay --}}
                         <form action="{{ route('vnpay_payment') }}" method="post">
                             @csrf
-                            <button class="confirm-payment-button" id="vnpay-button" style="display: none;" onclick="checkVNPay()" type="button"><b>Thanh toán VNPay</b>
+                            <button class="confirm-payment-button" id="vnpay-button" style="display: none;"
+                                onclick="checkVNPay()" type="button"><b>Thanh toán VNPay</b>
                             </button>
-                            <?php
-                            $tongTien = 0;
-                            foreach (Session('Cart')->products as $tp) {
-                                $tongTien += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * $tp['productInfo']->phan_tram_giam);
-                            }
-                            ?>
-                            <input type='hidden' name='tongtien' value='{{ $tongTien }}'>
                             <button style="display: none" name="redirect" id="vnpay" type="submit"></button>
                         </form>
 
+                        {{-- Thanh toán Momo --}}
+                        <form action="{{ route('momo_payment') }}" method="post">
+                            @csrf
+                            <button class="confirm-payment-button" id="momo-button" style="display: none;"
+                                onclick="checkMomo()" type="button"><b>Thanh toán Momo</b>
+                            </button>
+                            <button style="display: none" id="momo" type="submit"></button>
+                        </form>
+
+                        {{-- Thanh toán PayPal --}}
                         <?php
+                        $phanTramGiamVoucher = 0;
+                        if (Session('Cart')->voucher != null) {
+                            $phanTramGiamVoucher = Session('Cart')->voucher['phan_tram_giam'];
+                        }
                         $tongTien = 0;
                         foreach (Session('Cart')->products as $tp) {
-                            $tongTien += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * $tp['productInfo']->phan_tram_giam);
+                            $tongTien += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher));
                         }
                         $vnd_to_usd = $tongTien / 23000;
                         ?>
+
                         <div id="paypal-button" style="display: none;"></div>
                         <input type='hidden' id='vnd_to_usd' value='{{ round($vnd_to_usd, 2) }}'>
                     </div>
@@ -144,7 +148,6 @@
         // Customize button (optional)
         locale: 'en_US',
         style: {
-            size: 'large',
             color: 'blue',
             shape: 'rect',
             tagline: 'false',
@@ -198,7 +201,7 @@
                     }
                 });
             });
-    }
+        }
     }).render('#paypal-button');
 </script>
 <script src="{{ asset('assets/user/js/pay.js') }}"></script>
@@ -236,54 +239,87 @@
             });
             loading[0].style = "display:block";
             setTimeout(fadeOutEffect, 500);
-        } else if (phuongThuc.getAttribute('data-method') == 2) {
-
         }
     }
 
-    function checkVNPay(){
+    function checkVNPay() {
         $.ajax({
-                type: 'get',
-                url: '{{ URL::to('kiemTraSoLuong') }}',
-                data: {
-                    'phuongThuc': 3,
-                },
-                success: function(data) {
-                    document.getElementById('vnpay').click();
-                },
-                error: function(data) {
-                    alertify.error(data.responseText);
-                }
-            });
-            loading[0].style = "display:block";
-            setTimeout(fadeOutEffect, 500);
+            type: 'get',
+            url: '{{ URL::to('kiemTraSoLuong') }}',
+            data: {
+                'phuongThuc': 3,
+            },
+            success: function(data) {
+                document.getElementById('vnpay').click();
+            },
+            error: function(data) {
+                alertify.error(data.responseText);
+            }
+        });
+        loading[0].style = "display:block";
+        setTimeout(fadeOutEffect, 500);
+    }
+
+    function checkMomo() {
+        $.ajax({
+            type: 'get',
+            url: '{{ URL::to('kiemTraSoLuong') }}',
+            data: {
+                'phuongThuc': 4,
+            },
+            success: function(data) {
+                document.getElementById('momo').click();
+            },
+            error: function(data) {
+                alertify.error(data.responseText);
+            }
+        });
+        loading[0].style = "display:block";
+        setTimeout(fadeOutEffect, 500);
+    }
+
+    function buttonMomo() {
+        var thanhtoan = document.getElementById("thanhtoan");
+        var payPal = document.getElementById("paypal-button");
+        var vnPay = document.getElementById("vnpay-button");
+        var momo = document.getElementById("momo-button");
+        thanhtoan.style = "display:none";
+        payPal.style = "display:none";
+        vnPay.style = "display:none";
+        momo.style = "display:block";
     }
 
     function buttonVNPay() {
         var thanhtoan = document.getElementById("thanhtoan");
         var payPal = document.getElementById("paypal-button");
         var vnPay = document.getElementById("vnpay-button");
+        var momo = document.getElementById("momo-button");
         thanhtoan.style = "display:none";
         payPal.style = "display:none";
-        vnPay.style =  "display:block";
+        vnPay.style = "display:block";
+        momo.style = "display:none";
     }
 
     function buttonPayPal() {
         var thanhtoan = document.getElementById("thanhtoan");
         var payPal = document.getElementById("paypal-button");
         var vnPay = document.getElementById("vnpay-button");
+        var momo = document.getElementById("momo-button");
         thanhtoan.style = "display:none";
-        payPal.style = "display:block; text-align: center;";
-        vnPay.style =  "display:none";
+        payPal.style = "position: relative;display: block; text-align: center;width: 70%;left: 85px;";
+        vnPay.style = "display:none";
+        momo.style = "display:none";
     }
 
     function buttonNormal() {
         var thanhtoan = document.getElementById("thanhtoan");
         var payPal = document.getElementById("paypal-button");
         var vnPay = document.getElementById("vnpay-button");
+        var momo = document.getElementById("momo-button");
         thanhtoan.style = "display:block";
         payPal.style = "display:none; text-align: center;";
-        vnPay.style =  "display:none";
+        vnPay.style = "display:none";
+        momo.style = "display:none";
     }
 </script>
 {{-- @endsection --}}
