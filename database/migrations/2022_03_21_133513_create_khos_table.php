@@ -17,6 +17,7 @@ class CreateKhosTable extends Migration
             $table->id();
             $table->string('ten_kho',30);
             $table->string('dia_chi',500);
+            $table->string('google_map',500)->nullable();
             $table->timestamps();
         });
     }

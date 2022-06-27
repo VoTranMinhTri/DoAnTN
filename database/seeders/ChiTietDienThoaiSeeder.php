@@ -179,7 +179,7 @@ class ChiTietDienThoaiSeeder extends Seeder
             'pin_sac_id'=> 7,
             'tien_ich_id'=> 7,
             'thong_tin_chung_id'=> 7,
-            'mau_sac_id'=> 4,
+            'mau_sac_id'=> 6,
             'gia'=>'4200000'
         ]);
         ChiTietDienThoai::create([
@@ -207,7 +207,7 @@ class ChiTietDienThoaiSeeder extends Seeder
             'pin_sac_id'=> 8,
             'tien_ich_id'=> 8,
             'thong_tin_chung_id'=> 8,
-            'mau_sac_id'=> 9,
+            'mau_sac_id'=> 6,
             'gia'=>'2290000'
         ]);
         ChiTietDienThoai::create([
@@ -251,6 +251,34 @@ class ChiTietDienThoaiSeeder extends Seeder
             'thong_tin_chung_id'=> 9,
             'mau_sac_id'=> 10,
             'gia'=>'750000'
+        ]);
+        ChiTietDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'man_hinh_id'=> 5,
+            'camera_sau_id'=> 5,
+            'camera_truoc_id'=> 5,
+            'he_dieu_hanh_cpu_id'=> 5,
+            'bo_nho_luu_tru_id'=> 5,
+            'ket_noi_id'=> 5,
+            'pin_sac_id'=> 5,
+            'tien_ich_id'=> 5,
+            'thong_tin_chung_id'=> 5,
+            'mau_sac_id'=> 10,
+            'gia'=>'13990000'
+        ]);
+        ChiTietDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'man_hinh_id'=> 2,
+            'camera_sau_id'=> 2,
+            'camera_truoc_id'=> 2,
+            'he_dieu_hanh_cpu_id'=> 2,
+            'bo_nho_luu_tru_id'=> 2,
+            'ket_noi_id'=> 2,
+            'pin_sac_id'=> 2,
+            'tien_ich_id'=> 2,
+            'thong_tin_chung_id'=> 2,
+            'mau_sac_id'=> 10,
+            'gia'=>'28490000'
         ]);
     }
 }

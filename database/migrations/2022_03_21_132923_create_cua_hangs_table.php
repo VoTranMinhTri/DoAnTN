@@ -17,6 +17,7 @@ class CreateCuaHangsTable extends Migration
             $table->id();
             $table->string('ten_cua_hang',30);
             $table->string('dia_chi',500);
+            $table->string('google_map',500)->nullable();
             $table->timestamps();
         });
     }

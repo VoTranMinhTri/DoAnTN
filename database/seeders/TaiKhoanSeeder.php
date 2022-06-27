@@ -87,8 +87,8 @@ class TaiKhoanSeeder extends Seeder
         TaiKhoan::create([
             'loai_tai_khoan_id'=> 5,
             'bac_tai_khoan_id'=> 2,
-            'username'=> 'khachhang1',
-            'password'=> bcrypt('khachhang1'),
+            'username'=> 'nguyenvana',
+            'password'=> bcrypt('nguyenvana'),
             'diem_thuong'=> 0,
             'token'=> Str::random(60),
             'trang_thai'=> 1,

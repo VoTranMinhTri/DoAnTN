@@ -55,7 +55,7 @@ window.addEventListener("load", function () {
         else {
             var blockTab = document.querySelector('.block-tab');
             blockTab.className += " show";
-            var root = document.getElementsByTagName( 'html' )[0];
+            var root = document.getElementsByTagName('html')[0];
             root.className += 'overflow-hidden';
 
             var dataID = showTab.getAttribute('data-gallery-id');
@@ -133,35 +133,58 @@ window.addEventListener("load", function () {
     const next = document.querySelector("[data-next-id='btnboxscroll']");
     const prev = document.querySelector("[data-prev-id='btnboxscroll']");
     var sliderItemBoxWidth = sliderItemsBox[0].offsetWidth;
-    var slidersBoxLength = sliderItemsBox.length;
+    var slidersBoxLength = sliderItemsBox.length / 5;
     var X = 0;
     var i = 0;
-    next.addEventListener("click", function () {
-        changeSlideBox(1);
-    });
-    prev.addEventListener("click", function () {
-        changeSlideBox(-1);
-    });
+    if (sliderItemsBox.length > 5) {
+        next.addEventListener("click", function () {
+            changeSlideBox(1);
+        });
+        prev.addEventListener("click", function () {
+            changeSlideBox(-1);
+        });
+    }
 
 
 
     function changeSlideBox(direction) {
         if (direction === 1) {
-            X = X - sliderItemBoxWidth;
-            sliderStageBox.style = 'transform: translate3d(' + X * 5 + 'px, 0px, 0px); transition: all 1.25s ease 0s; width: ' + sliderItemBoxWidth * slidersBoxLength + 'px;';
-            i++;
-            if (i == 1) {
-                next.className += " disabled";
-                prev.className = prev.className.replace(" disabled", "");
+            console.log(i >= slidersBoxLength - 1);
+            if (i >= slidersBoxLength - 1) {
+                i = 0;
+                X = 0;
+                sliderStageBox.style = 'width: 2640px; left: 0px; display: block; transition: all 1000ms  ease 0s; transform: translate3d(' + X + 'px, 0px, 0px);'
             }
+            else {
+                X = X - sliderItemBoxWidth * 5;
+                sliderStageBox.style = 'width: 2640px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + X + 'px, 0px, 0px);'
+                i++;
+            }
+            // X = X - sliderItemBoxWidth;
+            // sliderStageBox.style = 'transform: translate3d(' + X * 5 + 'px, 0px, 0px); transition: all 1.25s ease 0s; width: ' + sliderItemBoxWidth * slidersBoxLength + 'px;';
+            // i++;
+            // if (i == 1) {
+            //     next.className += " disabled";
+            //     prev.className = prev.className.replace(" disabled", "");
+            // }
         } else if (direction === -1) {
-            X = X + sliderItemBoxWidth;
-            sliderStageBox.style = 'transform: translate3d(' + X * 5 + 'px, 0px, 0px); transition: all 1.25s ease 0s; width: ' + sliderItemBoxWidth * slidersBoxLength + 'px;';
-            i--;
-            if (i == 0) {
-                prev.className += " disabled";
-                next.className = next.className.replace(" disabled", "");
+            if (i <= 0) {
+                i = slidersBoxLength - 1;
+                X = X - sliderItemBoxWidth * 5;
+                sliderStageBox.style = 'width: 2640px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(' + X + 'px, 0px, 0px);'
             }
+            else {
+                X = X + sliderItemBoxWidth * 5;
+                sliderStageBox.style = 'width: 2640px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + X + 'px, 0px, 0px);'
+                i--;
+            }
+            // X = X + sliderItemBoxWidth;
+            // sliderStageBox.style = 'transform: translate3d(' + X * 5 + 'px, 0px, 0px); transition: all 1.25s ease 0s; width: ' + sliderItemBoxWidth * slidersBoxLength + 'px;';
+            // i--;
+            // if (i == 0) {
+            //     prev.className += " disabled";
+            //     next.className = next.className.replace(" disabled", "");
+            // }
         }
     }
 });
@@ -206,7 +229,7 @@ function showRatingCmtChild(id) {
     reply1[0].className = reply1[0].className.replace(" hide", "");
     var reply2 = document.querySelectorAll('.' + id + '.childC-item.hide');
     console.log(reply2);
-    if(reply2.length > 0){
+    if (reply2.length > 0) {
         [...reply2].forEach(itemlist => itemlist.classList.remove("hide"));
     }
 }

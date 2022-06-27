@@ -54,7 +54,7 @@
                                             <tr>
                                                 <td><?php echo ++$i; ?></td>
                                                 <td>{{ $tp->ten_cua_hang }}</td>
-                                                <td>{{ $tp->dia_chi }}</td>
+                                                <td><a target="_blank" href="{{ $tp->google_map }}">{{ $tp->dia_chi }}</a></td>
                                                 <td>
                                                     @if (Auth::user()->loai_tai_khoan_id == 1)
                                                         <a href="{{ route('cuaHang.edit', ['cuaHang' => $tp]) }}"><button

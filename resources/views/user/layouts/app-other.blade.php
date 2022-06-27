@@ -18,11 +18,17 @@
         <div>
             <a href="/" class="nav-bar-logo"><img src="{{ asset('assets/user/images/Logo-1.png') }}" /></a>
             <div class="bordercol"></div>
-            <form action="#search" class="nav-bar-search">
-                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..."
-                    maxlength="100">
+            <form action="{{ route('resultSearch') }}" class="nav-bar-search" method='get'>
+                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..." maxlength="100" name='search' autocomplete="off"
+                    id='search' onkeyup="suggestSearch()">
                 <button type="submit"><i class="fas fa-search"></i></button>
-                <div id="search-result" style="display: block;"></div>
+                <div id="search-result" style="display: none;">
+                    <ul class="suggest_search">
+                        <li class="ttitle">
+                            <div class="viewed">Có phải bạn muốn tìm</div>
+                        </li>
+                    </ul>
+                </div>
             </form>
             {{-- @if (Session('Cart') == null)
                 <a href="/cart" class="nav-bar-cart">
@@ -66,9 +72,11 @@
                             <a class="dropdown-item" href="/ordermanagement"><i class="ti-user me-1 ms-1"></i>
                                 Đơn hàng của tôi</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
-                                Đổi
-                                mật khẩu</a>
+                            @if (Auth::user()->loai_tai_khoan_id == 5)
+                                <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
+                                    Đổi
+                                    mật khẩu</a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
                                 xuất</a>
@@ -112,5 +120,28 @@
     $('#zero_config').DataTable();
     $('#one_config').DataTable();
 </script>
-
+<script>
+    function suggestSearch() {
+        var searchResult = document.getElementById('search-result');
+        searchResult.style = 'display:block';
+        var value = $('#search').val();
+        if (value == '') {
+            searchResult.style = 'display:none';
+        } else {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('suggestSearch') }}',
+                data: {
+                    'search': value,
+                },
+                success: function(data) {
+                    $('.suggest_search').html(data);
+                },
+            });
+        }
+    }
+    $(document).click(function() {
+        document.getElementById('search-result').style = 'display:none';
+    });
+</script>
 </html>

@@ -22,7 +22,7 @@ class DienThoaiSeeder extends Seeder
         ]);
         DienThoai::create([
             'thuong_hieu_id'=> 1,
-            'ten_san_pham'=> 'iPhone 13 Pro',
+            'ten_san_pham'=> 'iPhone 13 Pro Max',
             'mo_ta'=> 'Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Lightning - Type C',
             'trang_thai'=> 1,
         ]);
@@ -66,6 +66,18 @@ class DienThoaiSeeder extends Seeder
             'thuong_hieu_id'=> 3,
             'ten_san_pham'=> 'Masstel FAMI 60 4G',
             'mo_ta'=> 'Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Sạc liền đầu Type C, Pin',
+            'trang_thai'=> 1,
+        ]);
+        DienThoai::create([
+            'thuong_hieu_id'=> 9,
+            'ten_san_pham'=> 'Xiaomi 11T Pro 5G',
+            'mo_ta'=> 'Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Ốp lưng, Cáp Type C, Củ sạc nhanh rời đầu Type A',
+            'trang_thai'=> 1,
+        ]);
+        DienThoai::create([
+            'thuong_hieu_id'=> 1,
+            'ten_san_pham'=> 'iPhone 12 Pro',
+            'mo_ta'=> 'Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Lightning - Type C',
             'trang_thai'=> 1,
         ]);
     }

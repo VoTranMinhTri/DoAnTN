@@ -13,10 +13,16 @@ use App\Models\TaiKhoan;
 use App\Models\ThongTinTaiKhoan;
 use App\Models\NhanVien;
 use App\Models\HinhAnhMauSacCuaDienThoai;
+use App\Models\BacTaiKhoan;
+use App\Models\PhieuGiamGia;
+use App\Mail\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class DonHangController extends Controller
 {
@@ -167,28 +173,85 @@ class DonHangController extends Controller
                 'ngay_giao' => Carbon::now('Asia/Ho_Chi_Minh'),
                 'trang_thai_thanh_toan' => 1,
             ]);
+            $danhSachChiTietDH = ChiTietDonHang::where('don_hang_id', '=', $donHang->ma_don_hang)->get();
+            $tongTien = 0;
+            foreach ($danhSachChiTietDH as $ct) {
+                $tongTien += $ct->gia_giam * $ct->so_luong;
+            }
+            $diem = $tongTien / 10000;
+            $taiKhoan = TaiKhoan::where('id', '=', $donHang->tai_khoan_khach_hang_id)->first();
+            $taiKhoan->fill([
+                'diem_thuong' => $taiKhoan->diem_thuong + $diem,
+            ]);
+            $danhSachBacTaiKhoan = BacTaiKhoan::all();
+            $phanTramGiam = 0.05;
+            foreach ($danhSachBacTaiKhoan as $tp) {
+                if ($taiKhoan->diem_thuong > 10000 && $taiKhoan->bac_tai_khoan_id == $tp->id) {
+                    $phieuGiamGia = new PhieuGiamGia();
+                    $phieuGiamGia->fill([
+                        'code' => Str::random(8),
+                        'phan_tram_giam' => 0.2,
+                        'ngay_bat_dau' => Carbon::now('Asia/Ho_Chi_Minh'),
+                        'ngay_het_han' => Carbon::now('Asia/Ho_Chi_Minh')->addYear(),
+                        'trang_thai' => 1,
+                    ]);
+                    $phieuGiamGia->save();
+                    $details = [
+                        'code' => $phieuGiamGia->code,
+                        'ten_bac' => '',
+                        'phan_tram_giam' => $phieuGiamGia->phan_tram_giam * 100,
+                        'loai' => 2,
+                    ];
+                    $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', $taiKhoan->id)->first();
+                    Mail::to($thongTinTaiKhoan->email)->send(new Voucher($details));
+                }
+                if ($taiKhoan->diem_thuong >= $tp->han_muc && $taiKhoan->bac_tai_khoan_id < $tp->id) {
+                    $taiKhoan->bac_tai_khoan_id = $tp->id;
+                    $bacTaiKhoan = BacTaiKhoan::where('id', '=', $taiKhoan->bac_tai_khoan_id)->first();
+                    if ($taiKhoan->diem_thuong >= 100) {
+                        $phieuGiamGia = new PhieuGiamGia();
+                        $phieuGiamGia->fill([
+                            'code' => Str::random(8),
+                            'phan_tram_giam' => $phanTramGiam,
+                            'ngay_bat_dau' => Carbon::now('Asia/Ho_Chi_Minh'),
+                            'ngay_het_han' => Carbon::now('Asia/Ho_Chi_Minh')->addYear(),
+                            'trang_thai' => 1,
+                        ]);
+                        $phieuGiamGia->save();
+                        $details = [
+                            'code' => $phieuGiamGia->code,
+                            'ten_bac' => $bacTaiKhoan->ten_bac_tai_khoan,
+                            'phan_tram_giam' => $phieuGiamGia->phan_tram_giam * 100,
+                            'loai' => 1,
+                        ];
+                        $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', $taiKhoan->id)->first();
+                        Mail::to($thongTinTaiKhoan->email)->send(new Voucher($details));
+                    }
+                }
+                $phanTramGiam = $phanTramGiam + 0.05;
+            }
+            $taiKhoan->save();
         }
-        if($request->trangthaidonhang == 4){
+        if ($request->trangthaidonhang == 4) {
             if ($donHang->cua_hang_id == null) {
                 $danhSachChiTietDH = ChiTietDonHang::where('chi_tiet_don_hangs.don_hang_id', '=', $maDonHang)->get();
-                $kho = Kho::where('id','!=',1)->first();
+                $kho = Kho::where('id', '!=', 1)->first();
                 foreach ($danhSachChiTietDH as $tp) {
-                    $chiTietKho = ChiTietKho::where('kho_id','=',$kho->id)
-                    ->where('chi_tiet_dien_thoai_id','=',$tp->chi_tiet_dien_thoai_id)
-                    ->first();
+                    $chiTietKho = ChiTietKho::where('kho_id', '=', $kho->id)
+                        ->where('chi_tiet_dien_thoai_id', '=', $tp->chi_tiet_dien_thoai_id)
+                        ->first();
                     $chiTietKho->fill([
                         'so_luong' => $chiTietKho->so_luong + $tp->so_luong,
                     ]);
                     $chiTietKho->save();
                 }
-            }
-            else{
+            } else {
                 $danhSachChiTietDH = ChiTietDonHang::where('chi_tiet_don_hangs.don_hang_id', '=', $maDonHang)->get();
-                $cuaHang = CuaHang::where('id','=',$donHang->cua_hang_id)->first();
+                $cuaHang = CuaHang::where('id', '=', $donHang->cua_hang_id)->first();
                 foreach ($danhSachChiTietDH as $tp) {
-                    $sanPhamPhanBo = SanPhamPhanBo::where('cua_hang_id','=',$cuaHang->id)
-                    ->where('chi_tiet_dien_thoai_id','=',$tp->chi_tiet_dien_thoai_id)
-                    ->first();
+                    $sanPhamPhanBo = SanPhamPhanBo::where('cua_hang_id', '=', $cuaHang->id)
+                        ->where('chi_tiet_dien_thoai_id', '=', $tp->chi_tiet_dien_thoai_id)
+                        ->first();
                     $sanPhamPhanBo->fill([
                         'so_luong' => $sanPhamPhanBo->so_luong + $tp->so_luong,
                     ]);
@@ -219,10 +282,14 @@ class DonHangController extends Controller
             }
             $danhSachChiTietDH = ChiTietDonHang::where('don_hang_id', '=', $tp->ma_don_hang)->get();
             $tongTien = 0;
+            $tongTienChuaGiam = 0;
             foreach ($danhSachChiTietDH as $ct) {
-                $tongTien += $ct->gia_giam;
+                $tongTien += $ct->gia_giam * $ct->so_luong;
+                $tongTienChuaGiam += $ct->gia * $ct->so_luong;
             }
             $tp->tong_tien = $tongTien;
+            $tp->tong_tien_chua_giam = $tongTienChuaGiam;
+            $tp->giam = $tongTienChuaGiam - $tongTien;
         }
         return view('user/order-management', ['danhSachDonHang' => $danhSachDonHang, 'thongTinTaiKhoan' => $thongTinTaiKhoan]);
     }
@@ -232,7 +299,7 @@ class DonHangController extends Controller
         $taiKhoan = TaiKhoan::where('username', '=', Auth::user()->username)->first();
         $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', $taiKhoan->id)->first();
         $donHang = DonHang::where('ma_don_hang', '=', $maDonHang)->first();
-        if($donHang->ngay_giao != null){
+        if ($donHang->ngay_giao != null) {
             $donHang->ngay_giao = Carbon::createFromFormat('Y-m-d', $donHang->ngay_giao)->format('d/m/Y');
         }
         $danhSachChiTietDH = ChiTietDonHang::join('chi_tiet_dien_thoais', 'chi_tiet_dien_thoais.id', '=', 'chi_tiet_don_hangs.chi_tiet_dien_thoai_id')
@@ -251,9 +318,10 @@ class DonHangController extends Controller
                 ->where('mau_sac_id', '=', $chiTietDienThoai->mau_sac_id)
                 ->where('hinh_anh_dai_dien', '=', 1)
                 ->first();
+            // dd($chiTietDienThoai->id);
             $tp->hinh_anh = $hinhAnhMauSac->hinh_anh;
             $tp->dien_thoai_id = $chiTietDienThoai->dien_thoai_id;
-            $tongTien += $tp->gia_giam;
+            $tongTien += $tp->gia_giam * $tp->so_luong;
         }
         return view('user/order-detail', ['danhSachChiTietDH' => $danhSachChiTietDH, 'donHang' => $donHang, 'thongTinTaiKhoan' => $thongTinTaiKhoan, 'tongTien' => $tongTien]);
     }
@@ -267,24 +335,23 @@ class DonHangController extends Controller
         $donHang->save();
         if ($donHang->cua_hang_id == null) {
             $danhSachChiTietDH = ChiTietDonHang::where('chi_tiet_don_hangs.don_hang_id', '=', $maDonHang)->get();
-            $kho = Kho::where('id','!=',1)->first();
+            $kho = Kho::where('id', '!=', 1)->first();
             foreach ($danhSachChiTietDH as $tp) {
-                $chiTietKho = ChiTietKho::where('kho_id','=',$kho->id)
-                ->where('chi_tiet_dien_thoai_id','=',$tp->chi_tiet_dien_thoai_id)
-                ->first();
+                $chiTietKho = ChiTietKho::where('kho_id', '=', $kho->id)
+                    ->where('chi_tiet_dien_thoai_id', '=', $tp->chi_tiet_dien_thoai_id)
+                    ->first();
                 $chiTietKho->fill([
                     'so_luong' => $chiTietKho->so_luong + $tp->so_luong,
                 ]);
                 $chiTietKho->save();
             }
-        }
-        else{
+        } else {
             $danhSachChiTietDH = ChiTietDonHang::where('chi_tiet_don_hangs.don_hang_id', '=', $maDonHang)->get();
-            $cuaHang = CuaHang::where('id','=',$donHang->cua_hang_id)->first();
+            $cuaHang = CuaHang::where('id', '=', $donHang->cua_hang_id)->first();
             foreach ($danhSachChiTietDH as $tp) {
-                $sanPhamPhanBo = SanPhamPhanBo::where('cua_hang_id','=',$cuaHang->id)
-                ->where('chi_tiet_dien_thoai_id','=',$tp->chi_tiet_dien_thoai_id)
-                ->first();
+                $sanPhamPhanBo = SanPhamPhanBo::where('cua_hang_id', '=', $cuaHang->id)
+                    ->where('chi_tiet_dien_thoai_id', '=', $tp->chi_tiet_dien_thoai_id)
+                    ->first();
                 $sanPhamPhanBo->fill([
                     'so_luong' => $sanPhamPhanBo->so_luong + $tp->so_luong,
                 ]);
@@ -292,5 +359,36 @@ class DonHangController extends Controller
             }
         }
         return redirect()->back()->with('thongbao', 'Hủy đơn hàng thành công !');
+    }
+
+    public function createBill($maDonHang)
+    {
+        $donHang = DonHang::where('ma_don_hang', '=', $maDonHang)->first();
+        $donHang->ngay_tao = Carbon::createFromFormat('Y-m-d', $donHang->ngay_tao)->format('d/m/Y');
+        $danhSachChiTietDH = ChiTietDonHang::join('chi_tiet_dien_thoais', 'chi_tiet_dien_thoais.id', '=', 'chi_tiet_don_hangs.chi_tiet_dien_thoai_id')
+            ->join('mau_sacs', 'mau_sacs.id', '=', 'chi_tiet_dien_thoais.mau_sac_id')
+            ->join('bo_nho_luu_trus', 'bo_nho_luu_trus.id', '=', 'chi_tiet_dien_thoais.bo_nho_luu_tru_id')
+            ->join('dien_thoais', 'dien_thoais.id', '=', 'chi_tiet_dien_thoais.dien_thoai_id')
+            ->join('thuong_hieus', 'thuong_hieus.id', '=', 'dien_thoais.thuong_hieu_id')
+            ->where('chi_tiet_don_hangs.don_hang_id', '=', $maDonHang)
+            ->select('chi_tiet_don_hangs.*', 'bo_nho_luu_trus.ram', 'bo_nho_luu_trus.bo_nho_trong', 'mau_sacs.ten_mau_sac', 'dien_thoais.ten_san_pham', 'thuong_hieus.ten_thuong_hieu')
+            ->get();
+        $tongTien = 0;
+        foreach ($danhSachChiTietDH as $tp) {
+            $chiTietDienThoai = ChiTietDienThoai::where('id', '=', $tp->chi_tiet_dien_thoai_id)->first();
+            $hinhAnhMauSac = HinhAnhMauSacCuaDienThoai::where('dien_thoai_id', '=', $chiTietDienThoai->dien_thoai_id)
+                ->where('mau_sac_id', '=', $chiTietDienThoai->mau_sac_id)
+                ->where('hinh_anh_dai_dien', '=', 1)
+                ->first();
+            $tp->hinh_anh = $hinhAnhMauSac->hinh_anh;
+            $tp->dien_thoai_id = $chiTietDienThoai->dien_thoai_id;
+            $tongTien += $tp->gia_giam * $tp->so_luong;
+        }
+        view()->share('tongTien', $tongTien);
+        view()->share('danhSachChiTietDH', $danhSachChiTietDH);
+        view()->share('donHang', $donHang);
+        ini_set('max_execution_time', '300');
+        $pdf = PDF::loadView('pdf/bill', compact($danhSachChiTietDH, $donHang, $tongTien));
+        return $pdf->download('HoaDon-TTMobile-' . $maDonHang . '.pdf');
     }
 }

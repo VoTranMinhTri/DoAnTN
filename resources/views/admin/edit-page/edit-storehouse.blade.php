@@ -65,6 +65,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-12">Link Url Google Map<span
+                                                            style="color:red">*</span></label>
+                                                    <div class="col-sm-12">
+                                                        <input class="form-control" name="googlemap" type="text"
+                                                            style="height: 40px;"
+                                                            placeholder="Url Google Map" value="{{ $cuaHang->google_map }}" required>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

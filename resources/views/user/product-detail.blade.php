@@ -3,12 +3,13 @@
     <section class='detail'>
         <ul class="breadcrumb">
             <li>
-                <a href="/">Home</a>
+                <a href="/">Trang chủ</a>
                 <meta property="position" content="1">
             </li>
             <li>
                 <span>›</span>
-                <a href="{{ route('productDetail', ['sanPhamId' => $dienThoai->id]) }}">{{ $dienThoai->ten_san_pham }}</a>
+                <a
+                    href="{{ route('productDetail', ['sanPhamId' => $dienThoai->id]) }}">{{ $dienThoai->ten_san_pham }}</a>
                 <meta property="position" content="2">
             </li>
         </ul>
@@ -59,8 +60,6 @@
                 </div>
             </div>
             <div class="box-right">
-                <i class="icondetail-sosanh"></i>
-                So sánh
             </div>
         </div>
         <div class='box-main'>
@@ -72,21 +71,35 @@
                                 <div class='owl-stage-outer owl-height' style="height: 396.763px;">
                                     <div class='owl-stage'
                                         style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9940px;">
-                                        @foreach ($danhSachHinhAnhNoiBat as $tp)
+                                        @if (count($danhSachHinhAnhNoiBat) > 0)
+                                            @foreach ($danhSachHinhAnhNoiBat as $tp)
+                                                <div class='owl-item' style="width: 710px;">
+                                                    <a href="#" class="slider-item ">
+                                                        <img src="{{ asset('storage/images/' . $tp->hinh_anh) }}"
+                                                            width="710" height="394">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @else
                                             <div class='owl-item' style="width: 710px;">
                                                 <a href="#" class="slider-item ">
-                                                    <img src="{{ asset('storage/images/' . $tp->hinh_anh) }}"
+                                                    <img src="{{ asset('storage/images/default/default.png') }}"
                                                         width="710" height="394">
                                                 </a>
                                             </div>
-                                        @endforeach
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="owl-nav">
                                     <button type="button" role="presentation" class="owl-prev disabled"
                                         data-prev-id="showtab"></button>
-                                    <button type="button" role="presentation" class="owl-next"
-                                        data-next-id="showtab"></button>
+                                    @if (count($danhSachHinhAnhNoiBat) > 1)
+                                        <button type="button" role="presentation" class="owl-next"
+                                            data-next-id="showtab"></button>
+                                    @else
+                                        <button type="button" role="presentation" class="owl-next" style="display: none;pointer-events: none;cursor:none"
+                                            data-next-id="showtab"></button>
+                                    @endif
                                 </div>
 
                             </div>
@@ -100,24 +113,38 @@
                                     <div class='owl-stage-outer owl-height' style="height: 473.325px;">
                                         <div class='owl-stage'
                                             style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 9230px;">
-                                            @foreach ($danhSachHinhAnhMauSac as $ha)
-                                                @if ($ha->mau_sac_id == $tp->mau_sac_id)
-                                                    <div class='owl-item' style="width: 710px;">
-                                                        <a href="#" class="slider-item ">
-                                                            <img src="{{ asset('storage/images/' . $ha->hinh_anh) }}"
-                                                                class='owl-lazy' style='opacity: 1;' alt=""
-                                                                width="710" height="473.33px">
-                                                        </a>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            @if (count($danhSachHinhAnhMauSac) > 0)
+                                                @foreach ($danhSachHinhAnhMauSac as $ha)
+                                                    @if ($ha->mau_sac_id == $tp->mau_sac_id)
+                                                        <div class='owl-item' style="width: 710px;">
+                                                            <a href="#" class="slider-item ">
+                                                                <img src="{{ asset('storage/images/' . $ha->hinh_anh) }}"
+                                                                    class='owl-lazy' style='opacity: 1;' alt=""
+                                                                    width="710" height="473.33px">
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <div class='owl-item' style="width: 710px;">
+                                                    <a href="#" class="slider-item ">
+                                                        <img src="{{ asset('storage/images/default/default.png') }}"
+                                                            width="710" height="473.33px">
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="owl-nav">
                                         <button type="button" role="presentation" class="owl-prev disabled"
-                                            data-prev-id="showtab"></button>
-                                        <button type="button" role="presentation" class="owl-next"
-                                            data-next-id="showtab"></button>
+                                            data-prev-id="showtab"><?php echo count($danhSachHinhAnhMauSac)?></button>
+                                        @if (count($danhSachHinhAnhMauSac) > 1)
+                                            <button type="button" role="presentation" class="owl-next"
+                                                data-next-id="showtab"></button>
+                                        @else
+                                            <button type="button" role="presentation" class="owl-next" style="display: none;pointer-events: none;cursor:none"
+                                                data-next-id="showtab"></button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="total-imgslider">
@@ -209,8 +236,8 @@
                                             <a href="#" class="" data-video-url="" data-video-id=""
                                                 data-time="0">
                                                 <img class="single-item"
-                                                    src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}"
-                                                    alt="OPPO Reno6 Z 5G">
+                                                    src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}" style="height: 567px; width:1020px"
+                                                    >
                                                 <span class="content-t-list-item-desc">{{ $dienThoai->mo_ta }}</span>
 
                                             </a>
@@ -237,8 +264,8 @@
                             data-gallery-id="specification-gallery">
                             <a class="top-flag" name="top-tskt"></a>
                             <div class="img">
-                                <img src="{{ asset('storage/images/' . $hinhAnhThongSoKyThuat->hinh_anh) }}"
-                                    alt="OPPO Reno6 Z 5G">
+                                <img src="{{ asset('storage/images/' . $hinhAnhThongSoKyThuat->hinh_anh) }}" style="height: 567px; width:800px"
+                                    >
                             </div>
                             <div class="content-t-wrap">
                                 <div class="parameter-all">
@@ -716,7 +743,7 @@
                 </div>
                 <div class="img-main">
                     <img class=" lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                        src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}">
+                        src="{{ asset('storage/images/' . $hinhAnhMoHop->hinh_anh) }}" style="height:394px">
                 </div>
                 <div class="box-border">
                     <div class="rating">
@@ -832,7 +859,8 @@
                         <div class="comment comment--all ratingLst">
                             <div class="comment-item par" id="khach1">
                                 <div class="item-top">
-                                    <p class="txtname">{{ $danhSachDanhGia[0]->username }}</p>
+                                    <p class="txtname" style="text-transform:none;">{{ $danhSachDanhGia[0]->username }}
+                                    </p>
                                 </div>
                                 <div class="item-rate">
                                     <div class="comment-star">
@@ -899,7 +927,8 @@
                                             <div
                                                 class="comment-item {{ $danhSachDanhGia[0]->username }} childC-item hide">
                                                 <div class="item-top">
-                                                    <p class="txtname" style="text-transform:none">{{ $tp->username }}</p>
+                                                    <p class="txtname" style="text-transform:none">{{ $tp->username }}
+                                                    </p>
                                                     @if ($tp->loai_tai_khoan_id < 5)
                                                         <span class="qtv">QTV</span>
                                                     @endif
@@ -916,7 +945,8 @@
                             </div>
                         </div>
                         <div class="comment-btn">
-                            <a href="{{ route('reviewlist',['dienThoaiId'=>$dienThoai->id]) }}" class="comment-btn-item right-arrow"><span>Xem tất cả đánh
+                            <a href="{{ route('reviewlist', ['dienThoaiId' => $dienThoai->id]) }}"
+                                class="comment-btn-item right-arrow"><span>Xem tất cả đánh
                                     giá</span></a>
                         </div>
                     @else
@@ -941,18 +971,18 @@
                 <div class="box04 box-normal">
                     <div class="price-one">
                         <div class="box-price">
-                            <div class="listproduct" style="display: block;margin-bottom: 10px;">
+                            <div class="listproduct" style="display: block;margin-bottom: 10px;border-top:0">
                                 @if ($danhSachChiTiet[0]->phan_tram_giam == 0)
                                     <strong class="price" style="font-size: 20px">Giá:
-                                        {{ number_format($danhSachChiTiet[0]->gia, 0) }}₫</strong>
+                                        {{ number_format($danhSachChiTiet[0]->gia, 0, ',', '.') }}₫</strong>
                                 @else
                                     <div class="box-p">
                                         <p class="price-old black" style="text-decoration: none;">Giá chưa giảm:
-                                            {{ number_format($danhSachChiTiet[0]->gia, 0) }}₫</p>
+                                            {{ number_format($danhSachChiTiet[0]->gia, 0, ',', '.') }}₫</p>
                                         <span class="percent">-{{ $danhSachChiTiet[0]->phan_tram_giam * 100 }}%</span>
                                     </div>
                                     <strong class="price" style="font-size: 20px; color:red">Giá giảm:
-                                        {{ number_format($danhSachChiTiet[0]->gia - $danhSachChiTiet[0]->gia * $danhSachChiTiet[0]->phan_tram_giam, 0) }}₫
+                                        {{ number_format($danhSachChiTiet[0]->gia - $danhSachChiTiet[0]->gia * $danhSachChiTiet[0]->phan_tram_giam, 0, ',', '.') }}₫
                                     </strong>
                                 @endif
                             </div>
@@ -960,7 +990,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="block block-price1">
+                <div class="block block-price1" style="box-shadow: none;">
                     <div class="block-button normal">
                         <button type="button" onclick="addCart()" class="btn-buynow jsBuy"
                             style="border: none;width: 350px;cursor: pointer;">THÊM SẢN PHẨM VÀO GIỎ
@@ -1038,50 +1068,89 @@
             <div class='related'>
                 <p class="related-ttl">Xem thêm điện thoại khác</p>
                 <div class="box-scroll p-slide">
-                    <div class="listproduct owl-carousel owl-loaded owl-drag">
-                        <div class="owl-stage-outer" data-box-id='boxscroll'>
-                            <div class="owl-stage"
+                    <div class="listproduct owl-carousel owl-loaded owl-drag"style="border: 1px solid #e0e0e0;border-radius: 8px;padding: 15px 15px 20px;">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" data-box-id='boxscroll'
                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2640px;">
-                                @for ($i = 0; $i < 10; $i++)
+                                @foreach ($danhSachDienThoai as $tp)
                                     <div class="owl-item active" style="width: 240px;">
-                                        <div class="item" data-id="239747">
-                                            <a href="/dtdd/oppo-reno6-z-5g?src=osp&amp;itm_source=detail&amp;itm_medium=product_card&amp;itm_campaign=viewed"
+                                        <div class="item">
+                                            <a href="{{ route('productDetail', ['sanPhamId' => $tp->id]) }}"
                                                 data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
                                                 <div class="item-label">
                                                     <span class="lb-tragop">Trả góp 0%</span>
                                                 </div>
                                                 <div class="item-img 12321312312">
-                                                    <img class=" ls-is-cached lazyloaded" alt="Điện thoại OPPO Reno6 Z 5G"
-                                                        src="{{ asset('assets/user/images/oppo-reno6-z-5g-aurora.jpg') }}">
+                                                    <img class=" ls-is-cached lazyloaded"
+                                                        src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
                                                 </div>
-                                                <h3 title="Điện thoại OPPO Reno6 Z 5G">
-                                                    OPPO Reno6 Z 5G
+                                                <h3>
+                                                    {{ $tp->ten_san_pham }}
                                                 </h3>
-                                                <strong class="price">9.490.000₫</strong>
+                                                @if ($tp->phan_tram_giam == 0)
+                                                    <strong
+                                                        class="price">{{ number_format($tp->gia, 0, ',', '.') }}₫</strong>
+                                                @else
+                                                    <div class="box-p">
+                                                        <p class="price-old black">
+                                                            {{ number_format($tp->gia, 0, ',', '.') }}₫</p>
+                                                        <span class="percent">-{{ $tp->phan_tram_giam * 100 }}%</span>
+                                                    </div>
+                                                    <strong class="price"
+                                                        style="color:red">{{ number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0, ',', '.') }}₫
+                                                    </strong>
+                                                @endif
                                                 <div class="item-rating">
                                                     <p>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                    </p>
-                                                    <p class="item-rating-total">1</p>
+                                                        @if ($tp->so_sao_trung_binh > 4.5)
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                        @elseif($tp->so_sao_trung_binh > 3.5)
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                        @elseif($tp->so_sao_trung_binh > 2.5)
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                        @elseif($tp->so_sao_trung_binh > 1.5)
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                        @elseif($tp->so_sao_trung_binh > 0.5)
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                        @else
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                            <i class="icon-star-dark"></i>
+                                                        @endif
+                                                    <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
                                                 </div>
                                             </a>
                                             <div class="item-bottom">
                                                 <a href="#" class="shiping"></a>
                                             </div>
-                                            <a href="javascript:void(0)" class="item-ss">
-                                                <i></i>
-                                                So sánh
-                                            </a>
                                         </div>
                                     </div>
-                                @endfor
+                                @endforeach
                             </div>
                         </div>
-                        <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"
+                        <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"
                                 data-prev-id='btnboxscroll'><span aria-label="Previous">‹</span></button>
                             <button type="button" role="presentation" class="owl-next"
                                 data-next-id='btnboxscroll'><span aria-label="Next">›</span></button>
@@ -1175,9 +1244,9 @@
                     inputNoiDung.value = '';
                 },
                 error: function(data) {
-                    if(data.responseText == 0){
+                    if (data.responseText == 0) {
                         window.location = "http://localhost:8000/signin";
-                    }else{
+                    } else {
                         alertify.error(data.responseText);
                     }
                 }

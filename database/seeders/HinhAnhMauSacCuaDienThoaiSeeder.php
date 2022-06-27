@@ -185,6 +185,8 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
         ]);
 
         //iPhone
+
+        //iPhone 13 Pro Max
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 2,
             'mau_sac_id'=> 3,
@@ -292,6 +294,85 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
             'mau_sac_id'=> 1,
             'hinh_anh'=>'IPHONE/iPhone 13 Pro Max/HinhAnhMauSac/iphone13promax-2.jpg',
             'hinh_anh_dai_dien'=> 0,
+        ]);
+        //iPhone 12 Pro
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/200x200-1-org.png',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-2-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-3-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-4-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-5-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-6-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-7-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-8-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-9-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-10-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-11-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-512gb-xam-12-org.jpg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 11,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'IPHONE/iPhone 12 Pro/HinhAnhMauSac/iphone-12-pro-15.jpg',
+            'hinh_anh_dai_dien'=> 1,
         ]);
 
         //Samsung
@@ -635,6 +716,8 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
         ]);
 
         //Xiaomi
+
+        //Xiaomi 12
         HinhAnhMauSacCuaDienThoai::create([
             'dien_thoai_id'=> 5,
             'mau_sac_id'=> 5,
@@ -723,6 +806,97 @@ class HinhAnhMauSacCuaDienThoaiSeeder extends Seeder
             'dien_thoai_id'=> 5,
             'mau_sac_id'=> 5,
             'hinh_anh'=>'XIAOMI/Xiaomi 12/HinhAnhMauSac/xiaomi-mi-12-14.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        //Xiaomi 11T Pro
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-5g-8gb-thumb-200x200.jpeg',
+            'hinh_anh_dai_dien'=> 1,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-1.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-2.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-3.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-4.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-5.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-6.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-7.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-8.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-9.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-10.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-11.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-12.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-13.jpg',
+            'hinh_anh_dai_dien'=> 0,
+        ]);
+        HinhAnhMauSacCuaDienThoai::create([
+            'dien_thoai_id'=> 10,
+            'mau_sac_id'=> 10,
+            'hinh_anh'=>'XIAOMI/Xiaomi 11T Pro 5G/HinhAnhMauSac/xiaomi-11t-pro-tem.jpg',
             'hinh_anh_dai_dien'=> 0,
         ]);
 

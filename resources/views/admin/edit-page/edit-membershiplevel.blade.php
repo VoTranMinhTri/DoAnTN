@@ -65,17 +65,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-12">Phần trăm giảm (Theo số thập phân VD: 0.1 =
-                                                        10%)<span style="color:red">*</span></label>
-                                                    <div class="col-sm-12">
-                                                        <input class="form-control" name="phantramgiam" type="number" id="phantramgiam"
-                                                            style="height: 40px;" placeholder="Phần trăm giảm" value="{{ $bacTaiKhoan->phan_tram_giam }}" min='0'
-                                                            step="any" max='1' required>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

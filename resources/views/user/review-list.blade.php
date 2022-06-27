@@ -3,7 +3,7 @@
     <section class="rtPage">
         <ul class="breadcrumb">
             <li>
-                <a href="/">Home</a>
+                <a href="/">Trang chủ</a>
                 <meta property="position" content="1">
             </li>
             <li>
@@ -149,7 +149,7 @@
                 @foreach ($danhSachDanhGia as $tp)
                     <div class="comment-item par">
                         <div class="item-top">
-                            <p class="txtname">{{ $tp->username }}</p>
+                            <p class="txtname" style="text-transform:none;">{{ $tp->username }}</p>
                         </div>
                         <div class="item-rate">
                             <div class="comment-star">

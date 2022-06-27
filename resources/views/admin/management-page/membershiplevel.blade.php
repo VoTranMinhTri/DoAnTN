@@ -49,8 +49,7 @@
                                                 <tr>
                                                     <th>STT</th>
                                                     <th>Tên bậc tài khoản</th>
-                                                    <th>Hạn mức</th>
-                                                    <th>Phần trăm giảm</th>
+                                                    <th>Hạn mức điểm</th>
                                                     <th class='thNormal' style='width:100px'>Chức năng</th>
                                                 </tr>
                                             </thead>
@@ -61,7 +60,6 @@
                                                     <td><?php echo ++$i; ?></td>
                                                     <td>{{ $tp->ten_bac_tai_khoan }}</td>
                                                     <td>{{ $tp->han_muc }}</td>
-                                                    <td>{{ $tp->phan_tram_giam }}</td>
                                                     <td>
                                                         <a href="{{ route('bacTaiKhoan.edit', ['bacTaiKhoan' => $tp]) }}"><button type="button" class="btn btn-outline-secondary"
                                                             title="Chỉnh sửa thông tin bậc thành viên"><i
@@ -78,7 +76,6 @@
                                                     <th>STT</th>
                                                     <th>Tên bậc tài khoản</th>
                                                     <th>Hạn mức</th>
-                                                    <th>Phần trăm giảm</th>
                                                     <th class='thNormal' style='width:100px'>Chức năng</th>
                                                 </tr>
                                             </tfoot>

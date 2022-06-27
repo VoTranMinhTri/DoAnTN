@@ -6,8 +6,8 @@
                 <a href="/ordermanagement" class="">Danh sách đơn hàng</a>
                 <a href="/accountinformation" class="active">Thông tin cá nhân</a>
                 <a href="/review" class="">Đánh giá sản phẩm</a>
-                @if(Auth::user()->loai_tai_khoan_id == 5)
-                <a href="/thayDoiMatKhau" class="">Đổi mật khẩu</a>
+                @if (Auth::user()->loai_tai_khoan_id == 5)
+                    <a href="/thayDoiMatKhau" class="">Đổi mật khẩu</a>
                 @endif
 
             </div>
@@ -35,13 +35,14 @@
                         @endif
                     </div>
 
-                    <input type="text" name="hoten" value="{{ $thongTinTaiKhoan->ho_ten }}" placeholder="Họ tên" required>
-                    <input type="text" name="sdt" value="{{ $thongTinTaiKhoan->so_dien_thoai }}" placeholder="Số điện thoại"
+                    <input type="text" name="hoten" value="{{ $thongTinTaiKhoan->ho_ten }}" placeholder="Họ tên"
                         required>
+                    <input type="text" name="sdt" value="{{ $thongTinTaiKhoan->so_dien_thoai }}"
+                        placeholder="Số điện thoại" required>
                     <input type="text" name="diachi" value="{{ $thongTinTaiKhoan->dia_chi }}" placeholder="Địa chỉ"
                         required>
-                    <input type="text" name="email" value="{{ $thongTinTaiKhoan->email }}" placeholder="Email" required
-                        style="float: right;">
+                    <input type="text" name="email" value="{{ $thongTinTaiKhoan->email }}" placeholder="Email"
+                        required style="float: right;">
                     <p style="margin-bottom: 5px;">Ngày sinh:</p>
                     <input type="date" name="ngaysinh" value="{{ $thongTinTaiKhoan->ngay_sinh }}" required>
                     <input type="hidden" name='taikhoanid' value='{{ Auth::user()->id }}'>

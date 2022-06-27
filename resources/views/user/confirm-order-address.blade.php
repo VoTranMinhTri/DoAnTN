@@ -95,11 +95,11 @@
 
                                         @if ($tp['productInfo']->phan_tram_giam == 0)
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0) }}₫</span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0,',','.') }}₫</span>
                                         @else
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0) }}<del>
-                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0) }}₫
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0,',','.') }}<del>
+                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') }}₫
                                                 </del></span>
                                         @endif
 
@@ -134,13 +134,13 @@
                             ?>
                             <span class="total-label">Tạm tính </span>({{ $soLuong }} sản phẩm):
                         </span>
-                        <span class="temp-total-money">{{ number_format($tamTinh, 0) }}₫</span>
+                        <span class="temp-total-money">{{ number_format($tamTinh, 0,',','.') }}₫</span>
                     </div>
 
                     <div class="finaltotal">
                         <div class="area-total">
                             <div class="total-price"><strong>Tổng
-                                    tiền:</strong><strong>{{ number_format($tamTinh, 0) }}₫</strong></div>
+                                    tiền:</strong><strong>{{ number_format($tamTinh, 0,',','.') }}₫</strong></div>
                         </div>
                     </div>
                     <div class="info-customer">
@@ -204,8 +204,8 @@
                                                         class="cartnew-choose"></i><span>Số {{ $tp->dia_chi }}<small
                                                             class="cohang"> Còn hàng </small></span></li>
                                             @else
-                                                <li data-storeid="{{ $tp->id }}"><span>Số {{ $tp->dia_chi }}<small
-                                                            class="cohang"> Hết hàng </small></span></li>
+                                                <li data-storeid="{{ $tp->id }}" style="pointer-events: none;"><span>Số {{ $tp->dia_chi }}<small
+                                                            class="hethang"> Hết hàng </small></span></li>
                                             @endif
                                         @endforeach
                                     </ul>

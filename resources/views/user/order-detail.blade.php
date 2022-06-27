@@ -3,11 +3,11 @@
     <section class="cate">
         <div class="container">
             <div class="left">
-                <a href="/ordermanagement" class="active">Danh sách đơn hàng</a>
+                <a href="/ordermanagement" class="">Danh sách đơn hàng</a>
                 <a href="/accountinformation" class="">Thông tin cá nhân</a>
                 <a href="/review" class="">Đánh giá sản phẩm</a>
                 @if(Auth::user()->loai_tai_khoan_id == 5)
-                <a href="/thayDoiMatKhau" class="active">Đổi mật khẩu</a>
+                <a href="/thayDoiMatKhau" class="">Đổi mật khẩu</a>
                 @endif
             </div>
             <div class="right">
@@ -50,15 +50,15 @@
                                 <i>Số lượng: <b>{{ $tp->so_luong }}</b></i>
                             </div>
                             <div class="fr">
-                                <b>{{ number_format($tp->gia_giam, 0) }}₫</b>
-                                <em>{{ number_format($tp->gia, 0) }}₫</em>
+                                <b>{{ number_format($tp->gia_giam, 0,',','.') }}₫</b>
+                                <em>{{ number_format($tp->gia, 0,',','.') }}₫</em>
                             </div>
                         </div>
                     @endforeach
 
                     <div class="sum">
-                        <span><label>Giá tạm tính:</label> <b style="color:#3e5569">{{ number_format($tongTien, 0) }}₫</b></span>
-                        <span><strong>Tổng tiền:</strong> <b>{{ number_format($tongTien, 0) }}₫</b></span>
+                        <span><label>Giá tạm tính:</label> <b style="color:#3e5569">{{ number_format($tongTien, 0,',','.') }}₫</b></span>
+                        <span><strong>Tổng tiền:</strong> <b>{{ number_format($tongTien, 0,',','.') }}₫</b></span>
                         {{-- <span><strong class="paid">Đã thanh toán:</strong><b>9.490.000₫</b></span> --}}
                     </div>
                     <div class="info type0" data-recievetype="0">

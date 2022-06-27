@@ -42,7 +42,6 @@ class BacTaiKhoanController extends Controller
             [
                 'tenbac' => 'required|max:100',
                 'hanmuc' => 'required|min:0|numeric',
-                'phantramgiam' => 'required|max:1|min:0|numeric',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
@@ -53,7 +52,6 @@ class BacTaiKhoanController extends Controller
             [
                 'tenbac' => 'Tên bậc thành viên',
                 'hanmuc' => 'Hạn mức',
-                'phantramgiam' => 'Phần trăm giảm',
             ]
         )->validate();
 
@@ -68,7 +66,6 @@ class BacTaiKhoanController extends Controller
                 $bacTaiKhoan->fill([
                     'ten_bac_tai_khoan' => $tenBacFormat,
                     'han_muc' => $request->input('hanmuc'),
-                    'phan_tram_giam' => $request->input('phantramgiam'),
                 ]);
                 if($bacTaiKhoan->save() == true){
                     return redirect()->back()->with('thongbao', 'Thêm bậc thành viên thành công !');
@@ -115,7 +112,6 @@ class BacTaiKhoanController extends Controller
             [
                 'tenbac' => 'required|max:100',
                 'hanmuc' => 'required|min:0|numeric',
-                'phantramgiam' => 'required|max:1|min:0|numeric',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
@@ -126,7 +122,6 @@ class BacTaiKhoanController extends Controller
             [
                 'tenbac' => 'Tên bậc thành viên',
                 'hanmuc' => 'Hạn mức',
-                'phantramgiam' => 'Phần trăm giảm',
             ]
         )->validate();
 
@@ -140,7 +135,6 @@ class BacTaiKhoanController extends Controller
                 $bacTaiKhoan->fill([
                     'ten_bac_tai_khoan' => $tenBacFormat,
                     'han_muc' => $request->input('hanmuc'),
-                    'phan_tram_giam' => $request->input('phantramgiam'),
                 ]);
                 if($bacTaiKhoan->save() == true){
                     return redirect()->back()->with('thongbao', 'Cập nhật bậc thành viên thành công !');

@@ -72,7 +72,7 @@ class SocialController extends Controller
             //Tạo tài khoản
             $taiKhoan = new TaiKhoan();
             $taiKhoan->username = $user->email;
-            $taiKhoan->loai_tai_khoan_id = 8;
+            $taiKhoan->loai_tai_khoan_id = 6;
             $taiKhoan->bac_tai_khoan_id = 2;
             $taiKhoan->diem_thuong = 0;
             $taiKhoan->password = bcrypt($user->id);

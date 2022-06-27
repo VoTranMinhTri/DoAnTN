@@ -328,7 +328,7 @@
                                                 <td>{{ $tp->ten_san_pham }} -
                                                     {{ $tp->ram }}/{{ $tp->bo_nho_trong }} -
                                                     {{ $tp->ten_mau_sac }}</td>
-                                                <td>{{ number_format($tp->gia, 0) }} VNĐ</td>
+                                                <td>{{ number_format($tp->gia, 0,',','.') }} VNĐ</td>
                                                 <td>
                                                     <a
                                                         href="{{ route('chiTietDienThoai.edit', ['chiTietDienThoai' => $tp]) }}"><button
@@ -414,12 +414,14 @@
                                                 </tfoot>
                                             </table>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12" style="text-align: center; margin-top:20px">
-                                                <button type="submit" class="btn btn-primary" style="width:40%">Thêm chi
-                                                    tiết sản phẩm có thông tin sẵn</button>
+                                        @if(count($danhSachChiTiet) >0)
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align: center; margin-top:20px">
+                                                    <button type="submit" class="btn btn-primary" style="width:40%">Thêm chi
+                                                        tiết sản phẩm có thông tin sẵn</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </form>
                                 </div>
                             </div>

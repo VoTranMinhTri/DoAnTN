@@ -48,14 +48,17 @@ class KhoController extends Controller
             [
                 'tenkho' => 'required|max:30',
                 'diachi' => 'required|max:500',
+                'googlemap' => 'required|url|max:500',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
                 'max' => 'Vượt quá số ký tự cho phép !',
+                'url' => ':attribute không phải là Url'
             ],
             [
                 'tenkho' => 'Tên kho',
                 'diachi' => 'Địa chỉ',
+                'googlemap' => 'Url Google Map'
             ]
         )->validate();
 
@@ -64,16 +67,18 @@ class KhoController extends Controller
         $diaChiFormat = trim($request->input('diachi'));
         $tontai1 = Kho::where('ten_kho', 'like', $tenFormat)->first();
         $tontai2 = Kho::where('dia_chi', 'like', $diaChiFormat)->first();
-        if (empty($tontai1) || empty($tontai2)) {
+        $tontai3 = Kho::where('google_map', 'like', $request->input('googlemap'))->first();
+        if (empty($tontai1) && empty($tontai2) && empty($tontai3)) {
             $kTTen = str_replace(' ', '', $tenFormat);
             $ktDiaChi = str_replace(' ', '', $diaChiFormat);
             $tontai1 = Kho::where('ten_kho', 'like', $kTTen)->first();
             $tontai2 = Kho::where('dia_chi', 'like', $ktDiaChi)->first();
-            if (empty($tontai1) || empty($tontai2)) {
+            if (empty($tontai1) && empty($tontai2)) {
                 $kho = new Kho;
                 $kho->fill([
                     'ten_kho' => $tenFormat,
                     'dia_chi' => $diaChiFormat,
+                    'google_map' =>$request->input('googlemap'),
                 ]);
                 if ($kho->save() == true) {
                     return redirect()->back()->with('thongbao', 'Thêm kho thành công !');
@@ -81,7 +86,7 @@ class KhoController extends Controller
                 return redirect()->back()->with('thongbao', 'Thêm kho không thành công !');
             }
         }
-        return redirect()->back()->with('thongbao', 'Thêm kho không thành công ! Tên kho hoặc địa chỉ đã tồn tại !');
+        return redirect()->back()->with('thongbao', 'Thêm kho không thành công ! Tên kho hoặc địa chỉ hoặc Url đã tồn tại !');
     }
 
     /**
@@ -143,23 +148,27 @@ class KhoController extends Controller
             [
                 'tenkho' => 'required|max:30',
                 'diachi' => 'required|max:500',
+                'googlemap' => 'required|url|max:500',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
                 'max' => 'Vượt quá số ký tự cho phép !',
+                'url' => ':attribute không phải là Url'
             ],
             [
                 'tenkho' => 'Tên kho',
                 'diachi' => 'Địa chỉ',
+                'googlemap' => 'Url Google Map'
             ]
         )->validate();
 
         //Định dạng lại tên kho
         $tenFormat = trim($request->input('tenkho'));
         $diaChiFormat = trim($request->input('diachi'));
-        $tontai1 = Kho::where('ten_kho', 'like', $tenFormat)->first();
-        $tontai2 = Kho::where('dia_chi', 'like', $diaChiFormat)->first();
-        if (empty($tontai1) || empty($tontai2)) {
+        $tontai1 = Kho::where('ten_kho', 'like', $tenFormat)->where('id', '!=', $kho->id)->first();
+        $tontai2 = Kho::where('dia_chi', 'like', $diaChiFormat)->where('id', '!=', $kho->id)->first();
+        $tontai3 = Kho::where('google_map', 'like', $request->input('googlemap'))->where('id', '!=', $kho->id)->first();
+        if (empty($tontai1) && empty($tontai2) && empty($tontai3)) {
             $kTTen = str_replace(' ', '', $tenFormat);
             $ktDiaChi = str_replace(' ', '', $diaChiFormat);
             $tontai1 = Kho::where('ten_kho', 'like', $kTTen)->first();
@@ -168,6 +177,7 @@ class KhoController extends Controller
                 $kho->fill([
                     'ten_kho' => $tenFormat,
                     'dia_chi' => $diaChiFormat,
+                    'google_map' =>$request->input('googlemap'),
                 ]);
                 if ($kho->save() == true) {
                     return redirect()->back()->with('thongbao', 'Cập nhật kho thành công !');
@@ -175,7 +185,7 @@ class KhoController extends Controller
                 return redirect()->back()->with('thongbao', 'Cập nhật kho không thành công !');
             }
         }
-        return redirect()->back()->with('thongbao', 'Cập nhật kho không thành công ! Tên kho hoặc địa chỉ đã tồn tại !');
+        return redirect()->back()->with('thongbao', 'Cập nhật kho không thành công ! Tên kho hoặc địa chỉ hoặc Url đã tồn tại !');
     }
 
     /**

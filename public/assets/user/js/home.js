@@ -20,6 +20,7 @@ window.addEventListener("load", function () {
     //     document.querySelector(".sort-select .sort-show").innerHTML = item.text;
     // })
     // );
+
     //Top deal
     const sliderStageTopDeal = document.querySelector(".owl-wrapper");
     const sliderItemsTopDeal = document.querySelectorAll(".owl-item");
@@ -29,7 +30,7 @@ window.addEventListener("load", function () {
     const slidersTopDealLength = sliderItemsTopDeal.length / 5;
     let positionTopDealX = 0;
     let i = 0;
-    if(sliderItemsTopDeal.length > 5){
+    if (sliderItemsTopDeal.length > 5) {
         nextBtnTopDeal.addEventListener("click", function () {
             changeSlideTopDeal(1);
         });
@@ -45,25 +46,23 @@ window.addEventListener("load", function () {
                 sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 1000ms  ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
             }
             else {
-                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth+10) * 5;
+                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth + 10) * 5;
                 sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
                 i++;
             }
         } else if (direction === -1) {
             if (i <= 0) {
                 i = slidersTopDealLength - 1;
-                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth+10)*5;
+                positionTopDealX = positionTopDealX - (sliderItemTopDealWidth + 10) * 5;
                 sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
             }
             else {
-                positionTopDealX = positionTopDealX + (sliderItemTopDealWidth+10) * 5;
+                positionTopDealX = positionTopDealX + (sliderItemTopDealWidth + 10) * 5;
                 sliderStageTopDeal.style = 'width: 9044px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(' + positionTopDealX + 'px, 0px, 0px);'
                 i--;
             }
         }
     }
-
-
 
     //Banner trang chủ
     const sliderStage = document.querySelector(".stage");
@@ -141,52 +140,44 @@ window.addEventListener("load", function () {
 });
 
 //Phân loại theo giảm giá,...
-function filterDiscount(){
+function filterDiscount() {
     var a = document.getElementsByClassName("c-checkitem");
     // console.log(a);
-    if(a[0].className == "c-checkitem")
-    {
+    if (a[0].className == "c-checkitem") {
         a[0].className += " active";
     }
-    else
-    {
+    else {
         a[0].className = a[0].className.replace(" active", "");
     }
 }
-function filterZeroPercent(){
+function filterZeroPercent() {
     var a = document.getElementsByClassName("c-checkitem");
     // console.log(a);
-    if(a[1].className == "c-checkitem")
-    {
+    if (a[1].className == "c-checkitem") {
         a[1].className += " active";
     }
-    else
-    {
+    else {
         a[1].className = a[1].className.replace(" active", "");
     }
 }
-function filterMonopoly(){
+function filterMonopoly() {
     var a = document.getElementsByClassName("c-checkitem");
     // console.log(a);
-    if(a[2].className == "c-checkitem")
-    {
+    if (a[2].className == "c-checkitem") {
         a[2].className += " active";
     }
-    else
-    {
+    else {
         a[2].className = a[2].className.replace(" active", "");
     }
 }
 
-function filterNew(){
+function filterNew() {
     var a = document.getElementsByClassName("c-checkitem");
     // console.log(a);
-    if(a[3].className == "c-checkitem")
-    {
+    if (a[3].className == "c-checkitem") {
         a[3].className += " active";
     }
-    else
-    {
+    else {
         a[3].className = a[3].className.replace(" active", "");
     }
 }
@@ -194,21 +185,22 @@ function filterNew(){
 
 //Nút xem thêm điện thoại
 let loadMoreBtn = document.querySelector('#load-more')
-let currentItem = 10;
-if(document.querySelectorAll(".listproduct.all .item").length <= 10){
+if (document.querySelectorAll(".listproduct.all .item").length <= 10) {
     loadMoreBtn.style.display = 'none';
 }
-function loadMore(){
-    let item = [...document.querySelectorAll(".listproduct .item")];
-    for(var i = currentItem;i < currentItem + 5; i++){
-        if(i == item.length){
+function loadMore() {
+    let currentItem = 10;
+    let item = [...document.querySelectorAll(".listproduct.all .item")];
+    for (var i = currentItem; i < currentItem + 5; i++) {
+        if (i == item.length) {
             break;
         }
         item[i].style.display = 'block';
     }
-    currentItem +=5;
+    currentItem += 5;
 
-    if(currentItem >= item.length){
+    if (currentItem >= item.length) {
         loadMoreBtn.style.display = 'none';
     }
 }
+

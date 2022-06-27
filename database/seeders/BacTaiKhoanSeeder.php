@@ -17,27 +17,22 @@ class BacTaiKhoanSeeder extends Seeder
         BacTaiKhoan::create([
             'ten_bac_tai_khoan'=> 'Không xếp bậc',
             'han_muc'=> '0',
-            'phan_tram_giam'=> 0,
         ]);
         BacTaiKhoan::create([
             'ten_bac_tai_khoan'=> 'Thành viên',
             'han_muc'=> '0',
-            'phan_tram_giam'=> 0.01,
         ]);
         BacTaiKhoan::create([
             'ten_bac_tai_khoan'=> 'Thành viên đồng',
-            'han_muc'=> '5000000',
-            'phan_tram_giam'=> 0.05,
+            'han_muc'=> '100',
         ]);
         BacTaiKhoan::create([
             'ten_bac_tai_khoan'=> 'Thành viên bạc',
-            'han_muc'=> '10000000',
-            'phan_tram_giam'=> 0.1,
+            'han_muc'=> '1000',
         ]);
         BacTaiKhoan::create([
             'ten_bac_tai_khoan'=> 'Thành viên vàng',
-            'han_muc'=> '15000000',
-            'phan_tram_giam'=> 0.15,
+            'han_muc'=> '10000',
         ]);
     }
 }

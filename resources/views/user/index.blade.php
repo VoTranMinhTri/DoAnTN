@@ -12,35 +12,40 @@
                         <div class="banner-item" style="width: 800px;">
                             <div class="item">
                                 <a aria-label="slide" href="#">
-                                    <img width="800" height="200" src="{{ asset('assets/user/images/banner-1.png') }}" />
+                                    <img width="800" height="200"
+                                        src="{{ asset('assets/user/images/banner-1.png') }}" />
                                 </a>
                             </div>
                         </div>
                         <div class="banner-item" style="width: 800px;">
                             <div class="item">
                                 <a aria-label="slide" href="#">
-                                    <img width="800" height="200" src="{{ asset('assets/user/images/banner-2.png') }}" />
+                                    <img width="800" height="200"
+                                        src="{{ asset('assets/user/images/banner-2.png') }}" />
                                 </a>
                             </div>
                         </div>
                         <div class="banner-item" style="width: 800px;">
                             <div class="item">
                                 <a aria-label="slide" href="#">
-                                    <img width="800" height="200" src="{{ asset('assets/user/images/banner-3.png') }}" />
+                                    <img width="800" height="200"
+                                        src="{{ asset('assets/user/images/banner-3.png') }}" />
                                 </a>
                             </div>
                         </div>
                         <div class="banner-item" style="width: 800px;">
                             <div class="item">
                                 <a aria-label="slide" href="#">
-                                    <img width="800" height="200" src="{{ asset('assets/user/images/banner-4.png') }}" />
+                                    <img width="800" height="200"
+                                        src="{{ asset('assets/user/images/banner-4.png') }}" />
                                 </a>
                             </div>
                         </div>
                         <div class="banner-item" style="width: 800px;">
                             <div class="item">
                                 <a aria-label="slide" href="#">
-                                    <img width="800" height="200" src="{{ asset('assets/user/images/banner-5.png') }}" />
+                                    <img width="800" height="200"
+                                        src="{{ asset('assets/user/images/banner-5.png') }}" />
                                 </a>
                             </div>
                         </div>
@@ -92,91 +97,88 @@
         </div>
     </section> --}}
     <section class="wrapper content-2 ct-11-11 hotsale-fs">
-        <div class="container product boxfs">
+        <div class="container product boxfs" style="width: 1200px;">
             <h3 class="title" id="top-deal-soc">
                 <img src="{{ asset('assets/user/images/TGDD-Hotsaledesk-1200x120.png') }}">
                 <img src="{{ asset('assets/user/images/topdealdesk-640x88.png') }}"
                     class="animate__animated tgdd animate__bounce" id="title-text-animation">
             </h3>
             <div class="list noall owl-list col5 pd  listproduct owl-carousel owl-theme"
-                style="opacity: 1; display: block;">
+                style="opacity: 1; display: block;border-top: 0;">
                 <div class="owl-wrapper-outer">
                     <div class="owl-wrapper" style="width: 9044px; left: 0px; display: block;">
                         @foreach ($danhSachDienThoai as $tp)
                             <div class="owl-item" style="width: 228px;">
                                 <div class="item" data-id="">
-                                    <a href="{{ route('productDetail', ['sanPhamId' => $tp->id]) }}"
-                                        data-s="Nomal" data-site="1" data-pro="3" data-cache="True">
+                                    <a href="{{ route('productDetail', ['sanPhamId' => $tp->id]) }}" data-s="Nomal"
+                                        data-site="1" data-pro="3" data-cache="True">
                                         <div class="item-label">
                                             <span class="lb-tragop">Trả góp 0%</span>
                                         </div>
                                         <div class="item-img 12321312312">
                                             <img class=" ls-is-cached lazyloaded"
-                                            src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
+                                                src="{{ asset('storage/images/' . $tp->hinh_anh) }}">
                                         </div>
                                         <h3>
                                             {{ $tp->ten_san_pham }}
                                         </h3>
                                         @if ($tp->phan_tram_giam == 0)
-                                            <strong class="price">{{ number_format($tp->gia, 0) }}₫</strong>
+                                            <strong class="price">{{ number_format($tp->gia, 0, ',', '.') }}₫</strong>
                                         @else
                                             <div class="box-p">
-                                                <p class="price-old black">{{ number_format($tp->gia, 0) }}₫</p>
+                                                <p class="price-old black">{{ number_format($tp->gia, 0, ',', '.') }}₫
+                                                </p>
                                                 <span class="percent">-{{ $tp->phan_tram_giam * 100 }}%</span>
                                             </div>
-                                            <strong
-                                                class="price" style="color:red">{{ number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) }}₫
+                                            <strong class="price"
+                                                style="color:red">{{ number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0, ',', '.') }}₫
                                             </strong>
                                         @endif
                                         <div class="item-rating">
                                             <p>
-                                                @if($tp->so_sao_trung_binh > 4.5)
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                @if ($tp->so_sao_trung_binh > 4.5)
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
                                                 @elseif($tp->so_sao_trung_binh > 3.5)
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star-dark"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star-dark"></i>
                                                 @elseif($tp->so_sao_trung_binh > 2.5)
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
                                                 @elseif($tp->so_sao_trung_binh > 1.5)
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
                                                 @elseif($tp->so_sao_trung_binh > 0.5)
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
+                                                    <i class="icon-star"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
                                                 @else
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
-                                                <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
+                                                    <i class="icon-star-dark"></i>
                                                 @endif
-                                                <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
+                                            <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
                                         </div>
                                     </a>
                                     <div class="item-bottom">
                                         <a href="#" class="shiping"></a>
                                     </div>
-                                    <a href="javascript:void(0)" class="item-ss">
-                                        <i></i>
-                                        So sánh
-                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -277,7 +279,7 @@
                 </div>
             </div> --}}
             <div class="filter-product g3926">
-                <label class="filterprice choose" id="0" onclick="filterProductByPrice(1,this.id)"><i
+                <label class="filterprice" id="0" onclick="filterProductByPrice(1,this.id)"><i
                         class="icontgdd-opt"></i>&nbsp;Nổi
                     bật</label>
                 <label class="filterprice" id="0" onclick="filterProductByPrice(2,this.id)"><i
@@ -288,26 +290,27 @@
             <div class="product noibat" style="border-bottom: 1px solid #f3f3f3 !important;">
                 <div id="group3926-priorityProduct" class="list priority ">
                     <div class="item">
-                        <a href="{{ route('productDetail', ['sanPhamId' => $danhSachDienThoai[1]->id]) }}" class=" main-contain">
+                        <a href="{{ route('productDetail', ['sanPhamId' => $danhSachDienThoai[1]->id]) }}"
+                            class=" main-contain">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
                             <div class="item-img">
-                                <img src="{{ asset('storage/images/' . $danhSachDienThoai[1]->hinh_anh) }}" width="210"
-                                    height="210">
+                                <img src="{{ asset('storage/images/' . $danhSachDienThoai[1]->hinh_anh) }}"
+                                    width="210" height="210">
                             </div>
                             <h3 style="color:#333">{{ $danhSachDienThoai[1]->ten_san_pham }}</h3>
                             @if ($danhSachDienThoai[1]->phan_tram_giam == 0)
                                 <strong
-                                    class="price">{{ number_format($danhSachDienThoai[1]->gia, 0) }}₫</strong>
+                                    class="price">{{ number_format($danhSachDienThoai[1]->gia, 0, ',', '.') }}₫</strong>
                             @else
                                 <div class="box-p">
-                                    <p class="price-old black">{{ number_format($danhSachDienThoai[1]->gia, 0) }}₫</p>
-                                    <span
-                                        class="percent">-{{ $danhSachDienThoai[1]->phan_tram_giam * 100 }}%</span>
+                                    <p class="price-old black">
+                                        {{ number_format($danhSachDienThoai[1]->gia, 0, ',', '.') }}₫</p>
+                                    <span class="percent">-{{ $danhSachDienThoai[1]->phan_tram_giam * 100 }}%</span>
                                 </div>
                                 <strong
-                                    class="price">{{ number_format($danhSachDienThoai[1]->gia - $danhSachDienThoai[1]->gia * $danhSachDienThoai[1]->phan_tram_giam, 0) }}₫
+                                    class="price">{{ number_format($danhSachDienThoai[1]->gia - $danhSachDienThoai[1]->gia * $danhSachDienThoai[1]->phan_tram_giam, 0, ',', '.') }}₫
                                 </strong>
                             @endif
                             <div class="item-rating">
@@ -323,26 +326,27 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{ route('productDetail', ['sanPhamId' => $danhSachDienThoai[2]->id]) }}" class=" main-contain">
+                        <a href="{{ route('productDetail', ['sanPhamId' => $danhSachDienThoai[2]->id]) }}"
+                            class=" main-contain">
                             <div class="item-label">
                                 <span class="lb-tragop">Trả góp 0%</span>
                             </div>
                             <div class="item-img">
-                                <img src="{{ asset('storage/images/' . $danhSachDienThoai[2]->hinh_anh) }}" width="210"
-                                    height="210">
+                                <img src="{{ asset('storage/images/' . $danhSachDienThoai[2]->hinh_anh) }}"
+                                    width="210" height="210">
                             </div>
                             <h3 style="color:#333">{{ $danhSachDienThoai[2]->ten_san_pham }}</h3>
                             @if ($danhSachDienThoai[0]->phan_tram_giam == 0)
                                 <strong
-                                    class="price">{{ number_format($danhSachDienThoai[2]->gia, 0) }}₫</strong>
+                                    class="price">{{ number_format($danhSachDienThoai[2]->gia, 0, ',', '.') }}₫</strong>
                             @else
                                 <div class="box-p">
-                                    <p class="price-old black">{{ number_format($danhSachDienThoai[2]->gia, 0) }}₫</p>
-                                    <span
-                                        class="percent">-{{ $danhSachDienThoai[2]->phan_tram_giam * 100 }}%</span>
+                                    <p class="price-old black">
+                                        {{ number_format($danhSachDienThoai[2]->gia, 0, ',', '.') }}₫</p>
+                                    <span class="percent">-{{ $danhSachDienThoai[2]->phan_tram_giam * 100 }}%</span>
                                 </div>
                                 <strong
-                                    class="price">{{ number_format($danhSachDienThoai[2]->gia - $danhSachDienThoai[2]->gia * $danhSachDienThoai[2]->phan_tram_giam, 0) }}₫
+                                    class="price">{{ number_format($danhSachDienThoai[2]->gia - $danhSachDienThoai[2]->gia * $danhSachDienThoai[2]->phan_tram_giam, 0, ',', '.') }}₫
                                 </strong>
                             @endif
                             <div class="item-rating">
@@ -377,56 +381,56 @@
                                     {{ $tp->ten_san_pham }}
                                 </h3>
                                 @if ($tp->phan_tram_giam == 0)
-                                    <strong class="price">{{ number_format($tp->gia, 0) }}₫</strong>
+                                    <strong class="price">{{ number_format($tp->gia, 0, ',', '.') }}₫</strong>
                                 @else
                                     <div class="box-p">
-                                        <p class="price-old black">{{ number_format($tp->gia, 0) }}₫</p>
+                                        <p class="price-old black">{{ number_format($tp->gia, 0, ',', '.') }}₫</p>
                                         <span class="percent">-{{ $tp->phan_tram_giam * 100 }}%</span>
                                     </div>
-                                    <strong
-                                        class="price" style="color:red">{{ number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0) }}₫
+                                    <strong class="price"
+                                        style="color:red">{{ number_format($tp->gia - $tp->gia * $tp->phan_tram_giam, 0, ',', '.') }}₫
                                     </strong>
                                 @endif
                                 <div class="item-rating">
                                     <p>
-                                        @if($tp->so_sao_trung_binh > 4.5)
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
+                                        @if ($tp->so_sao_trung_binh > 4.5)
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
                                         @elseif($tp->so_sao_trung_binh > 3.5)
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star-dark"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
                                         @elseif($tp->so_sao_trung_binh > 2.5)
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
                                         @elseif($tp->so_sao_trung_binh > 1.5)
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
                                         @elseif($tp->so_sao_trung_binh > 0.5)
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
+                                            <i class="icon-star"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
                                         @else
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
-                                        <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
+                                            <i class="icon-star-dark"></i>
                                         @endif
-                                        <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
+                                    <p class="item-rating-total">{{ $tp->so_luot_danh_gia }}</p>
                                     </p>
 
                                 </div>
@@ -434,15 +438,11 @@
                             <div class="item-bottom">
                                 <a href="#" class="shiping"></a>
                             </div>
-                            <a href="javascript:;" class="item-ss">
-                                <i></i>
-                                So sánh
-                            </a>
                         </li>
                     @endforeach
                 </ul>
                 <div class="view-more ">
-                    <a href="javascript:loadMore();" id="load-more">Xem thêm <span class="remain">5</span> Điện
+                    <a href="javascript:loadMore();" id="load-more">Xem thêm điện
                         thoại</a>
                 </div>
             </div>
@@ -508,11 +508,16 @@
                 },
                 success: function(data) {
                     $('.listproduct.all').html(data);
+                    [...filterTheoGia].forEach(itemlist => itemlist.classList.remove("choose"));
+                    let loadMoreBtn = document.querySelector('#load-more');
+                    if (document.querySelectorAll(".listproduct.all .item").length <= 10) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'block';
+                    }
                 }
             });
 
-            [...filterTheoGia].forEach(itemlist => itemlist.classList.remove("choose"));
-            filterTheoGia[0].className += " choose";
         }
 
         function filterProductByPrice($value, $idBrand) {
@@ -525,6 +530,12 @@
                 },
                 success: function(data) {
                     $('.listproduct.all').html(data);
+                    let loadMoreBtn = document.querySelector('#load-more');
+                    if (document.querySelectorAll(".listproduct.all .item").length <= 10) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'block';
+                    }
                 }
             });
         }

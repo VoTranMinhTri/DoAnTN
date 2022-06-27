@@ -20,7 +20,7 @@
                     @endif
                     <b>{{ $thongTinTaiKhoan->ho_ten }}</b>
                 </div>
-                <div class="list">
+                <div class="list" style="overflow: auto">
                     <b style="margin-bottom: 10px;">Đơn hàng đã mua gần đây</b>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
@@ -31,6 +31,8 @@
                                     <th style="color:#3e5569;font-weight:bold">Trạng thái thanh toán</th>
                                     <th style="color:#3e5569;font-weight:bold">Trạng thái đơn hàng</th>
                                     <th style="color:#3e5569;font-weight:bold">Giá</th>
+                                    <th style="color:#3e5569;font-weight:bold">Giảm</th>
+                                    <th style="color:#3e5569;font-weight:bold">Phải trả</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +56,9 @@
                                         @elseif($tp->trang_thai_don_hang == 4)
                                             <td style="color:red">Đã hủy</td>
                                         @endif
-                                        <td style="color:#3e5569">{{ number_format($tp->tong_tien, 0) }} VNĐ</td>
+                                        <td style="color:#3e5569">{{ number_format($tp->tong_tien_chua_giam, 0,',','.') }} VNĐ</td>
+                                        <td style="color:#3e5569">{{ number_format($tp->giam, 0,',','.') }} VNĐ</td>
+                                        <td style="color:#3e5569">{{ number_format($tp->tong_tien, 0,',','.') }} VNĐ</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,6 +69,8 @@
                                     <th style="color:#3e5569;font-weight:bold">Trạng thái thanh toán</th>
                                     <th style="color:#3e5569;font-weight:bold">Trạng thái đơn hàng</th>
                                     <th style="color:#3e5569;font-weight:bold">Giá</th>
+                                    <th style="color:#3e5569;font-weight:bold">Giảm</th>
+                                    <th style="color:#3e5569;font-weight:bold">Phải trả</th>
                                 </tr>
                             </tfoot>
                         </table>

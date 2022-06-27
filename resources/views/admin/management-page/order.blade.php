@@ -144,6 +144,11 @@
                                                             type="button" class="btn btn-outline-info"
                                                             title="Xem chi tiết đơn hàng"><i
                                                                 class="fas fa-info"></i></button></a>
+                                                    <a
+                                                        href="{{ route('createBill', ['maDonHang' => $tp->ma_don_hang]) }}"><button
+                                                            type="button" class="btn btn-outline-dark"
+                                                            title="In hóa đơn"><i
+                                                                class="fas fa-print"></i></button></a>
                                                 </td>
                                             </tr>
                                         @endforeach

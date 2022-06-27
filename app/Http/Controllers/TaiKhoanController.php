@@ -391,7 +391,7 @@ class TaiKhoanController extends Controller
 
         $taiKhoan = TaiKhoan::where('username', '=', $request->input('username'))->first();
         if (!empty($taiKhoan)) {
-            if ($taiKhoan->loai_tai_khoan == 5) {
+            if ($taiKhoan->loai_tai_khoan_id == 5) {
                 $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', $taiKhoan->id)->first();
                 $details = [
                     'link' => 'http://localhost:8000/recoverpassword?token=' . $taiKhoan->token,

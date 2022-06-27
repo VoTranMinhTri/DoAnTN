@@ -44,14 +44,17 @@ class CuaHangController extends Controller
             [
                 'tencuahang' => 'required|max:30',
                 'diachi' => 'required|max:500',
+                'googlemap' => 'required|url|max:500',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
                 'max' => 'Vượt quá số ký tự cho phép !',
+                'url' => ':attribute không phải là Url'
             ],
             [
                 'tencuahang' => 'Tên cửa hàng',
                 'diachi' => 'Địa chỉ',
+                'googlemap' => 'Url Google Map'
             ]
         )->validate();
 
@@ -60,16 +63,18 @@ class CuaHangController extends Controller
         $diaChiFormat = trim($request->input('diachi'));
         $tontai1 = CuaHang::where('ten_cua_hang', 'like', $tenFormat)->first();
         $tontai2 = CuaHang::where('dia_chi', 'like', $diaChiFormat)->first();
-        if (empty($tontai1) || empty($tontai2)) {
+        $tontai3 = CuaHang::where('google_map', 'like', $request->input('googlemap'))->first();
+        if (empty($tontai1) && empty($tontai2) && empty($tontai3)) {
             $kTTen = str_replace(' ', '', $tenFormat);
             $ktDiaChi = str_replace(' ', '', $diaChiFormat);
             $tontai1 = CuaHang::where('ten_cua_hang', 'like', $kTTen)->first();
             $tontai2 = CuaHang::where('dia_chi', 'like', $ktDiaChi)->first();
-            if (empty($tontai1) || empty($tontai2)) {
+            if (empty($tontai1) && empty($tontai2)) {
                 $cuaHang = new CuaHang;
                 $cuaHang->fill([
                     'ten_cua_hang' => $tenFormat,
                     'dia_chi' => $diaChiFormat,
+                    'google_map' =>$request->input('googlemap'),
                 ]);
                 if ($cuaHang->save() == true) {
                     return redirect()->back()->with('thongbao', 'Thêm cửa hàng thành công !');
@@ -77,7 +82,7 @@ class CuaHangController extends Controller
                 return redirect()->back()->with('thongbao', 'Thêm cửa hàng không thành công !');
             }
         }
-        return redirect()->back()->with('thongbao', 'Thêm cửa hàng không thành công ! Tên cửa hàng hoặc địa chỉ đã tồn tại !');
+        return redirect()->back()->with('thongbao', 'Thêm cửa hàng không thành công ! Tên cửa hàng hoặc địa chỉ hoặc Url đã tồn tại !');
     }
 
     /**
@@ -126,14 +131,17 @@ class CuaHangController extends Controller
             [
                 'tencuahang' => 'required|max:30',
                 'diachi' => 'required|max:500',
+                'googlemap' => 'required|url|max:500',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
                 'max' => 'Vượt quá số ký tự cho phép !',
+                'url' => ':attribute không phải là Url'
             ],
             [
                 'tencuahang' => 'Tên cửa hàng',
                 'diachi' => 'Địa chỉ',
+                'googlemap' => 'Url Google Map'
             ]
         )->validate();
 
@@ -142,15 +150,17 @@ class CuaHangController extends Controller
         $diaChiFormat = trim($request->input('diachi'));
         $tontai1 = CuaHang::where('ten_cua_hang', 'like', $tenFormat)->where('id', '!=', $cuaHang->id)->first();
         $tontai2 = CuaHang::where('dia_chi', 'like', $diaChiFormat)->where('id', '!=', $cuaHang->id)->first();
-        if (empty($tontai1) || empty($tontai2)) {
+        $tontai3 = CuaHang::where('google_map', 'like', $request->input('googlemap'))->where('id', '!=', $cuaHang->id)->first();
+        if (empty($tontai1) && empty($tontai2) && empty($tontai3)) {
             $kTTen = str_replace(' ', '', $tenFormat);
             $ktDiaChi = str_replace(' ', '', $diaChiFormat);
             $tontai1 = CuaHang::where('ten_cua_hang', 'like', $kTTen)->where('id', '!=', $cuaHang->id)->first();
             $tontai2 = CuaHang::where('dia_chi', 'like', $ktDiaChi)->where('id', '!=', $cuaHang->id)->first();
-            if (empty($tontai1) || empty($tontai2)) {
+            if (empty($tontai1) && empty($tontai2)) {
                 $cuaHang->fill([
                     'ten_cua_hang' => $tenFormat,
                     'dia_chi' => $diaChiFormat,
+                    'google_map' =>$request->input('googlemap'),
                 ]);
                 if ($cuaHang->save() == true) {
                     return redirect()->back()->with('thongbao', 'Cập nhật cửa hàng thành công !');
@@ -158,7 +168,7 @@ class CuaHangController extends Controller
                 return redirect()->back()->with('thongbao', 'Cập nhật cửa hàng không thành công !');
             }
         }
-        return redirect()->back()->with('thongbao', 'Cập nhật cửa hàng không thành công ! Tên cửa hàng hoặc địa chỉ đã tồn tại !');
+        return redirect()->back()->with('thongbao', 'Cập nhật cửa hàng không thành công ! Tên cửa hàng hoặc địa chỉ hoặc Url đã tồn tại !');
     }
 
     /**

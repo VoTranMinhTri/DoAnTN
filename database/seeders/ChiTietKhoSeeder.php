@@ -14,7 +14,7 @@ class ChiTietKhoSeeder extends Seeder
      */
     public function run()
     {
-        for($i =1;$i<19;$i++){
+        for($i =1;$i<21;$i++){
             ChiTietKho::create([
                 'kho_id'=> 2,
                 'chi_tiet_dien_thoai_id'=> $i,

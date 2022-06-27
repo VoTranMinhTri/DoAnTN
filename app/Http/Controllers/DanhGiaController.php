@@ -176,9 +176,11 @@ class DanhGiaController extends Controller
         $danhSachDanhGia = DanhGia::join('dien_thoais', 'dien_thoais.id', '=', 'danh_gias.dien_thoai_id')
             ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
             ->where('danh_gias.dien_thoai_id', '=', $dienThoaiId)
+            ->where('danh_gias.trang_thai', '=', 1)
             ->select('danh_gias.*', 'tai_khoans.username')
             ->get();
         $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+            ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
             ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
             ->get();
 
@@ -229,17 +231,19 @@ class DanhGiaController extends Controller
             $danhSachDanhGia = DanhGia::join('dien_thoais', 'dien_thoais.id', '=', 'danh_gias.dien_thoai_id')
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
 
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+                ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
                 <div class="item-top">
-                    <p class="txtname">' . $tp->username . '</p>
+                    <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
                 </div>
                 <div class="item-rate">
                     <div class="comment-star">';
@@ -287,7 +291,7 @@ class DanhGiaController extends Controller
                 </div>
 
                 <div class="item-click">
-                    <a href="javascript:showRatingCmtChild('.'`'. $tp->username .'`'.')" class="click-cmt">
+                    <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                         <i class="icondetail-comment"></i>
                         <span class="cmtr">Thảo luận</span>
                     </a>
@@ -327,6 +331,7 @@ class DanhGiaController extends Controller
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
                 ->where('danh_gias.so_sao', '=', 1)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
             if (count($danhSachDanhGia) == 0) {
@@ -336,13 +341,14 @@ class DanhGiaController extends Controller
                 return response()->json($output);
             }
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+                ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
             <div class="item-top">
-                <p class="txtname">' . $tp->username . '</p>
+                <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
             </div>
             <div class="item-rate">
                 <div class="comment-star">';
@@ -390,7 +396,7 @@ class DanhGiaController extends Controller
             </div>
 
             <div class="item-click">
-                <a href="javascript:showRatingCmtChild(' .'`'. $tp->username .'`'. ')" class="click-cmt">
+                <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                     <i class="icondetail-comment"></i>
                     <span class="cmtr">Thảo luận</span>
                 </a>
@@ -430,6 +436,7 @@ class DanhGiaController extends Controller
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
                 ->where('danh_gias.so_sao', '=', 2)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
             if (count($danhSachDanhGia) == 0) {
@@ -439,13 +446,14 @@ class DanhGiaController extends Controller
                 return response()->json($output);
             }
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+                ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
             <div class="item-top">
-                <p class="txtname">' . $tp->username . '</p>
+                <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
             </div>
             <div class="item-rate">
                 <div class="comment-star">';
@@ -493,7 +501,7 @@ class DanhGiaController extends Controller
             </div>
 
             <div class="item-click">
-                <a href="javascript:showRatingCmtChild(' .'`'. $tp->username .'`'. ')" class="click-cmt">
+                <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                     <i class="icondetail-comment"></i>
                     <span class="cmtr">Thảo luận</span>
                 </a>
@@ -533,6 +541,7 @@ class DanhGiaController extends Controller
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
                 ->where('danh_gias.so_sao', '=', 3)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
             if (count($danhSachDanhGia) == 0) {
@@ -542,13 +551,14 @@ class DanhGiaController extends Controller
                 return response()->json($output);
             }
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+                ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
             <div class="item-top">
-                <p class="txtname">' . $tp->username . '</p>
+                <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
             </div>
             <div class="item-rate">
                 <div class="comment-star">';
@@ -596,7 +606,7 @@ class DanhGiaController extends Controller
             </div>
 
             <div class="item-click">
-                <a href="javascript:showRatingCmtChild(' .'`'. $tp->username .'`'. ')" class="click-cmt">
+                <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                     <i class="icondetail-comment"></i>
                     <span class="cmtr">Thảo luận</span>
                 </a>
@@ -636,6 +646,7 @@ class DanhGiaController extends Controller
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
                 ->where('danh_gias.so_sao', '=', 4)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
             if (count($danhSachDanhGia) == 0) {
@@ -645,13 +656,14 @@ class DanhGiaController extends Controller
                 return response()->json($output);
             }
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+                ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
             <div class="item-top">
-                <p class="txtname">' . $tp->username . '</p>
+                <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
             </div>
             <div class="item-rate">
                 <div class="comment-star">';
@@ -699,7 +711,7 @@ class DanhGiaController extends Controller
             </div>
 
             <div class="item-click">
-                <a href="javascript:showRatingCmtChild(' .'`'. $tp->username .'`'. ')" class="click-cmt">
+                <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                     <i class="icondetail-comment"></i>
                     <span class="cmtr">Thảo luận</span>
                 </a>
@@ -739,6 +751,7 @@ class DanhGiaController extends Controller
                 ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
                 ->where('danh_gias.dien_thoai_id', '=', $request->dienThoaiId)
                 ->where('danh_gias.so_sao', '=', 5)
+                ->where('danh_gias.trang_thai', '=', 1)
                 ->select('danh_gias.*', 'tai_khoans.username')
                 ->get();
             if (count($danhSachDanhGia) == 0) {
@@ -748,13 +761,14 @@ class DanhGiaController extends Controller
                 return response()->json($output);
             }
             $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+            ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
                 ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
                 ->get();
 
             foreach ($danhSachDanhGia as $tp) {
                 $output .= '<div class="comment-item par">
             <div class="item-top">
-                <p class="txtname">' . $tp->username . '</p>
+                <p class="txtname" style="text-transform:none;">' . $tp->username . '</p>
             </div>
             <div class="item-rate">
                 <div class="comment-star">';
@@ -802,7 +816,7 @@ class DanhGiaController extends Controller
             </div>
 
             <div class="item-click">
-                <a href="javascript:showRatingCmtChild(' .'`'. $tp->username .'`'. ')" class="click-cmt">
+                <a href="javascript:showRatingCmtChild(' . '`' . $tp->username . '`' . ')" class="click-cmt">
                     <i class="icondetail-comment"></i>
                     <span class="cmtr">Thảo luận</span>
                 </a>

@@ -22,6 +22,7 @@ use App\Models\HinhAnhChungCuaDienThoai;
 use App\Models\PhanHoiDanhGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class ChiTietDienThoaiController extends Controller
@@ -656,14 +657,16 @@ class ChiTietDienThoaiController extends Controller
             ->first();
         $thongSoKyThuat->thoi_diem_ra_mat = Carbon::createFromFormat('Y-m-d', $thongSoKyThuat->thoi_diem_ra_mat)->format('d/m/Y');
 
-        $danhSachDanhGia = DanhGia::join('dien_thoais','dien_thoais.id','=','danh_gias.dien_thoai_id')
-        ->join('tai_khoans','tai_khoans.id','=','danh_gias.tai_khoan_id')
-        ->where('danh_gias.dien_thoai_id','=',$dienThoai->id)
-        ->select('danh_gias.*','tai_khoans.username')
-        ->get();
-        $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans','tai_khoans.id','=','phan_hoi_danh_gias.tai_khoan_id')
-        ->select('phan_hoi_danh_gias.*','tai_khoans.username','tai_khoans.loai_tai_khoan_id')
-        ->get();
+        $danhSachDanhGia = DanhGia::join('dien_thoais', 'dien_thoais.id', '=', 'danh_gias.dien_thoai_id')
+            ->join('tai_khoans', 'tai_khoans.id', '=', 'danh_gias.tai_khoan_id')
+            ->where('danh_gias.dien_thoai_id', '=', $dienThoai->id)
+            ->where('danh_gias.trang_thai', '=', 1)
+            ->select('danh_gias.*', 'tai_khoans.username')
+            ->get();
+        $danhSachPhanHoi = PhanHoiDanhGia::join('tai_khoans', 'tai_khoans.id', '=', 'phan_hoi_danh_gias.tai_khoan_id')
+            ->where('phan_hoi_danh_gias.trang_thai', '=', 1)
+            ->select('phan_hoi_danh_gias.*', 'tai_khoans.username', 'tai_khoans.loai_tai_khoan_id')
+            ->get();
 
 
         $motsao = 0;
@@ -673,18 +676,18 @@ class ChiTietDienThoaiController extends Controller
         $namsao = 0;
         $soSaoTrungBinh = 0;
 
-        if(count($danhSachDanhGia) > 0){
+        if (count($danhSachDanhGia) > 0) {
             $temp = 0;
-            foreach($danhSachDanhGia as $tp){
-                if($tp->so_sao == 5){
+            foreach ($danhSachDanhGia as $tp) {
+                if ($tp->so_sao == 5) {
                     $namsao++;
-                }else if($tp->so_sao == 4){
+                } else if ($tp->so_sao == 4) {
                     $bonsao++;
-                }else if($tp->so_sao == 3){
+                } else if ($tp->so_sao == 3) {
                     $basao++;
-                }else if($tp->so_sao == 2){
+                } else if ($tp->so_sao == 2) {
                     $haisao++;
-                }else if($tp->so_sao == 1){
+                } else if ($tp->so_sao == 1) {
                     $motsao++;
                 }
                 $temp += $tp->so_sao;
@@ -697,14 +700,49 @@ class ChiTietDienThoaiController extends Controller
             $soSaoTrungBinh = $temp / count($danhSachDanhGia);
         }
 
+        $danhSachDienThoai = DB::select('SELECT dien_thoais.id, dien_thoais.ten_san_pham, hinh_anh_chung_cua_dien_thoais.hinh_anh
+        FROM dien_thoais, chi_tiet_dien_thoais, hinh_anh_chung_cua_dien_thoais
+        WHERE chi_tiet_dien_thoais.dien_thoai_id = dien_thoais.id
+        AND hinh_anh_chung_cua_dien_thoais.dien_thoai_id = dien_thoais.id
+        AND hinh_anh_chung_cua_dien_thoais.loai_hinh = 0
+        AND dien_thoais.id != '.$dienThoai->id.'
+        GROUP BY dien_thoais.id, dien_thoais.ten_san_pham, hinh_anh_chung_cua_dien_thoais.hinh_anh');
+
+        foreach ($danhSachDienThoai as $tp) {
+            $tp->gia = ChiTietDienThoai::where('dien_thoai_id', '=', $tp->id)->min('gia');
+            $khuyenMai = ChiTietKhuyenMai::where('dien_thoai_id', '=', $tp->id)->first();
+            if (!empty($khuyenMai)) {
+                $thoiGianKhuyenMai = KhuyenMai::where('id', '=', $khuyenMai->khuyen_mai_id)->first();
+                if (strtotime($thoiGianKhuyenMai->ngay_ket_thuc) >= strtotime(date("Y-m-d"))) {
+                    $tp->phan_tram_giam = $khuyenMai->phan_tram_giam;
+                } else {
+                    $tp->phan_tram_giam = 0;
+                }
+            } else {
+                $tp->phan_tram_giam = 0;
+            }
+            $danhSachDanhGiaSP = DanhGia::where('dien_thoai_id', '=', $tp->id)->where('danh_gias.trang_thai', '=', 1)->get();
+            if (count($danhSachDanhGiaSP) > 0) {
+                $temp = 0;
+                foreach ($danhSachDanhGiaSP as $dg) {
+                    $temp += $dg->so_sao;
+                }
+                $tp->so_sao_trung_binh = $temp / count($danhSachDanhGiaSP);
+            } else {
+                $tp->so_sao_trung_binh = 0;
+            }
+            $tp->so_luot_danh_gia = count($danhSachDanhGiaSP);
+        }
+
         return view('user/product-detail', [
             'danhSachHinhAnhNoiBat' => $danhSachHinhAnhNoiBat, 'danhSachHinhAnh360' => $danhSachHinhAnh360,
             'hinhAnhMauSacSanPhamDaiDien' => $hinhAnhMauSacSanPhamDaiDien, 'hinhAnhMoHop' => $hinhAnhMoHop,
             'danhSachHinhAnhMauSac' => $danhSachHinhAnhMauSac, 'dienThoai' => $dienThoai,
             'thongSoKyThuat' => $thongSoKyThuat, 'danhSachChiTiet' => $danhSachChiTiet,
             'hinhAnhThongSoKyThuat' => $hinhAnhThongSoKyThuat, 'danhSachDanhGia' => $danhSachDanhGia,
-            'soSaoTrungBinh' => $soSaoTrungBinh,'motsao'=>$motsao,'haisao'=>$haisao,'basao'=>$basao,
-            'bonsao'=>$bonsao,'namsao'=>$namsao, 'danhSachPhanHoi' => $danhSachPhanHoi
+            'soSaoTrungBinh' => $soSaoTrungBinh, 'motsao' => $motsao, 'haisao' => $haisao, 'basao' => $basao,
+            'bonsao' => $bonsao, 'namsao' => $namsao, 'danhSachPhanHoi' => $danhSachPhanHoi,
+            'danhSachDienThoai' => $danhSachDienThoai
         ]);
     }
 
@@ -723,19 +761,18 @@ class ChiTietDienThoaiController extends Controller
         } else {
             $chiTietDienThoai->phan_tram_giam = 0;
         }
-        if($chiTietDienThoai->phan_tram_giam == 0){
-            $output .='<strong class="price" style="font-size: 20px">Giá:
-            '.number_format($chiTietDienThoai->gia, 0) .'₫</strong>';
-        }
-        else{
-            $output .='<div class="box-p">
+        if ($chiTietDienThoai->phan_tram_giam == 0) {
+            $output .= '<strong class="price" style="font-size: 20px">Giá:
+            ' . number_format($chiTietDienThoai->gia, 0, ',', '.') . '₫</strong>';
+        } else {
+            $output .= '<div class="box-p">
             <p class="price-old black" style="text-decoration: none;">Giá chưa giảm:
-            '.number_format($chiTietDienThoai->gia, 0) .'₫</p>
+            ' . number_format($chiTietDienThoai->gia, 0, ',', '.') . '₫</p>
             <span
-                class="percent">-'. $chiTietDienThoai->phan_tram_giam * 100 .'%</span>
+                class="percent">-' . $chiTietDienThoai->phan_tram_giam * 100 . '%</span>
         </div>
         <strong class="price" style="font-size: 20px; color:red">Giá giảm:
-        '.number_format($chiTietDienThoai->gia - $chiTietDienThoai->gia * $chiTietDienThoai->phan_tram_giam, 0) .'₫
+        ' . number_format($chiTietDienThoai->gia - $chiTietDienThoai->gia * $chiTietDienThoai->phan_tram_giam, 0, ',', '.') . '₫
         </strong>';
         }
         return response()->json($output);

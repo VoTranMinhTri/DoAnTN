@@ -24,28 +24,34 @@
         <div>
             <a href="/" class="nav-bar-logo"><img src="{{ asset('assets/user/images/Logo-1.png') }}" /></a>
             <div class="bordercol"></div>
-            <form action="#search" class="nav-bar-search">
-                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..."
-                    maxlength="100">
+            <form action="{{ route('resultSearch') }}" class="nav-bar-search" method='get'>
+                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..." maxlength="100" name='search' autocomplete="off"
+                    id='search' onkeyup="suggestSearch()">
                 <button type="submit"><i class="fas fa-search"></i></button>
-                <div id="search-result" style="display: block;"></div>
+                <div id="search-result" style="display: none;">
+                    <ul class="suggest_search">
+                        <li class="ttitle">
+                            <div class="viewed">Có phải bạn muốn tìm</div>
+                        </li>
+                    </ul>
+                </div>
             </form>
-            @if(Session('Cart') == null)
-            <a href="/cart" class="nav-bar-cart">
-                <i class="icon-cart"></i>
-                <span>Giỏ hàng</span>
-            </a>
+            @if (Session('Cart') == null)
+                <a href="/cart" class="nav-bar-cart">
+                    <i class="icon-cart"></i>
+                    <span>Giỏ hàng</span>
+                </a>
             @else
-            <?php
-            $soLuong =0;
-            foreach(Session('Cart')->products as $tp){
-                $soLuong +=$tp['quantity'];
-            }
-            ?>
-            <a href="/cart" class="nav-bar-cart active">
-                <i class="icon-cart">{{ $soLuong }}</i>
-                <span>Giỏ hàng</span>
-            </a>
+                <?php
+                $soLuong = 0;
+                foreach (Session('Cart')->products as $tp) {
+                    $soLuong += $tp['quantity'];
+                }
+                ?>
+                <a href="/cart" class="nav-bar-cart active">
+                    <i class="icon-cart">{{ $soLuong }}</i>
+                    <span>Giỏ hàng</span>
+                </a>
             @endif
             <div class="nav-bar-space"></div>
             <div class="bordercol"></div>
@@ -72,9 +78,11 @@
                             <a class="dropdown-item" href="/ordermanagement"><i class="ti-user me-1 ms-1"></i>
                                 Đơn hàng của tôi</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
-                                Đổi
-                                mật khẩu</a>
+                            @if (Auth::user()->loai_tai_khoan_id == 5)
+                                <a class="dropdown-item" href="/thayDoiMatKhau"><i class="ti-settings me-1 ms-1"></i>
+                                    Đổi
+                                    mật khẩu</a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1 ms-1"></i> Đăng
                                 xuất</a>
@@ -126,28 +134,20 @@
     <section class="clearfix footer__top">
         <div class="footer-col">
             <ul class="f-listmenu">
-                <li><a rel="nofollow" href="#">Lịch sử mua hàng</a></li>
-                <li><a rel="nofollow" href="#">Cộng tác viên</a></li>
-                <li><a rel="nofollow" href="#">Tìm hiểu về mua trả góp</a></li>
-                <li><a rel="nofollow" href="#">Chính sách bảo hành</a></li>
+                <li><a rel="nofollow" href="/introduce">Giới thiệu</a></li>
+                <li><a rel="nofollow" href="/leadership">Người sáng lập</a></li>
+                <li><a rel="nofollow" href="/feedback">Gửi góp ý, khiếu nại</a></li>
+                <li><a rel="nofollow" href="/findstore">Tìm cửa hàng</a></li>
             </ul>
         </div>
-        <div class="footer-col">
-            <ul class="f-listmenu">
-                <li><a rel="nofollow" href="#">Giới thiệu</a></li>
-                <li><a rel="nofollow" href="#">Tuyển dụng</a></li>
-                <li><a rel="nofollow" href="#">Gửi góp ý, khiếu nại</a></li>
-                <li><a rel="nofollow" href="#">Tìm cửa hàng</a></li>
-            </ul>
+        <div class="footer-col" style="height: 120px;width: 500px;box-shadow: 0 5px 9px 1px #9098a9;margin-right: 100px;">
+            <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTT-Mobile-100312812742200&tabs=timeline&width=500&height=120&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                width="500" height="120" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
-        <div class="footer-col">
-            <ul class="f-listmenu">
-                <li><a href="#">Tin tức</a></li>
-                <li><a href="#">Sản phẩm</a></li>
-                <li><a href="#">Thương hiệu</a></li>
-                <li><a href="#">Nhân viên</a></li>
-            </ul>
-        </div>
+
         <div class="footer-col">
             <div class="f-certify">
                 <a rel="nofollow" href="http://online.gov.vn/Home/WebDetails/20090" target="_blank">
@@ -172,6 +172,7 @@
         {{-- <div style="display: inline-block">
             <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d125419.44231589595!2d106.6434555198453!3d10.783901588468984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zVGjhur8gZ2nhu5tpIGRpIMSR4buZbmc!5e0!3m2!1svi!2s!4v1641105276560!5m2!1svi!2s" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div> --}}
+
     </section>
     <div class="copyright">
         <section>
@@ -185,5 +186,29 @@
     </div>
 </footer>
 <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script>
+    function suggestSearch() {
+        var searchResult = document.getElementById('search-result');
+        searchResult.style = 'display:block';
+        var value = $('#search').val();
+        if (value == '') {
+            searchResult.style = 'display:none';
+        } else {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('suggestSearch') }}',
+                data: {
+                    'search': value,
+                },
+                success: function(data) {
+                    $('.suggest_search').html(data);
+                },
+            });
+        }
+    }
+    $(document).click(function() {
+        document.getElementById('search-result').style = 'display:none';
+    });
+</script>
 
 </html>
