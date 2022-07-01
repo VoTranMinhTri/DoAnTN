@@ -286,16 +286,27 @@ class TaiKhoanController extends Controller
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password'), 'trang_thai' => 1])) {
-            $taiKhoan = TaiKhoan::where('username', '=', $request->input('username'))->first();
-            $request->session()->regenerate();
-            if ($taiKhoan->loai_tai_khoan_id < 5) {
-                return redirect()->intended('/admin');
+        $taiKhoan = TaiKhoan::where('username', '=', $request->input('username'))->first();
+        if (!empty($taiKhoan)) {
+            if ($taiKhoan->trang_thai == 1) {
+                if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password'), 'trang_thai' => 1])) {
+                    $taiKhoan = TaiKhoan::where('username', '=', $request->input('username'))->first();
+                    $request->session()->regenerate();
+                    if ($taiKhoan->loai_tai_khoan_id < 5) {
+                        return redirect()->intended('/admin');
+                    } else {
+                        return redirect()->intended('/');
+                    }
+                }
+                return back()->withErrors([
+                    'error' => 'Tên đăng nhập hoặc mật khẩu không chính xác !',
+                ]);
             } else {
-                return redirect()->intended('/');
+                return back()->withErrors([
+                    'error' => 'Tài khoản đã bị khóa !',
+                ]);
             }
         }
-
         return back()->withErrors([
             'error' => 'Tên đăng nhập hoặc mật khẩu không chính xác !',
         ]);

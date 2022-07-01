@@ -108,9 +108,6 @@
                                 <p> - Đối với thẻ ATM: Thời gian khách hàng nhận được tiền hoàn từ 7-10 ngày (trừ thứ 7,
                                     chủ nhật và ngày lễ). Nếu qua thời gian trên không nhận được tiền, T&T Mobile
                                     sẽ hỗ trợ liên hệ ngân hàng của khách hàng để giải quyết. </p>
-                                <p> - Đối với thẻ Visa/Master card/JCB: Thời gian Khách hàng nhận được tiền hoàn 7-15
-                                    ngày. Nếu qua thời gian trên khách hàng không nhận được tiền, khách hàng liên hệ
-                                    ngân hàng để giải quyết. </p>
                                 <p> - Đối với thanh toán bằng hình thức Ví MoMo: Thời gian Khách hàng nhận được tiền
                                     hoàn 3 - 5 ngày. Tiền được hoàn sẽ cập nhật vào tài khoản Ví MoMo. Nếu qua thời gian
                                     trên khách hàng không nhận được tiền, khách hàng liên hệ T&T Mobile để được
