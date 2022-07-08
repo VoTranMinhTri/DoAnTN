@@ -139,15 +139,24 @@
                     <i>Số lượng: <b style="font-weight: normal;">{{ $tp->so_luong }}</b></i>
                 </div>
                 <div class="fr" style="float:right">
-                    <b>{{ number_format($tp->gia_giam, 0,',','.') }}₫</b>
+                    <b>{{ number_format($tp->gia_giam, 0, ',', '.') }}₫</b>
                     <em
-                        style="font-style: normal;text-decoration: line-through;">{{ number_format($tp->gia, 0,',','.') }}₫</em>
+                        style="font-style: normal;text-decoration: line-through;">{{ number_format($tp->gia, 0, ',', '.') }}₫</em>
                 </div>
             </div>
         @endforeach
         <div class='sum'>
-            <span><strong>Giá tạm tính:</strong> <b>{{ number_format($tongTien, 0,',','.') }}₫</b></span>
-            <span style="display: block"><strong>Tổng tiền:</strong> <b>{{ number_format($tongTien, 0,',','.') }}₫</b></span>
+            <span><strong>Giá tạm tính:</strong> <b>{{ number_format($tongTien, 0, ',', '.') }}₫</b></span>
+            <span style="display: block"><strong>Tổng tiền:</strong>
+                <b>{{ number_format($tongTien, 0, ',', '.') }}₫</b></span>
+            <span style="display: block"><strong>Cần thu:</strong> <b>
+                    @if ($donHang->phuong_thuc_thanh_toan == 1)
+                    {{ number_format($tongTien, 0, ',', '.') }}₫
+                    @else
+                    0₫
+                    @endif
+                </b></span>
+
         </div>
         <div class="info type0" data-recievetype="0">
             <b style='padding-left:0'>Địa chỉ và thông tin người nhận hàng:</b>

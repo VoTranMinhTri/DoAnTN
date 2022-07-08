@@ -24,7 +24,6 @@ class TrangChuController extends Controller
 {
     public function index()
     {
-        // session()->forget('Cart');
         $danhSachDienThoai = DB::select('SELECT dien_thoais.id, dien_thoais.ten_san_pham, hinh_anh_chung_cua_dien_thoais.hinh_anh
         FROM dien_thoais, chi_tiet_dien_thoais, hinh_anh_chung_cua_dien_thoais
         WHERE chi_tiet_dien_thoais.dien_thoai_id = dien_thoais.id
@@ -57,7 +56,42 @@ class TrangChuController extends Controller
             }
             $tp->so_luot_danh_gia = count($danhSachDanhGia);
         }
-        return view('user/index', ['danhSachDienThoai' => $danhSachDienThoai]);
+
+        //Danh sách điện thoại khuyến mãi
+        $danhSachDienThoaiKM = DB::select('SELECT dien_thoais.id, dien_thoais.ten_san_pham, hinh_anh_chung_cua_dien_thoais.hinh_anh
+        FROM dien_thoais, chi_tiet_dien_thoais, hinh_anh_chung_cua_dien_thoais, chi_tiet_khuyen_mais
+        WHERE chi_tiet_dien_thoais.dien_thoai_id = dien_thoais.id
+        AND hinh_anh_chung_cua_dien_thoais.dien_thoai_id = dien_thoais.id
+        AND hinh_anh_chung_cua_dien_thoais.loai_hinh = 0
+        AND chi_tiet_khuyen_mais.dien_thoai_id = dien_thoais.id
+        GROUP BY dien_thoais.id, dien_thoais.ten_san_pham, hinh_anh_chung_cua_dien_thoais.hinh_anh');
+
+        foreach ($danhSachDienThoaiKM as $tp) {
+            $tp->gia = ChiTietDienThoai::where('dien_thoai_id', '=', $tp->id)->min('gia');
+            $khuyenMai = ChiTietKhuyenMai::where('dien_thoai_id', '=', $tp->id)->first();
+            if (!empty($khuyenMai)) {
+                $thoiGianKhuyenMai = KhuyenMai::where('id', '=', $khuyenMai->khuyen_mai_id)->first();
+                if (strtotime($thoiGianKhuyenMai->ngay_ket_thuc) >= strtotime(date("Y-m-d"))) {
+                    $tp->phan_tram_giam = $khuyenMai->phan_tram_giam;
+                } else {
+                    $tp->phan_tram_giam = 0;
+                }
+            } else {
+                $tp->phan_tram_giam = 0;
+            }
+            $danhSachDanhGia = DanhGia::where('dien_thoai_id', '=', $tp->id)->where('danh_gias.trang_thai', '=', 1)->get();
+            if (count($danhSachDanhGia) > 0) {
+                $temp = 0;
+                foreach ($danhSachDanhGia as $dg) {
+                    $temp += $dg->so_sao;
+                }
+                $tp->so_sao_trung_binh = $temp / count($danhSachDanhGia);
+            } else {
+                $tp->so_sao_trung_binh = 0;
+            }
+            $tp->so_luot_danh_gia = count($danhSachDanhGia);
+        }
+        return view('user/index', ['danhSachDienThoai' => $danhSachDienThoai,'danhSachDienThoaiKM' => $danhSachDienThoaiKM]);
     }
 
     public function filterProduct(Request $request)
@@ -1087,10 +1121,9 @@ class TrangChuController extends Controller
         ->where('don_hangs.trang_thai_don_hang', '=', 3)
         ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
         ->groupBy('nam')
+        ->orderBy('nam','DESC')
+        ->limit('5')
         ->get();
-        // foreach($doanhThuTungNam as $tp){
-        //     $tp->nam = strtotime($tp->nam);
-        // }
         $nam = date('Y');
         $tongSoLuongBanRa = 0;
         $danhSachThuongHieu = ThuongHieu::all();
@@ -1119,7 +1152,6 @@ class TrangChuController extends Controller
     }
 
     public function layDoanhThu(Request $request){
-        // dd($request->input('nam'));
         $danhSachKhachHang = TaiKhoan::where('loai_tai_khoan_id', '>', 4)->get();
         $danhSachDonHang = DonHang::all();
         $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
@@ -1138,10 +1170,9 @@ class TrangChuController extends Controller
         ->where('don_hangs.trang_thai_don_hang', '=', 3)
         ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
         ->groupBy('nam')
+        ->orderBy('nam','DESC')
+        ->limit('5')
         ->get();
-        // foreach($doanhThuTungNam as $tp){
-        //     $tp->nam = strtotime($tp->nam);
-        // }
         $nam = $request->input('nam');
         $tongSoLuongBanRa = 0;
         $danhSachThuongHieu = ThuongHieu::all();

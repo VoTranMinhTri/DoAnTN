@@ -74,7 +74,7 @@
                 © 2021. T&T Mobile. GPDKKD: 0303217354 do sở KH &amp; ĐT TP.HCM cấp ngày 01/01/2021. GPMXH: 238/GP-BTTTT
                 do Bộ Thông Tin và Truyền Thông cấp ngày 01/01/2021.<br>
                 Địa chỉ: TP.Hồ Chí Minh. Điện thoại: 0123456789. Email: T&TMobile@gmail.com. Chịu trách nhiệm nội dung:
-                Võ Trần Minh Trí. <a rel="nofollow" href="#">Xem chính sách sử dụng</a>
+                Võ Trần Minh Trí.
             </p>
         </section>
     </div>

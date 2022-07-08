@@ -112,12 +112,22 @@
             $(".preloader").fadeOut();
         });
     </script>
-    <div style="position: absolute; bottom: 90px">
+    <a href="https://www.messenger.com/t/100312812742200/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 123px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/chat-messenger.png') }}" width="50" height="50">
+        </div>
+    </a>
+    <a href="https://zalo.me/0363868840" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 50px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/Logo.svg') }}" width="50" height="50">
+        </div>
+    </a>
+    {{-- <div style="position: absolute; bottom: 90px">
         <div class="zalo-chat-widget" data-oaid="2920828326549610293"
             data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
     </div>
 
-    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script> --}}
 </body>
 
 <footer class="footer">
@@ -170,7 +180,7 @@
                 © 2021. T&T Mobile. GPDKKD: 0303217354 do sở KH &amp; ĐT TP.HCM cấp ngày 01/01/2021. GPMXH: 238/GP-BTTTT
                 do Bộ Thông Tin và Truyền Thông cấp ngày 01/01/2021.<br>
                 Địa chỉ: TP.Hồ Chí Minh. Điện thoại: 0123456789. Email: T&TMobile@gmail.com. Chịu trách nhiệm nội dung:
-                Võ Trần Minh Trí. <a rel="nofollow" href="#">Xem chính sách sử dụng</a>
+                Võ Trần Minh Trí.
             </p>
         </section>
     </div>

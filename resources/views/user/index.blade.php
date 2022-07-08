@@ -107,7 +107,7 @@
                 style="opacity: 1; display: block;border-top: 0;">
                 <div class="owl-wrapper-outer">
                     <div class="owl-wrapper" style="width: 9044px; left: 0px; display: block;">
-                        @foreach ($danhSachDienThoai as $tp)
+                        @foreach ($danhSachDienThoaiKM as $tp)
                             <div class="owl-item" style="width: 228px;">
                                 <div class="item" data-id="">
                                     <a href="{{ route('productDetail', ['sanPhamId' => $tp->id]) }}" data-s="Nomal"

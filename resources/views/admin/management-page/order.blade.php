@@ -144,11 +144,15 @@
                                                             type="button" class="btn btn-outline-info"
                                                             title="Xem chi tiết đơn hàng"><i
                                                                 class="fas fa-info"></i></button></a>
-                                                    <a
-                                                        href="{{ route('createBill', ['maDonHang' => $tp->ma_don_hang]) }}"><button
-                                                            type="button" class="btn btn-outline-dark"
-                                                            title="In hóa đơn"><i
-                                                                class="fas fa-print"></i></button></a>
+                                                    @if ($tp->trang_thai_don_hang == 1)
+                                                        <a
+                                                            href="{{ route('createBill', ['maDonHang' => $tp->ma_don_hang]) }}"><button
+                                                                type="button" class="btn btn-outline-dark"
+                                                                title="In hóa đơn"><i class="fas fa-print"></i></button></a>
+                                                    @else
+                                                        <button type="button" class="btn btn-outline-dark disabled"
+                                                            title="In hóa đơn"><i class="fas fa-print"></i></button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

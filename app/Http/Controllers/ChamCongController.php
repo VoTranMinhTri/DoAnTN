@@ -129,9 +129,6 @@ class ChamCongController extends Controller
 
     public function chamCongNhanVien(Request $request, $nhanVienId)
     {
-        // dd($request->all());
-        // $nhanVien = NhanVien::where('id', '=', $nhanVienId)->first();
-        // Kiểm tra id hệ số lương
         $danhSachHSL = HeSoLuong::All();
         $chuoiIdHeSoLuong = '';
         $dem = 0;
@@ -148,12 +145,14 @@ class ChamCongController extends Controller
             $request->all(),
             [
                 'hesoluong' => 'required|in:' . $chuoiIdHeSoLuong,
-                'songaylamviec' => 'required|max:26|min:0',
-                'ungtruoc' => 'required|numeric|min:0',
+                'songaylamviec' => 'required|numeric|max:26|min:0',
+                'ungtruoc' => 'required|numeric|min:0|max:500000',
             ],
             $messages = [
                 'required' => ':attribute không được bỏ trống !',
-                'max' => 'Vượt quá số ký tự cho phép !',
+                'max' => ':attribute vượt quá s:attribute cho phép !',
+                'min' => ':attribute phải lớn hơn 0 !',
+                'numeric' => ':attribute phải là kiểu số !',
                 'in' => ':attribute không đúng với dữ liệu hệ thống !',
             ],
             [

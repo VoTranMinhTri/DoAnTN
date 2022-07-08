@@ -57,7 +57,7 @@
                                             <td style="color:red">Đã hủy</td>
                                         @endif
                                         <td style="color:#3e5569">{{ number_format($tp->tong_tien_chua_giam, 0,',','.') }} VNĐ</td>
-                                        <td style="color:#3e5569">{{ number_format($tp->giam, 0,',','.') }} VNĐ</td>
+                                        <td style="color:#3e5569">- {{ number_format($tp->giam, 0,',','.') }} VNĐ</td>
                                         <td style="color:#3e5569">{{ number_format($tp->tong_tien, 0,',','.') }} VNĐ</td>
                                     </tr>
                                 @endforeach

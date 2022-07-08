@@ -971,7 +971,7 @@
                 <div class="box04 box-normal">
                     <div class="price-one">
                         <div class="box-price">
-                            <div class="listproduct" style="display: block;margin-bottom: 10px;border-top:0">
+                            <div class="listproduct priceproduct" style="display: block;margin-bottom: 10px;border-top:0">
                                 @if ($danhSachChiTiet[0]->phan_tram_giam == 0)
                                     <strong class="price" style="font-size: 20px">Giá:
                                         {{ number_format($danhSachChiTiet[0]->gia, 0, ',', '.') }}₫</strong>
@@ -1196,7 +1196,7 @@
                     'idChiTiet': $idChiTiet,
                 },
                 success: function(data) {
-                    $('.listproduct').html(data);
+                    $('.priceproduct').html(data);
                 }
             });
             loading[0].style = "display:block";

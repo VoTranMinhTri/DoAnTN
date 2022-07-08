@@ -2175,7 +2175,8 @@ class GioHangController extends Controller
         $extraData = "merchantName=MoMo Partner";
 
         $requestId = time() ."";
-        $requestType = "payWithATM";
+        // $requestType = "payWithATM";
+        $requestType = "captureWallet";
 
         // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
         //before sign HMAC SHA256 signature

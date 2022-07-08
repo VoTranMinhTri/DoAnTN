@@ -15,7 +15,7 @@ class LoaiTaiKhoanController extends Controller
      */
     public function index()
     {
-        $danhSachLoaiTaiKhoan = LoaiTaiKhoan::All();
+        $danhSachLoaiTaiKhoan = LoaiTaiKhoan::where('id','!=',1)->get();
         return view('admin/management-page/accounttype', ['danhSachLoaiTaiKhoan' => $danhSachLoaiTaiKhoan]);
     }
 

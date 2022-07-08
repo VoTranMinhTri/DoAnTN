@@ -90,11 +90,21 @@
     {{-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> --}}
     <script src="https://www.paypal.com/sdk/js?client-id=AR9W53CxF61QShw6HNHEWQan3vw7tqxm-q6eMXcDu6X_DR_Xs_Q7lQDJY8GAKdLWtxAeRloiOrDcp3FI&disable-funding=credit,card&currency=USD&vault=true"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <div class="zalo-chat-widget" data-oaid="2920828326549610293" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+    <a href="https://www.messenger.com/t/100312812742200/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 123px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/chat-messenger.png') }}" width="50" height="50">
+        </div>
+    </a>
+    <a href="https://zalo.me/0363868840" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 50px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/Logo.svg') }}" width="50" height="50">
+        </div>
+    </a>
+    {{-- <div class="zalo-chat-widget" data-oaid="2920828326549610293" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="0" data-width="" data-height=""></div>
     </div>
 
-    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script> --}}
 </body>
 <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 <!-- JavaScript -->

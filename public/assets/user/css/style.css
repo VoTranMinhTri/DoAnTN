@@ -14492,6 +14492,7 @@ section.wrapper {
     line-height: 22px;
     color: #333;
     padding: 10px;
+    text-align: justify;
 }
 
 .ordercontent .info-order {

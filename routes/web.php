@@ -77,7 +77,7 @@ Route::middleware('checklogout')->group(function () {
         //Lấy doanh thu theo năm
         Route::post('/layDoanhThu', [TrangChuController::class, 'layDoanhThu']);
         //Xuất file Excel
-        Route::post('/export-csv',[TrangChuController::class, 'export_csv']);
+        Route::post('/export-csv', [TrangChuController::class, 'export_csv']);
         //Đổi mật khẩu
         Route::get('/change-pass', function () {
             return view('admin/management-page/change-pass');
@@ -188,14 +188,14 @@ Route::middleware('checklogout')->group(function () {
         //Xác nhận địa chỉ nhận hàng
         Route::get('/confirm', [GioHangController::class, 'confirmOrderAddress']);
         Route::get('/xacNhanThongTin', [GioHangController::class, 'xacNhanThongTin']);
-
-        //Trang cập nhật mật khẩu
-        Route::get('/recoverpassword', function () {
-            return view('user/recoverpassword');
-        });
-        Route::post('/recoverpassword', [TaiKhoanController::class, 'recoverPassword']);
     });
 });
+
+//Trang cập nhật mật khẩu
+Route::get('/recoverpassword', function () {
+    return view('user/recoverpassword');
+});
+Route::post('/recoverpassword', [TaiKhoanController::class, 'recoverPassword']);
 
 Route::middleware('checkuser')->group(function () {
     Route::get('/signin', function () {
@@ -236,7 +236,7 @@ Route::middleware('checkcustomer')->group(function () {
     })->name('feedback');
     Route::get('/lienHe', [TrangChuController::class, 'lienHe'])->name('lienHe');
     //Tìm cửa hàng
-    Route::get('/findstore',[TrangChuController::class, 'timCuaHang'])->name('findstore');
+    Route::get('/findstore', [TrangChuController::class, 'timCuaHang'])->name('findstore');
 });
 
 

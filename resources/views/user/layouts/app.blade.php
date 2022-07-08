@@ -25,8 +25,8 @@
             <a href="/" class="nav-bar-logo"><img src="{{ asset('assets/user/images/Logo-1.png') }}" /></a>
             <div class="bordercol"></div>
             <form action="{{ route('resultSearch') }}" class="nav-bar-search" method='get'>
-                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..." maxlength="100" name='search' autocomplete="off"
-                    id='search' onkeyup="suggestSearch()">
+                <input type="text" class="" placeholder="Nhập tên điện thoại bạn cần tìm..." maxlength="100"
+                    name='search' autocomplete="off" id='search' onkeyup="suggestSearch()">
                 <button type="submit"><i class="fas fa-search"></i></button>
                 <div id="search-result" style="display: none;">
                     <ul class="suggest_search">
@@ -124,10 +124,20 @@
         //     }
         // }
     </script>
-    <div class="zalo-chat-widget" data-oaid="2920828326549610293" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+    <a href="https://www.messenger.com/t/100312812742200/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 123px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/chat-messenger.png') }}" width="50" height="50">
+        </div>
+    </a>
+    <a href="https://zalo.me/0363868840" target="_blank">
+        <div style="height: 50px;width: 50px;position: fixed;inset: auto 0px 50px 20px;cursor: pointer;">
+            <img src="{{ asset('assets/user/images/Logo.svg') }}" width="50" height="50">
+        </div>
+    </a>
+    {{-- <div class="zalo-chat-widget" data-oaid="2920828326549610293" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="0" data-width="" data-height=""></div>
 
-    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script> --}}
 </body>
 
 <footer class="footer">
@@ -140,7 +150,8 @@
                 <li><a rel="nofollow" href="/findstore">Tìm cửa hàng</a></li>
             </ul>
         </div>
-        <div class="footer-col" style="height: 120px;width: 500px;box-shadow: 0 5px 9px 1px #9098a9;margin-right: 100px;">
+        <div class="footer-col"
+            style="height: 120px;width: 500px;box-shadow: 0 5px 9px 1px #9098a9;margin-right: 100px;">
             <iframe
                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTT-Mobile-100312812742200&tabs=timeline&width=500&height=120&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                 width="500" height="120" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
@@ -180,7 +191,7 @@
                 © 2021. T&T Mobile. GPDKKD: 0303217354 do sở KH &amp; ĐT TP.HCM cấp ngày 01/01/2021. GPMXH: 238/GP-BTTTT
                 do Bộ Thông Tin và Truyền Thông cấp ngày 01/01/2021.<br>
                 Địa chỉ: TP.Hồ Chí Minh. Điện thoại: 0123456789. Email: T&TMobile@gmail.com. Chịu trách nhiệm nội dung:
-                Võ Trần Minh Trí. <a rel="nofollow" href="#">Xem chính sách sử dụng</a>
+                Võ Trần Minh Trí.
             </p>
         </section>
     </div>
