@@ -21,6 +21,7 @@ class CreatePhieuGiamGiasTable extends Migration
             $table->date('ngay_het_han');
             $table->integer('trang_thai');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

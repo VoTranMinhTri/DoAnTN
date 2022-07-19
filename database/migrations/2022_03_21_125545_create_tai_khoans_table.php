@@ -25,7 +25,7 @@ class CreateTaiKhoansTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('loai_tai_khoan_id')->references('id')->on('loai_tai_khoans');
-            $table->foreign('bac_tai_khoan_id')->references('id')->on('bac_tai_khoan_id');
+            $table->foreign('bac_tai_khoan_id')->references('id')->on('bac_tai_khoans');
         });
     }
 

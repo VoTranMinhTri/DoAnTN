@@ -26,11 +26,13 @@
                             </li>
                             <li class="qrcode" data-method="3" onclick="buttonVNPay()"><a><i
                                         class="cartnew-choose-dot"></i>
-                                    <div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua VNPay</span></span></div>
+                                    <div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua
+                                                VNPay</span></span></div>
                                 </a>
                                 <!---->
                             </li>
-                            <li class="momo" data-method="4" onclick="buttonMomo()"><a><i class="cartnew-choose-dot"></i>
+                            <li class="momo" data-method="4" onclick="buttonMomo()"><a><i
+                                        class="cartnew-choose-dot"></i>
                                     <div class="text-payment"><span><i class="choose-payment-MOMO"></i><span>Qua Ví
                                                 điện tử MoMo</span></span></div>
                                 </a>
@@ -59,7 +61,8 @@
                                 <!---->
                             </li> --}}
                         </ul>
-                        <button class="confirm-payment-button" onclick="thanhToan()" id="thanhtoan"><b>Thanh toán khi nhận hàng</b>
+                        <button class="confirm-payment-button" onclick="thanhToan()" id="thanhtoan"><b>Thanh toán khi
+                                nhận hàng</b>
                         </button>
                         {{-- Thanh toán VNPay --}}
                         <form action="{{ route('vnpay_payment') }}" method="post">
@@ -197,6 +200,8 @@
                         alertify.error(data.responseText);
                     }
                 });
+                loading[0].style = "display:block";
+                setTimeout(fadeOutEffect, 5000);
             });
         }
     }).render('#paypal-button');
@@ -235,7 +240,7 @@
                 }
             });
             loading[0].style = "display:block";
-            setTimeout(fadeOutEffect, 500);
+            setTimeout(fadeOutEffect, 5000);
         }
     }
 

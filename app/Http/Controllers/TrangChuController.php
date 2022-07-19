@@ -91,7 +91,7 @@ class TrangChuController extends Controller
             }
             $tp->so_luot_danh_gia = count($danhSachDanhGia);
         }
-        return view('user/index', ['danhSachDienThoai' => $danhSachDienThoai,'danhSachDienThoaiKM' => $danhSachDienThoaiKM]);
+        return view('user/index', ['danhSachDienThoai' => $danhSachDienThoai, 'danhSachDienThoaiKM' => $danhSachDienThoaiKM]);
     }
 
     public function filterProduct(Request $request)
@@ -1103,14 +1103,14 @@ class TrangChuController extends Controller
 
     public function indexAdmin()
     {
-        $danhSachKhachHang = TaiKhoan::where('loai_tai_khoan_id', '>', 4)->get();
-        $danhSachDonHang = DonHang::all();
-        $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
-        $danhSachSanPham = DienThoai::where('trang_thai', '=', 1)->get();
-        $tongSoND = count($danhSachKhachHang);
-        $tongSoDH = count($danhSachDonHang);
-        $tongSoCH = count($danhSachCuaHang);
-        $tongSoSP = count($danhSachSanPham);
+        // $danhSachKhachHang = TaiKhoan::where('loai_tai_khoan_id', '>', 4)->get();
+        // $danhSachDonHang = DonHang::all();
+        // $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
+        // $danhSachSanPham = DienThoai::where('trang_thai', '=', 1)->get();
+        // $tongSoND = count($danhSachKhachHang);
+        // $tongSoDH = count($danhSachDonHang);
+        // $tongSoCH = count($danhSachCuaHang);
+        // $tongSoSP = count($danhSachSanPham);
         $doanhThuTungThang = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
             ->where('don_hangs.trang_thai_don_hang', '=', 3)
             ->whereYear('don_hangs.ngay_tao', '=', now()->year)
@@ -1118,21 +1118,27 @@ class TrangChuController extends Controller
             ->groupBy('thang')
             ->get();
         $doanhThuTungNam = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
-        ->where('don_hangs.trang_thai_don_hang', '=', 3)
-        ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
-        ->groupBy('nam')
-        ->orderBy('nam','DESC')
-        ->limit('5')
-        ->get();
+            ->where('don_hangs.trang_thai_don_hang', '=', 3)
+            ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
+            ->groupBy('nam')
+            ->orderBy('nam', 'DESC')
+            ->limit('5')
+            ->get();
         $nam = date('Y');
         $tongSoLuongBanRa = 0;
         $danhSachThuongHieu = ThuongHieu::all();
+        $danhSachThuongHieuXoa = ThuongHieu::onlyTrashed()->get();
+        for($i = 0;$i<count($danhSachThuongHieuXoa);$i++){
+            $danhSachThuongHieu[count($danhSachThuongHieu)+$i] = $danhSachThuongHieuXoa[$i];
+        }
+        // dd($danhSachThuongHieu);
         foreach ($danhSachThuongHieu as $tp) {
             $soLuong = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
                 ->join('chi_tiet_dien_thoais', 'chi_tiet_dien_thoais.id', '=', 'chi_tiet_don_hangs.chi_tiet_dien_thoai_id')
                 ->join('dien_thoais', 'dien_thoais.id', '=', 'chi_tiet_dien_thoais.dien_thoai_id')
                 ->where('dien_thoais.thuong_hieu_id', '=', $tp->id)
                 ->where('don_hangs.trang_thai_don_hang', '=', 3)
+                ->whereYear('don_hangs.ngay_tao', '=', now()->year)
                 ->select(DB::raw('sum(chi_tiet_don_hangs.so_luong) soluong'))
                 ->get();
             $tp->sl_sp_ban_ra = $soLuong[0]->soluong;
@@ -1142,8 +1148,8 @@ class TrangChuController extends Controller
             $tp->phan_tram = $tp->sl_sp_ban_ra / $tongSoLuongBanRa * 100;
         }
         return view('admin/index', [
-            'tongSoND' => $tongSoND, 'tongSoDH' => $tongSoDH,
-            'tongSoCH' => $tongSoCH, 'tongSoSP' => $tongSoSP,
+            // 'tongSoND' => $tongSoND, 'tongSoDH' => $tongSoDH,
+            // 'tongSoCH' => $tongSoCH, 'tongSoSP' => $tongSoSP,
             'doanhThuTungThang' => $doanhThuTungThang,
             'doanhThuTungNam' => $doanhThuTungNam,
             'danhSachThuongHieu' => $danhSachThuongHieu,
@@ -1151,15 +1157,16 @@ class TrangChuController extends Controller
         ]);
     }
 
-    public function layDoanhThu(Request $request){
-        $danhSachKhachHang = TaiKhoan::where('loai_tai_khoan_id', '>', 4)->get();
-        $danhSachDonHang = DonHang::all();
-        $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
-        $danhSachSanPham = DienThoai::where('trang_thai', '=', 1)->get();
-        $tongSoND = count($danhSachKhachHang);
-        $tongSoDH = count($danhSachDonHang);
-        $tongSoCH = count($danhSachCuaHang);
-        $tongSoSP = count($danhSachSanPham);
+    public function layDoanhThu(Request $request)
+    {
+        // $danhSachKhachHang = TaiKhoan::where('loai_tai_khoan_id', '>', 4)->get();
+        // $danhSachDonHang = DonHang::all();
+        // $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
+        // $danhSachSanPham = DienThoai::where('trang_thai', '=', 1)->get();
+        // $tongSoND = count($danhSachKhachHang);
+        // $tongSoDH = count($danhSachDonHang);
+        // $tongSoCH = count($danhSachCuaHang);
+        // $tongSoSP = count($danhSachSanPham);
         $doanhThuTungThang = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
             ->where('don_hangs.trang_thai_don_hang', '=', 3)
             ->whereYear('don_hangs.ngay_tao', '=', $request->input('nam'))
@@ -1167,21 +1174,26 @@ class TrangChuController extends Controller
             ->groupBy('thang')
             ->get();
         $doanhThuTungNam = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
-        ->where('don_hangs.trang_thai_don_hang', '=', 3)
-        ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
-        ->groupBy('nam')
-        ->orderBy('nam','DESC')
-        ->limit('5')
-        ->get();
+            ->where('don_hangs.trang_thai_don_hang', '=', 3)
+            ->select(DB::raw("YEAR(don_hangs.ngay_tao) nam"), DB::raw('sum(chi_tiet_don_hangs.gia_giam * chi_tiet_don_hangs.so_luong) doanhthu'))
+            ->groupBy('nam')
+            ->orderBy('nam', 'DESC')
+            ->limit('5')
+            ->get();
         $nam = $request->input('nam');
         $tongSoLuongBanRa = 0;
         $danhSachThuongHieu = ThuongHieu::all();
+        $danhSachThuongHieuXoa = ThuongHieu::onlyTrashed()->get();
+        for($i = 0;$i<count($danhSachThuongHieuXoa);$i++){
+            $danhSachThuongHieu[count($danhSachThuongHieu)+$i] = $danhSachThuongHieuXoa[$i];
+        }
         foreach ($danhSachThuongHieu as $tp) {
             $soLuong = DonHang::join('chi_tiet_don_hangs', 'chi_tiet_don_hangs.don_hang_id', '=', 'don_hangs.ma_don_hang')
                 ->join('chi_tiet_dien_thoais', 'chi_tiet_dien_thoais.id', '=', 'chi_tiet_don_hangs.chi_tiet_dien_thoai_id')
                 ->join('dien_thoais', 'dien_thoais.id', '=', 'chi_tiet_dien_thoais.dien_thoai_id')
                 ->where('dien_thoais.thuong_hieu_id', '=', $tp->id)
                 ->where('don_hangs.trang_thai_don_hang', '=', 3)
+                ->whereYear('don_hangs.ngay_tao', '=', $request->input('nam'))
                 ->select(DB::raw('sum(chi_tiet_don_hangs.so_luong) soluong'))
                 ->get();
             $tp->sl_sp_ban_ra = $soLuong[0]->soluong;
@@ -1191,8 +1203,8 @@ class TrangChuController extends Controller
             $tp->phan_tram = $tp->sl_sp_ban_ra / $tongSoLuongBanRa * 100;
         }
         return view('admin/index', [
-            'tongSoND' => $tongSoND, 'tongSoDH' => $tongSoDH,
-            'tongSoCH' => $tongSoCH, 'tongSoSP' => $tongSoSP,
+            // 'tongSoND' => $tongSoND, 'tongSoDH' => $tongSoDH,
+            // 'tongSoCH' => $tongSoCH, 'tongSoSP' => $tongSoSP,
             'doanhThuTungThang' => $doanhThuTungThang,
             'doanhThuTungNam' => $doanhThuTungNam,
             'danhSachThuongHieu' => $danhSachThuongHieu,
@@ -1200,11 +1212,13 @@ class TrangChuController extends Controller
         ]);
     }
 
-    public function export_csv(Request $request){
-        return Excel::download(new DoanhThuExport($request->input('doanh_thu_nam')),'doanh_thu_'.$request->input('doanh_thu_nam').'.xlsx');
+    public function export_csv(Request $request)
+    {
+        return Excel::download(new DoanhThuExport($request->input('doanh_thu_nam')), 'doanh_thu_' . $request->input('doanh_thu_nam') . '.xlsx');
     }
 
-    public function lienHe(Request $request){
+    public function lienHe(Request $request)
+    {
         $validated = Validator::make(
             $request->all(),
             [
@@ -1254,12 +1268,14 @@ class TrangChuController extends Controller
         Mail::to('ttmobile1306@gmail.com')->send(new Feedback($details));
         return response()->json('ok');
     }
-    public function gioithieu(){
-        $danhSachCuaHang = CuaHang::where('id','!=', 1)->get();
-        return view('user/introduce',['danhSachCuaHang'=>$danhSachCuaHang]);
+    public function gioithieu()
+    {
+        $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
+        return view('user/introduce', ['danhSachCuaHang' => $danhSachCuaHang]);
     }
-    public function timCuaHang(){
-        $danhSachCuaHang = CuaHang::where('id','!=', 1)->get();
-        return view('user/findstore',['danhSachCuaHang'=>$danhSachCuaHang]);
+    public function timCuaHang()
+    {
+        $danhSachCuaHang = CuaHang::where('id', '!=', 1)->get();
+        return view('user/findstore', ['danhSachCuaHang' => $danhSachCuaHang]);
     }
 }

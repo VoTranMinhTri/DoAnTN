@@ -16,6 +16,8 @@ use App\Models\Kho;
 use App\Models\ChiTietKho;
 use App\Models\DonHang;
 use App\Models\ChiTietDonHang;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -117,11 +119,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
                 if ($tp['productInfo']->phan_tram_giam == 0) {
-                    $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '₫</span>';
+                    $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫</span>';
                 } else {
                     $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '<del>
-                                        ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫<del>
+                                        ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                        <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher) * 100 . '%</p>
+                                        </span>';
                 }
                 $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -148,21 +152,21 @@ class GioHangController extends Controller
             }
             $tamTinh = 0;
             foreach (Session('Cart')->products as $tp) {
-                $tamTinh += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * $tp['productInfo']->phan_tram_giam);
+                $tamTinh += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher));
             }
             if ($phanTramGiamVoucher > 0) {
                 $output .= '<div class="total-provisional">
                         <span class="total-product-quantity">
-                            <span class="total-label">Áp dụng mã giảm giá:</span>
+                            <span class="total-label">Áp dụng mã giảm giá: ' . $voucher->code . '</span>
                         </span>
-                        <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '%</span>
+                        <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '% (Đã cộng vào % giảm mỗi SP)</span>
                     </div>';
             }
             $output .= '<div class="total-provisional">
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -184,7 +188,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -244,11 +248,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
             if ($tp['productInfo']->phan_tram_giam == 0) {
-                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '₫</span>';
+                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫</span>';
             } else {
                 $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '<del>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫<del>
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                    <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher) * 100 . '%</p>
+                                    </span>';
             }
             $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -281,16 +287,16 @@ class GioHangController extends Controller
         if ($phanTramGiamVoucher > 0) {
             $output .= '<div class="total-provisional">
                     <span class="total-product-quantity">
-                        <span class="total-label">Áp dụng mã giảm giá:</span>
+                        <span class="total-label">Áp dụng mã giảm giá: ' . $voucher->code . '</span>
                     </span>
-                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '%</span>
+                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '% (Đã cộng vào % giảm mỗi SP)</span>
                 </div>';
         }
         $output .= '<div class="total-provisional">
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -312,7 +318,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -363,11 +369,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
             if ($tp['productInfo']->phan_tram_giam == 0) {
-                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '₫</span>';
+                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫</span>';
             } else {
                 $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0,',','.') . '<del>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher)), 0, ',', '.') . '₫<del>
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                    <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher) * 100 . '%</p>
+                                    </span>';
             }
             $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -400,16 +408,16 @@ class GioHangController extends Controller
         if ($phanTramGiamVoucher > 0) {
             $output .= '<div class="total-provisional">
                     <span class="total-product-quantity">
-                        <span class="total-label">Áp dụng mã giảm giá:</span>
+                        <span class="total-label">Áp dụng mã giảm giá: ' . $voucher->code . '</span>
                     </span>
-                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '%</span>
+                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . ($phanTramGiamVoucher * 100) . '% (Đã cộng vào % giảm mỗi SP)</span>
                 </div>';
         }
         $output .= '<div class="total-provisional">
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -431,7 +439,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -479,11 +487,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
                     if ($tp['productInfo']->phan_tram_giam == 0) {
-                        $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam'])), 0,',','.') . '₫</span>';
+                        $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam'])), 0, ',', '.') . '₫</span>';
                     } else {
                         $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam'])), 0,',','.') . '<del>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam'])), 0, ',', '.') . '₫<del>
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                    <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam']) * 100 . '%</p>
+                                    </span>';
                     }
                     $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -509,21 +519,22 @@ class GioHangController extends Controller
                     </li>';
                 }
                 $tamTinh = 0;
+                $soTienGiamTuKM = 0;
                 foreach (Session('Cart')->products as $tp) {
                     $tamTinh += $tp['quantity'] * ($tp['productInfo']->gia - $tp['productInfo']->gia * ($tp['productInfo']->phan_tram_giam + Session('Cart')->voucher['phan_tram_giam']));
                 }
                 $output .= '</ul>
                 <div class="total-provisional">
                     <span class="total-product-quantity">
-                        <span class="total-label">Áp dụng mã giảm giá:</span>
+                        <span class="total-label">Áp dụng mã giảm giá: ' . $voucher->code . '</span>
                     </span>
-                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . (Session('Cart')->voucher['phan_tram_giam'] * 100) . '%</span>
+                    <span class="temp-total-money" style="font-weight: bold">Giảm ' . (Session('Cart')->voucher['phan_tram_giam'] * 100) . '% (Đã cộng vào % giảm mỗi SP)</span>
                 </div>
                 <div class="total-provisional">
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -545,7 +556,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -578,11 +589,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
                     if ($tp['productInfo']->phan_tram_giam == 0) {
-                        $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫</span>';
+                        $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫</span>';
                     } else {
                         $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam), 0,',','.') . '<del>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam), 0, ',', '.') . '<del>
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                    <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam) * 100 . '%</p>
+                                    </span>';
                     }
                     $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -616,7 +629,7 @@ class GioHangController extends Controller
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -639,7 +652,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -673,11 +686,13 @@ class GioHangController extends Controller
                                         ' . $tp['productInfo']->ten_mau_sac . '</a>
                                 </div>';
             if ($tp['productInfo']->phan_tram_giam == 0) {
-                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫</span>';
+                $output .= '<span> ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫</span>';
             } else {
                 $output .= '<span>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam), 0,',','.') . '<del>
-                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') . '₫ </del></span>';
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'] - ($tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam), 0, ',', '.') . '<del>
+                                    ' . number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') . '₫ </del>
+                                    <p style="display: inline;color: #666;">Giảm giá ' . ($tp['productInfo']->phan_tram_giam) * 100 . '%</p>
+                                    </span>';
             }
             $output .= '</div>
                             <hr style="width: 65%; visibility: hidden;">
@@ -711,7 +726,7 @@ class GioHangController extends Controller
                     <span class="total-product-quantity">
                         <span class="total-label">Tạm tính </span>(' . $soLuong . ' sản phẩm):
                     </span>
-                    <span class="temp-total-money">' . number_format($tamTinh, 0,',','.') . '₫</span>
+                    <span class="temp-total-money">' . number_format($tamTinh, 0, ',', '.') . '₫</span>
                 </div>
                 <div class="finaltotal">
                     <div class="area-total">
@@ -734,7 +749,7 @@ class GioHangController extends Controller
                             <div class="line-break"></div>
                         </div>
                         <div class="total-price"><strong>Tổng
-                                tiền:</strong><strong>' . number_format($tamTinh, 0,',','.') . '₫</strong></div>
+                                tiền:</strong><strong>' . number_format($tamTinh, 0, ',', '.') . '₫</strong></div>
                             <a href="/confirm"><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -1003,7 +1018,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . Session('Cart')->infoUser['diaChi'] . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1012,6 +1027,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             } else {
@@ -1135,7 +1159,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . $cuaHang->dia_chi . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1144,6 +1168,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+            $details = [
+                'ma_don_hang' => $donHang->ma_don_hang,
+                'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                'tong_tien' => $tongTien,
+            ];
+            $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+            Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
             session()->forget('Cart');
             return response()->json($output);
         } else if ($request->phuongThuc == 2) {
@@ -1268,7 +1301,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . Session('Cart')->infoUser['diaChi'] . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1277,6 +1310,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             } else {
@@ -1399,7 +1441,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . $cuaHang->dia_chi . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1408,6 +1450,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             }
@@ -1533,7 +1584,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . Session('Cart')->infoUser['diaChi'] . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1542,6 +1593,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             } else {
@@ -1664,7 +1724,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . $cuaHang->dia_chi . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1673,6 +1733,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             }
@@ -1798,7 +1867,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . Session('Cart')->infoUser['diaChi'] . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1807,6 +1876,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             } else {
@@ -1929,7 +2007,7 @@ class GioHangController extends Controller
                                         class="info-order__dot-icon"></i><span><strong>Nhận hàng tại địa chỉ: </strong>' . $cuaHang->dia_chi . '.</span>
                                 </span></label><label><span class=""><i
                                         class="info-order__dot-icon"></i><span><strong>Tổng tiền: </strong><b
-                                            class="red">' . number_format($tongTien, 0,',','.') . '₫</b></span>
+                                            class="red">' . number_format($tongTien, 0, ',', '.') . '₫</b></span>
                                 </span></label>
                         </div>
                     </div>
@@ -1938,6 +2016,15 @@ class GioHangController extends Controller
                 <div class="cartempty" style="margin-top: 0;padding-bottom: 10px;"><a href="/" class="backhome" style="width: 30%;position: relative;left: 34%;">Về trang chủ</a>
                 </div>
                 ';
+                $details = [
+                    'ma_don_hang' => $donHang->ma_don_hang,
+                    'ho_ten_nguoi_nhan' => Session('Cart')->infoUser['hoTen'],
+                    'dia_chi_nhan' => Session('Cart')->infoUser['diaChi'],
+                    'so_dien_thoai_nguoi_nhan' => Session('Cart')->infoUser['sdt'],
+                    'tong_tien' => $tongTien,
+                ];
+                $thongTinTaiKhoan = ThongTinTaiKhoan::where('tai_khoan_id', '=', Auth::user()->id)->first();
+                Mail::to($thongTinTaiKhoan->email)->send(new OrderMail($details));
                 session()->forget('Cart');
                 return response()->json($output);
             }
@@ -2169,12 +2256,12 @@ class GioHangController extends Controller
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
         $amount = $tongTien;
-        $orderId = time() ."";
+        $orderId = time() . "";
         $redirectUrl = "http://localhost:8000/confirm";
         $ipnUrl = "http://localhost:8000/confirm";
         $extraData = "merchantName=MoMo Partner";
 
-        $requestId = time() ."";
+        $requestId = time() . "";
         // $requestType = "payWithATM";
         $requestType = "captureWallet";
 

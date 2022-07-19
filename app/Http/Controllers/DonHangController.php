@@ -7,6 +7,8 @@ use App\Models\ChiTietKho;
 use App\Models\ChiTietDienThoai;
 use App\Models\ChiTietDonHang;
 use App\Models\SanPhamPhanBo;
+use App\Models\KhuyenMai;
+use App\Models\ChiTietKhuyenMai;
 use App\Models\CuaHang;
 use App\Models\DonHang;
 use App\Models\TaiKhoan;
@@ -117,7 +119,7 @@ class DonHangController extends Controller
             return redirect()->intended('/admin');
         }
         if ($taiKhoan->loai_tai_khoan_id == 1) {
-            $danhSachDonHang = DonHang::all();
+            $danhSachDonHang = DonHang::orderBy('created_at','DESC')->get();
             foreach ($danhSachDonHang as $tp) {
                 $tp->ngay_tao = Carbon::createFromFormat('Y-m-d', $tp->ngay_tao)->format('d/m/Y');
                 if ($tp->ngay_giao != null) {
@@ -128,7 +130,7 @@ class DonHangController extends Controller
         } else {
             $nhanVien = NhanVien::where('tai_khoan_id', '=', $taiKhoan->id)->first();
             if ($nhanVien->kho_id != 1) {
-                $danhSachDonHang = DonHang::where('cua_hang_id', '=', null)->get();
+                $danhSachDonHang = DonHang::where('cua_hang_id', '=', null)->orderBy('created_at','DESC')->get();
                 foreach ($danhSachDonHang as $tp) {
                     $tp->ngay_tao = Carbon::createFromFormat('Y-m-d', $tp->ngay_tao)->format('d/m/Y');
                     if ($tp->ngay_giao != null) {
@@ -137,7 +139,7 @@ class DonHangController extends Controller
                 }
                 return view('admin/management-page/order', ['danhSachDonHang' => $danhSachDonHang]);
             } else {
-                $danhSachDonHang = DonHang::where('cua_hang_id', '=', $nhanVien->cua_hang_id)->get();
+                $danhSachDonHang = DonHang::where('cua_hang_id', '=', $nhanVien->cua_hang_id)->orderBy('created_at','DESC')->get();
                 foreach ($danhSachDonHang as $tp) {
                     $tp->ngay_tao = Carbon::createFromFormat('Y-m-d', $tp->ngay_tao)->format('d/m/Y');
                     if ($tp->ngay_giao != null) {
@@ -364,7 +366,7 @@ class DonHangController extends Controller
     public function createBill($maDonHang)
     {
         $donHang = DonHang::where('ma_don_hang', '=', $maDonHang)->first();
-        $donHang->ngay_tao = Carbon::createFromFormat('Y-m-d', $donHang->ngay_tao)->format('d/m/Y');
+        $donHang->ngay_tao_hoa_don =  Carbon::createFromFormat('Y-m-d',  Carbon::now('Asia/Ho_Chi_Minh')->toDateString())->format('d/m/Y');
         $danhSachChiTietDH = ChiTietDonHang::join('chi_tiet_dien_thoais', 'chi_tiet_dien_thoais.id', '=', 'chi_tiet_don_hangs.chi_tiet_dien_thoai_id')
             ->join('mau_sacs', 'mau_sacs.id', '=', 'chi_tiet_dien_thoais.mau_sac_id')
             ->join('bo_nho_luu_trus', 'bo_nho_luu_trus.id', '=', 'chi_tiet_dien_thoais.bo_nho_luu_tru_id')
@@ -389,6 +391,7 @@ class DonHangController extends Controller
         view()->share('donHang', $donHang);
         ini_set('max_execution_time', '300');
         $pdf = PDF::loadView('pdf/bill', compact($danhSachChiTietDH, $donHang, $tongTien));
-        return $pdf->download('HoaDon-TTMobile-' . $maDonHang . '.pdf');
+        return $pdf->stream();
+        // return $pdf->download('HoaDon-TTMobile-' . $maDonHang . '.pdf');
     }
 }

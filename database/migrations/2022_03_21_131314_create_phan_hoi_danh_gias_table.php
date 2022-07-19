@@ -21,8 +21,8 @@ class CreatePhanHoiDanhGiasTable extends Migration
             $table->string('trang_thai');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('danh_gia_id')->references('id')->on('danh_gia_id');
-            $table->foreign('tai_khoan_id')->references('id')->on('tai_khoan_id');
+            $table->foreign('danh_gia_id')->references('id')->on('danh_gias');
+            $table->foreign('tai_khoan_id')->references('id')->on('tai_khoans');
         });
     }
 

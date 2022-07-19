@@ -110,8 +110,8 @@
                                                     style="color:red">*</span></label>
                                             <div class="col-sm-12">
                                                 <input class="form-control" name="soluong" type="number"
-                                                    style="height: 40px;" placeholder="Số lượng" value="" min='0' step="1"
-                                                    required>
+                                                    style="height: 40px;" placeholder="Số lượng" value=""
+                                                    min='0' step="1" required>
                                             </div>
                                         </div>
                                     </div>
@@ -131,17 +131,25 @@
                                             <tbody>
                                                 <?php $i = 0; ?>
                                                 @foreach ($danhSachChiTietDienThoai as $tp)
-                                                    <tr>
-                                                        <td><?php echo ++$i; ?></td>
-                                                        <td>{{ $tp->ten_thuong_hieu }}</td>
-                                                        <td>{{ $tp->ten_san_pham }} -
-                                                            {{ $tp->ram }}/{{ $tp->bo_nho_trong }} -
-                                                            {{ $tp->ten_mau_sac }}</td>
-                                                        <td>
-                                                            <input type="checkbox" name="sanpham[]"
-                                                                value="{{ $tp->id }}">
-                                                        </td>
-                                                    </tr>
+                                                    <?php $flag = 0; ?>
+                                                    @foreach ($danhSachChiTietKho as $ct)
+                                                        @if ($tp->id == $ct->chi_tiet_dien_thoai_id)
+                                                        <?php $flag = 1; ?>
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($flag == 0)
+                                                        <tr>
+                                                            <td><?php echo ++$i; ?></td>
+                                                            <td>{{ $tp->ten_thuong_hieu }}</td>
+                                                            <td>{{ $tp->ten_san_pham }} -
+                                                                {{ $tp->ram }}/{{ $tp->bo_nho_trong }} -
+                                                                {{ $tp->ten_mau_sac }}</td>
+                                                            <td>
+                                                                <input type="checkbox" name="sanpham[]"
+                                                                    value="{{ $tp->id }}">
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 @endforeach
                                             </tbody>
                                             <tfoot>
@@ -181,8 +189,8 @@
                                                     style="color:red">*</span></label>
                                             <div class="col-sm-12">
                                                 <input class="form-control" name="soluong" type="number" id="soluong"
-                                                    style="height: 40px;" placeholder="Số lượng" value="" min='0' step="1"
-                                                    required>
+                                                    style="height: 40px;" placeholder="Số lượng" value=""
+                                                    min='0' step="1" required>
                                             </div>
                                         </div>
                                     </div>
@@ -212,8 +220,8 @@
                                                     style="color:red">*</span></label>
                                             <div class="col-sm-12">
                                                 <input class="form-control" name="soluong" type="number"
-                                                    style="height: 40px;" placeholder="Số lượng" value="" min='0' step="1"
-                                                    required>
+                                                    style="height: 40px;" placeholder="Số lượng" value=""
+                                                    min='0' step="1" required>
                                             </div>
                                         </div>
                                     </div>
@@ -224,8 +232,7 @@
                                             <div class="col-sm-12" style="z-index: 1">
                                                 <select name="cuahang"
                                                     class="select2 form-select shadow-none select2-hidden-accessible"
-                                                    style="width: 100%; height:36px;" tabindex="-1"
-                                                    aria-hidden="true">
+                                                    style="width: 100%; height:36px;" tabindex="-1" aria-hidden="true">
                                                     @foreach ($danhSachCuaHang as $tp)
                                                         <option value="{{ $tp->id }}">{{ $tp->ten_cua_hang }}
                                                         </option>
@@ -236,7 +243,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12" style="text-align: center; margin-top:10px">
-                                            <button type="submit" class="btn btn-primary" style="width:50%">Phân bố sản phẩm</button>
+                                            <button type="submit" class="btn btn-primary" style="width:50%">Phân bố sản
+                                                phẩm</button>
                                         </div>
                                     </div>
                                 </form>

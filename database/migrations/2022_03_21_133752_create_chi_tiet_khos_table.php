@@ -21,8 +21,8 @@ class CreateChiTietKhosTable extends Migration
             $table->date('ngay_nhap');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('kho_id')->references('id')->on('kho_id');
-            $table->foreign('chi_tiet_dien_thoai_id')->references('id')->on('chi_tiet_dien_thoai_id');
+            $table->foreign('kho_id')->references('id')->on('khos');
+            $table->foreign('chi_tiet_dien_thoai_id')->references('id')->on('chi_tiet_dien_thoais');
         });
     }
 

@@ -55,8 +55,8 @@
                                                         <td>{{ $tp->ten_san_pham }} -
                                                             {{ $tp->ram }}/{{ $tp->bo_nho_trong }} -
                                                             {{ $tp->ten_mau_sac }}</td>
-                                                        <td>{{ number_format($tp->gia, 0) }} VNĐ</td>
-                                                        <td>{{ number_format($tp->gia_giam, 0) }} VNĐ</td>
+                                                        <td>{{ number_format($tp->gia, 0,',','.') }} VNĐ</td>
+                                                        <td>{{ number_format($tp->gia_giam, 0,',','.') }} VNĐ</td>
                                                         <td>{{ $tp->so_luong }}</td>
                                                     </tr>
                                                 @endforeach

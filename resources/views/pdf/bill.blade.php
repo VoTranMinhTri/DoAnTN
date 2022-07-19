@@ -116,7 +116,7 @@
         <div class="title">
             <div style="display:inline-block;padding-top:25px">
                 <p style="font-weight: bold;padding-bottom:0">Mã hóa đơn: {{ $donHang->ma_don_hang }}</p>
-                <p style="font-size: 15px">Ngày tạo: {{ $donHang->ngay_tao }}</p>
+                <p style="font-size: 15px">Ngày tạo: {{ $donHang->ngay_tao_hoa_don }}</p>
             </div>
             <div style="float:right"><img src="{{ public_path('assets/user/images/Logo.png') }}" width="200px"></div>
             <div class="nqp">
@@ -142,8 +142,13 @@
                     <b>{{ number_format($tp->gia_giam, 0, ',', '.') }}₫</b>
                     <em
                         style="font-style: normal;text-decoration: line-through;">{{ number_format($tp->gia, 0, ',', '.') }}₫</em>
+                    {{-- <b>Giảm {{ ($tp->gia - $tp->gia_giam) / $tp->gia * 100 }}%</b> --}}
+                </div>
+                <div style="text-align:right">
+                    <b>Giảm {{ ($tp->gia - $tp->gia_giam) / $tp->gia * 100 }}%</b>
                 </div>
             </div>
+            <br>
         @endforeach
         <div class='sum'>
             <span><strong>Giá tạm tính:</strong> <b>{{ number_format($tongTien, 0, ',', '.') }}₫</b></span>

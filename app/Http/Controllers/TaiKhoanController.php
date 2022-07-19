@@ -276,10 +276,10 @@ class TaiKhoanController extends Controller
     {
         $taiKhoan = TaiKhoan::where('token', '=', $token)->first();
         if ($taiKhoan->loai_tai_khoan_id == 1) {
-            $danhSachLoaiTaiKhoan = LoaiTaiKhoan::all();
+            $danhSachLoaiTaiKhoan = LoaiTaiKhoan::where('id', '!=', 1)->get();
             return view('admin/add-page/add-staff-account', ['danhSachLoaiTaiKhoan' => $danhSachLoaiTaiKhoan]);
         } else {
-            $danhSachLoaiTaiKhoan = LoaiTaiKhoan::where('id', '=', 3)->get();
+            $danhSachLoaiTaiKhoan = LoaiTaiKhoan::where('id', '=', 4)->get();
             return view('admin/add-page/add-staff-account', ['danhSachLoaiTaiKhoan' => $danhSachLoaiTaiKhoan]);
         }
     }

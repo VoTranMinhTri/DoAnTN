@@ -37,12 +37,14 @@
                                         </div>
                                         @if ($tp['productInfo']->phan_tram_giam == 0)
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') }}₫</span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') }}₫</span>
                                         @else
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam, 0,',','.') }}<del>
-                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') }}₫
-                                                </del></span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * $tp['productInfo']->phan_tram_giam, 0, ',', '.') }}₫<del>
+                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') }}₫
+                                                </del>
+                                                <p style="display: inline;color: #666;">Giảm giá {{ $tp['productInfo']->phan_tram_giam * 100 }}%</p>
+                                            </span>
                                         @endif
 
                                     </div>
@@ -51,7 +53,8 @@
                                 <div class="choose-color">
                                     <div class="choosenumber">
                                         @if ($tp['quantity'] == 1)
-                                            <div class="minus" style="pointer-events: none;" onclick="minusQuantity('{{ $tp['productInfo']->id }}')"><i
+                                            <div class="minus" style="pointer-events: none;"
+                                                onclick="minusQuantity('{{ $tp['productInfo']->id }}')"><i
                                                     style="background-color: rgb(204, 204, 204);"></i></div>
                                         @else
                                             <div class="minus" style="pointer-events: all;"
@@ -82,7 +85,7 @@
                             ?>
                             <span class="total-label">Tạm tính </span>({{ $soLuong }} sản phẩm):
                         </span>
-                        <span class="temp-total-money">{{ number_format($tamTinh, 0,',','.') }}₫</span>
+                        <span class="temp-total-money">{{ number_format($tamTinh, 0, ',', '.') }}₫</span>
                     </div>
 
                     <div class="finaltotal">
@@ -96,7 +99,8 @@
                                 </div>
                                 <div class="clr"></div>
                                 <div class="applycode">
-                                    <div class="applycode-text-input"><input maxlength="20" placeholder="Nhập mã giảm giá" id="maGiamGia" value='{{ Session('Cart')->voucher }}'>
+                                    <div class="applycode-text-input"><input maxlength="20" placeholder="Nhập mã giảm giá"
+                                            id="maGiamGia" value='{{ Session('Cart')->voucher }}'>
                                     </div>
                                     <div class="applycode-button"><button type="button" onclick="checkVoucher()">
                                             Áp dụng </button></div>
@@ -104,7 +108,7 @@
                                 <div class="line-break"></div>
                             </div>
                             <div class="total-price"><strong>Tổng
-                                    tiền:</strong><strong>{{ number_format($tamTinh, 0,',','.') }}₫</strong></div>
+                                    tiền:</strong><strong>{{ number_format($tamTinh, 0, ',', '.') }}₫</strong></div>
                             <a href='/confirm'><button type="button" class="submitorder"><b
                                         style="text-transform:uppercase">Đặt
                                         hàng</b></button></a>
@@ -195,7 +199,7 @@
             setTimeout(fadeOutEffect, 500);
         }
 
-        function checkVoucher(){
+        function checkVoucher() {
             var voucher = document.getElementById('maGiamGia');
             $.ajax({
                 type: 'get',

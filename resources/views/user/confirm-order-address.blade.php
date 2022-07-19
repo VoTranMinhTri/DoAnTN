@@ -1,5 +1,31 @@
 @extends('user.layouts.app-other')
 @section('content')
+    <div class="loadingcover" style="display: none;" id="loading">
+        <p class="csslder">
+            <span class="csswrap">
+                <span class="cssdot"></span>
+                <span class="cssdot"></span>
+                <span class="cssdot"></span>
+            </span>
+        </p>
+    </div>
+    <script>
+        function fadeOutEffect() {
+            const loading = document.getElementsByClassName("loadingcover");
+            var fadeTarget = document.getElementById("loading");
+            var fadeEffect = setInterval(function() {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    loading[0].style = "display:none";
+                }
+            }, 50);
+        }
+    </script>
     @if (Session('Cart') == null)
         <div class="giohang">
             <section>
@@ -24,6 +50,7 @@
             document.getElementById('vnpay-btn').click();
 
             function thanhToanVNPay() {
+                const loading = document.getElementsByClassName("loadingcover");
                 $.ajax({
                     type: 'get',
                     url: '{{ URL::to('thanhToan') }}',
@@ -34,6 +61,8 @@
                         $('.middleCart').html(data);
                     },
                 });
+                loading[0].style = "display:block";
+                setTimeout(fadeOutEffect, 4000);
             }
         </script>
     @elseif(request()->resultCode == '0')
@@ -52,6 +81,7 @@
             document.getElementById('momo-btn').click();
 
             function thanhToanMomo() {
+                const loading = document.getElementsByClassName("loadingcover");
                 $.ajax({
                     type: 'get',
                     url: '{{ URL::to('thanhToan') }}',
@@ -62,6 +92,8 @@
                         $('.middleCart').html(data);
                     },
                 });
+                loading[0].style = "display:block";
+                setTimeout(fadeOutEffect, 4000);
             }
         </script>
     @else
@@ -95,19 +127,22 @@
 
                                         @if ($tp['productInfo']->phan_tram_giam == 0)
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0,',','.') }}₫</span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0, ',', '.') }}₫</span>
                                         @else
                                             <span>
-                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0,',','.') }}<del>
-                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0,',','.') }}₫
-                                                </del></span>
+                                                {{ number_format($tp['productInfo']->gia * $tp['quantity'] - $tp['productInfo']->gia * $tp['quantity'] * ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher), 0, ',', '.') }}₫<del>
+                                                    {{ number_format($tp['productInfo']->gia * $tp['quantity'], 0, ',', '.') }}₫
+                                                </del>
+                                                <p style="display: inline;color: #666;">Giảm giá
+                                                    {{ ($tp['productInfo']->phan_tram_giam + $phanTramGiamVoucher) * 100 }}%
+                                                </p>
+                                            </span>
                                         @endif
 
                                     </div>
                                     <hr style="width: 65%; visibility: hidden;">
                                 </div>
-                                <div class="choose-color"
-                                    style="width: 100%;left: 0;display: block;justify-content: center;text-align: right;">
+                                <div class="choose-color" style="width: 100%;left: 8px;display: block;">
                                     <p style="color: black;font-size: 14px;">Số lượng: {{ $tp['quantity'] }}</p>
                                 </div>
                             </li>
@@ -116,10 +151,11 @@
                     @if ($phanTramGiamVoucher > 0)
                         <div class="total-provisional">
                             <span class="total-product-quantity">
-                                <span class="total-label">Áp dụng mã giảm giá:</span>
+                                <span class="total-label">Áp dụng mã giảm giá:
+                                    {{ Session('Cart')->voucher['code'] }}</span>
                             </span>
                             <span class="temp-total-money" style="font-weight: bold">Giảm
-                                {{ $phanTramGiamVoucher * 100 }}%</span>
+                                {{ $phanTramGiamVoucher * 100 }}% (Đã cộng vào % giảm mỗi SP)</span>
                         </div>
                     @endif
                     <div class="total-provisional">
@@ -134,13 +170,13 @@
                             ?>
                             <span class="total-label">Tạm tính </span>({{ $soLuong }} sản phẩm):
                         </span>
-                        <span class="temp-total-money">{{ number_format($tamTinh, 0,',','.') }}₫</span>
+                        <span class="temp-total-money">{{ number_format($tamTinh, 0, ',', '.') }}₫</span>
                     </div>
 
                     <div class="finaltotal">
                         <div class="area-total">
                             <div class="total-price"><strong>Tổng
-                                    tiền:</strong><strong>{{ number_format($tamTinh, 0,',','.') }}₫</strong></div>
+                                    tiền:</strong><strong>{{ number_format($tamTinh, 0, ',', '.') }}₫</strong></div>
                         </div>
                     </div>
                     <div class="info-customer">
@@ -173,7 +209,7 @@
                         </form>
                     </div>
                     <div class="choosegetgoods">
-                        <h4 style="color: black;">Chọn cách thức nhận hàng</h4>
+                        <h4 style="color: #333;">Chọn cách thức nhận hàng</h4>
                         <div class="click-choose">
                             <div data-tab="tab-1" class="choose-link current"><i class="cartnew-choose"></i>&nbsp;
                                 <span>Giao
@@ -204,8 +240,10 @@
                                                         class="cartnew-choose"></i><span>Số {{ $tp->dia_chi }}<small
                                                             class="cohang"> Còn hàng </small></span></li>
                                             @else
-                                                <li data-storeid="{{ $tp->id }}" style="pointer-events: none;"><span>Số {{ $tp->dia_chi }}<small
-                                                            class="hethang"> Hết hàng </small></span></li>
+                                                <li data-storeid="{{ $tp->id }}" style="pointer-events: none;">
+                                                    <span>Số {{ $tp->dia_chi }}<small class="hethang"> Hết hàng
+                                                        </small></span>
+                                                </li>
                                             @endif
                                         @endforeach
                                     </ul>
@@ -228,21 +266,6 @@
     <script src="{{ asset('assets/user/js/address-cart.js') }}"></script>
     <script>
         const loading = document.getElementsByClassName("loadingcover");
-
-        function fadeOutEffect() {
-            var fadeTarget = document.getElementById("loading");
-            var fadeEffect = setInterval(function() {
-                if (!fadeTarget.style.opacity) {
-                    fadeTarget.style.opacity = 1;
-                }
-                if (fadeTarget.style.opacity > 0) {
-                    fadeTarget.style.opacity -= 0.1;
-                } else {
-                    clearInterval(fadeEffect);
-                    loading[0].style = "display:none";
-                }
-            }, 50);
-        }
 
         function xacNhanThongTin() {
             var gioiTinh = $('input[name="gioitinh"]:checked').val();

@@ -115,14 +115,14 @@
                         <div class="card-body">
                             <div class="row">
                                 <!-- column -->
-                                <div class="col-lg-9">
+                                <div class="col-lg-12">
                                     {{-- <div class="flot-chart">
                                         <div class="flot-chart-content" id="flot-line-chart"></div>
                                     </div> --}}
                                     <div id="column-chart" style="height: 300px; width: 100%;">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                {{-- <div class="col-lg-3">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-dark p-10 text-white text-center">
@@ -154,7 +154,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- column -->
                             </div>
                             <div class="d-md-flex align-items-center">
@@ -370,8 +370,8 @@
                 animationEnabled: true,
                 theme: "light2", // "light1", "light2", "dark1", "dark2"
                 title: {
-                    text: "Tỉ lệ số lượng sản phẩm các hãng bán ra",
-                    fontSize: 25,
+                    text: "Tỉ lệ số lượng sản phẩm các hãng bán ra năm " + <?php echo json_encode($nam); ?>,
+                    fontSize: 20,
                     fontFamily: "Arial, Helvetica, sans-serif",
                 },
                 legend: {
