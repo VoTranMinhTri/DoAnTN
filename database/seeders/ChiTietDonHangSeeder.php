@@ -14,6 +14,21 @@ class ChiTietDonHangSeeder extends Seeder
      */
     public function run()
     {
+        //2023
+        ChiTietDonHang::create([
+            'don_hang_id' => 'DHAABBCC20230101',
+            'chi_tiet_dien_thoai_id' => 1,
+            'gia' => 8900000,
+            'gia_giam' => 8010000,
+            'so_luong' => 28,
+        ]);
+        ChiTietDonHang::create([
+            'don_hang_id' => 'DHAABBCC20230201',
+            'chi_tiet_dien_thoai_id' => 3,
+            'gia' => 33590000,
+            'gia_giam' => 30231000,
+            'so_luong' => 10,
+        ]);
         //2022
         ChiTietDonHang::create([
             'don_hang_id' => 'DHAABBCC20220101',

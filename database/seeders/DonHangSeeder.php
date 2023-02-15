@@ -15,6 +15,41 @@ class DonHangSeeder extends Seeder
      */
     public function run()
     {
+        //2023
+        DonHang::create([
+            'ma_don_hang' => 'DHAABBCC20230101',
+            'tai_khoan_khach_hang_id' => 8,
+            'tai_khoan_nhan_vien_id' => 1,
+            'phieu_giam_gia_id' => null,
+            'cua_hang_id' => 1,
+            'ho_ten_nguoi_nhan' => 'Nguyễn Văn A',
+            'dia_chi_nhan_hang' => '123 Lũy Bán Bích',
+            'so_dien_thoai_nguoi_nhan' => '0918123456',
+            'ghi_chu' => '',
+            'phuong_thuc_nhan_hang' => 1,
+            'phuong_thuc_thanh_toan' => 1,
+            'ngay_giao' => '2023-1-2',
+            'trang_thai_thanh_toan' => 1,
+            'trang_thai_don_hang' => 3,
+            'ngay_tao' => '2023-1-1'
+        ]);
+        DonHang::create([
+            'ma_don_hang' => 'DHAABBCC20230201',
+            'tai_khoan_khach_hang_id' => 8,
+            'tai_khoan_nhan_vien_id' => 1,
+            'phieu_giam_gia_id' => null,
+            'cua_hang_id' => 1,
+            'ho_ten_nguoi_nhan' => 'Nguyễn Văn A',
+            'dia_chi_nhan_hang' => '123 Lũy Bán Bích',
+            'so_dien_thoai_nguoi_nhan' => '0918123456',
+            'ghi_chu' => '',
+            'phuong_thuc_nhan_hang' => 1,
+            'phuong_thuc_thanh_toan' => 1,
+            'ngay_giao' => '2023-2-2',
+            'trang_thai_thanh_toan' => 1,
+            'trang_thai_don_hang' => 3,
+            'ngay_tao' => '2023-2-1'
+        ]);
         //2022
         DonHang::create([
             'ma_don_hang' => 'DHAABBCC20220101',
